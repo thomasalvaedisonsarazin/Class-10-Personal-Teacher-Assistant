@@ -24,6 +24,10 @@ def configure_logging() -> None:
         level=settings.LOG_LEVEL.upper(),
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
+    # HTTP clients log every request URL at INFO; keep them quiet so no request details
+    # (or credentials a provider might expect in a URL) ever reach the logs.
+    for noisy in ("httpx", "httpx2", "httpcore", "openai", "urllib3"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
 
 
 configure_logging()

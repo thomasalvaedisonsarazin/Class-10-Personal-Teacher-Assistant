@@ -49,3 +49,9 @@ export function getSubjectColor(codeOrIndex: string | number): string {
   const idx = Math.abs(Math.trunc(codeOrIndex)) % subjectColorList.length;
   return subjectColorList[idx];
 }
+
+/** Use the API's tile colour only if it is an approved palette colour (no surprises, no gradients). */
+export function safeTileColor(color: string | null | undefined, index: number): string {
+  const normalized = color?.toUpperCase();
+  return normalized && subjectColorList.includes(normalized) ? normalized : getSubjectColor(index);
+}

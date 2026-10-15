@@ -57,6 +57,11 @@ class OpenAILLMClient:
 
         self._openai = openai
         self.model = model
+        self._extra: dict[str, Any] = (
+            {"reasoning": {"effort": settings.LLM_REASONING_EFFORT}}
+            if model.startswith(("gpt-5", "o1", "o3", "o4"))
+            else {}
+        )
         self._client = openai.OpenAI(api_key=api_key, timeout=timeout, max_retries=max_retries)
 
     def generate_json(self, system: str, user: str, schema: type[T]) -> T:
@@ -67,6 +72,7 @@ class OpenAILLMClient:
                 instructions=system,
                 input=user,
                 text_format=schema,
+                **self._extra,
             )
         except self._openai.OpenAIError as exc:
             logger.warning("OpenAI request failed: %s", type(exc).__name__)
@@ -108,11 +114,16 @@ class FakeLLMClient:
 
     def __init__(self) -> None:
         self._factories: dict[type[BaseModel], FakeFactory] = {}
+        self._defaults: dict[type[BaseModel], FakeFactory] = {}
         self.calls: list[tuple[str, str, type[BaseModel]]] = []
 
     def register(self, schema: type[BaseModel], factory: FakeFactory) -> None:
         """Register a canned factory used for ``schema``."""
         self._factories[schema] = factory
+
+    def register_default(self, schema: type[BaseModel], factory: FakeFactory) -> None:
+        """Register a built-in factory that survives :meth:`clear` (used by services)."""
+        self._defaults[schema] = factory
 
     def unregister(self, schema: type[BaseModel]) -> None:
         """Remove a registered factory (no-op if absent)."""
@@ -126,7 +137,7 @@ class FakeLLMClient:
     def generate_json(self, system: str, user: str, schema: type[T]) -> T:
         """Return a canned or synthesised instance of ``schema``."""
         self.calls.append((system, user, schema))
-        factory = self._factories.get(schema)
+        factory = self._factories.get(schema) or self._defaults.get(schema)
         if factory is not None:
             result = factory(system, user)
             if not isinstance(result, schema):

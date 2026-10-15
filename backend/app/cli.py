@@ -57,7 +57,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     admin.add_argument("--email", required=True, help="Google account email of the admin")
     admin.add_argument("--name", default=None, help="Full name")
 
+    sub.add_parser("send-reminders", help="Send today's study reminders (run ~6 pm IST)")
+    sub.add_parser("send-parent-weekly", help="Send weekly summaries to parents (Sunday)")
+
     args = parser.parse_args(argv)
+    if args.command in ("send-reminders", "send-parent-weekly"):
+        from app.services import notification_service
+
+        with SessionLocal() as db:
+            if args.command == "send-reminders":
+                notification_service.send_daily_reminders(db)
+            else:
+                notification_service.send_parent_weekly(db)
+        return 0
     if args.command == "create-admin":
         try:
             create_admin(args.email, args.name)

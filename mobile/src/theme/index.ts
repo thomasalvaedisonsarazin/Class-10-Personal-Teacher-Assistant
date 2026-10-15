@@ -15,7 +15,7 @@ import type { Medium } from '@/types/api';
 
 import { palette, subjectColors } from './palette';
 
-export { palette, subjectColors, getSubjectColor } from './palette';
+export { palette, subjectColors, getSubjectColor, safeTileColor } from './palette';
 
 export const spacing = {
   xxs: 2,

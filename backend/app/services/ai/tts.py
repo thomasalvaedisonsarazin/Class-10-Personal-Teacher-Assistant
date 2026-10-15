@@ -109,6 +109,8 @@ class GoogleTTSClient:
 
     def __init__(self, api_key: str, timeout: float = 30.0) -> None:
         self._api_key = api_key
+        # Key goes in a header, never the URL: URLs end up in access/HTTP-client logs.
+        self._auth_headers = {"X-Goog-Api-Key": api_key}
         self._timeout = timeout
 
     def synthesize(self, text: str, medium: str) -> bytes:
@@ -135,11 +137,11 @@ class GoogleTTSClient:
             "audioConfig": {"audioEncoding": "MP3"},
         }
         try:
-            response = client.post(GOOGLE_TTS_URL, params={"key": self._api_key}, json=body)
+            response = client.post(GOOGLE_TTS_URL, headers=self._auth_headers, json=body)
             if response.status_code == 400 and voice_name:
                 # Voice may be unavailable for this project/region: retry with default voice.
                 body["voice"] = {"languageCode": language_code}
-                response = client.post(GOOGLE_TTS_URL, params={"key": self._api_key}, json=body)
+                response = client.post(GOOGLE_TTS_URL, headers=self._auth_headers, json=body)
             response.raise_for_status()
             content = response.json().get("audioContent")
         except (httpx.HTTPError, ValueError) as exc:

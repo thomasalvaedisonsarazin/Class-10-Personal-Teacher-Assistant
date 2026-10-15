@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from celery import Celery
+from celery.schedules import crontab
 
 from app.config import settings
 
@@ -10,7 +11,7 @@ celery_app = Celery(
     "personal_teacher_assistant",
     broker=settings.REDIS_URL,
     backend=settings.REDIS_URL,
-    include=[],  # Phase 2: add task modules, e.g. "app.workers.tasks"
+    include=["app.workers.tasks"],
 )
 
 celery_app.conf.update(
@@ -26,4 +27,15 @@ celery_app.conf.update(
     task_always_eager=settings.is_test,
     task_eager_propagates=settings.is_test,
     task_store_eager_result=False,
+    beat_schedule={
+        # Times are Asia/Kolkata (``timezone`` above).
+        "daily-study-reminders": {
+            "task": "notifications.daily_reminders",
+            "schedule": crontab(hour=18, minute=0),
+        },
+        "parent-weekly-summary": {
+            "task": "notifications.parent_weekly",
+            "schedule": crontab(hour=19, minute=0, day_of_week="sun"),
+        },
+    },
 )

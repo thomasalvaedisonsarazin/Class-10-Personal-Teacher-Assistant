@@ -25,7 +25,7 @@
 
 **MVP Scope (Phase 2A):**
 - [ ] Google sign-in, board & medium onboarding
-- [ ] Subject tile home (flat focus colours, no gradients) + one-active-topic / sequential lock
+- [ ] Subject tile home (flat focus colours, no gradients) + per-subject sequential lock (first topic of every subject open)
 - [ ] Lesson video/audio player
 - [ ] AI re-explain on "Not clear"
 - [ ] AI quiz with unseen questions each attempt + 60% pass gate
@@ -90,7 +90,7 @@ All tables: `id` (int PK), `created_at`, `updated_at` unless noted. FKs indexed.
 
 ### Progress
 - **TopicProgress**: id, user_id, topic_id, status (`active|completed`), best_score_pct, attempts_count, started_at, completed_at — UNIQUE(user_id, topic_id)
-  - **Partial unique index**: `UNIQUE(user_id) WHERE status = 'active'` → DB-level guarantee of one active topic
+  - Several subjects can be in progress at once (index `uq_topic_progress_one_active` dropped in migration 0002)
   - "locked" is derived, not stored
 - **StudyStreak**: id, user_id (unique), current_streak_days, longest_streak_days, last_study_date
 
@@ -107,22 +107,22 @@ All tables: `id` (int PK), `created_at`, `updated_at` unless noted. FKs indexed.
 
 ### `services/progress_service.py` — locking
 ```
-next_unlocked_topic(user, subject) = first published topic in subject (chapter order, topic order)
-                                     whose TopicProgress is not completed
+All subjects are open. Per subject, published topics form one path (chapter order, topic order).
 
 topic_state(user, topic):
   completed  → if TopicProgress.status == completed
-  active     → if TopicProgress.status == active
-  available  → if user has NO active topic AND topic == next_unlocked_topic(user, topic.subject)
-  locked     → otherwise
+  active     → first non-completed topic of its subject, already started
+  available  → first non-completed topic of its subject, not started
+  locked     → any later topic of that subject
 
-start_topic(user, topic): requires state == available, else 409 (another active) / 403 (locked)
-require_access(user, topic): state in {active, completed} else 403  ← used by lessons + quiz endpoints
-complete_topic(user, topic, score): only called from quiz grading when score >= QUIZ_PASS_PCT
+start_topic(user, topic): idempotent; 403 topic_locked if locked
+require_topic_access(user, topic): state != locked else 403  ← used by topic, lessons + quiz endpoints
+record_quiz_result(user, topic, score): only from quiz grading; completes when score >= QUIZ_PASS_PCT
 ```
 Completed topics remain re-watchable (review) but cannot be "started" again.
 
 ### `services/ai/explanation.py` — "Not clear" flow
+*(Updated 2026-10-15 at user request: the first lesson of every topic is a **story** — Kavya & Arun scenes with dialogue ending in the exact definition; students can pick any style via chips; slides are animated in sync with the narration and carry an emoji scene picture.)*
 1. Record ClarityFeedback(is_clear=false).
 2. Choose style: first style in rotation order not yet viewed by this student for (topic, medium).
    If all seen → cycle again preferring least-recently-viewed.
@@ -231,7 +231,7 @@ Prompt must include: board, subject, chapter, topic title + learning objectives,
 **Backend Endpoints:**
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | /api/v1/topics/{id}/start | Start topic (403 locked, 409 another active) |
+| POST | /api/v1/topics/{id}/start | Start topic (idempotent; 403 locked) |
 | GET | /api/v1/progress | Overall + per-subject progress, active topic, streak |
 
 **Mobile Screens:**
@@ -359,7 +359,7 @@ Rules: white text on tiles must pass WCAG AA; min touch target 48dp; Noto Sans +
 
 ## KEY TEST CASES (must exist)
 
-- Only one active topic: concurrent `POST /topics/{a}/start` and `/topics/{b}/start` → one 200, one 409 (DB partial index)
+- First topic of every subject is open; topics in different subjects can be started at the same time
 - Locked topic → 403 on lessons, not-clear, quiz
 - Quiz start never contains `correct_answer`
 - Two consecutive attempts share zero question ids
@@ -400,7 +400,7 @@ GOOGLE_ANDROID_CLIENT_ID=your-android-client-id
 
 # AI
 OPENAI_API_KEY=sk-...
-LLM_MODEL=gpt-4o-mini        # any OpenAI chat model your key can access
+LLM_MODEL=gpt-5.4-mini       # natural Tamil/Tanglish (chosen after a side-by-side test)
 TTS_PROVIDER=google         # google | azure | fake (dev/tests)
 TTS_API_KEY=xxx
 AI_GENERATIONS_PER_USER_PER_DAY=10

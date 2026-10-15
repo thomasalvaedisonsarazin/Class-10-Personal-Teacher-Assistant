@@ -138,8 +138,7 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                         "Express composite numbers as a unique product of primes and use it "
                         "to find HCF and LCM.",
                         "அடிப்படை எண்ணியல் தேற்றம்",
-                        "பகு எண்களைப் பகா எண்களின் தனித்த பெருக்கற்பலனாக எழுதி, மீ.பொ.வ மற்றும் "
-                        "மீ.சி.ம காணுதல்.",
+                        "பகு எண்களைப் பகா எண்களின் தனித்த பெருக்கற்பலனாக எழுதி, மீ.பொ.வ மற்றும் மீ.சி.ம காணுதல்.",
                     ),
                     TopicSeed(
                         "Arithmetic Progression",
@@ -244,8 +243,7 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                         "Trace the major fronts and turning points of the war and India's "
                         "role in it.",
                         "போரின் போக்கு",
-                        "போரின் முக்கியப் போர்முனைகள், திருப்புமுனைகள் மற்றும் அதில் "
-                        "இந்தியாவின் பங்கை அறிதல்.",
+                        "போரின் முக்கியப் போர்முனைகள், திருப்புமுனைகள் மற்றும் அதில் இந்தியாவின் பங்கை அறிதல்.",
                     ),
                     TopicSeed(
                         "Treaty of Versailles and the League of Nations",
@@ -311,15 +309,13 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                         "Understand the richness of Tamil vocabulary and the many words used "
                         "for parts of plants.",
                         "உரைநடை: தமிழ்ச்சொல் வளம்",
-                        "தமிழ்ச் சொல்வளத்தையும் தாவர உறுப்புகளுக்கான பல்வேறு சொற்களையும் "
-                        "அறிதல்.",
+                        "தமிழ்ச் சொல்வளத்தையும் தாவர உறுப்புகளுக்கான பல்வேறு சொற்களையும் அறிதல்.",
                     ),
                     TopicSeed(
                         "Grammar: Ezhuthu and Sol",
                         "Revise letters (ezhuthu) and words (sol) and identify their types.",
                         "இலக்கணம்: எழுத்து, சொல்",
-                        "எழுத்து, சொல் ஆகியவற்றின் வகைகளை மீள்பார்வை செய்து அடையாளம் "
-                        "காணுதல்.",
+                        "எழுத்து, சொல் ஆகியவற்றின் வகைகளை மீள்பார்வை செய்து அடையாளம் காணுதல்.",
                     ),
                 ),
             ),
@@ -329,18 +325,15 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                 topics=(
                     TopicSeed(
                         "Poem: Kaatrai Vaa!",
-                        "Appreciate Bharathiyar's poem on the wind and explain its central "
-                        "idea.",
+                        "Appreciate Bharathiyar's poem on the wind and explain its central idea.",
                         "செய்யுள்: காற்றே வா!",
                         "காற்றைப் பற்றிய பாரதியாரின் பாடலின் மையக்கருத்தை விளக்குதல்.",
                     ),
                     TopicSeed(
                         "Poem: Mullaippaattu",
-                        "Understand the Sangam poem's depiction of the mullai landscape and "
-                        "rain.",
+                        "Understand the Sangam poem's depiction of the mullai landscape and rain.",
                         "செய்யுள்: முல்லைப்பாட்டு",
-                        "முல்லை நிலத்தையும் மழையையும் சங்கப் பாடல் சித்தரிக்கும் விதத்தை "
-                        "அறிதல்.",
+                        "முல்லை நிலத்தையும் மழையையும் சங்கப் பாடல் சித்தரிக்கும் விதத்தை அறிதல்.",
                     ),
                     TopicSeed(
                         "Grammar: Thogainilai Thodargal",
@@ -372,19 +365,16 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                     ),
                     TopicSeed(
                         "Poem: Life",
-                        "Appreciate Henry Van Dyke's poem 'Life' and identify its poetic "
-                        "devices.",
+                        "Appreciate Henry Van Dyke's poem 'Life' and identify its poetic devices.",
                         "செய்யுள்: Life",
-                        "ஹென்றி வான் டைக்கின் 'Life' கவிதையின் கருத்தையும் கவிதை உத்திகளையும் "
-                        "அறிதல்.",
+                        "ஹென்றி வான் டைக்கின் 'Life' கவிதையின் கருத்தையும் கவிதை உத்திகளையும் அறிதல்.",
                     ),
                     TopicSeed(
                         "Supplementary: The Tempest",
                         "Narrate the story of Shakespeare's 'The Tempest' and describe its "
                         "main characters.",
                         "துணைப்பாடம்: The Tempest",
-                        "ஷேக்ஸ்பியரின் 'The Tempest' கதையைக் கூறி, முக்கியக் கதாபாத்திரங்களை "
-                        "விவரித்தல்.",
+                        "ஷேக்ஸ்பியரின் 'The Tempest' கதையைக் கூறி, முக்கியக் கதாபாத்திரங்களை விவரித்தல்.",
                     ),
                 ),
             ),
@@ -397,16 +387,13 @@ TN_SUBJECTS: tuple[SubjectSeed, ...] = (
                         "Understand James Thurber's humorous story and the role of "
                         "misunderstanding in it.",
                         "உரைநடை: The Night the Ghost Got In",
-                        "ஜேம்ஸ் தர்பரின் நகைச்சுவைக் கதையையும் அதில் தவறான புரிதலின் பங்கையும் "
-                        "அறிதல்.",
+                        "ஜேம்ஸ் தர்பரின் நகைச்சுவைக் கதையையும் அதில் தவறான புரிதலின் பங்கையும் அறிதல்.",
                     ),
                     TopicSeed(
                         "Poem: The Grumble Family",
-                        "Appreciate Lucy Maud Montgomery's poem and its message about "
-                        "complaining.",
+                        "Appreciate Lucy Maud Montgomery's poem and its message about complaining.",
                         "செய்யுள்: The Grumble Family",
-                        "முணுமுணுப்பைப் பற்றிய லூசி மாட் மாண்ட்கோமரியின் கவிதையின் செய்தியை "
-                        "அறிதல்.",
+                        "முணுமுணுப்பைப் பற்றிய லூசி மாட் மாண்ட்கோமரியின் கவிதையின் செய்தியை அறிதல்.",
                     ),
                     TopicSeed(
                         "Supplementary: Zigzag",
@@ -444,8 +431,13 @@ def _upsert_subject(
         select(Subject).where(Subject.board_id == board.id, Subject.display_order == order)
     )
     if subject is None:
-        subject = Subject(board_id=board.id, display_order=order, name=seed.name_en,
-                          tile_color=seed.tile_color, icon=seed.icon)
+        subject = Subject(
+            board_id=board.id,
+            display_order=order,
+            name=seed.name_en,
+            tile_color=seed.tile_color,
+            icon=seed.icon,
+        )
         db.add(subject)
         stats.bump("subjects")
     else:
@@ -503,8 +495,13 @@ def _upsert_topic(
         select(Topic).where(Topic.chapter_id == chapter.id, Topic.display_order == order)
     )
     if topic is None:
-        topic = Topic(chapter_id=chapter.id, display_order=order, title=seed.title_en,
-                      learning_objectives=seed.objectives_en, is_published=True)
+        topic = Topic(
+            chapter_id=chapter.id,
+            display_order=order,
+            title=seed.title_en,
+            learning_objectives=seed.objectives_en,
+            is_published=True,
+        )
         db.add(topic)
         stats.bump("topics")
     else:
@@ -523,8 +520,11 @@ def _upsert_topic(
             )
         )
         if tr is None:
-            db.add(TopicTranslation(topic_id=topic.id, medium=medium, title=title,
-                                    learning_objectives=objectives))
+            db.add(
+                TopicTranslation(
+                    topic_id=topic.id, medium=medium, title=title, learning_objectives=objectives
+                )
+            )
             stats.bump("topic_translations")
         else:
             tr.title = title

@@ -32,6 +32,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: Literal["development", "test", "production"] = "development"
     LOG_LEVEL: str = "INFO"
     CORS_ORIGINS: list[str] = [
+        "http://localhost:3000",  # admin (vite dev + docker)
         "http://localhost:5173",
         "http://localhost:8081",
         "http://localhost:19006",
@@ -52,13 +53,26 @@ class Settings(BaseSettings):
 
     # AI
     OPENAI_API_KEY: str = ""
-    LLM_MODEL: str = "gpt-4o-mini"
+    LLM_MODEL: str = "gpt-5.4-mini"  # chosen 2026-10-15: natural Tamil/Tanglish
+    # Reasoning models (gpt-5*, o*) think before answering; "low" keeps lessons fast and cheap.
+    LLM_REASONING_EFFORT: Literal["minimal", "low", "medium", "high"] = "low"
     LLM_TIMEOUT_SECONDS: float = 60.0
     LLM_MAX_RETRIES: int = 2
     TTS_PROVIDER: Literal["google", "azure", "fake"] = "fake"
     TTS_API_KEY: str = ""
     TTS_TIMEOUT_SECONDS: float = 30.0
     AI_GENERATIONS_PER_USER_PER_DAY: int = 10
+    # Where AI jobs run: "celery" (worker via Redis), "thread" (in the API process,
+    # for low-memory local dev), "sync" (inline, tests). "auto": celery in
+    # production, sync under tests, thread otherwise.
+    JOB_RUNNER: Literal["auto", "celery", "thread", "sync"] = "auto"
+    VIDEO_RENDER_ENABLED: bool = True
+    # Storybook illustrations (chosen 2026-10-15 after comparing samples).
+    IMAGES_ENABLED: bool = True
+    IMAGE_MODEL: str = "gpt-image-2"
+    IMAGE_QUALITY: Literal["low", "medium", "high"] = "medium"
+    IMAGE_PARALLELISM: int = 3
+    FFMPEG_TIMEOUT_SECONDS: int = 300
     AI_QUESTIONS_AUTO_APPROVE: bool = True
 
     # Storage
@@ -128,6 +142,15 @@ class Settings(BaseSettings):
         """Absolute local-media directory (relative MEDIA_ROOT resolves under backend/)."""
         root = Path(self.MEDIA_ROOT)
         return root if root.is_absolute() else BACKEND_DIR / root
+
+    @property
+    def job_runner(self) -> Literal["celery", "thread", "sync"]:
+        """Resolved job runner (see ``JOB_RUNNER``)."""
+        if self.JOB_RUNNER != "auto":
+            return self.JOB_RUNNER
+        if self.is_production:
+            return "celery"
+        return "sync" if self.is_test else "thread"
 
     @property
     def google_client_ids(self) -> list[str]:

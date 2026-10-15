@@ -150,14 +150,17 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - All student-facing text has a per-medium variant (en, ta, …)
 
 ### Progress Module
-- A student has **at most one** `TopicProgress` with status `active`
-- Topics unlock sequentially within a subject; other topics are locked while one is active
+- All subjects are always open; the **first topic of every subject** is available from the start
+- Within a subject, topics unlock sequentially (chapter order, then topic order); a student may study several subjects at once
 - `completed` is set **only** by a quiz attempt with `score_pct >= 60`
 - All lock checks live in `progress_service.py` and are enforced on every topic/lesson/quiz endpoint
 
 ### Learning Module
 - Lesson `style` must be one of: base, analogy, step_by_step, story, real_life, worked_example, visual
+- Lessons have an explanation **language** (`en` / `ta` / `tanglish`) independent of the textbook medium; students switch it on the lesson screen (remembered in `users.lesson_language`); cache key = topic + language + style. Tanglish = Tamil sentences in Tamil script with English technical words, read by the Tamil voice. Quizzes still follow the medium
+- The first lesson of every topic is the **story** style (a teacher-uploaded lesson, if any, comes first); students can also pick any style from the style chips
 - "Not clear" picks a style the student has not yet seen for that topic; reuse a cached `ready` lesson of that style + medium before generating
+- Each slide has a storybook **illustration** (gpt-image-2, `IMAGE_MODEL`; fixed style guide + Kavya/Arun character sheet, no text in images) generated in parallel with TTS; players show it with a slow pan/zoom; bullets appear in time with the narration (bullet k of n at `slideDuration * k / (n + 1)`, same rule in the video renderer and the mobile player); a failed picture only drops that scene's picture
 - Generation pipeline: LLM script → TTS audio (deliver first) → slide video render (async)
 - Prompts must be grounded in the topic's learning objectives and the board syllabus, age-appropriate for ~15-year-olds, in the student's medium
 
@@ -167,13 +170,23 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Grading happens server-side only
 - Pass mark constant: `QUIZ_PASS_PCT = 60` in config
 
+### Notifications Module
+- Study streak = consecutive India-time days with a lesson watched or a test submitted (`streak_service.record_study`)
+- Pushes go through `notification_service.notify` only: per-user language (en/ta), de-duplicated via `NotificationLog` (daily reminder once per day, parent weekly once per week per child), dead Expo tokens removed
+- Pass notifications run as a background task after the response; scheduled jobs run via Celery beat (6 pm IST reminders, Sunday 7 pm parent weekly) or `python -m app.cli send-reminders` / `send-parent-weekly`
+
+### Offline Module
+- Downloads (phone only) save the lesson audio, slide pictures and slide JSON under `Paths.document/offline-lessons/<lessonId>/` (no video, to save space); `offlineService` is the only place touching the file system
+- When a lesson can't load, the lesson screen offers the saved copy; tests always need internet (fresh questions, server grading)
+
 ### Parent Module
 - Parent can see a student only after the student shares an invite code
 - Parents have read-only access
 
 ### Design
 - Calm flat palette: muted blue, sage green, soft teal, warm off-white background, dark slate text
-- WCAG AA contrast; large touch targets; minimal distractions on lesson and quiz screens
+- WCAG AA contrast; large touch targets; minimal distractions on quiz screens
+- Lesson screens use calm, purposeful animation synced to the narration (scene fade-in, emoji pop-in, bullets appearing with the voice); respect the OS "reduce motion" setting; still no gradients
 
 ---
 
@@ -189,7 +202,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
   - 401: Unauthorized
   - 403: Forbidden (topic locked / wrong role)
   - 404: Not Found
-  - 409: Conflict (another topic already active)
+  - 409: Conflict (e.g. duplicate resource)
   - 429: Too Many Requests (auth / AI rate limits)
 
 ---
@@ -231,7 +244,7 @@ GOOGLE_ANDROID_CLIENT_ID=your-android-client-id
 
 # AI
 OPENAI_API_KEY=sk-...
-LLM_MODEL=gpt-4o-mini        # any OpenAI chat model your key can access
+LLM_MODEL=gpt-5.4-mini       # natural Tamil/Tanglish (chosen after a side-by-side test)
 TTS_PROVIDER=google
 TTS_API_KEY=xxx
 

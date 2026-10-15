@@ -1,5 +1,6 @@
 """Fake service implementations work offline and are selected under test settings."""
 
+import pytest
 from pydantic import BaseModel, Field
 
 from app.config import settings
@@ -88,3 +89,26 @@ def test_fake_push() -> None:
 
 def test_celery_eager_in_tests() -> None:
     assert celery_app.conf.task_always_eager is True
+
+
+def test_google_tts_key_sent_in_header_not_url(monkeypatch: pytest.MonkeyPatch) -> None:
+    """The API key must never appear in a request URL (URLs end up in logs)."""
+    import base64
+
+    import httpx
+
+    from app.services.ai import tts
+
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, json={"audioContent": base64.b64encode(b"mp3").decode()})
+
+    real_client = httpx.Client
+    monkeypatch.setattr(
+        tts.httpx, "Client", lambda **kw: real_client(transport=httpx.MockTransport(handler), **kw)
+    )
+    assert tts.GoogleTTSClient("secret-key-123").synthesize("hello", "en") == b"mp3"
+    assert "secret-key-123" not in str(seen[0].url)
+    assert seen[0].headers["X-Goog-Api-Key"] == "secret-key-123"

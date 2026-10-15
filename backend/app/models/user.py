@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING
 import sqlalchemy as sa
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.models.base import MEDIUM, USER_ROLE, Base, TimestampMixin
-from app.models.enums import Medium, UserRole
+from app.models.base import LESSON_LANGUAGE, MEDIUM, USER_ROLE, Base, TimestampMixin
+from app.models.enums import LessonLanguage, Medium, UserRole
 
 if TYPE_CHECKING:
     from app.models.curriculum import Board
@@ -31,6 +31,8 @@ class User(TimestampMixin, Base):
         sa.ForeignKey("boards.id", ondelete="SET NULL"), nullable=True, index=True
     )
     medium: Mapped[Medium | None] = mapped_column(MEDIUM, nullable=True)
+    # Preferred explanation language; None = same as the textbook medium.
+    lesson_language: Mapped[LessonLanguage | None] = mapped_column(LESSON_LANGUAGE, nullable=True)
     oauth_provider: Mapped[str | None] = mapped_column(sa.String(32), nullable=True)
     google_sub: Mapped[str | None] = mapped_column(
         sa.String(255), unique=True, index=True, nullable=True

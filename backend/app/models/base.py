@@ -11,6 +11,7 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from app.models.enums import (
     JobKind,
     JobStatus,
+    LessonLanguage,
     LessonSource,
     LessonStatus,
     LessonStyle,
@@ -76,6 +77,7 @@ class TimestampMixin:
 USER_ROLE = enum_column_type(UserRole, "user_role")
 MEDIUM = enum_column_type(Medium, "medium")
 LESSON_STYLE = enum_column_type(LessonStyle, "lesson_style")
+LESSON_LANGUAGE = enum_column_type(LessonLanguage, "lesson_language")
 LESSON_SOURCE = enum_column_type(LessonSource, "lesson_source")
 LESSON_STATUS = enum_column_type(LessonStatus, "lesson_status")
 JOB_KIND = enum_column_type(JobKind, "job_kind")

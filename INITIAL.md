@@ -259,7 +259,7 @@ The platform supports **multiple boards** and **English + regional-language medi
 
 ### Must Have (MVP)
 - [x] Google sign-in, board & medium onboarding
-- [x] Subject tile home screen (flat focus colours) + sequential topic lock / one-active-topic rule
+- [x] Subject tile home screen (flat focus colours) + sequential topic lock per subject (first topic of every subject open; pass 60% to unlock the next)
 - [x] Lesson video/audio player
 - [x] AI re-explain on "Not clear" (LLM script → TTS → slide video)
 - [x] AI quiz with fresh questions every attempt and 60% pass gate

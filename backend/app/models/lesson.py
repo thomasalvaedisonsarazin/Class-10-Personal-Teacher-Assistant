@@ -11,6 +11,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.models.base import (
     JOB_KIND,
     JOB_STATUS,
+    LESSON_LANGUAGE,
     LESSON_SOURCE,
     LESSON_STATUS,
     LESSON_STYLE,
@@ -19,7 +20,15 @@ from app.models.base import (
     JSONType,
     TimestampMixin,
 )
-from app.models.enums import JobKind, JobStatus, LessonSource, LessonStatus, LessonStyle, Medium
+from app.models.enums import (
+    JobKind,
+    JobStatus,
+    LessonLanguage,
+    LessonSource,
+    LessonStatus,
+    LessonStyle,
+    Medium,
+)
 
 if TYPE_CHECKING:
     from app.models.curriculum import Topic
@@ -32,6 +41,9 @@ class Lesson(TimestampMixin, Base):
     __tablename__ = "lessons"
     __table_args__ = (
         sa.Index("ix_lessons_topic_medium_style_status", "topic_id", "medium", "style", "status"),
+        sa.Index(
+            "ix_lessons_topic_language_style_status", "topic_id", "language", "style", "status"
+        ),
         sa.CheckConstraint(
             "duration_sec IS NULL OR duration_sec >= 0", name="duration_sec_non_negative"
         ),
@@ -43,13 +55,17 @@ class Lesson(TimestampMixin, Base):
     )
     medium: Mapped[Medium] = mapped_column(MEDIUM, nullable=False)
     style: Mapped[LessonStyle] = mapped_column(LESSON_STYLE, nullable=False)
+    language: Mapped[LessonLanguage] = mapped_column(
+        LESSON_LANGUAGE,
+        nullable=False,
+        default=LessonLanguage.en,
+        server_default=LessonLanguage.en.value,
+    )
     source: Mapped[LessonSource] = mapped_column(LESSON_SOURCE, nullable=False)
     title: Mapped[str | None] = mapped_column(sa.String(255), nullable=True)
     summary: Mapped[str | None] = mapped_column(sa.Text, nullable=True)
     script_text: Mapped[str | None] = mapped_column(sa.Text, nullable=True)
-    slides_json: Mapped[dict[str, Any] | list[Any] | None] = mapped_column(
-        JSONType, nullable=True
-    )
+    slides_json: Mapped[dict[str, Any] | list[Any] | None] = mapped_column(JSONType, nullable=True)
     audio_key: Mapped[str | None] = mapped_column(sa.String(512), nullable=True)
     video_key: Mapped[str | None] = mapped_column(sa.String(512), nullable=True)
     duration_sec: Mapped[int | None] = mapped_column(sa.Integer, nullable=True)

@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosHeaders } from 'axios';
+import { AxiosError, AxiosHeaders, create, isAxiosError } from 'axios';
 import type { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 
 import { authEvents } from '@/lib/authEvents';
@@ -9,19 +9,21 @@ import { tokenStorage } from './tokenStorage';
 
 const REQUEST_TIMEOUT_MS = 20_000;
 const REFRESH_PATH = '/auth/refresh';
+/** Endpoints where a 401 means "bad credentials", never "refresh and retry". */
+const NO_REFRESH_PATHS = [REFRESH_PATH, '/auth/google', '/auth/dev-login', '/auth/logout'];
 
 interface RetriableRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
 
-export const api: AxiosInstance = axios.create({
+export const api: AxiosInstance = create({
   baseURL: API_BASE_URL,
   timeout: REQUEST_TIMEOUT_MS,
   headers: { 'Content-Type': 'application/json' },
 });
 
 /** Bare client for the refresh call so it never goes through the 401 interceptor. */
-const refreshClient: AxiosInstance = axios.create({
+const refreshClient: AxiosInstance = create({
   baseURL: API_BASE_URL,
   timeout: REQUEST_TIMEOUT_MS,
   headers: { 'Content-Type': 'application/json' },
@@ -74,11 +76,11 @@ async function forceLogout(): Promise<void> {
 api.interceptors.response.use(
   (response) => response,
   async (error: unknown) => {
-    if (!axios.isAxiosError(error) || !error.config) {
+    if (!isAxiosError(error) || !error.config) {
       return Promise.reject(error);
     }
     const original = error.config as RetriableRequestConfig;
-    const isRefreshCall = original.url?.includes(REFRESH_PATH) ?? false;
+    const isRefreshCall = NO_REFRESH_PATHS.some((path) => original.url?.includes(path) ?? false);
 
     if (error.response?.status !== 401 || original._retry || isRefreshCall) {
       if (error.response?.status === 401 && original._retry) {
@@ -119,7 +121,7 @@ const NETWORK_MESSAGE = 'Unable to reach the server. Check your internet connect
 
 /** Human-readable message from any thrown value; reads `{ error: { code, message } }`. */
 export function getApiErrorMessage(err: unknown): string {
-  if (err instanceof AxiosError || axios.isAxiosError(err)) {
+  if (err instanceof AxiosError || isAxiosError(err)) {
     const body: unknown = err.response?.data;
     if (isApiErrorBody(body)) {
       return body.error.message;
@@ -137,7 +139,7 @@ export function getApiErrorMessage(err: unknown): string {
 
 /** Machine-readable error code from the API envelope, if present. */
 export function getApiErrorCode(err: unknown): string | null {
-  if (axios.isAxiosError(err) && isApiErrorBody(err.response?.data)) {
+  if (isAxiosError(err) && isApiErrorBody(err.response?.data)) {
     return (err.response?.data as ApiError).error.code;
   }
   return null;

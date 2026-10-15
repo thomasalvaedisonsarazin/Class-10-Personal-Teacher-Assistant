@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 
 import { authEvents } from '@/lib/authEvents';
 import { authService } from '@/services/authService';
+import { registerForPushNotifications, unregisterPushNotifications } from '@/services/pushService';
 import { tokenStorage } from '@/services/tokenStorage';
 import type { AuthTokens, User } from '@/types/api';
 
@@ -23,7 +24,10 @@ interface AuthProviderProps {
 }
 
 function statusForUser(user: User): AuthStatus {
-  return user.boardId === null || user.medium === null ? 'needsOnboarding' : 'signedIn';
+  if (user.medium === null) return 'needsOnboarding';
+  // Parents follow their children's boards; students need their own.
+  if (user.role === 'student' && user.boardId === null) return 'needsOnboarding';
+  return 'signedIn';
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
@@ -70,6 +74,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const signOut = useCallback(async (): Promise<void> => {
     try {
+      await unregisterPushNotifications();
       await authService.logout();
     } catch {
       // Ignore: server revoke is best-effort, local sign-out must always succeed.
@@ -102,6 +107,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
       unsubscribe();
     };
   }, [refreshUser, resetSession]);
+
+  // Once signed in (any role), make sure this phone can receive reminders.
+  const userId = user?.id ?? null;
+  useEffect(() => {
+    if (status === 'signedIn' && userId !== null) {
+      void registerForPushNotifications();
+    }
+  }, [status, userId]);
 
   const value = useMemo<AuthContextValue>(
     () => ({ user, status, signIn, signOut, refreshUser }),

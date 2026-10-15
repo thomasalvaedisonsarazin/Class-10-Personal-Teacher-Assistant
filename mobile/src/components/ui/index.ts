@@ -10,3 +10,5 @@ export { PrimaryButton } from './PrimaryButton';
 export type { PrimaryButtonMode, PrimaryButtonProps } from './PrimaryButton';
 export { Screen } from './Screen';
 export type { ScreenProps } from './Screen';
+export { ChoiceList } from './ChoiceList';
+export type { ChoiceListProps, ChoiceOption } from './ChoiceList';

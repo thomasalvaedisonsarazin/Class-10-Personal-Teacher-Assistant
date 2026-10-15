@@ -31,12 +31,8 @@ class ParentLink(TimestampMixin, Base):
     student_user_id: Mapped[int] = mapped_column(
         sa.ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
     )
-    invite_code: Mapped[str] = mapped_column(
-        sa.String(8), unique=True, index=True, nullable=False
-    )
-    invite_expires_at: Mapped[datetime] = mapped_column(
-        sa.DateTime(timezone=True), nullable=False
-    )
+    invite_code: Mapped[str] = mapped_column(sa.String(8), unique=True, index=True, nullable=False)
+    invite_expires_at: Mapped[datetime] = mapped_column(sa.DateTime(timezone=True), nullable=False)
     status: Mapped[ParentLinkStatus] = mapped_column(
         PARENT_LINK_STATUS,
         nullable=False,

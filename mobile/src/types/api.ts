@@ -2,6 +2,9 @@
 
 export type Medium = 'en' | 'ta';
 
+/** Lesson explanation language; Tanglish = Tamil sentences with English technical words. */
+export type LessonLanguage = 'en' | 'ta' | 'tanglish';
+
 export type UserRole = 'student' | 'parent' | 'admin';
 
 export interface ApiErrorBody {
@@ -31,9 +34,30 @@ export interface User {
   role: UserRole;
   boardId: number | null;
   medium: Medium | null;
+  /** Preferred explanation language (null = same as medium). */
+  lessonLanguage: LessonLanguage | null;
 }
 
 export interface AuthTokens {
   accessToken: string;
   refreshToken: string;
+  tokenType?: string;
+  /** Access-token lifetime in seconds. */
+  expiresIn?: number;
+  user?: User;
+}
+
+export interface Board {
+  id: number;
+  code: string;
+  name: string;
+}
+
+export interface UpdateProfileInput {
+  fullName?: string;
+  boardId?: number;
+  medium?: Medium;
+  lessonLanguage?: LessonLanguage;
+  /** Only during setup. */
+  role?: 'student' | 'parent';
 }

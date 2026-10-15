@@ -19,9 +19,7 @@ def _engine_kwargs(url: str) -> dict[str, Any]:
 
 engine = create_engine(settings.DATABASE_URL, **_engine_kwargs(settings.DATABASE_URL))
 
-SessionLocal = sessionmaker(
-    bind=engine, autoflush=False, expire_on_commit=False, class_=Session
-)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False, class_=Session)
 
 
 def get_db() -> Generator[Session, None, None]:

@@ -1,4 +1,4 @@
-"""Topic progress (one active topic per student) and study streaks."""
+"""Topic progress (sequential unlocking per subject) and study streaks."""
 
 from __future__ import annotations
 
@@ -48,21 +48,9 @@ class TopicProgress(TimestampMixin, Base):
     started_at: Mapped[datetime] = mapped_column(
         sa.DateTime(timezone=True), nullable=False, server_default=sa.func.now()
     )
-    completed_at: Mapped[datetime | None] = mapped_column(
-        sa.DateTime(timezone=True), nullable=True
-    )
+    completed_at: Mapped[datetime | None] = mapped_column(sa.DateTime(timezone=True), nullable=True)
 
     topic: Mapped[Topic] = relationship()
-
-
-# DB-level guarantee: at most one active topic per user.
-sa.Index(
-    "uq_topic_progress_one_active",
-    TopicProgress.user_id,
-    unique=True,
-    postgresql_where=sa.text("status = 'active'"),
-    sqlite_where=sa.text("status = 'active'"),
-)
 
 
 class StudyStreak(TimestampMixin, Base):

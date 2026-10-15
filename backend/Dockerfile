@@ -36,12 +36,15 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PORT=8000 \
     WEB_CONCURRENCY=2
 
-# ffmpeg: slide+audio -> MP4 rendering; Noto fonts: English + Tamil slide text.
+# ffmpeg: slide+audio -> MP4 rendering; Noto fonts: English + Tamil slide text + emoji scenes.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ffmpeg \
         fonts-noto-core \
         fonts-noto-ui-core \
+        fonts-noto-color-emoji \
+        libfribidi0 \
+        libraqm0 \
         libpq5 \
         tini \
     && rm -rf /var/lib/apt/lists/*

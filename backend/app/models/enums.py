@@ -23,6 +23,14 @@ class Medium(StrEnum):
     ta = "ta"
 
 
+class LessonLanguage(StrEnum):
+    """Language a lesson is explained in (independent of the textbook medium)."""
+
+    en = "en"
+    ta = "ta"
+    tanglish = "tanglish"  # Tamil sentences with English technical words, as spoken in class
+
+
 class LessonStyle(StrEnum):
     """Teaching style of a lesson. Order defines the "Not clear" rotation."""
 

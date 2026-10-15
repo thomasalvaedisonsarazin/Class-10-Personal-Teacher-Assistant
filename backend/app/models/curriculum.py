@@ -129,7 +129,7 @@ class ChapterTranslation(TimestampMixin, Base):
 
 
 class Topic(TimestampMixin, Base):
-    """The unit of study: one topic is active per student at a time."""
+    """The unit of study. Topics unlock in order within a subject (pass the quiz to advance)."""
 
     __tablename__ = "topics"
     __table_args__ = (

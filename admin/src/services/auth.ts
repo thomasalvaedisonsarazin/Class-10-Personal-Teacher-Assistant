@@ -14,3 +14,9 @@ export async function loginWithGoogle(idToken: string): Promise<AuthTokens> {
 export async function logout(refreshToken: string): Promise<void> {
   await api.post('/auth/logout', { refreshToken });
 }
+
+/** Development only: sign in as an existing user (e.g. the admin created with the CLI). */
+export async function devLogin(email: string): Promise<AuthTokens> {
+  const { data } = await api.post<AuthTokens>('/auth/dev-login', { email });
+  return data;
+}
