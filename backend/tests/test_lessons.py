@@ -52,6 +52,11 @@ def student(make_user: Callable[..., User], topics: tuple[Topic, Topic]) -> User
     return make_user(role=UserRole.student, board_id=board_id, medium=Medium.en)
 
 
+def _last_lesson_call() -> tuple[str, str, type]:
+    """The most recent lesson-writing call (the fact-check review runs after it)."""
+    return next(c for c in reversed(get_fake_llm_client().calls) if c[2] is LessonScript)
+
+
 def _open(client: TestClient, headers: dict[str, str], topic: Topic) -> dict:
     res = client.get(f"/api/v1/topics/{topic.id}/lesson", headers=headers)
     assert res.status_code in (200, 202), res.text
@@ -131,7 +136,7 @@ def test_prompt_is_grounded_in_topic(
 ) -> None:
     speed, _ = topics
     _open(client, auth_headers(student), speed)
-    system, user, schema = get_fake_llm_client().calls[-1]
+    system, user, schema = _last_lesson_call()
     assert schema is LessonScript
     assert "Topic: Speed" in user and "speed = distance / time" in user
     assert "Tamil Nadu State Board" in system and "15 years old" in system
@@ -170,7 +175,7 @@ def test_not_clear_rotates_to_unseen_styles(
     assert third["style"] == "step_by_step"
 
     # The new prompt asks to avoid the previous explanation.
-    assert "did not understand" in get_fake_llm_client().calls[-1][1]
+    assert "did not understand" in _last_lesson_call()[1]
     feedback = db.scalars(select(ClarityFeedback)).all()
     assert [f.is_clear for f in feedback] == [False, False]
 
@@ -389,7 +394,7 @@ def test_lesson_language_defaults_to_medium_and_can_switch_to_tanglish(
     tanglish = _lesson_of(res.json())
     assert tanglish["language"] == "tanglish" and tanglish["style"] == "story"
     assert tanglish["id"] != english["id"]
-    assert "Tanglish" in get_fake_llm_client().calls[-1][1]
+    assert "Tanglish" in _last_lesson_call()[1]
     assert {voice for _, voice in get_fake_tts_client().calls} == {"ta"}  # Tamil voice
 
     # Remembered: the profile shows it and the next open uses Tanglish.
@@ -446,3 +451,63 @@ def test_lesson_still_delivered_when_a_picture_fails(
     assert lesson["status"] == "ready"
     urls = [slide["imageUrl"] for slide in lesson["slides"]]
     assert urls.count(None) == 1 and len(urls) == 4
+
+
+# --- Fact check --------------------------------------------------------------------------------
+
+
+def test_fact_check_corrections_are_applied(
+    client: TestClient,
+    db: Session,
+    student: User,
+    auth_headers: Headers,
+    topics: tuple[Topic, Topic],
+) -> None:
+    from app.services.ai.explanation import FactCheck, Slide
+
+    def reviewer(system: str, user: str) -> FactCheck:
+        assert "BACKWARD" in system  # the physics example is in the reviewer's brief
+        slides = [
+            Slide(
+                heading=f"Fixed {i}",
+                bullets=["ok"],
+                narration="Correct narration.",
+                emoji="✅",
+                image_prompt="A correct scene.",
+            )
+            for i in range(4)
+        ]
+        return FactCheck(
+            ok=False, issues=["Passengers lurch backward when a bus starts."], slides=slides
+        )
+
+    get_fake_llm_client().register(FactCheck, reviewer)
+    lesson = _lesson_of(_open(client, auth_headers(student), topics[0]))
+    assert [s["heading"] for s in lesson["slides"]] == ["Fixed 0", "Fixed 1", "Fixed 2", "Fixed 3"]
+    stored = db.scalar(select(Lesson.slides_json))
+    assert stored["factCheck"] == ["Passengers lurch backward when a bus starts."]
+
+
+def test_bad_or_failed_review_keeps_original(
+    client: TestClient,
+    student: User,
+    make_user: Callable[..., User],
+    auth_headers: Headers,
+    topics: tuple[Topic, Topic],
+) -> None:
+    from app.services.ai.explanation import FactCheck, Slide
+
+    def wrong_count(system: str, user: str) -> FactCheck:
+        one = Slide(heading="Only one", bullets=["x"], narration="n", emoji="", image_prompt="")
+        return FactCheck(ok=False, issues=["x"], slides=[one])
+
+    get_fake_llm_client().register(FactCheck, wrong_count)
+    lesson = _lesson_of(_open(client, auth_headers(student), topics[0]))
+    assert len(lesson["slides"]) == 4 and lesson["slides"][0]["heading"] != "Only one"
+
+    def broken(system: str, user: str) -> FactCheck:
+        raise LLMError("reviewer down")
+
+    get_fake_llm_client().register(FactCheck, broken)
+    other = make_user(role=UserRole.student, board_id=student.board_id, medium=Medium.ta)
+    assert _lesson_of(_open(client, auth_headers(other), topics[0]))["status"] == "ready"

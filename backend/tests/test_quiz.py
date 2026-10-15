@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.models.curriculum import Board, Chapter, Subject, Topic
@@ -250,7 +250,7 @@ def test_tamil_medium_uses_separate_question_pool(
         role=UserRole.student, board_id=topics[0].chapter.subject.board_id, medium=Medium.ta
     )
     _start(client, auth_headers(tamil), topics[0])
-    system, user, _ = get_fake_llm_client().calls[-1]
+    system, user, _ = next(c for c in get_fake_llm_client().calls if c[2] is QuestionBatch)
     assert "Tamil" in user
     from app.models.quiz import Question
 
@@ -282,3 +282,68 @@ def test_validate_question_rules() -> None:
     tf = validate_question(_q(type="true_false", options=["True", "False"], correct_answer="false"))
     assert tf is not None and tf.correct_answer == "False"
     assert validate_question(_q(difficulty=9)).difficulty == 3  # type: ignore[union-attr]
+
+
+# --- Question quality checks ---------------------------------------------------------------------
+
+
+def test_difficulty_mix_always_has_hard_questions() -> None:
+    from app.services.ai.questions import difficulty_mix
+
+    assert difficulty_mix(15) == (6, 6, 3)
+    assert difficulty_mix(5) == (2, 2, 1)
+    assert sum(difficulty_mix(10)) == 10 and difficulty_mix(10)[2] >= 1
+
+
+def test_prompt_asks_for_exact_difficulty_counts(
+    client: TestClient, student: User, auth_headers: Headers, topics: tuple[Topic, Topic]
+) -> None:
+    _start(client, auth_headers(student), topics[0])
+    batch_call = next(c for c in get_fake_llm_client().calls if c[2] is QuestionBatch)
+    assert "Exactly 6 easy" in batch_call[1] and "3 hard" in batch_call[1]
+
+
+def test_questions_with_unconfirmed_answers_are_dropped(
+    client: TestClient,
+    db: Session,
+    student: User,
+    auth_headers: Headers,
+    topics: tuple[Topic, Topic],
+) -> None:
+    from app.models.quiz import Question
+    from app.services.ai.questions import AnswerCheck, AnswerItem
+
+    def doubting_checker(system: str, user: str) -> AnswerCheck:
+        numbers = [
+            int(line[1:].split(".")[0])
+            for line in user.splitlines()
+            if line[:1] == "Q" and "." in line
+        ]
+        # Disagree with every 3rd question's key.
+        return AnswerCheck(
+            answers=[
+                AnswerItem(number=n, answer="NONE" if n % 3 == 0 else CORRECT) for n in numbers
+            ]
+        )
+
+    get_fake_llm_client().register(AnswerCheck, doubting_checker)
+    _start(client, auth_headers(student), topics[0])
+    assert db.scalar(select(func.count(Question.id))) == 10  # 15 generated, 5 rejected
+
+
+def test_checker_failure_keeps_questions(
+    client: TestClient,
+    db: Session,
+    student: User,
+    auth_headers: Headers,
+    topics: tuple[Topic, Topic],
+) -> None:
+    from app.models.quiz import Question
+    from app.services.ai.questions import AnswerCheck
+
+    def broken(system: str, user: str) -> AnswerCheck:
+        raise LLMError("checker down")
+
+    get_fake_llm_client().register(AnswerCheck, broken)
+    _start(client, auth_headers(student), topics[0])
+    assert db.scalar(select(func.count(Question.id))) == 15

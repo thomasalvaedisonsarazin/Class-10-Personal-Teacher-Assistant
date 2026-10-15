@@ -38,6 +38,8 @@ class Settings(BaseSettings):
         "http://localhost:19006",
     ]
     ADMIN_EMAILS: list[str] = []
+    # Test sign-in without Google. Must be switched on explicitly, never in production.
+    DEV_LOGIN_ENABLED: bool = False
 
     # Database / queue
     DATABASE_URL: str = "sqlite:///./dev.db"
@@ -56,6 +58,11 @@ class Settings(BaseSettings):
     LLM_MODEL: str = "gpt-5.4-mini"  # chosen 2026-10-15: natural Tamil/Tanglish
     # Reasoning models (gpt-5*, o*) think before answering; "low" keeps lessons fast and cheap.
     LLM_REASONING_EFFORT: Literal["minimal", "low", "medium", "high"] = "low"
+    # A second, stricter pass that checks (and fixes) lessons, and answers every new
+    # question without the key to drop wrong ones. Uses more reasoning than writing.
+    FACT_CHECK_ENABLED: bool = True
+    QUESTION_VERIFY_ENABLED: bool = True
+    CHECK_REASONING_EFFORT: Literal["minimal", "low", "medium", "high"] = "medium"
     LLM_TIMEOUT_SECONDS: float = 60.0
     LLM_MAX_RETRIES: int = 2
     TTS_PROVIDER: Literal["google", "azure", "fake"] = "fake"
@@ -123,14 +130,30 @@ class Settings(BaseSettings):
     @model_validator(mode="after")
     def _check_production(self) -> Settings:
         """Refuse to start in production with an insecure secret key."""
-        if self.ENVIRONMENT == "production" and self.SECRET_KEY == DEFAULT_SECRET_KEY:
-            raise ValueError("SECRET_KEY must be set in production")
+        if self.ENVIRONMENT == "production":
+            weak = (
+                self.SECRET_KEY == DEFAULT_SECRET_KEY
+                or len(self.SECRET_KEY) < 32
+                or any(
+                    word in self.SECRET_KEY.lower()
+                    for word in ("insecure", "change-me", "changeme")
+                )
+            )
+            if weak:
+                raise ValueError("SECRET_KEY must be a long random value (32+ chars) in production")
+            if self.DEV_LOGIN_ENABLED:
+                raise ValueError("DEV_LOGIN_ENABLED must be false in production")
         return self
 
     @property
     def is_production(self) -> bool:
         """True when running in production."""
         return self.ENVIRONMENT == "production"
+
+    @property
+    def dev_login_allowed(self) -> bool:
+        """Test sign-in only when explicitly enabled and never in production."""
+        return self.DEV_LOGIN_ENABLED and not self.is_production
 
     @property
     def is_test(self) -> bool:

@@ -324,3 +324,15 @@ def test_users_search_disable_and_self_protection(
     assert self_res.status_code == 403
     assert db.scalar(select(User.role).where(User.id == admin.id)) == UserRole.admin
     assert db.scalar(select(Topic.id)) is None  # untouched curriculum
+
+
+def test_upload_checks_real_file_contents(
+    client: TestClient, admin: User, auth_headers: Headers, imported: dict[str, Any]
+) -> None:
+    res = client.post(
+        f"/api/v1/admin/topics/{_first_topic_id(imported)}/lessons",
+        data={"medium": "en"},
+        files={"file": ("fake.mp4", b"<html>not a video</html>", "video/mp4")},
+        headers=auth_headers(admin),
+    )
+    assert res.status_code == 400 and res.json()["error"]["code"] == "unsupported_media"

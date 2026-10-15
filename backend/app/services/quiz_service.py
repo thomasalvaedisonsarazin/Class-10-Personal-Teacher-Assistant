@@ -25,7 +25,7 @@ from app.schemas.quiz import (
     QuizResultOut,
 )
 from app.services.ai.llm import LLMError, get_llm_client
-from app.services.ai.questions import generate_questions, normalize_answer
+from app.services.ai.questions import generate_questions, normalize_answer, verify_questions
 from app.services.curriculum_service import student_medium, topic_context, topic_title
 from app.services.progress_service import (
     TopicState,
@@ -98,9 +98,11 @@ def add_generated_questions(db: Session, topic: Topic, medium: Medium) -> int:
             .limit(40)
         )
     )
-    generated = generate_questions(
-        get_llm_client(), topic_context(topic, medium), medium, GENERATION_BATCH, existing
-    )
+    llm = get_llm_client()
+    context = topic_context(topic, medium)
+    generated = generate_questions(llm, context, medium, GENERATION_BATCH, existing)
+    if settings.QUESTION_VERIFY_ENABLED:
+        generated = verify_questions(llm, context, generated, settings.CHECK_REASONING_EFFORT)
     added = 0
     for q in generated:
         try:

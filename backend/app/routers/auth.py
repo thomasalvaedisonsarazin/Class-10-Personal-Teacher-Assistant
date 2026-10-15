@@ -40,8 +40,8 @@ def google_login(
 @router.post("/dev-login", response_model=AuthTokens)
 @limiter.limit("30/minute")
 def dev_login(request: Request, body: DevLoginRequest, db: DbSession) -> AuthTokens:
-    """Sign in as a seeded user without Google. Returns 404 in production."""
-    if settings.is_production:
+    """Sign in as a seeded user without Google (only with DEV_LOGIN_ENABLED; never production)."""
+    if not settings.dev_login_allowed:
         raise NotFoundError()
     return auth_service.dev_login(db, str(body.email))
 

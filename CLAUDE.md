@@ -162,6 +162,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - "Not clear" picks a style the student has not yet seen for that topic; reuse a cached `ready` lesson of that style + medium before generating
 - Each slide has a storybook **illustration** (gpt-image-2, `IMAGE_MODEL`; fixed style guide + Kavya/Arun character sheet, no text in images) generated in parallel with TTS; players show it with a slow pan/zoom; bullets appear in time with the narration (bullet k of n at `slideDuration * k / (n + 1)`, same rule in the video renderer and the mobile player); a failed picture only drops that scene's picture
 - Generation pipeline: LLM script → TTS audio (deliver first) → slide video render (async)
+- Every new lesson passes an AI fact-check (`fact_check_script`, CHECK_REASONING_EFFORT) that may correct slides; every AI question is answered independently (`verify_questions`) and dropped if it disagrees with its key; question batches are ~40/40/20 easy/medium/hard (at least one hard)
 - Prompts must be grounded in the topic's learning objectives and the board syllabus, age-appropriate for ~15-year-olds, in the student's medium
 
 ### Quiz Module
@@ -212,7 +213,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 ### Google Sign-In
 - The only sign-in method (no phone OTP / SMS)
 - Verify Google ID token server-side (audience = Android/Web client IDs)
-- `POST /api/v1/auth/dev-login` exists only when ENVIRONMENT=development (seeded test users), for testing before OAuth client IDs exist
+- `POST /api/v1/auth/dev-login` works only with `DEV_LOGIN_ENABLED=true` and never in production (config refuses to start); production also refuses weak `SECRET_KEY`s (<32 chars or containing insecure/change-me)
 
 ### JWT Configuration
 - Access token expires: 30 minutes

@@ -13,7 +13,7 @@ from app.config import settings
 from app.database import SessionLocal
 from app.models.enums import JobStatus, LessonLanguage, LessonStatus, LessonStyle, Medium
 from app.models.lesson import GenerationJob, Lesson, LessonView
-from app.services.ai.explanation import LessonScript, generate_script
+from app.services.ai.explanation import LessonScript, fact_check_script, generate_script
 from app.services.ai.images import ImageError, get_image_client
 from app.services.ai.llm import LLMError, get_llm_client
 from app.services.ai.tts import TTSError, get_tts_client
@@ -84,14 +84,29 @@ def run_explanation_job(job_id: int) -> None:
         # Topic text: Tamil for Tamil lessons; English terms for English and Tanglish.
         medium = Medium.ta if language == LessonLanguage.ta else Medium.en
         try:
+            llm = get_llm_client()
+            context = topic_context(lesson.topic, medium)
             script = generate_script(
-                get_llm_client(),
-                topic_context(lesson.topic, medium),
+                llm,
+                context,
                 LessonStyle(lesson.style),
                 language,
                 _previous_summary(db, job, lesson),
             )
+            issues: list[str] = []
+            if settings.FACT_CHECK_ENABLED:
+                script, issues = fact_check_script(
+                    llm,
+                    context,
+                    script,
+                    language,
+                    settings.CHECK_REASONING_EFFORT,
+                )
             audios, durations, pictures = _deliver_audio(db, lesson, script, language)
+            if issues:
+                stored = lesson.slides_json if isinstance(lesson.slides_json, dict) else {}
+                lesson.slides_json = {**stored, "factCheck": issues}
+                db.commit()
         except (LLMError, TTSError, StorageError, RenderError) as exc:
             logger.warning("Explanation job %s failed: %s", job.id, exc)
             lesson.status = LessonStatus.failed

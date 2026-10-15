@@ -19,5 +19,6 @@ from app.config import settings
 limiter = Limiter(
     key_func=get_remote_address,
     enabled=not settings.is_test,
-    storage_uri="memory://",
+    # Shared across processes/servers in production; per-process memory in dev/tests.
+    storage_uri=settings.REDIS_URL if settings.is_production else "memory://",
 )

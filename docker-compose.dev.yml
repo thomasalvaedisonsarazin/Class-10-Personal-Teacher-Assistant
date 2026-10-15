@@ -17,6 +17,7 @@ services:
       - ./backend:/app
     environment:
       ENVIRONMENT: development
+      DEV_LOGIN_ENABLED: "true"
 
   worker:
     volumes:

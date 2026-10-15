@@ -34,8 +34,12 @@ class LLMError(Exception):
 class LLMClient(Protocol):
     """Interface for structured-output LLM calls."""
 
-    def generate_json(self, system: str, user: str, schema: type[T]) -> T:
+    def generate_json(
+        self, system: str, user: str, schema: type[T], effort: str | None = None
+    ) -> T:
         """Generate a response that validates against ``schema``.
+
+        ``effort`` overrides the reasoning effort for this call (reasoning models only).
 
         Raises:
             LLMError: on API failure, refusal, or invalid output.
@@ -64,15 +68,20 @@ class OpenAILLMClient:
         )
         self._client = openai.OpenAI(api_key=api_key, timeout=timeout, max_retries=max_retries)
 
-    def generate_json(self, system: str, user: str, schema: type[T]) -> T:
+    def generate_json(
+        self, system: str, user: str, schema: type[T], effort: str | None = None
+    ) -> T:
         """Call ``responses.parse`` with ``text_format=schema`` and return the parsed model."""
+        extra = dict(self._extra)
+        if effort and "reasoning" in extra:
+            extra["reasoning"] = {"effort": effort}
         try:
             response = self._client.responses.parse(
                 model=self.model,
                 instructions=system,
                 input=user,
                 text_format=schema,
-                **self._extra,
+                **extra,
             )
         except self._openai.OpenAIError as exc:
             logger.warning("OpenAI request failed: %s", type(exc).__name__)
@@ -134,7 +143,9 @@ class FakeLLMClient:
         self._factories.clear()
         self.calls.clear()
 
-    def generate_json(self, system: str, user: str, schema: type[T]) -> T:
+    def generate_json(
+        self, system: str, user: str, schema: type[T], effort: str | None = None
+    ) -> T:
         """Return a canned or synthesised instance of ``schema``."""
         self.calls.append((system, user, schema))
         factory = self._factories.get(schema) or self._defaults.get(schema)

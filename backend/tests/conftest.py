@@ -24,6 +24,7 @@ os.environ["TTS_API_KEY"] = ""
 os.environ["S3_BUCKET"] = ""
 os.environ["PUSH_ENABLED"] = "false"
 os.environ["JOB_RUNNER"] = "sync"
+os.environ["DEV_LOGIN_ENABLED"] = "true"
 os.environ["VIDEO_RENDER_ENABLED"] = "false"
 os.environ["MEDIA_ROOT"] = str(_TMP_DIR / "media")
 os.environ["SECRET_KEY"] = "test-secret-key-for-pytest-only-0123456789"

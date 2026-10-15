@@ -48,6 +48,13 @@ UPLOAD_TYPES = {
 MAX_UPLOAD_BYTES = 150 * 1024 * 1024
 
 
+def _looks_like(kind: str, data: bytes) -> bool:
+    """Check the file's real format (magic bytes), not the client's claimed type."""
+    if kind == "video":
+        return len(data) > 12 and data[4:8] == b"ftyp"  # ISO base media (MP4)
+    return data[:3] == b"ID3" or (len(data) > 2 and data[0] == 0xFF and data[1] & 0xE0 == 0xE0)
+
+
 def _since(days: int) -> datetime:
     return datetime.now(UTC) - timedelta(days=days)
 
@@ -184,6 +191,10 @@ def upload_lesson(
         raise BadRequestError("The file is empty", code="empty_file")
     if len(data) > MAX_UPLOAD_BYTES:
         raise BadRequestError("The file is larger than 150 MB", code="file_too_large")
+    if not _looks_like(kind[0], data):
+        raise BadRequestError(
+            "This file is not a valid MP4 video or MP3 audio", code="unsupported_media"
+        )
     lesson = Lesson(
         topic_id=topic.id,
         medium=medium,

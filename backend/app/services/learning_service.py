@@ -222,6 +222,9 @@ def _queue_generation(
     from app.workers.tasks import dispatch_explanation_job
 
     dispatch_explanation_job(job.id)
+    # The job may already have run (sync runner) in another session: drop cached copies so
+    # the response reflects the database, not this session's stale objects.
+    db.expire_all()
     db.refresh(job)
     return job
 

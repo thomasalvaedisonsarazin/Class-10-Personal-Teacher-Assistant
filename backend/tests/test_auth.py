@@ -346,3 +346,38 @@ def test_list_boards_only_active(
     res = client.get("/api/v1/boards", headers=auth_headers(make_user(role=UserRole.student)))
     assert res.status_code == 200
     assert [b["code"] for b in res.json()] == ["TN_SSLC"]
+
+
+# --- Security hardening --------------------------------------------------------------------------
+
+
+def test_dev_login_off_unless_explicitly_enabled(
+    client: TestClient, make_user: Callable[..., User], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    make_user(email="student@dev.local")
+    monkeypatch.setattr(settings, "DEV_LOGIN_ENABLED", False)
+    assert client.post("/api/v1/auth/dev-login", json={}).status_code == 404
+
+
+@pytest.mark.parametrize(
+    "secret",
+    ["short", "dev-only-insecure-secret-key-change-me", "please-change-me-0123456789abcdefghij"],
+)
+def test_production_refuses_weak_secrets(secret: str) -> None:
+    from pydantic import ValidationError
+
+    from app.config import Settings
+
+    with pytest.raises(ValidationError):
+        Settings(ENVIRONMENT="production", SECRET_KEY=secret, DEV_LOGIN_ENABLED=False)
+
+
+def test_production_refuses_dev_login() -> None:
+    from pydantic import ValidationError
+
+    from app.config import Settings
+
+    strong = "k3Jd9-qW2x_Lm8Rt5Yv1Bn6Hc4Fg7Ps0Ze2Ua9"
+    assert Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=False)
+    with pytest.raises(ValidationError):
+        Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=True)
