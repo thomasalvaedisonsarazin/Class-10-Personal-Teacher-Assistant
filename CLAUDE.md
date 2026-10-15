@@ -1,123 +1,329 @@
-# CLAUDE.md - Project Rules
+# CLAUDE.md - Personal Teacher Assistant for 10th — Project Rules
 
-> Rules Claude follows in every conversation.
+> Project-specific rules for Claude Code. This file is read automatically.
 
 ---
 
-## Tech Stack
+## Project Overview
 
-- **Backend:** FastAPI + Python 3.11+
-- **Frontend:** React + TypeScript + Vite
-- **Database:** PostgreSQL + SQLAlchemy
-- **Auth:** JWT + Google OAuth
-- **UI:** Chakra UI or Tailwind + Framer Motion
+**Project Name:** Personal Teacher Assistant for 10th
+**Description:** Android app that coaches 10th-standard students topic-by-topic with practical video/audio lessons, AI re-explanations in new styles on "Not clear", and fresh quizzes with a 60% pass gate that unlocks the next topic.
+**Tech Stack:**
+- Backend: FastAPI + Python 3.11+ (+ Celery/RQ worker, Redis, FFmpeg)
+- Mobile: React Native + Expo + TypeScript (Android first)
+- Admin Web: React + Vite + TypeScript + Chakra UI
+- Database: PostgreSQL + SQLAlchemy + Alembic
+- Auth: Google Sign-In only (no phone OTP), JWT
+- UI: React Native Paper (flat focus theme — no gradients)
+- AI: OpenAI API (scripts + questions), TTS (English + Tamil), S3-compatible storage
 
 ---
 
 ## Project Structure
 
 ```
-project/
+personal-teacher-assistant/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py, config.py, database.py
-│   │   ├── models/, schemas/, routers/, services/, auth/
+│   │   ├── main.py
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   ├── models/
+│   │   │   ├── user.py            # User, RefreshToken
+│   │   │   ├── curriculum.py      # Board, Subject, Chapter, Topic, TopicTranslation
+│   │   │   ├── lesson.py          # Lesson, LessonView, ClarityFeedback, GenerationJob
+│   │   │   ├── quiz.py            # Question, QuizAttempt, QuizAttemptQuestion
+│   │   │   ├── progress.py        # TopicProgress, StudyStreak
+│   │   │   ├── parent.py          # ParentLink
+│   │   │   └── notification.py    # DeviceToken, NotificationLog
+│   │   ├── schemas/
+│   │   ├── routers/               # auth, curriculum, lessons, quiz, progress, parent, devices, admin
+│   │   ├── services/
+│   │   │   ├── progress_service.py    # lock/unlock rules (single source of truth)
+│   │   │   ├── quiz_service.py
+│   │   │   ├── ai/
+│   │   │   │   ├── llm.py             # OpenAI client wrapper (structured JSON outputs)
+│   │   │   │   ├── explanation.py     # style-based script generation
+│   │   │   │   ├── questions.py       # question generation + validation
+│   │   │   │   ├── tts.py             # provider-agnostic TTS
+│   │   │   │   └── video_render.py    # slides + audio → mp4 (FFmpeg)
+│   │   │   ├── storage.py
+│   │   │   └── push.py
+│   │   ├── workers/               # background jobs
+│   │   └── auth/
 │   ├── alembic/
-│   └── tests/
-├── frontend/
-│   └── src/
-│       ├── components/, pages/, hooks/, services/, context/, types/
-├── skills/           # 5 skill files
-├── agents/           # Agent definitions
-└── .claude/commands/ # /generate-prp, /execute-prp
+│   ├── tests/
+│   └── requirements.txt
+├── mobile/                        # Expo app (student + parent)
+│   ├── app/                       # expo-router screens
+│   ├── src/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── services/              # API client
+│   │   ├── context/
+│   │   ├── theme/                 # focus palette (flat colours)
+│   │   └── types/
+│   ├── app.json
+│   └── package.json
+├── admin/                         # React + Vite admin panel
+│   ├── src/
+│   │   ├── components/, pages/, hooks/, services/, context/, types/
+│   └── package.json
+├── .claude/
+│   └── commands/
+├── skills/
+├── agents/
+└── PRPs/
 ```
 
 ---
 
 ## Code Standards
 
-### Python
+### Python (Backend)
 ```python
-# Type hints required
-def get_user(db: Session, user_id: int) -> User:
+# ALWAYS use type hints
+def get_topic(db: Session, topic_id: int) -> Topic:
     pass
 
-# Async endpoints
-@router.get("/users/{id}")
-async def get_user(id: int, db: Session = Depends(get_db)):
+# ALWAYS add docstrings for public functions
+def start_quiz_attempt(db: Session, user: User, topic_id: int) -> QuizAttempt:
+    """
+    Start a quiz attempt with questions this student has never been served.
+
+    Args:
+        db: Database session
+        user: Current student
+        topic_id: Topic being assessed
+
+    Returns:
+        Created QuizAttempt with its questions (no correct answers exposed)
+    """
     pass
 ```
 
-### TypeScript
+### TypeScript (Mobile + Admin)
 ```typescript
-// Interfaces required - NO any types
-interface User { id: number; email: string; }
+// ALWAYS define interfaces for props and data
+interface Topic {
+  id: number;
+  chapterId: number;
+  title: string;
+  status: 'locked' | 'active' | 'completed';
+  bestScorePct: number | null;
+}
 
-const fetchUser = async (id: number): Promise<User> => { ... };
+// NO any types allowed
+const fetchTopic = async (id: number): Promise<Topic> => {
+  // ...
+};
 ```
 
 ---
 
-## Forbidden
+## Forbidden Patterns
 
-- `print()` → use `logging`
-- Plain passwords → use bcrypt
-- Hardcoded secrets → use env vars
-- `any` type in TypeScript
-- `console.log` in production
-- Inline styles → use UI framework
+### Backend
+- ❌ Never use `print()` - use `logging` module
+- ❌ Never store refresh tokens or secrets in plain text - hash them
+- ❌ Never hardcode secrets or API keys - use environment variables
+- ❌ Never use `SELECT *` - specify columns
+- ❌ Never skip input validation
+- ❌ Never call the LLM/TTS synchronously inside a request handler for video generation - queue a job
+- ❌ Never return `correct_answer` in a quiz-start response
 
----
-
-## Workflow
-
-```
-1. Edit INITIAL.md (define product)
-2. /generate-prp INITIAL.md
-3. /execute-prp PRPs/[name]-prp.md
-```
-
----
-
-## Skills
-
-| Task | Skill |
-|------|-------|
-| API + Auth | `skills/BACKEND.md` |
-| React + UI | `skills/FRONTEND.md` |
-| Models | `skills/DATABASE.md` |
-| Tests | `skills/TESTING.md` |
-| Docker | `skills/DEPLOYMENT.md` |
+### Mobile / Admin
+- ❌ Never use `any` type
+- ❌ Never leave console.log in production
+- ❌ Never skip error handling in async operations
+- ❌ Never use inline styles - use React Native Paper theme / `StyleSheet` tokens (mobile), Chakra UI (admin)
+- ❌ Never use gradients (`LinearGradient` etc.) - flat, solid focus colours only
+- ❌ Never decide lock state only on the client - the API is the source of truth
 
 ---
 
-## Agents
+## Module-Specific Rules
 
-| Agent | Role |
-|-------|------|
-| DATABASE-AGENT | Models + migrations |
-| BACKEND-AGENT | API + auth |
-| FRONTEND-AGENT | UI + pages |
-| DEVOPS-AGENT | Docker + CI/CD |
+### Curriculum Module
+- Hierarchy is Board → Subject → Chapter → Topic; ordering via `display_order`
+- Subject `tile_color` must come from the approved focus palette in `mobile/src/theme/`
+- All student-facing text has a per-medium variant (en, ta, …)
+
+### Progress Module
+- A student has **at most one** `TopicProgress` with status `active`
+- Topics unlock sequentially within a subject; other topics are locked while one is active
+- `completed` is set **only** by a quiz attempt with `score_pct >= 60`
+- All lock checks live in `progress_service.py` and are enforced on every topic/lesson/quiz endpoint
+
+### Learning Module
+- Lesson `style` must be one of: base, analogy, step_by_step, story, real_life, worked_example, visual
+- "Not clear" picks a style the student has not yet seen for that topic; reuse a cached `ready` lesson of that style + medium before generating
+- Generation pipeline: LLM script → TTS audio (deliver first) → slide video render (async)
+- Prompts must be grounded in the topic's learning objectives and the board syllabus, age-appropriate for ~15-year-olds, in the student's medium
+
+### Quiz Module
+- Default 10 questions per attempt; serve only questions not previously served to this student for that topic
+- When unseen approved questions run low, generate more via AI and validate (one correct answer, distinct options, matches topic) before use
+- Grading happens server-side only
+- Pass mark constant: `QUIZ_PASS_PCT = 60` in config
+
+### Parent Module
+- Parent can see a student only after the student shares an invite code
+- Parents have read-only access
+
+### Design
+- Calm flat palette: muted blue, sage green, soft teal, warm off-white background, dark slate text
+- WCAG AA contrast; large touch targets; minimal distractions on lesson and quiz screens
 
 ---
 
-## Validation
+## API Conventions
 
-```bash
-ruff check backend/ && pytest
-npm run lint && npm run type-check
-docker-compose build
-```
+- All endpoints prefixed with `/api/v1/`
+- Use plural nouns for resources: `/topics`, `/lessons`, `/quiz-attempts`
+- Return appropriate HTTP status codes:
+  - 200: Success
+  - 201: Created
+  - 202: Accepted (AI generation job queued)
+  - 400: Bad Request
+  - 401: Unauthorized
+  - 403: Forbidden (topic locked / wrong role)
+  - 404: Not Found
+  - 409: Conflict (another topic already active)
+  - 429: Too Many Requests (auth / AI rate limits)
+
+---
+
+## Authentication
+
+### Google Sign-In
+- The only sign-in method (no phone OTP / SMS)
+- Verify Google ID token server-side (audience = Android/Web client IDs)
+- `POST /api/v1/auth/dev-login` exists only when ENVIRONMENT=development (seeded test users), for testing before OAuth client IDs exist
+
+### JWT Configuration
+- Access token expires: 30 minutes
+- Refresh token expires: 30 days (mobile), rotated on use
+- Algorithm: HS256
+- Mobile stores tokens in `expo-secure-store`
+
+### Roles
+- `student`, `parent`, `admin` — enforce with dependencies on routers
 
 ---
 
 ## Environment Variables
 
 ```env
-DATABASE_URL=postgresql://user:pass@localhost:5432/db
-SECRET_KEY=your-secret-key
-GOOGLE_CLIENT_ID=xxx
-GOOGLE_CLIENT_SECRET=xxx
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/personal_teacher_assistant
+REDIS_URL=redis://localhost:6379/0
+
+# Auth
+SECRET_KEY=your-secret-key-change-in-production
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=30
+
+# Google Sign-In
+GOOGLE_CLIENT_ID=your-client-id
+GOOGLE_ANDROID_CLIENT_ID=your-android-client-id
+
+# AI
+OPENAI_API_KEY=sk-...
+LLM_MODEL=gpt-4o-mini        # any OpenAI chat model your key can access
+TTS_PROVIDER=google
+TTS_API_KEY=xxx
+
+# Storage
+S3_BUCKET=pta-media
+S3_ENDPOINT_URL=https://...
+S3_ACCESS_KEY_ID=xxx
+S3_SECRET_ACCESS_KEY=xxx
+
+# Quiz
+QUIZ_PASS_PCT=60
+QUIZ_QUESTIONS_PER_ATTEMPT=10
+
+# Mobile / Admin
+EXPO_PUBLIC_API_URL=http://localhost:8000
 VITE_API_URL=http://localhost:8000
 ```
+
+---
+
+## Development Commands
+
+```bash
+# Backend
+cd backend
+pip install -r requirements.txt
+alembic upgrade head
+uvicorn app.main:app --reload
+celery -A app.workers worker --loglevel=info   # AI generation worker
+
+# Mobile
+cd mobile
+npm install
+npx expo start            # press "a" for Android
+eas build -p android      # production build
+
+# Admin
+cd admin
+npm install
+npm run dev
+
+# Docker (api, worker, postgres, redis)
+docker-compose up -d
+
+# Tests
+pytest backend/tests -v
+cd mobile && npm test
+cd admin && npm test
+
+# Linting / types
+ruff check backend/
+cd mobile && npm run lint && npm run type-check
+cd admin && npm run lint && npm run type-check
+```
+
+---
+
+## Commit Message Format
+
+```
+feat([module]): add [feature]
+fix([module]): fix [bug]
+refactor([module]): refactor [component]
+test([module]): add tests for [feature]
+docs: update [documentation]
+```
+Modules: auth, curriculum, learning, quiz, progress, parent, notifications, offline, admin, ai
+
+---
+
+## Skills Reference
+
+| Task | Skill to Read |
+|------|---------------|
+| Database models | skills/DATABASE.md |
+| API + Auth | skills/BACKEND.md |
+| React / React Native + UI | skills/FRONTEND.md |
+| Testing | skills/TESTING.md |
+| Deployment | skills/DEPLOYMENT.md |
+
+> Note: skills/FRONTEND.md targets React web; for the mobile app apply the same TypeScript/component rules using React Native + Expo + React Native Paper equivalents.
+
+---
+
+## Agent Coordination
+
+For complex tasks, the ORCHESTRATOR coordinates:
+- DATABASE-AGENT → Backend models
+- BACKEND-AGENT → API development + AI pipeline
+- FRONTEND-AGENT → Mobile screens + admin panel
+- TEST-AGENT → Testing
+- REVIEW-AGENT → Code review
+- DEVOPS-AGENT → Docker, CI/CD, EAS builds
+
+Read agent definitions in `/agents/` folder.

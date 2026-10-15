@@ -1,0 +1,145 @@
+# Personal Teacher Assistant for 10th - local / single-host stack.
+#
+#   docker compose up --build                                   # "prod-like" images
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build   # hot reload
+#
+# !!! DEV-ONLY DEFAULT CREDENTIALS !!!
+# The postgres (pta/pta), MinIO (minioadmin/minioadmin) and SECRET_KEY defaults below
+# are for local development ONLY. Override them via environment / .env in any shared
+# or production deployment.
+#
+# Real API keys (OPENAI_API_KEY, TTS_API_KEY, ...) are read at runtime from the
+# repo-root .env via env_file; they are never baked into images.
+
+name: personal-teacher-assistant
+
+x-backend-env: &backend-env
+  # Values here override anything with the same name in .env (container-network addresses).
+  DATABASE_URL: postgresql+psycopg://pta:pta@postgres:5432/personal_teacher_assistant
+  REDIS_URL: redis://redis:6379/0
+  S3_BUCKET: pta-media
+  S3_ENDPOINT_URL: http://minio:9000
+  # Host phones/browsers use for media links; set to http://<your-LAN-IP>:9000 for a real device.
+  S3_PUBLIC_ENDPOINT_URL: ${S3_PUBLIC_ENDPOINT_URL:-http://localhost:9000}
+  S3_ACCESS_KEY_ID: minioadmin          # DEV-ONLY
+  S3_SECRET_ACCESS_KEY: minioadmin      # DEV-ONLY
+  SECRET_KEY: ${SECRET_KEY:-dev-only-insecure-secret-key-change-me}   # DEV-ONLY default
+
+x-backend-env-file: &backend-env-file
+  - path: .env
+    required: false
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pta                         # DEV-ONLY
+      POSTGRES_PASSWORD: pta                     # DEV-ONLY
+      POSTGRES_DB: personal_teacher_assistant
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pta -d personal_teacher_assistant"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin                # DEV-ONLY
+      MINIO_ROOT_PASSWORD: minioadmin            # DEV-ONLY
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # web console
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # One-shot job: creates the media bucket, then exits.
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 minioadmin minioadmin &&
+      mc mb --ignore-existing local/pta-media &&
+      echo 'bucket pta-media ready'
+      "
+    restart: "no"
+
+  api:
+    build:
+      context: ./backend
+    image: personal-teacher-assistant/api:local
+    restart: unless-stopped
+    env_file: *backend-env-file
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+
+  worker:
+    image: personal-teacher-assistant/api:local
+    build:
+      context: ./backend
+    restart: unless-stopped
+    command: ["celery", "-A", "app.workers.celery_app:celery_app", "worker", "--loglevel=info"]
+    env_file: *backend-env-file
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "false"
+    healthcheck:
+      disable: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  admin:
+    build:
+      context: ./admin
+      args:
+        VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+    image: personal-teacher-assistant/admin:local
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:

@@ -1,0 +1,81 @@
+"""FastAPI application entry point."""
+
+from __future__ import annotations
+
+import logging
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from starlette.requests import Request
+from starlette.responses import JSONResponse, Response
+
+from app.config import settings
+from app.exceptions import error_body, register_exception_handlers
+from app.rate_limit import limiter
+from app.routers import admin, auth, curriculum, devices, lessons, parent, progress, quiz
+
+
+def configure_logging() -> None:
+    """Configure root logging once (idempotent)."""
+    logging.basicConfig(
+        level=settings.LOG_LEVEL.upper(),
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    )
+
+
+configure_logging()
+logger = logging.getLogger("app")
+
+
+async def rate_limit_handler(request: Request, exc: Exception) -> Response:
+    """Render slowapi rate-limit errors in the standard error envelope."""
+    detail = str(getattr(exc, "detail", "")) or "Too many requests"
+    return JSONResponse(
+        status_code=429,
+        content=error_body("rate_limited", f"Rate limit exceeded: {detail}"),
+    )
+
+
+def create_app() -> FastAPI:
+    """Build and configure the FastAPI application."""
+    application = FastAPI(
+        title=settings.APP_NAME,
+        version="1.0.0",
+        docs_url=None if settings.is_production else "/docs",
+        redoc_url=None if settings.is_production else "/redoc",
+    )
+
+    application.state.limiter = limiter
+    application.add_middleware(SlowAPIMiddleware)
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.CORS_ORIGINS,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    register_exception_handlers(application)
+    application.add_exception_handler(RateLimitExceeded, rate_limit_handler)
+
+    for module in (auth, curriculum, progress, lessons, quiz, admin, parent, devices):
+        application.include_router(module.router)
+
+    @application.get("/health", tags=["health"])
+    async def health() -> dict[str, str]:
+        """Liveness probe."""
+        return {"status": "ok"}
+
+    if not settings.is_production:
+        media_root = settings.media_root
+        media_root.mkdir(parents=True, exist_ok=True)
+        application.mount("/media", StaticFiles(directory=media_root), name="media")
+
+    logger.info("App started (environment=%s)", settings.ENVIRONMENT)
+    return application
+
+
+app = create_app()

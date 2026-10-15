@@ -1,0 +1,40 @@
+# Development override: hot reload + host access to postgres/redis.
+#
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
+
+  api:
+    command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+    volumes:
+      - ./backend:/app
+    environment:
+      ENVIRONMENT: development
+
+  worker:
+    volumes:
+      - ./backend:/app
+    environment:
+      ENVIRONMENT: development
+
+  admin:
+    # Replace the nginx image with the Vite dev server.
+    image: node:22-alpine
+    build: !reset null
+    working_dir: /app
+    command: ["sh", "-c", "npm install && npm run dev -- --host 0.0.0.0 --port 3000"]
+    environment:
+      VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
+      CHOKIDAR_USEPOLLING: "true"   # reliable file watching on Windows/macOS bind mounts
+    ports: !override
+      - "3000:3000"
+    volumes:
+      - ./admin:/app
+      - /app/node_modules

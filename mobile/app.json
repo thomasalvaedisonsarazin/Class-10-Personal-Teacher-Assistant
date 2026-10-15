@@ -1,0 +1,68 @@
+{
+  "expo": {
+    "name": "Personal Teacher Assistant",
+    "slug": "personal-teacher-assistant",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "pta",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F7F5F0",
+    "ios": {
+      "bundleIdentifier": "com.pta.tenth",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.pta.tenth",
+      "adaptiveIcon": {
+        "backgroundColor": "#F7F5F0",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-web-browser",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#F7F5F0",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 76
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#3B6EA5"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./node_modules/@expo-google-fonts/noto-sans/400Regular/NotoSans_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/noto-sans/500Medium/NotoSans_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/noto-sans/700Bold/NotoSans_700Bold.ttf",
+            "./node_modules/@expo-google-fonts/noto-sans-tamil/400Regular/NotoSansTamil_400Regular.ttf",
+            "./node_modules/@expo-google-fonts/noto-sans-tamil/500Medium/NotoSansTamil_500Medium.ttf",
+            "./node_modules/@expo-google-fonts/noto-sans-tamil/700Bold/NotoSansTamil_700Bold.ttf"
+          ]
+        }
+      ],
+      "expo-video",
+      "expo-audio"
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
