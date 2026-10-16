@@ -32,3 +32,6 @@ Thumbs.db
 coverage/
 coverage.xml
 *.log
+
+# Textbook PDFs (copyrighted, ~500 MB) - local reference only, never commit
+Book/

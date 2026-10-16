@@ -146,6 +146,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 
 ### Curriculum Module
 - Hierarchy is Board → Subject → Chapter → Topic; ordering via `display_order`
+- The full TN SSLC syllabus (302 topics, en + ta, from the 2024/25 textbooks' contents and learning objectives — no textbook text) lives in `backend/data/curriculum/tn_sslc_full.json`; load it with `python -m app.cli import-curriculum` or the admin "Import syllabus" (upsert by display order, nothing deleted). `app.seed` is only a small sample — don't run it after the full import
 - Subject `tile_color` must come from the approved focus palette in `mobile/src/theme/`
 - All student-facing text has a per-medium variant (en, ta, …)
 
@@ -273,6 +274,7 @@ VITE_API_URL=http://localhost:8000
 cd backend
 pip install -r requirements.txt
 alembic upgrade head
+python -m app.cli import-curriculum   # full TN SSLC syllabus (backend/data/curriculum/tn_sslc_full.json)
 uvicorn app.main:app --reload
 celery -A app.workers worker --loglevel=info   # AI generation worker
 

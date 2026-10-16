@@ -336,3 +336,33 @@ def test_upload_checks_real_file_contents(
         headers=auth_headers(admin),
     )
     assert res.status_code == 400 and res.json()["error"]["code"] == "unsupported_media"
+
+
+def test_full_syllabus_file_imports(db: Session, board: Board) -> None:
+    """The shipped TN SSLC syllabus is valid and loads in order, in English and Tamil."""
+    from app.cli import DEFAULT_CURRICULUM, main
+    from app.models.curriculum import Subject
+
+    assert main(["import-curriculum", str(DEFAULT_CURRICULUM)]) == 0
+    db.expire_all()
+    subjects = db.scalars(select(Subject).order_by(Subject.display_order)).all()
+    names = ["Mathematics", "Science", "Social Science", "Tamil", "English"]
+    assert [s.name for s in subjects] == names
+    topics = db.scalars(select(Topic)).all()
+    assert len(topics) > 250
+    assert all(t.learning_objectives for t in topics)
+    first = subjects[0].chapters[0].topics[0]
+    assert first.title == "Ordered Pair"
+    assert {t.medium: t.title for t in first.translations}[Medium.ta] == "வரிசைச் சோடி"
+    # Re-running updates in place instead of duplicating.
+    assert main(["import-curriculum", str(DEFAULT_CURRICULUM)]) == 0
+    assert len(db.scalars(select(Topic)).all()) == len(topics)
+
+
+def test_import_curriculum_cli_reports_missing_board(db: Session, tmp_path: Any) -> None:
+    from app.cli import main
+
+    bad = tmp_path / "x.json"
+    bad.write_text('{"boardCode": "NOPE", "subjects": []}', encoding="utf-8")
+    assert main(["import-curriculum", str(bad)]) == 2
+    assert main(["import-curriculum", str(tmp_path / "missing.json")]) == 2
