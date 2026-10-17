@@ -49,6 +49,10 @@ export default function TopicScreen() {
   }
 
   const topic = topicQuery.data;
+  const needsPayment =
+    topic.access === 'payment_required' || getApiErrorCode(startTopic.error) === 'payment_required';
+  const openPremium = (): void =>
+    router.push({ pathname: '/premium', params: { topicId: String(topic.id), topicTitle: topic.title } });
   const openLesson = (): void => {
     const go = (): void =>
       router.push({ pathname: '/lesson/[topicId]', params: { topicId: String(topic.id) } });
@@ -88,7 +92,22 @@ export default function TopicScreen() {
             </View>
           ) : null}
 
-          <View style={styles.section}>
+          {needsPayment ? (
+            <View style={styles.section}>
+              <PrimaryButton
+                label="Unlock this topic"
+                icon="crown-outline"
+                onPress={openPremium}
+                testID="unlock-topic"
+              />
+              <HelperText type="info" visible>
+                The first topic of every subject is free. Unlock all topics with a plan, or buy
+                just this topic.
+              </HelperText>
+            </View>
+          ) : null}
+
+          <View style={[styles.section, needsPayment && styles.hidden]}>
             <PrimaryButton
               label={topic.status === 'available' ? 'Start lesson' : 'Open lesson'}
               icon="play"
@@ -137,5 +156,8 @@ const styles = StyleSheet.create({
   },
   section: {
     gap: spacing.sm,
+  },
+  hidden: {
+    display: 'none',
   },
 });

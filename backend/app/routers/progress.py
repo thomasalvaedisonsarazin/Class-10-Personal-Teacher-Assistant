@@ -28,4 +28,5 @@ def start_topic(topic_id: int, db: DbSession, user: StudentUser) -> TopicItem:
         title=topic_title(topic, student_medium(user)),
         status=status.state,
         best_score_pct=status.best_score_pct,
+        access=status.access,
     )

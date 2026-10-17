@@ -21,22 +21,37 @@ export interface TopicRowProps {
   onPress: () => void;
 }
 
-/** One topic in a subject's path. Locked rows are visible but not tappable. */
+const PAID_UI = { icon: 'crown-outline', color: palette.warning } as const;
+
+/** Row caption for a topic that needs a plan or a single-topic purchase. */
+function paidLabel(locked: boolean): string {
+  return locked ? 'Pass the previous topic, or buy this topic' : 'Premium · unlock with a plan or buy it';
+}
+
+/**
+ * One topic in a subject's path. Locked rows are visible but not tappable, unless the
+ * topic can be bought on its own (a bought topic opens straight away).
+ */
 export function TopicRow({ topic, index, onPress }: TopicRowProps) {
-  const ui = STATUS_UI[topic.status];
+  const needsPayment = topic.access === 'payment_required';
   const locked = topic.status === 'locked';
+  const disabled = locked && !needsPayment;
+  const ui = needsPayment
+    ? { ...PAID_UI, label: paidLabel(locked) }
+    : STATUS_UI[topic.status];
   const score =
     topic.status === 'completed' && topic.bestScorePct !== null
       ? ` · Best ${Math.round(topic.bestScorePct)}%`
       : '';
+  const bought = topic.access === 'purchased' ? ' · Bought' : '';
 
   return (
     <Pressable
       onPress={onPress}
-      disabled={locked}
+      disabled={disabled}
       accessibilityRole="button"
-      accessibilityState={{ disabled: locked }}
-      accessibilityLabel={`Topic ${index}: ${topic.title}. ${ui.label}${score}`}
+      accessibilityState={{ disabled }}
+      accessibilityLabel={`Topic ${index}: ${topic.title}. ${ui.label}${score}${bought}`}
       style={({ pressed }) => [styles.row, locked && styles.locked, pressed && styles.pressed]}
       testID={`topic-row-${topic.id}`}
     >
@@ -48,9 +63,10 @@ export function TopicRow({ topic, index, onPress }: TopicRowProps) {
         <AppText variant="caption" tone="secondary">
           {ui.label}
           {score}
+          {bought}
         </AppText>
       </View>
-      {!locked ? (
+      {!disabled ? (
         <MaterialCommunityIcons name="chevron-right" size={24} color={palette.textSecondary} />
       ) : null}
     </Pressable>

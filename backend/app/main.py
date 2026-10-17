@@ -16,7 +16,17 @@ from starlette.responses import FileResponse, JSONResponse, Response
 from app.config import settings
 from app.exceptions import error_body, register_exception_handlers
 from app.rate_limit import limiter
-from app.routers import admin, auth, curriculum, devices, lessons, parent, progress, quiz
+from app.routers import (
+    admin,
+    auth,
+    billing,
+    curriculum,
+    devices,
+    lessons,
+    parent,
+    progress,
+    quiz,
+)
 
 
 def configure_logging() -> None:
@@ -67,7 +77,7 @@ def create_app() -> FastAPI:
     register_exception_handlers(application)
     application.add_exception_handler(RateLimitExceeded, rate_limit_handler)
 
-    for module in (auth, curriculum, progress, lessons, quiz, admin, parent, devices):
+    for module in (auth, curriculum, progress, lessons, quiz, admin, parent, devices, billing):
         application.include_router(module.router)
 
     @application.get("/health", tags=["health"])

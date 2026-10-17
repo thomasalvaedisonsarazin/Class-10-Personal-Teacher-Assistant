@@ -118,6 +118,7 @@ def get_subject(db: Session, user: User, subject_id: int) -> SubjectDetail:
                     title=topic_title(topic, medium),
                     status=statuses[topic.id].state,
                     best_score_pct=statuses[topic.id].best_score_pct,
+                    access=statuses[topic.id].access,
                 )
                 for topic in chapter.topics
                 if topic.id in statuses
@@ -134,8 +135,8 @@ def get_subject(db: Session, user: User, subject_id: int) -> SubjectDetail:
 
 
 def get_topic_detail(db: Session, user: User, topic_id: int) -> TopicDetail:
-    """Topic screen data; raises 403 for locked topics."""
-    topic, status = require_topic_access(db, user, topic_id)
+    """Topic screen data (also for paid topics, to offer unlocking); 403 when locked."""
+    topic, status = require_topic_access(db, user, topic_id, paid=False)
     medium = student_medium(user)
     subject = topic.chapter.subject
     return TopicDetail(
@@ -144,6 +145,7 @@ def get_topic_detail(db: Session, user: User, topic_id: int) -> TopicDetail:
         learning_objectives=topic_objectives(topic, medium),
         status=status.state,
         best_score_pct=status.best_score_pct,
+        access=status.access,
         chapter_title=chapter_title(topic.chapter, medium),
         subject=SubjectRef(
             id=subject.id, name=subject_name(subject, medium), tile_color=subject.tile_color

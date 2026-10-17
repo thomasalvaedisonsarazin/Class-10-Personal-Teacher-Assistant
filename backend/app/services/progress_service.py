@@ -7,7 +7,11 @@ Rules:
 - A topic is ``completed`` only after a quiz attempt scores >= ``QUIZ_PASS_PCT``;
   that opens the next topic of the same subject.
 - Completed topics stay open for review. Anything after the first unfinished
-  topic of a subject is ``locked``.
+  topic of a subject is ``locked`` — except a topic the student bought on its own,
+  which opens directly.
+- Payments (``BILLING_ENABLED``): beyond the free first topic(s) of each subject a
+  topic also needs a plan or a single-topic purchase (see ``billing_service``);
+  lessons and tests then answer 402 ``payment_required``.
 
 Lessons, "Not clear" and quiz endpoints must call :func:`require_topic_access`.
 """
@@ -28,6 +32,12 @@ from app.models.curriculum import Chapter, Subject, Topic
 from app.models.enums import TopicStatus
 from app.models.progress import TopicProgress
 from app.models.user import User
+from app.services.billing_service import (
+    PaymentRequiredError,
+    StudentAccess,
+    TopicAccess,
+    get_student_access,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -49,6 +59,7 @@ class TopicStatusInfo:
     subject_id: int
     state: TopicState
     best_score_pct: float | None
+    access: TopicAccess = TopicAccess.free
 
 
 def _board_id(user: User) -> int:
@@ -58,13 +69,16 @@ def _board_id(user: User) -> int:
 
 
 def compute_states(
-    ordered_topic_ids: list[int], progress: dict[int, TopicProgress]
+    ordered_topic_ids: list[int],
+    progress: dict[int, TopicProgress],
+    bought: frozenset[int] = frozenset(),
 ) -> dict[int, TopicState]:
     """Derive states for one subject's ordered topics from stored progress.
 
     Args:
         ordered_topic_ids: Published topics of a subject in study order
         progress: The student's TopicProgress rows keyed by topic id
+        bought: Topics bought on their own (open even when out of order)
 
     Returns:
         State for every topic id
@@ -79,6 +93,9 @@ def compute_states(
             started = row is not None and row.status == TopicStatus.active
             states[topic_id] = TopicState.active if started else TopicState.available
             frontier_open = False
+        elif topic_id in bought:
+            started = row is not None and row.status == TopicStatus.active
+            states[topic_id] = TopicState.active if started else TopicState.available
         else:
             states[topic_id] = TopicState.locked
     return states
@@ -118,15 +135,18 @@ def board_topic_statuses(
             )
         }
 
+    access: StudentAccess = get_student_access(db, user)
     result: dict[int, TopicStatusInfo] = {}
     for sid, ordered in per_subject.items():
-        for topic_id, state in compute_states(ordered, progress).items():
+        states = compute_states(ordered, progress, access.topic_ids)
+        for position, topic_id in enumerate(ordered):
             row = progress.get(topic_id)
             result[topic_id] = TopicStatusInfo(
                 topic_id=topic_id,
                 subject_id=sid,
-                state=state,
+                state=states[topic_id],
                 best_score_pct=row.best_score_pct if row else None,
+                access=access.access(topic_id, position),
             )
     return result
 
@@ -154,12 +174,19 @@ def get_topic_status(db: Session, user: User, topic: Topic) -> TopicStatusInfo:
     return statuses[topic.id]
 
 
-def require_topic_access(db: Session, user: User, topic_id: int) -> tuple[Topic, TopicStatusInfo]:
+def require_topic_access(
+    db: Session, user: User, topic_id: int, *, paid: bool = True
+) -> tuple[Topic, TopicStatusInfo]:
     """Return the topic if the student may study it, else raise.
+
+    Args:
+        paid: Also require payment for paid topics (False for the topic screen, which
+            shows what the topic covers and how to unlock it)
 
     Raises:
         NotFoundError: unknown/unpublished topic or another board's topic
         ForbiddenError: the topic is locked (code ``topic_locked``)
+        PaymentRequiredError: the topic needs a plan or purchase (code ``payment_required``)
     """
     topic = get_topic_for_student(db, user, topic_id)
     status = get_topic_status(db, user, topic)
@@ -168,6 +195,8 @@ def require_topic_access(db: Session, user: User, topic_id: int) -> tuple[Topic,
             "Pass the previous topic's test (60% or more) to unlock this topic",
             code="topic_locked",
         )
+    if paid and status.access == TopicAccess.payment_required:
+        raise PaymentRequiredError()
     return topic, status
 
 

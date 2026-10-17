@@ -88,7 +88,12 @@ export default function SubjectScreen() {
             topic={item}
             index={section.startIndex + index}
             onPress={() =>
-              router.push({ pathname: '/topic/[id]', params: { id: String(item.id) } })
+              item.status === 'locked' && item.access === 'payment_required'
+                ? router.push({
+                    pathname: '/premium',
+                    params: { topicId: String(item.id), topicTitle: item.title },
+                  })
+                : router.push({ pathname: '/topic/[id]', params: { id: String(item.id) } })
             }
           />
         )}

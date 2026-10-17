@@ -1,6 +1,7 @@
 """ORM models. Importing this package registers every table on ``Base.metadata``."""
 
 from app.models.base import Base, TimestampMixin
+from app.models.billing import Purchase
 from app.models.curriculum import (
     Board,
     Chapter,
@@ -49,6 +50,7 @@ __all__ = [
     "NotificationLog",
     "ParentLink",
     "ParentLinkStatus",
+    "Purchase",
     "Question",
     "QuestionSource",
     "QuestionType",

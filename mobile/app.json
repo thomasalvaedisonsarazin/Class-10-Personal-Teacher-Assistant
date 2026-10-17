@@ -67,7 +67,15 @@
         }
       ],
       "expo-video",
-      "expo-audio"
+      "expo-audio",
+      [
+        "expo-iap",
+        {
+          "android": {
+            "store": "play"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

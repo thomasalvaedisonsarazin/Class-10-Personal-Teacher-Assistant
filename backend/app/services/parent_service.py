@@ -1,7 +1,7 @@
 """Parent module: invite codes, linking, and read-only reports.
 
 A parent can only see a student who shared an invite code (and has not removed them).
-Every report lookup goes through :func:`_linked_student`, which is the IDOR guard.
+Every report lookup goes through :func:`linked_student`, which is the IDOR guard.
 """
 
 from __future__ import annotations
@@ -200,7 +200,7 @@ def redeem_invite(db: Session, parent: User, code: str) -> ChildSummaryOut:
     return _summary(db, student)
 
 
-def _linked_student(db: Session, parent: User, student_id: int) -> User:
+def linked_student(db: Session, parent: User, student_id: int) -> User:
     """The child, only if this parent holds an accepted link (else 404, never 403)."""
     linked = db.scalar(
         select(ParentLink.id).where(
@@ -279,7 +279,7 @@ def _summary(db: Session, student: User) -> ChildSummaryOut:
 
 def child_report(db: Session, parent: User, student_id: int) -> ChildReportOut:
     """Full read-only report for one linked child (404 if not linked)."""
-    student = _linked_student(db, parent, student_id)
+    student = linked_student(db, parent, student_id)
     summary = _summary(db, student)
     detail = []
     if student.board_id:

@@ -5,6 +5,7 @@ from __future__ import annotations
 from pydantic import Field
 
 from app.schemas.common import CamelModel, ORMModel
+from app.services.billing_service import TopicAccess
 from app.services.progress_service import TopicState
 
 
@@ -23,6 +24,7 @@ class TopicItem(CamelModel):
     title: str
     status: TopicState
     best_score_pct: float | None = None
+    access: TopicAccess = TopicAccess.free
 
 
 class ChapterOut(CamelModel):
@@ -77,6 +79,7 @@ class TopicDetail(CamelModel):
     learning_objectives: str
     status: TopicState
     best_score_pct: float | None
+    access: TopicAccess = TopicAccess.free
     chapter_title: str
     subject: SubjectRef
     pass_pct: float

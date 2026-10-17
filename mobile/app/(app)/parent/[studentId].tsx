@@ -5,7 +5,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ProgressBar } from '@/components/parent/ProgressBar';
-import { AppText, ErrorState, LoadingView, Screen } from '@/components/ui';
+import { AppText, ErrorState, LoadingView, PrimaryButton, Screen } from '@/components/ui';
 import { parseIdParam } from '@/hooks/useCurriculum';
 import { relativeDay } from '@/lib/time';
 import { getApiErrorMessage } from '@/services/api';
@@ -78,6 +78,18 @@ export default function ChildReportScreen() {
             value={r.averageScoreThisWeek !== null ? `${Math.round(r.averageScoreThisWeek)}%` : '—'}
           />
         </View>
+        <PrimaryButton
+          label={`Premium plan for ${r.name ?? 'your child'}`}
+          icon="crown-outline"
+          mode="outlined"
+          onPress={() =>
+            router.push({
+              pathname: '/premium',
+              params: { studentId: String(id), childName: r.name ?? 'your child' },
+            })
+          }
+          testID="child-premium"
+        />
         {r.reExplanationsThisWeek > 0 ? (
           <AppText variant="bodySmall" tone="secondary">
             Asked for a new explanation {r.reExplanationsThisWeek} time(s) this week — a good sign of

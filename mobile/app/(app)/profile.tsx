@@ -125,6 +125,16 @@ export default function ProfileScreen() {
             </View>
           )}
 
+          {isParent ? null : (
+            <PrimaryButton
+              label="Premium plan"
+              icon="crown-outline"
+              mode="outlined"
+              onPress={() => router.push('/premium')}
+              testID="profile-premium"
+            />
+          )}
+
           {isParent ? null : <ParentAccess />}
 
           <HelperText type={message?.type ?? 'info'} visible={message !== null}>

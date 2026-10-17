@@ -68,6 +68,18 @@ class Settings(BaseSettings):
     EMAIL_CODE_MAX_ATTEMPTS: int = 5
     EMAIL_CODES_PER_HOUR: int = 5
 
+    # Payments (Google Play Billing). Off = every topic is free (dev, tests, before launch).
+    BILLING_ENABLED: bool = False
+    FREE_TOPICS_PER_SUBJECT: int = 1  # the first N topics of every subject are free
+    PLAY_PACKAGE_NAME: str = "com.edsolution.teacherassistant"
+    # Service-account JSON (file path or the JSON text) with Play "View financial data" access.
+    PLAY_SERVICE_ACCOUNT_JSON: str = ""
+    # Auto-renewing plans (base plans monthly ₹99 / yearly ₹999). Google allows one active
+    # subscription per product per account, so a parent's 1st/2nd/3rd child each use their own.
+    PLAY_SUBSCRIPTION_IDS: Annotated[list[str], NoDecode] = ["premium", "premium_2", "premium_3"]
+    # One-time product: one topic forever (₹75).
+    PLAY_TOPIC_PRODUCT_ID: str = "topic_unlock"
+
     # AI
     OPENAI_API_KEY: str = ""
     LLM_MODEL: str = "gpt-5.4-mini"  # chosen 2026-10-15: natural Tamil/Tanglish
@@ -130,7 +142,7 @@ class Settings(BaseSettings):
                 return "postgresql+psycopg://" + value[len(prefix) :]
         return value
 
-    @field_validator("CORS_ORIGINS", "ADMIN_EMAILS", mode="before")
+    @field_validator("CORS_ORIGINS", "ADMIN_EMAILS", "PLAY_SUBSCRIPTION_IDS", mode="before")
     @classmethod
     def _split_csv(cls, value: object) -> object:
         """Allow comma-separated strings in addition to JSON lists."""
@@ -164,6 +176,8 @@ class Settings(BaseSettings):
                 raise ValueError("DEV_LOGIN_ENABLED must be false in production")
             if self.EMAIL_PROVIDER != "smtp" or not self.SMTP_HOST:
                 raise ValueError("Production needs EMAIL_PROVIDER=smtp and SMTP_HOST to send codes")
+            if self.BILLING_ENABLED and not self.PLAY_SERVICE_ACCOUNT_JSON:
+                raise ValueError("BILLING_ENABLED needs PLAY_SERVICE_ACCOUNT_JSON")
         return self
 
     @property

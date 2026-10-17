@@ -8,6 +8,7 @@ from sqlalchemy import delete, or_, select, update
 from sqlalchemy.orm import Session
 
 from app.exceptions import ForbiddenError
+from app.models.billing import Purchase
 from app.models.enums import UserRole
 from app.models.lesson import ClarityFeedback, GenerationJob, LessonView
 from app.models.notification import DeviceToken, NotificationLog
@@ -51,6 +52,9 @@ def delete_account(db: Session, user: User) -> None:
     ):
         db.execute(delete(model).where(model.user_id == user_id))
     db.execute(update(GenerationJob).where(GenerationJob.user_id == user_id).values(user_id=None))
+    # A parent's payments for a child stay with the child; the student's own access goes.
+    db.execute(update(Purchase).where(Purchase.payer_user_id == user_id).values(payer_user_id=None))
+    db.execute(delete(Purchase).where(Purchase.beneficiary_user_id == user_id))
     db.execute(
         delete(ParentLink).where(
             or_(ParentLink.parent_user_id == user_id, ParentLink.student_user_id == user_id)
