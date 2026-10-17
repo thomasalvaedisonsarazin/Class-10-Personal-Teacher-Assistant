@@ -53,6 +53,19 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_ID: str = ""
     GOOGLE_ANDROID_CLIENT_ID: str = ""
 
+    # Email sign-in (6-digit codes, email + password). "log" only writes codes to the
+    # server log for local testing and is refused in production; use "smtp" there
+    # (e.g. Brevo, Resend, Amazon SES or Gmail SMTP).
+    EMAIL_PROVIDER: Literal["log", "smtp"] = "log"
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: str = ""
+    SMTP_PASSWORD: str = ""
+    EMAIL_FROM: str = "Personal Teacher Assistant <no-reply@example.com>"
+    EMAIL_CODE_TTL_MINUTES: int = 10
+    EMAIL_CODE_MAX_ATTEMPTS: int = 5
+    EMAIL_CODES_PER_HOUR: int = 5
+
     # AI
     OPENAI_API_KEY: str = ""
     LLM_MODEL: str = "gpt-5.4-mini"  # chosen 2026-10-15: natural Tamil/Tanglish
@@ -143,6 +156,8 @@ class Settings(BaseSettings):
                 raise ValueError("SECRET_KEY must be a long random value (32+ chars) in production")
             if self.DEV_LOGIN_ENABLED:
                 raise ValueError("DEV_LOGIN_ENABLED must be false in production")
+            if self.EMAIL_PROVIDER != "smtp" or not self.SMTP_HOST:
+                raise ValueError("Production needs EMAIL_PROVIDER=smtp and SMTP_HOST to send codes")
         return self
 
     @property

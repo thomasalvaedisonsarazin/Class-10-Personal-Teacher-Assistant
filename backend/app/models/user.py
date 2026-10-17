@@ -1,4 +1,4 @@
-"""User and refresh-token models (Google Sign-In only; no passwords)."""
+"""User, refresh-token and email-code models (Google, email code or email + password sign-in)."""
 
 from __future__ import annotations
 
@@ -43,8 +43,15 @@ class User(TimestampMixin, Base):
     is_verified: Mapped[bool] = mapped_column(
         sa.Boolean, nullable=False, default=False, server_default=sa.false()
     )
+    # bcrypt hash; None = no password set (Google or email-code sign-in only).
+    password_hash: Mapped[str | None] = mapped_column(sa.String(255), nullable=True)
 
     board: Mapped[Board | None] = relationship()
+
+    @property
+    def has_password(self) -> bool:
+        """True when the user can sign in with email + password."""
+        return self.password_hash is not None
 
     def __repr__(self) -> str:
         return f"<User id={self.id} email={self.email!r} role={self.role}>"
@@ -69,3 +76,18 @@ class RefreshToken(TimestampMixin, Base):
     )
 
     user: Mapped[User] = relationship()
+
+
+class EmailCode(TimestampMixin, Base):
+    """A one-time 6-digit sign-in code sent by email (only its keyed hash is stored)."""
+
+    __tablename__ = "email_codes"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str] = mapped_column(sa.String(255), index=True, nullable=False)
+    code_hash: Mapped[str] = mapped_column(sa.String(128), nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(sa.DateTime(timezone=True), nullable=False)
+    attempts: Mapped[int] = mapped_column(sa.Integer, nullable=False, default=0, server_default="0")
+    used: Mapped[bool] = mapped_column(
+        sa.Boolean, nullable=False, default=False, server_default=sa.false()
+    )

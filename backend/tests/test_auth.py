@@ -137,6 +137,7 @@ def test_google_not_configured_returns_503(
 @pytest.fixture()
 def configured_google(monkeypatch: pytest.MonkeyPatch) -> pytest.MonkeyPatch:
     monkeypatch.setattr(settings, "GOOGLE_CLIENT_ID", "web-client.apps.googleusercontent.com")
+    monkeypatch.setattr(settings, "GOOGLE_ANDROID_CLIENT_ID", "")  # ignore a developer's .env
     return monkeypatch
 
 
@@ -378,6 +379,17 @@ def test_production_refuses_dev_login() -> None:
     from app.config import Settings
 
     strong = "k3Jd9-qW2x_Lm8Rt5Yv1Bn6Hc4Fg7Ps0Ze2Ua9"
-    assert Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=False)
+    smtp = {"EMAIL_PROVIDER": "smtp", "SMTP_HOST": "smtp.example.com"}
+    assert Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=False, **smtp)
     with pytest.raises(ValidationError):
-        Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=True)
+        Settings(ENVIRONMENT="production", SECRET_KEY=strong, DEV_LOGIN_ENABLED=True, **smtp)
+
+
+def test_production_refuses_log_email_provider() -> None:
+    from pydantic import ValidationError
+
+    from app.config import Settings
+
+    strong = "k3Jd9-qW2x_Lm8Rt5Yv1Bn6Hc4Fg7Ps0Ze2Ua9"
+    with pytest.raises(ValidationError):
+        Settings(ENVIRONMENT="production", SECRET_KEY=strong, EMAIL_PROVIDER="log")

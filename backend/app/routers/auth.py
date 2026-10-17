@@ -1,10 +1,10 @@
-"""Authentication endpoints: Google Sign-In, dev login, refresh, logout, profile."""
+"""Authentication endpoints: Google, email code, email + password, dev login, refresh, profile."""
 
 from __future__ import annotations
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Request, Response, status
+from fastapi import APIRouter, BackgroundTasks, Depends, Request, Response, status
 
 from app.config import settings
 from app.dependencies import CurrentUser, DbSession
@@ -13,12 +13,17 @@ from app.rate_limit import limiter
 from app.schemas.auth import (
     AuthTokens,
     DevLoginRequest,
+    EmailCodeLogin,
+    EmailCodeRequest,
+    EmailCodeSent,
     GoogleLoginRequest,
+    PasswordLoginRequest,
+    PasswordSetRequest,
     RefreshRequest,
     UpdateMeRequest,
     UserOut,
 )
-from app.services import auth_service
+from app.services import auth_service, email_auth_service, email_service
 from app.services.google_auth import GoogleVerifier, get_google_verifier
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
@@ -35,6 +40,40 @@ def google_login(
     """Verify a Google ID token and return our tokens (creates the account if new)."""
     identity = verify(body.id_token)
     return auth_service.login_with_google(db, identity)
+
+
+@router.post("/email/code", response_model=EmailCodeSent, status_code=status.HTTP_202_ACCEPTED)
+@limiter.limit("5/minute")
+def request_email_code(
+    request: Request, body: EmailCodeRequest, db: DbSession, background: BackgroundTasks
+) -> EmailCodeSent:
+    """Email a 6-digit code (sign in, sign up or reset password). Same reply for every email."""
+    code = email_auth_service.create_sign_in_code(db, str(body.email))
+    background.add_task(email_service.send_sign_in_code, str(body.email).lower(), code)
+    return EmailCodeSent(expires_in_minutes=settings.EMAIL_CODE_TTL_MINUTES)
+
+
+@router.post("/email/login", response_model=AuthTokens)
+@limiter.limit("10/minute")
+def email_code_login(request: Request, body: EmailCodeLogin, db: DbSession) -> AuthTokens:
+    """Sign in with an emailed code (creates a student account for a new email)."""
+    return email_auth_service.login_with_code(db, str(body.email), body.code)
+
+
+@router.post("/password/set", response_model=AuthTokens)
+@limiter.limit("10/minute")
+def set_password(request: Request, body: PasswordSetRequest, db: DbSession) -> AuthTokens:
+    """Create an account with a password, or reset a forgotten one, using an emailed code."""
+    return email_auth_service.set_password_with_code(
+        db, str(body.email), body.code, body.password, body.full_name
+    )
+
+
+@router.post("/password/login", response_model=AuthTokens)
+@limiter.limit("10/minute")
+def password_login(request: Request, body: PasswordLoginRequest, db: DbSession) -> AuthTokens:
+    """Sign in with email and password."""
+    return email_auth_service.login_with_password(db, str(body.email), body.password)
 
 
 @router.post("/dev-login", response_model=AuthTokens)

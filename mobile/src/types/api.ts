@@ -36,6 +36,8 @@ export interface User {
   medium: Medium | null;
   /** Preferred explanation language (null = same as medium). */
   lessonLanguage: LessonLanguage | null;
+  /** True when the user can also sign in with email + password. */
+  hasPassword?: boolean;
 }
 
 export interface AuthTokens {

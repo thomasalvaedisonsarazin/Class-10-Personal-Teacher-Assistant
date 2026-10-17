@@ -30,14 +30,16 @@ const APP_LANGUAGE_OPTIONS: readonly ChoiceOption<Medium>[] = [
 ];
 
 export default function OnboardingScreen() {
-  const { status, user, refreshUser } = useAuth();
+  const { status, user, refreshUser, signOut } = useAuth();
   const [role, setRole] = useState<SetupRole>(user?.role === 'parent' ? 'parent' : 'student');
   const [boardId, setBoardId] = useState<number | null>(user?.boardId ?? null);
   const [medium, setMedium] = useState<Medium | null>(user?.medium ?? null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const isParent = role === 'parent';
+  // Admins keep their role (the API refuses to change it); they set up like a student.
+  const isAdmin = user?.role === 'admin';
+  const isParent = !isAdmin && role === 'parent';
   const boardsQuery = useQuery({
     queryKey: ['boards'],
     queryFn: authService.getBoards,
@@ -63,7 +65,11 @@ export default function OnboardingScreen() {
       await authService.updateMe(
         isParent
           ? { role: 'parent', medium }
-          : { role: 'student', boardId: selectedBoardId ?? undefined, medium },
+          : {
+              role: isAdmin ? undefined : 'student',
+              boardId: selectedBoardId ?? undefined,
+              medium,
+            },
       );
       await refreshUser();
     } catch (err) {
@@ -101,9 +107,11 @@ export default function OnboardingScreen() {
           <AppText tone="secondary">Tell us who is using the app.</AppText>
         </View>
 
-        <View style={styles.section}>
-          <ChoiceList options={ROLE_OPTIONS} value={role} onChange={setRole} testID="role-picker" />
-        </View>
+        {isAdmin ? null : (
+          <View style={styles.section}>
+            <ChoiceList options={ROLE_OPTIONS} value={role} onChange={setRole} testID="role-picker" />
+          </View>
+        )}
 
         {isParent ? (
           <View style={styles.section}>
@@ -136,6 +144,13 @@ export default function OnboardingScreen() {
           disabled={!canSave}
           loading={saving}
           testID="onboarding-save"
+        />
+        <PrimaryButton
+          label="Sign out"
+          mode="text"
+          onPress={() => void signOut()}
+          disabled={saving}
+          testID="onboarding-sign-out"
         />
       </View>
     </Screen>

@@ -4,19 +4,24 @@ import { StyleSheet, View } from 'react-native';
 import { HelperText } from 'react-native-paper';
 
 import { DevLoginButtons } from '@/components/auth/DevLoginButtons';
+import { EmailSignIn } from '@/components/auth/EmailSignIn';
 import { GoogleSignInButton, isGoogleSignInConfigured } from '@/components/auth/GoogleSignInButton';
-import { AppText, Screen } from '@/components/ui';
+import { AppText, PrimaryButton, Screen } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
 import { env } from '@/lib/env';
 import { getApiErrorMessage } from '@/services/api';
 import { authService } from '@/services/authService';
 import { spacing } from '@/theme';
+import type { AuthTokens } from '@/types/api';
 
 export default function LoginScreen() {
   const { status, signIn } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [devLoadingEmail, setDevLoadingEmail] = useState<string | null>(null);
+  const [useEmail, setUseEmail] = useState(false);
+
+  const handleEmailSignedIn = useCallback((tokens: AuthTokens): Promise<void> => signIn(tokens), [signIn]);
 
   const handleGoogleToken = useCallback(
     async (idToken: string): Promise<void> => {
@@ -53,7 +58,7 @@ export default function LoginScreen() {
   }
 
   return (
-    <Screen testID="login-screen">
+    <Screen scroll testID="login-screen">
       <View style={styles.hero}>
         <AppText variant="display" center>
           Personal Teacher Assistant
@@ -64,19 +69,39 @@ export default function LoginScreen() {
       </View>
 
       <View style={styles.actions}>
-        {isGoogleSignInConfigured ? (
+        {useEmail ? (
+          <EmailSignIn
+            onSignedIn={handleEmailSignedIn}
+            onError={setError}
+            onCancel={() => {
+              setError(null);
+              setUseEmail(false);
+            }}
+          />
+        ) : null}
+
+        {!useEmail && isGoogleSignInConfigured ? (
           <GoogleSignInButton
             onIdToken={(token) => void handleGoogleToken(token)}
             onError={setError}
             loading={googleLoading}
           />
-        ) : (
-          <AppText variant="caption" tone="secondary" center testID="google-not-configured">
-            Google sign-in will appear here once it is set up.
-          </AppText>
+        ) : null}
+
+        {useEmail ? null : (
+          <PrimaryButton
+            label="Continue with email"
+            icon="email-outline"
+            mode="outlined"
+            onPress={() => {
+              setError(null);
+              setUseEmail(true);
+            }}
+            testID="continue-with-email"
+          />
         )}
 
-        {env.enableDevLogin ? (
+        {env.enableDevLogin && !useEmail ? (
           <DevLoginButtons onLogin={(email) => void handleDevLogin(email)} loadingEmail={devLoadingEmail} />
         ) : null}
 

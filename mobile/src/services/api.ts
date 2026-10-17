@@ -10,7 +10,16 @@ import { tokenStorage } from './tokenStorage';
 const REQUEST_TIMEOUT_MS = 20_000;
 const REFRESH_PATH = '/auth/refresh';
 /** Endpoints where a 401 means "bad credentials", never "refresh and retry". */
-const NO_REFRESH_PATHS = [REFRESH_PATH, '/auth/google', '/auth/dev-login', '/auth/logout'];
+const NO_REFRESH_PATHS = [
+  REFRESH_PATH,
+  '/auth/google',
+  '/auth/email/code',
+  '/auth/email/login',
+  '/auth/password/set',
+  '/auth/password/login',
+  '/auth/dev-login',
+  '/auth/logout',
+];
 
 interface RetriableRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;

@@ -28,7 +28,7 @@ from app.models.notification import DeviceToken, NotificationLog
 from app.models.parent import ParentLink
 from app.models.progress import StudyStreak, TopicProgress
 from app.models.quiz import Question, QuizAttempt, QuizAttemptQuestion
-from app.models.user import RefreshToken, User
+from app.models.user import EmailCode, RefreshToken, User
 
 __all__ = [
     "Base",
@@ -64,5 +64,6 @@ __all__ = [
     "TopicStatus",
     "TopicTranslation",
     "User",
+    "EmailCode",
     "UserRole",
 ]

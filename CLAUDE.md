@@ -13,7 +13,7 @@
 - Mobile: React Native + Expo + TypeScript (Android first)
 - Admin Web: React + Vite + TypeScript + Chakra UI
 - Database: PostgreSQL + SQLAlchemy + Alembic
-- Auth: Google Sign-In only (no phone OTP), JWT
+- Auth: Google Sign-In, email + 6-digit code, email + password (no phone OTP), JWT
 - UI: React Native Paper (flat focus theme — no gradients)
 - AI: OpenAI API (scripts + questions), TTS (English + Tamil), S3-compatible storage
 
@@ -211,9 +211,12 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 
 ## Authentication
 
-### Google Sign-In
-- The only sign-in method (no phone OTP / SMS)
-- Verify Google ID token server-side (audience = Android/Web client IDs)
+### Sign-in methods (no phone OTP / SMS)
+- **Google:** verify the ID token server-side (audience = Android/Web client IDs)
+- **Email code:** `POST /auth/email/code` emails a 6-digit code (same reply for every email; 10-min expiry, 5 wrong tries, 5 codes/hour per email, only an HMAC of the code stored); `POST /auth/email/login` signs in or creates a student
+- **Email + password:** `POST /auth/password/set` (create account or "forgot password", proved by an emailed code; bcrypt, 8–72 bytes) and `POST /auth/password/login` (same error for unknown email and wrong password)
+- One account per email across all methods; **admins sign in with Google only**
+- Emails go through `email_service` (`EMAIL_PROVIDER=smtp` + `SMTP_*`; the dev-only `log` provider is refused in production)
 - `POST /api/v1/auth/dev-login` works only with `DEV_LOGIN_ENABLED=true` and never in production (config refuses to start); production also refuses weak `SECRET_KEY`s (<32 chars or containing insecure/change-me)
 
 ### JWT Configuration
