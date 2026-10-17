@@ -300,11 +300,17 @@ def import_curriculum(db: Session, data: CurriculumImport) -> ImportResult:
 
     Nothing is deleted. All-or-nothing: any error rolls the whole import back.
     """
-    board = db.scalar(select(Board).where(Board.code == data.board_code.strip().upper()))
-    if board is None:
-        raise NotFoundError(f"Board {data.board_code!r} not found")
+    code = data.board_code.strip().upper()
     created: Counter[str] = Counter()
     updated: Counter[str] = Counter()
+    board = db.scalar(select(Board).where(Board.code == code))
+    if board is None:
+        if not data.board_name:
+            raise NotFoundError(f"Board {data.board_code!r} not found")
+        board = Board(code=code, name=data.board_name.strip(), is_active=True)
+        db.add(board)
+        db.flush()
+        created["boards"] += 1
 
     for s in data.subjects:
         subject = db.scalar(

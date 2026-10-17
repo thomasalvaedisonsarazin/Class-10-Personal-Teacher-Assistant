@@ -216,6 +216,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - **Email code:** `POST /auth/email/code` emails a 6-digit code (same reply for every email; 10-min expiry, 5 wrong tries, 5 codes/hour per email, only an HMAC of the code stored); `POST /auth/email/login` signs in or creates a student
 - **Email + password:** `POST /auth/password/set` (create account or "forgot password", proved by an emailed code; bcrypt, 8–72 bytes) and `POST /auth/password/login` (same error for unknown email and wrong password)
 - One account per email across all methods; **admins sign in with Google only**
+- `DELETE /auth/me` deletes a student/parent account and all its personal data (Profile → "Delete my account"; required by Google Play); admins can't self-delete. Public pages for the Play listing: `/privacy` and `/delete-account` (`backend/app/static/`)
 - Emails go through `email_service` (`EMAIL_PROVIDER=smtp` + `SMTP_*`; the dev-only `log` provider is refused in production)
 - `POST /api/v1/auth/dev-login` works only with `DEV_LOGIN_ENABLED=true` and never in production (config refuses to start); production also refuses weak `SECRET_KEY`s (<32 chars or containing insecure/change-me)
 

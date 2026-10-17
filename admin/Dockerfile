@@ -10,6 +10,9 @@ WORKDIR /app
 # Public API base URL baked into the bundle at build time (not a secret).
 ARG VITE_API_URL=http://localhost:8000
 ENV VITE_API_URL=${VITE_API_URL}
+# Google OAuth Web client ID (public, not a secret).
+ARG VITE_GOOGLE_CLIENT_ID=
+ENV VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
 
 COPY package*.json ./
 RUN npm ci

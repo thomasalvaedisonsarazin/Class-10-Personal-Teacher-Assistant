@@ -48,6 +48,11 @@ export const authService = {
     return data;
   },
 
+  /** Permanently delete the signed-in account and its data (not allowed for admins). */
+  async deleteAccount(): Promise<void> {
+    await api.delete('/auth/me');
+  },
+
   async getBoards(): Promise<Board[]> {
     const { data } = await api.get<Board[]>('/boards');
     return data;

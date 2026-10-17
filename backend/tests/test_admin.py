@@ -366,3 +366,14 @@ def test_import_curriculum_cli_reports_missing_board(db: Session, tmp_path: Any)
     bad.write_text('{"boardCode": "NOPE", "subjects": []}', encoding="utf-8")
     assert main(["import-curriculum", str(bad)]) == 2
     assert main(["import-curriculum", str(tmp_path / "missing.json")]) == 2
+
+
+def test_full_syllabus_creates_board_on_empty_database(db: Session) -> None:
+    """A fresh production database gets the board from the file's boardName."""
+    from app.cli import DEFAULT_CURRICULUM, main
+
+    assert db.scalar(select(Board).where(Board.code == "TN_SSLC")) is None
+    assert main(["import-curriculum", str(DEFAULT_CURRICULUM)]) == 0
+    db.expire_all()
+    board = db.scalar(select(Board).where(Board.code == "TN_SSLC"))
+    assert board is not None and board.is_active and board.name.startswith("Tamil Nadu")

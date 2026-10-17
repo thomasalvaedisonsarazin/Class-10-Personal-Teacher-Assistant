@@ -219,6 +219,8 @@ class CurriculumImport(CamelModel):
     """Upsert a syllabus: items are matched by ``displayOrder`` within their parent."""
 
     board_code: str = Field(min_length=1, max_length=32)
+    # Creates the board when it does not exist yet (e.g. a fresh production database).
+    board_name: str | None = Field(default=None, min_length=1, max_length=255)
     subjects: list[ImportSubject] = Field(max_length=30)
 
 

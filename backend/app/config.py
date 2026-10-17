@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import field_validator, model_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 DEFAULT_SECRET_KEY = "dev-insecure-secret-key-change-me"  # noqa: S105 - dev-only sentinel
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -31,13 +32,14 @@ class Settings(BaseSettings):
     APP_NAME: str = "Personal Teacher Assistant"
     ENVIRONMENT: Literal["development", "test", "production"] = "development"
     LOG_LEVEL: str = "INFO"
-    CORS_ORIGINS: list[str] = [
+    # NoDecode: env values may be comma-separated (JSON lists still work, see _split_csv).
+    CORS_ORIGINS: Annotated[list[str], NoDecode] = [
         "http://localhost:3000",  # admin (vite dev + docker)
         "http://localhost:5173",
         "http://localhost:8081",
         "http://localhost:19006",
     ]
-    ADMIN_EMAILS: list[str] = []
+    ADMIN_EMAILS: Annotated[list[str], NoDecode] = []
     # Test sign-in without Google. Must be switched on explicitly, never in production.
     DEV_LOGIN_ENABLED: bool = False
 
@@ -106,6 +108,8 @@ class Settings(BaseSettings):
     S3_REGION: str = "us-east-1"
     SIGNED_URL_EXPIRE_SECONDS: int = 3600
     MEDIA_ROOT: str = "media"
+    # Serve MEDIA_ROOT at /media in production too (single-server deploy without S3).
+    LOCAL_MEDIA_IN_PRODUCTION: bool = False
     PUBLIC_BASE_URL: str = "http://localhost:8000"
 
     # Quiz
@@ -130,7 +134,9 @@ class Settings(BaseSettings):
     @classmethod
     def _split_csv(cls, value: object) -> object:
         """Allow comma-separated strings in addition to JSON lists."""
-        if isinstance(value, str) and not value.strip().startswith("["):
+        if isinstance(value, str):
+            if value.strip().startswith("["):
+                return json.loads(value)
             return [item.strip() for item in value.split(",") if item.strip()]
         return value
 
@@ -169,6 +175,11 @@ class Settings(BaseSettings):
     def dev_login_allowed(self) -> bool:
         """Test sign-in only when explicitly enabled and never in production."""
         return self.DEV_LOGIN_ENABLED and not self.is_production
+
+    @property
+    def serve_local_media(self) -> bool:
+        """True when the API serves files from MEDIA_ROOT at /media."""
+        return not self.is_production or self.LOCAL_MEDIA_IN_PRODUCTION
 
     @property
     def is_test(self) -> bool:

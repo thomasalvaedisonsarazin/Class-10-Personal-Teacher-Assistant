@@ -35,6 +35,8 @@ export default function ProfileScreen() {
   const [lessonLanguage, setLessonLanguage] = useState<LessonLanguage | null>(initialLanguage);
   const [saving, setSaving] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState<{
     type: 'error' | 'info';
     text: string;
@@ -70,6 +72,19 @@ export default function ProfileScreen() {
   const handleSignOut = async (): Promise<void> => {
     setSigningOut(true);
     await signOut();
+  };
+
+  const handleDelete = async (): Promise<void> => {
+    setMessage(null);
+    setDeleting(true);
+    try {
+      await authService.deleteAccount();
+      await signOut();
+    } catch (err) {
+      setMessage({ type: 'error', text: getApiErrorMessage(err) });
+      setDeleting(false);
+      setConfirmDelete(false);
+    }
   };
 
   return (
@@ -130,6 +145,39 @@ export default function ProfileScreen() {
             loading={signingOut}
             testID="profile-sign-out"
           />
+
+          {user?.role === 'admin' ? null : confirmDelete ? (
+            <View style={styles.dangerBox} testID="profile-delete-confirm">
+              <AppText variant="subtitle">Delete your account?</AppText>
+              <AppText tone="secondary">
+                {isParent
+                  ? 'Your account and your links to your children are deleted forever. Your children keep their own accounts.'
+                  : 'Your progress, test scores, streak and parent links are deleted forever. This cannot be undone.'}
+              </AppText>
+              <PrimaryButton
+                label="Yes, delete forever"
+                color={palette.error}
+                onPress={() => void handleDelete()}
+                loading={deleting}
+                testID="profile-delete-yes"
+              />
+              <PrimaryButton
+                label="Cancel"
+                mode="text"
+                onPress={() => setConfirmDelete(false)}
+                disabled={deleting}
+              />
+            </View>
+          ) : (
+            <PrimaryButton
+              label="Delete my account"
+              mode="text"
+              color={palette.error}
+              onPress={() => setConfirmDelete(true)}
+              disabled={signingOut}
+              testID="profile-delete"
+            />
+          )}
         </View>
       </Screen>
     </Screen>
@@ -143,5 +191,12 @@ const styles = StyleSheet.create({
   },
   section: {
     gap: spacing.md,
+  },
+  dangerBox: {
+    gap: spacing.sm,
+    padding: spacing.md,
+    borderWidth: 1,
+    borderColor: palette.error,
+    borderRadius: spacing.sm,
   },
 });

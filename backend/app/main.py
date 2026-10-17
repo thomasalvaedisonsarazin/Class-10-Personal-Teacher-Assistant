@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,7 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from starlette.requests import Request
-from starlette.responses import JSONResponse, Response
+from starlette.responses import FileResponse, JSONResponse, Response
 
 from app.config import settings
 from app.exceptions import error_body, register_exception_handlers
@@ -31,6 +32,7 @@ def configure_logging() -> None:
 
 
 configure_logging()
+STATIC_DIR = Path(__file__).parent / "static"
 logger = logging.getLogger("app")
 
 
@@ -73,7 +75,18 @@ def create_app() -> FastAPI:
         """Liveness probe."""
         return {"status": "ok"}
 
-    if not settings.is_production:
+    # Public pages linked from the Google Play listing.
+    @application.get("/privacy", include_in_schema=False)
+    async def privacy_policy() -> FileResponse:
+        """Privacy policy."""
+        return FileResponse(STATIC_DIR / "privacy.html", media_type="text/html")
+
+    @application.get("/delete-account", include_in_schema=False)
+    async def delete_account_info() -> FileResponse:
+        """How to delete an account (Play Store data-deletion link)."""
+        return FileResponse(STATIC_DIR / "delete-account.html", media_type="text/html")
+
+    if settings.serve_local_media:
         media_root = settings.media_root
         media_root.mkdir(parents=True, exist_ok=True)
         application.mount("/media", StaticFiles(directory=media_root), name="media")

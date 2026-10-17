@@ -23,7 +23,7 @@ from app.schemas.auth import (
     UpdateMeRequest,
     UserOut,
 )
-from app.services import auth_service, email_auth_service, email_service
+from app.services import account_service, auth_service, email_auth_service, email_service
 from app.services.google_auth import GoogleVerifier, get_google_verifier
 
 router = APIRouter(prefix="/api/v1/auth", tags=["auth"])
@@ -109,3 +109,10 @@ def get_me(user: CurrentUser) -> UserOut:
 def update_me(body: UpdateMeRequest, user: CurrentUser, db: DbSession) -> UserOut:
     """Update name, board and/or medium (used by onboarding and profile)."""
     return UserOut.model_validate(auth_service.update_profile(db, user, body))
+
+
+@router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)
+def delete_me(user: CurrentUser, db: DbSession) -> Response:
+    """Permanently delete the signed-in student or parent account and its data."""
+    account_service.delete_account(db, user)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)

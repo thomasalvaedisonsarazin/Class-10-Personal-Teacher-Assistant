@@ -107,7 +107,7 @@ class S3Storage:
 
 
 class LocalStorage:
-    """Filesystem storage under ``backend/media`` served at ``/media`` (non-production only)."""
+    """Filesystem storage under ``MEDIA_ROOT`` served by the API at ``/media``."""
 
     def __init__(self, root: Path, base_url: str) -> None:
         self.root = root
@@ -144,6 +144,6 @@ def get_storage() -> Storage:
             region=settings.S3_REGION,
             public_endpoint_url=settings.S3_PUBLIC_ENDPOINT_URL,
         )
-    if settings.is_production:
+    if not settings.serve_local_media:
         logger.warning("S3_BUCKET not set in production; local media will not be served")
     return LocalStorage(settings.media_root, settings.PUBLIC_BASE_URL)

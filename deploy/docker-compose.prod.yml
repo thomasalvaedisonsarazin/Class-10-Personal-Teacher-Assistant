@@ -1,0 +1,151 @@
+# Personal Teacher Assistant - production stack for a shared VPS that already runs Traefik
+# (Docker provider, "websecure" entrypoint, "letsencrypt" cert resolver).
+#
+#   cd /docker/personal-teacher-assistant
+#   docker compose -f deploy/docker-compose.prod.yml --env-file deploy/.env.prod up -d --build
+#
+# No host ports are published: Traefik routes
+#   https://${API_HOST}   -> api:8000   (also serves lesson media at /media from the media_data volume)
+#   https://${ADMIN_HOST} -> admin:80
+# Every secret comes from deploy/.env.prod on the server (never committed).
+
+name: personal-teacher-assistant
+
+x-backend-env: &backend-env
+  ENVIRONMENT: production
+  DATABASE_URL: postgresql+psycopg://pta:${POSTGRES_PASSWORD:?}@postgres:5432/personal_teacher_assistant
+  REDIS_URL: redis://redis:6379/0
+  JOB_RUNNER: celery
+  PUBLIC_BASE_URL: https://${API_HOST:?}
+  CORS_ORIGINS: https://${ADMIN_HOST:?}
+  # Lesson media on this server's disk (MinIO no longer publishes free images).
+  S3_BUCKET: ""
+  MEDIA_ROOT: /app/media
+  LOCAL_MEDIA_IN_PRODUCTION: "true"
+
+x-backend-env-file: &backend-env-file
+  - path: .env.prod
+    required: true
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pta
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      POSTGRES_DB: personal_teacher_assistant
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pta -d personal_teacher_assistant"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    mem_limit: 512m
+    logging: *logging
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "96mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    mem_limit: 128m
+    logging: *logging
+
+  api:
+    build:
+      context: ../backend
+    image: personal-teacher-assistant/api:prod
+    restart: unless-stopped
+    env_file: *backend-env-file
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "true"
+      WEB_CONCURRENCY: "2"
+    volumes:
+      - media_data:/app/media
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    mem_limit: 768m
+    logging: *logging
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pta-api.rule=Host(`${API_HOST}`)
+      - traefik.http.routers.pta-api.entrypoints=websecure
+      - traefik.http.routers.pta-api.tls.certresolver=letsencrypt
+      - traefik.http.services.pta-api.loadbalancer.server.port=8000
+
+  worker:
+    image: personal-teacher-assistant/api:prod
+    restart: unless-stopped
+    command: ["celery", "-A", "app.workers.celery_app:celery_app", "worker", "--loglevel=info", "--concurrency=2"]
+    env_file: *backend-env-file
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "false"
+    volumes:
+      - media_data:/app/media
+    healthcheck:
+      disable: true
+    depends_on:
+      api:
+        condition: service_started
+    mem_limit: 1536m
+    logging: *logging
+
+  # 6 pm IST study reminders, Sunday 7 pm parent summaries.
+  beat:
+    image: personal-teacher-assistant/api:prod
+    restart: unless-stopped
+    command: ["celery", "-A", "app.workers.celery_app:celery_app", "beat", "--loglevel=info", "--schedule", "/tmp/celerybeat-schedule"]
+    env_file: *backend-env-file
+    environment:
+      <<: *backend-env
+      RUN_MIGRATIONS: "false"
+    healthcheck:
+      disable: true
+    depends_on:
+      worker:
+        condition: service_started
+    mem_limit: 256m
+    logging: *logging
+
+  admin:
+    build:
+      context: ../admin
+      args:
+        VITE_API_URL: https://${API_HOST}
+        VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:?}
+    image: personal-teacher-assistant/admin:prod
+    restart: unless-stopped
+    depends_on:
+      - api
+    mem_limit: 64m
+    logging: *logging
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pta-admin.rule=Host(`${ADMIN_HOST}`)
+      - traefik.http.routers.pta-admin.entrypoints=websecure
+      - traefik.http.routers.pta-admin.tls.certresolver=letsencrypt
+      - traefik.http.services.pta-admin.loadbalancer.server.port=80
+
+volumes:
+  postgres_data:
+  redis_data:
+  media_data:
