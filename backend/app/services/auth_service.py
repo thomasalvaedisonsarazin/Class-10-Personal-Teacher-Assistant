@@ -23,6 +23,7 @@ from app.models.progress import TopicProgress
 from app.models.quiz import QuizAttempt
 from app.models.user import RefreshToken, User
 from app.schemas.auth import AuthTokens, UpdateMeRequest, UserOut
+from app.services import partner_service
 from app.services.google_auth import GoogleIdentity
 
 logger = logging.getLogger(__name__)
@@ -105,6 +106,7 @@ def get_or_create_google_user(db: Session, identity: GoogleIdentity) -> User:
                 is_active=True,
             )
             db.add(user)
+            partner_service.claim_partner_role(db, user)
         user.google_sub = identity.sub
         user.oauth_provider = "google"
         user.is_verified = True

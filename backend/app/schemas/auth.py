@@ -22,6 +22,8 @@ class UserOut(ORMModel):
     medium: Medium | None
     lesson_language: LessonLanguage | None
     has_password: bool = False
+    # Partner (school / teacher) whose code this student joined with, if any.
+    referred_by_partner_id: int | None = None
 
 
 class AuthTokens(CamelModel):

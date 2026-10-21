@@ -27,6 +27,7 @@ from app.models.enums import (
 from app.models.lesson import ClarityFeedback, GenerationJob, Lesson, LessonView
 from app.models.notification import DeviceToken, NotificationLog
 from app.models.parent import ParentLink
+from app.models.partner import Commission, Partner, Payout
 from app.models.progress import StudyStreak, TopicProgress
 from app.models.quiz import Question, QuizAttempt, QuizAttemptQuestion
 from app.models.user import EmailCode, RefreshToken, User
@@ -50,6 +51,9 @@ __all__ = [
     "NotificationLog",
     "ParentLink",
     "ParentLinkStatus",
+    "Partner",
+    "Commission",
+    "Payout",
     "Purchase",
     "Question",
     "QuestionSource",

@@ -113,7 +113,7 @@ export default function UsersPage() {
                         <Table.Cell>{u.fullName ?? '—'}</Table.Cell>
                         <Table.Cell>{u.email}</Table.Cell>
                         <Table.Cell>
-                          <NativeSelect.Root size="xs" maxW="120px" disabled={isMe}>
+                          <NativeSelect.Root size="xs" maxW="120px" disabled={isMe || u.role === 'partner'}>
                             <NativeSelect.Field
                               value={u.role}
                               onChange={(e) => {
@@ -126,6 +126,7 @@ export default function UsersPage() {
                                   {r}
                                 </option>
                               ))}
+                              {u.role === 'partner' && <option value="partner">partner</option>}
                             </NativeSelect.Field>
                             <NativeSelect.Indicator />
                           </NativeSelect.Root>

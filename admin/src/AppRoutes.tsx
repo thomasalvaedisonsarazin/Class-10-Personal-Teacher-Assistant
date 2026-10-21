@@ -11,6 +11,8 @@ const CurriculumPage = lazy(() => import('@/pages/CurriculumPage'));
 const ContentPage = lazy(() => import('@/pages/ContentPage'));
 const QuestionsPage = lazy(() => import('@/pages/QuestionsPage'));
 const UsersPage = lazy(() => import('@/pages/UsersPage'));
+const PartnersPage = lazy(() => import('@/pages/PartnersPage'));
+const PayoutsPage = lazy(() => import('@/pages/PayoutsPage'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 export function AppRoutes() {
@@ -26,6 +28,8 @@ export function AppRoutes() {
             <Route path="content" element={<ContentPage />} />
             <Route path="questions" element={<QuestionsPage />} />
             <Route path="users" element={<UsersPage />} />
+            <Route path="partners" element={<PartnersPage />} />
+            <Route path="payouts" element={<PayoutsPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

@@ -91,8 +91,16 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     sub.add_parser("send-reminders", help="Send today's study reminders (run ~6 pm IST)")
     sub.add_parser("send-parent-weekly", help="Send weekly summaries to parents (Sunday)")
+    sub.add_parser("partners-daily", help="Check renewals and send partner payout notices")
 
     args = parser.parse_args(argv)
+    if args.command == "partners-daily":
+        from app.services import billing_service, notification_service
+
+        with SessionLocal() as db:
+            billing_service.refresh_due_subscriptions(db)
+            notification_service.send_partner_payout_ready(db)
+        return 0
     if args.command in ("send-reminders", "send-parent-weekly"):
         from app.services import notification_service
 

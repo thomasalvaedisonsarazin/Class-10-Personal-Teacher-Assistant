@@ -62,7 +62,7 @@ export async function unregisterPushNotifications(): Promise<void> {
 }
 
 export interface NotificationTarget {
-  screen: 'topic' | 'child';
+  screen: 'topic' | 'child' | 'partner';
   id: number;
 }
 
@@ -71,5 +71,6 @@ export function targetFromData(data: Record<string, unknown> | undefined): Notif
   if (!data) return null;
   if (data.screen === 'topic' && typeof data.topicId === 'number') return { screen: 'topic', id: data.topicId };
   if (data.screen === 'child' && typeof data.studentId === 'number') return { screen: 'child', id: data.studentId };
+  if (data.screen === 'partner') return { screen: 'partner', id: 0 };
   return null;
 }

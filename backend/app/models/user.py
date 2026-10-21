@@ -45,6 +45,13 @@ class User(TimestampMixin, Base):
     )
     # bcrypt hash; None = no password set (Google or email-code sign-in only).
     password_hash: Mapped[str | None] = mapped_column(sa.String(255), nullable=True)
+    # School / teacher partner whose code brought this student (set once).
+    referred_by_partner_id: Mapped[int | None] = mapped_column(
+        sa.ForeignKey("partners.id", ondelete="SET NULL", use_alter=True),
+        index=True,
+        nullable=True,
+    )
+    referred_at: Mapped[datetime | None] = mapped_column(sa.DateTime(timezone=True), nullable=True)
 
     board: Mapped[Board | None] = relationship()
 

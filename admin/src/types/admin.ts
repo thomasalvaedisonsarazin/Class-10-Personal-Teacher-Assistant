@@ -138,3 +138,37 @@ export interface AdminUser {
 }
 
 export type AdminPage<T> = Page<T>;
+
+/** School / teacher referral partner (amounts in rupees). */
+export interface AdminPartner {
+  id: number;
+  name: string;
+  email: string;
+  code: string;
+  shareLink: string;
+  commissionPct: number;
+  isActive: boolean;
+  signedIn: boolean;
+  studentsJoined: number;
+  payingStudents: number;
+  earned: number;
+  available: number;
+  paid: number;
+}
+
+export type PayoutStatus = 'requested' | 'approved' | 'paid' | 'rejected';
+
+export interface AdminPayout {
+  id: number;
+  partnerId: number;
+  partnerName: string;
+  amount: number;
+  status: PayoutStatus;
+  reference: string | null;
+  adminNote: string | null;
+  requestedAt: string;
+  paidAt: string | null;
+  /** Decrypted for sending money: {method: 'upi', upi} or {method: 'bank', holder, account, ifsc}. */
+  payoutDetails: Record<string, string> | null;
+  pan: string | null;
+}

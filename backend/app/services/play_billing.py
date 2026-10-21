@@ -59,6 +59,7 @@ class PlaySubscription:
     account_id: str | None
     profile_id: str | None
     order_id: str | None
+    base_plan_id: str | None = None
 
     @property
     def active(self) -> bool:
@@ -141,6 +142,7 @@ class GooglePlayVerifier:
             account_id=ids.get("obfuscatedExternalAccountId"),
             profile_id=ids.get("obfuscatedExternalProfileId"),
             order_id=data.get("latestOrderId"),
+            base_plan_id=(item.get("offerDetails") or {}).get("basePlanId"),
         )
 
     def acknowledge_subscription(self, product_id: str, token: str) -> None:

@@ -50,3 +50,15 @@ def dispatch_explanation_job(job_id: int) -> None:
     else:
         run_explanation_job(job_id)
     logger.info("Dispatched explanation job %s via %s", job_id, runner)
+
+
+@celery_app.task(name="partners.daily")
+def partners_daily_task() -> int:
+    """Celery beat: pick up subscription renewals, then tell partners whose payout is ready."""
+    from app.database import SessionLocal
+    from app.services.billing_service import refresh_due_subscriptions
+    from app.services.notification_service import send_partner_payout_ready
+
+    with SessionLocal() as db:
+        refresh_due_subscriptions(db)
+        return send_partner_payout_ready(db)

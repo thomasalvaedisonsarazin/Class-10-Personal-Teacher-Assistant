@@ -14,6 +14,7 @@ class UserRole(StrEnum):
     student = "student"
     parent = "parent"
     admin = "admin"
+    partner = "partner"  # school / teacher referral partner
 
 
 class Medium(StrEnum):

@@ -5,7 +5,7 @@ export type Medium = 'en' | 'ta';
 /** Lesson explanation language; Tanglish = Tamil sentences with English technical words. */
 export type LessonLanguage = 'en' | 'ta' | 'tanglish';
 
-export type UserRole = 'student' | 'parent' | 'admin';
+export type UserRole = 'student' | 'parent' | 'admin' | 'partner';
 
 export interface ApiErrorBody {
   code: string;
@@ -38,6 +38,8 @@ export interface User {
   lessonLanguage: LessonLanguage | null;
   /** True when the user can also sign in with email + password. */
   hasPassword?: boolean;
+  /** School / teacher partner this student joined with (null when none). */
+  referredByPartnerId?: number | null;
 }
 
 export interface AuthTokens {

@@ -26,6 +26,14 @@ from app.services.streak_service import IST, get_streak, today_ist
 logger = logging.getLogger(__name__)
 
 MESSAGES: dict[str, dict[str, str]] = {
+    "payout_ready_title": {
+        "en": "Your commission is ready 💰",
+        "ta": "உங்கள் கமிஷன் தயார் 💰",
+    },
+    "payout_ready_body": {
+        "en": "You have ₹{amount} to claim. Tap to request your payout.",
+        "ta": "₹{amount} பெறலாம். பணம் பெற தட்டவும்.",
+    },
     "passed_title": {"en": "You passed! 🎉", "ta": "நீங்கள் தேர்ச்சி பெற்றீர்கள்! 🎉"},
     "passed_body_next": {
         "en": "{score}% in {topic}. Next topic unlocked: {next}",
@@ -291,4 +299,29 @@ def send_parent_weekly(db: Session, now: datetime | None = None) -> int:
         ):
             sent += 1
     logger.info("Parent weekly summaries sent: %s", sent)
+    return sent
+
+
+def send_partner_payout_ready(db: Session, now: datetime | None = None) -> int:
+    """Tell partners whose payable commission reached the payout minimum (once a week)."""
+    from app.services import partner_service
+
+    week = today_ist(now).isocalendar()
+    sent = 0
+    for partner, available_paise in partner_service.ready_partners(db):
+        user = db.get(User, partner.user_id) if partner.user_id else None
+        if user is None:
+            continue
+        amount = f"{available_paise / 100:,.0f}"
+        if notify(
+            db,
+            user,
+            "partner_payout_ready",
+            _text("payout_ready_title", user),
+            _text("payout_ready_body", user, amount=amount),
+            data={"screen": "partner"},
+            dedupe_key=f"payout-ready-{week.year}-{week.week}",
+        ):
+            sent += 1
+    logger.info("Partner payout-ready notices sent: %s", sent)
     return sent

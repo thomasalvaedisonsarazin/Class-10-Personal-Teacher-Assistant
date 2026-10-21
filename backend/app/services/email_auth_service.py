@@ -18,6 +18,7 @@ from app.exceptions import ForbiddenError, RateLimitedError, UnauthorizedError
 from app.models.enums import UserRole
 from app.models.user import EmailCode, User
 from app.schemas.auth import AuthTokens
+from app.services import partner_service
 from app.services.auth_service import issue_tokens
 
 logger = logging.getLogger(__name__)
@@ -122,6 +123,7 @@ def _get_or_create(db: Session, email: str, full_name: str | None = None) -> Use
         db.add(user)
         try:
             db.flush()
+            partner_service.claim_partner_role(db, user)
         except IntegrityError:
             db.rollback()
             user = _find_user(db, email)

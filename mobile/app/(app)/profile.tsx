@@ -5,6 +5,7 @@ import { HelperText, TextInput } from 'react-native-paper';
 
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ParentAccess } from '@/components/parent/ParentAccess';
+import { SchoolCodeEntry } from '@/components/partner/SchoolCodeEntry';
 import { AppText, ChoiceList, PrimaryButton, Screen } from '@/components/ui';
 import type { ChoiceOption } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
@@ -136,6 +137,8 @@ export default function ProfileScreen() {
           )}
 
           {isParent ? null : <ParentAccess />}
+
+          {user?.role === 'student' && !user.referredByPartnerId ? <SchoolCodeEntry onLinked={refreshUser} /> : null}
 
           <HelperText type={message?.type ?? 'info'} visible={message !== null}>
             {message?.text ?? ''}

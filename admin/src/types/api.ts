@@ -20,7 +20,7 @@ export interface Page<T> {
 
 export type Medium = 'en' | 'ta';
 
-export type UserRole = 'student' | 'parent' | 'admin';
+export type UserRole = 'student' | 'parent' | 'admin' | 'partner';
 
 export interface User {
   id: number;

@@ -37,5 +37,9 @@ celery_app.conf.update(
             "task": "notifications.parent_weekly",
             "schedule": crontab(hour=19, minute=0, day_of_week="sun"),
         },
+        "partners-daily": {
+            "task": "partners.daily",
+            "schedule": crontab(hour=10, minute=0),
+        },
     },
 )

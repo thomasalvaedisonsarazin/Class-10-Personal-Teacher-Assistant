@@ -24,6 +24,7 @@ from app.routers import (
     devices,
     lessons,
     parent,
+    partners,
     progress,
     quiz,
 )
@@ -77,7 +78,18 @@ def create_app() -> FastAPI:
     register_exception_handlers(application)
     application.add_exception_handler(RateLimitExceeded, rate_limit_handler)
 
-    for module in (auth, curriculum, progress, lessons, quiz, admin, parent, devices, billing):
+    for module in (
+        auth,
+        curriculum,
+        progress,
+        lessons,
+        quiz,
+        admin,
+        parent,
+        devices,
+        billing,
+        partners,
+    ):
         application.include_router(module.router)
 
     @application.get("/health", tags=["health"])

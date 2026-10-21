@@ -38,6 +38,8 @@ function NotificationRouter() {
       if (!target) return;
       if (target.screen === 'topic') {
         router.push({ pathname: '/topic/[id]', params: { id: String(target.id) } });
+      } else if (target.screen === 'partner') {
+        router.push('/partner');
       } else {
         router.push({ pathname: '/parent/[studentId]', params: { studentId: String(target.id) } });
       }

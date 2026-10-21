@@ -18,6 +18,9 @@ export default function HomeScreen() {
   if (user?.role === 'parent') {
     return <Redirect href="/parent" />;
   }
+  if (user?.role === 'partner') {
+    return <Redirect href="/partner" />;
+  }
   return <StudentHome />;
 }
 

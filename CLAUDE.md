@@ -189,6 +189,15 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Expired auto-renewing plans are re-checked with Google lazily (at most hourly); UPI "pending" purchases are finished later by `playStore.syncPurchases()` on the Premium screen
 - Mobile: `expo-iap` (pinned to Google Play) in `src/services/playStore.ts` (web stub `playStore.web.ts`); screen `app/(app)/premium.tsx`
 
+### Partner Module (schools / teachers)
+- Admin creates a partner (name, email, commission %, default 2) in the admin panel → unique code (e.g. `STJOSE7K2`) and share link `https://api…/r/<code>` (302 to Play with `referrer=pta_ref=<code>`; the app reads it via `expo-application` install referrer and pre-fills the Welcome screen)
+- The account that signs in with the partner's email gets role **`partner`** (never converts an existing student/parent/admin) and sees only the Partner dashboard (`app/(app)/partner.tsx`)
+- A student links to one partner, once, before their first purchase (`POST /api/v1/referrals`; Welcome screen or Profile)
+- Commission on **every** verified payment (first purchase and each renewal = new Google order, unique per purchase + order) = `commission_pct` % of the **net** amount (`PARTNER_PRICE_PAISE` × `PARTNER_NET_REVENUE_PCT` 85%); payable after `PARTNER_HOLD_DAYS` (14, refund window); all rules in `partner_service.py`
+- Payout: partner adds UPI or bank (+ optional PAN; stored **encrypted** with a key derived from `SECRET_KEY` — changing SECRET_KEY makes them unreadable) and requests once payable ≥ `PARTNER_PAYOUT_MIN_PAISE` (₹500); admin Payouts page → approve → pay manually → mark paid with UTR (or reject → money back to available)
+- Daily Celery job `partners.daily` (10:00 IST) re-checks expired auto-renewing plans with Google (renewal commissions) and pushes "commission ready" once a week; CLI `python -m app.cli partners-daily`
+- Partners see counts and amounts only — never student names (students are minors)
+
 ### Parent Module
 - Parent can see a student only after the student shares an invite code
 - Parents have read-only access
@@ -236,7 +245,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Mobile stores tokens in `expo-secure-store`
 
 ### Roles
-- `student`, `parent`, `admin` — enforce with dependencies on routers
+- `student`, `parent`, `admin`, `partner` — enforce with dependencies on routers
 
 ---
 

@@ -24,6 +24,8 @@ interface AuthProviderProps {
 }
 
 function statusForUser(user: User): AuthStatus {
+  // Partners (schools / teachers) only use their dashboard: no study setup.
+  if (user.role === 'partner') return 'signedIn';
   if (user.medium === null) return 'needsOnboarding';
   // Parents follow their children's boards; students need their own.
   if (user.role === 'student' && user.boardId === null) return 'needsOnboarding';

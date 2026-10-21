@@ -4,6 +4,8 @@ import type {
   AdminBoard,
   AdminLesson,
   AdminPage,
+  AdminPartner,
+  AdminPayout,
   AdminQuestion,
   AdminStats,
   AdminUser,
@@ -11,6 +13,7 @@ import type {
   ImportResult,
   LessonLanguage,
   LessonStyle,
+  PayoutStatus,
   QuestionInput,
   TopicInput,
 } from '@/types/admin';
@@ -21,6 +24,30 @@ export interface PageQuery {
 }
 
 export const adminService = {
+  async partners(): Promise<AdminPartner[]> {
+    return (await api.get<AdminPartner[]>('/admin/partners')).data;
+  },
+
+  async createPartner(input: { name: string; email: string; commissionPct?: number }): Promise<AdminPartner> {
+    return (await api.post<AdminPartner>('/admin/partners', input)).data;
+  },
+
+  async updatePartner(id: number, input: { name?: string; commissionPct?: number; isActive?: boolean }): Promise<AdminPartner> {
+    return (await api.patch<AdminPartner>(`/admin/partners/${id}`, input)).data;
+  },
+
+  async payouts(status?: PayoutStatus): Promise<AdminPayout[]> {
+    return (await api.get<AdminPayout[]>('/admin/payouts', { params: status ? { status } : undefined })).data;
+  },
+
+  async decidePayout(
+    id: number,
+    action: 'approve' | 'paid' | 'reject',
+    input: { reference?: string; note?: string } = {},
+  ): Promise<AdminPayout> {
+    return (await api.post<AdminPayout>(`/admin/payouts/${id}/${action}`, input)).data;
+  },
+
   async stats(): Promise<AdminStats> {
     return (await api.get<AdminStats>('/admin/stats')).data;
   },

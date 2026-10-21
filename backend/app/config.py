@@ -82,6 +82,13 @@ class Settings(BaseSettings):
     # One-time product: one topic forever (₹75).
     PLAY_TOPIC_PRODUCT_ID: str = "topic_unlock"
 
+    # School / teacher partners (referral commission)
+    # List prices in paise by base plan / one-time product (what the student pays).
+    PARTNER_PRICE_PAISE: dict[str, int] = {"monthly": 9900, "yearly": 99900, "topic_unlock": 7500}
+    PARTNER_NET_REVENUE_PCT: int = 85  # what we keep after Google's fee; commission base
+    PARTNER_HOLD_DAYS: int = 14  # refund window before a commission can be paid out
+    PARTNER_PAYOUT_MIN_PAISE: int = 50000  # ₹500
+
     # AI
     OPENAI_API_KEY: str = ""
     LLM_MODEL: str = "gpt-5.4-mini"  # chosen 2026-10-15: natural Tamil/Tanglish

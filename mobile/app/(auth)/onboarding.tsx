@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import { Redirect } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { HelperText } from 'react-native-paper';
+import { HelperText, TextInput } from 'react-native-paper';
 
 import { AppText, ChoiceList, ErrorState, LoadingView, PrimaryButton, Screen } from '@/components/ui';
 import type { ChoiceOption } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
 import { getApiErrorMessage } from '@/services/api';
+import { installReferralCode, normalizeReferralCode } from '@/lib/referral';
 import { authService } from '@/services/authService';
-import { spacing } from '@/theme';
+import { partnerService } from '@/services/partnerService';
+import { palette, spacing } from '@/theme';
 import type { Medium } from '@/types/api';
 
 type SetupRole = 'student' | 'parent';
@@ -36,6 +38,18 @@ export default function OnboardingScreen() {
   const [medium, setMedium] = useState<Medium | null>(user?.medium ?? null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [schoolCode, setSchoolCode] = useState('');
+
+  // Installed from a school's / teacher's link: fill in their code automatically.
+  useEffect(() => {
+    let active = true;
+    void installReferralCode().then((code) => {
+      if (active && code) setSchoolCode((current) => current || code);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   // Admins keep their role (the API refuses to change it); they set up like a student.
   const isAdmin = user?.role === 'admin';
@@ -62,6 +76,10 @@ export default function OnboardingScreen() {
     setError(null);
     setSaving(true);
     try {
+      const code = normalizeReferralCode(schoolCode);
+      if (!isParent && code) {
+        await partnerService.useReferralCode(code);
+      }
       await authService.updateMe(
         isParent
           ? { role: 'parent', medium }
@@ -131,6 +149,22 @@ export default function OnboardingScreen() {
               <AppText variant="subtitle">Your medium</AppText>
               <ChoiceList options={MEDIUM_OPTIONS} value={medium} onChange={setMedium} testID="medium-picker" />
             </View>
+            {isAdmin ? null : (
+              <View style={styles.section}>
+                <AppText variant="subtitle">School or teacher code (optional)</AppText>
+                <TextInput
+                  label="Code"
+                  mode="outlined"
+                  autoCapitalize="characters"
+                  maxLength={30}
+                  value={schoolCode}
+                  onChangeText={setSchoolCode}
+                  outlineColor={palette.locked}
+                  activeOutlineColor={palette.primary}
+                  testID="school-code"
+                />
+              </View>
+            )}
           </>
         )}
 

@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Flex, HStack, Icon, Link, Stack, Text } from '@chakra-ui/react';
 import { Suspense, useState } from 'react';
 import type { IconType } from 'react-icons';
-import { FiBookOpen, FiFilm, FiGrid, FiHelpCircle, FiLogOut, FiUsers } from 'react-icons/fi';
+import { FiAward, FiBookOpen, FiDollarSign, FiFilm, FiGrid, FiHelpCircle, FiLogOut, FiUsers } from 'react-icons/fi';
 import { NavLink, Outlet } from 'react-router-dom';
 
 import { LoadingState } from '@/components/ui/LoadingState';
@@ -21,6 +21,8 @@ const NAV_ITEMS: readonly NavItem[] = [
   { label: 'Content', to: '/admin/content', icon: FiFilm },
   { label: 'Questions', to: '/admin/questions', icon: FiHelpCircle },
   { label: 'Users', to: '/admin/users', icon: FiUsers },
+  { label: 'Partners', to: '/admin/partners', icon: FiAward },
+  { label: 'Payouts', to: '/admin/payouts', icon: FiDollarSign },
 ];
 
 interface SidebarLinkProps {

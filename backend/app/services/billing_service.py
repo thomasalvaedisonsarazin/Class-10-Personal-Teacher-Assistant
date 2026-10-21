@@ -89,6 +89,12 @@ def _refresh_subscription(db: Session, row: Purchase, verifier: PlayVerifier | N
     except AppError:
         return  # keep the stored state; try again later
     row.last_checked_at = _now()
+    if info.order_id and info.order_id != row.order_id and info.active:
+        # A renewal is a new Google order: the student's partner earns on it too.
+        row.order_id = info.order_id
+        from app.services import partner_service
+
+        partner_service.record_commission(db, row, info.order_id, info.base_plan_id)
     if info.expires_at is not None:
         row.expires_at = info.expires_at
     row.auto_renewing = info.auto_renewing and info.active
@@ -239,6 +245,13 @@ def record_purchase(
     except IntegrityError as exc:  # the same token raced in twice
         db.rollback()
         raise ConflictError("This purchase was already used", code="purchase_used") from exc
+    from app.services import partner_service
+
+    base_plan = sub.base_plan_id if row.kind == "subscription" else None
+    if partner_service.record_commission(
+        db, row, row.order_id or f"purchase-{row.id}", base_plan
+    ):
+        db.commit()
     if acknowledge:
         _finish_with_google(verifier, row)
     logger.info("Purchase recorded kind=%s student_id=%s", row.kind, student.id)
@@ -289,3 +302,24 @@ def next_subscription_id(db: Session, payer: User) -> str | None:
         if renewing or (expires_at is not None and _aware(expires_at) > now)
     }
     return next((pid for pid in settings.PLAY_SUBSCRIPTION_IDS if pid not in in_use), None)
+
+
+def refresh_due_subscriptions(db: Session, verifier: PlayVerifier | None = None) -> int:
+    """Daily job: re-check auto-renewing plans whose paid period ended (renewal / cancel).
+
+    Picks up renewals even if the student never opens the app, so access and partner
+    commissions stay correct. Returns how many were checked.
+    """
+    client = verifier or _optional_verifier()
+    if client is None:
+        return 0
+    rows = db.scalars(
+        select(Purchase).where(
+            Purchase.kind == "subscription",
+            Purchase.auto_renewing.is_(True),
+            Purchase.expires_at <= _now(),
+        )
+    ).all()
+    for row in rows:
+        _refresh_subscription(db, row, client)
+    return len(rows)
