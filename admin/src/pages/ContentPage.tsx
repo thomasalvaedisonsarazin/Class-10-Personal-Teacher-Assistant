@@ -8,6 +8,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { FormDialog } from '@/components/ui/FormDialog';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { BoardSwitcher } from '@/components/curriculum/BoardSwitcher';
 import { PageWrapper } from '@/components/ui/PageWrapper';
 import { topicOptions, useCurriculumTree } from '@/hooks/useCurriculumTree';
 import { adminService } from '@/services/adminService';
@@ -36,7 +37,7 @@ type Filter = 'all' | 'flagged';
 
 export default function ContentPage() {
   const queryClient = useQueryClient();
-  const { tree } = useCurriculumTree();
+  const { boards, board, tree, setBoardId } = useCurriculumTree();
   const topics = topicOptions(tree.data);
   const [filter, setFilter] = useState<Filter>('all');
   const [page, setPage] = useState(1);
@@ -89,9 +90,12 @@ export default function ContentPage() {
       title="Content"
       description="Lessons students watch. Your uploaded lessons are shown before AI lessons of the same style."
       actions={
-        <Button bg="primary" color="primary.contrast" _hover={{ bg: 'primary.hover' }} onClick={() => setUploadOpen(true)}>
-          <FiUpload /> Upload lesson
-        </Button>
+        <HStack gap={2}>
+          <BoardSwitcher boards={boards.data} value={board?.id} onChange={setBoardId} />
+          <Button bg="primary" color="primary.contrast" _hover={{ bg: 'primary.hover' }} onClick={() => setUploadOpen(true)}>
+            <FiUpload /> Upload lesson
+          </Button>
+        </HStack>
       }
     >
       <Stack gap={4}>

@@ -9,11 +9,12 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { LoadingState } from '@/components/ui/LoadingState';
 import { PageWrapper } from '@/components/ui/PageWrapper';
+import { StudentClassDialog } from '@/components/users/StudentClassDialog';
 import { useAuth } from '@/hooks/useAuth';
 import { adminService } from '@/services/adminService';
 import { getApiErrorMessage } from '@/services/api';
 import type { UserRole } from '@/types/api';
-import type { AdminUser } from '@/types/admin';
+import type { AdminUser, AdminUserUpdate } from '@/types/admin';
 
 const PAGE_SIZE = 20;
 const ROLES: UserRole[] = ['student', 'parent', 'admin'];
@@ -26,6 +27,7 @@ export default function UsersPage() {
   const [role, setRole] = useState<UserRole | ''>('');
   const [page, setPage] = useState(1);
   const [confirm, setConfirm] = useState<AdminUser | null>(null);
+  const [classOf, setClassOf] = useState<AdminUser | null>(null);
 
   const users = useQuery({
     queryKey: ['admin', 'users', query, role, page],
@@ -33,9 +35,10 @@ export default function UsersPage() {
   });
 
   const update = useMutation({
-    mutationFn: ({ id, ...input }: { id: number; role?: UserRole; isActive?: boolean }) => adminService.updateUser(id, input),
+    mutationFn: ({ id, ...input }: AdminUserUpdate & { id: number }) => adminService.updateUser(id, input),
     onSuccess: async () => {
       setConfirm(null);
+      setClassOf(null);
       await queryClient.invalidateQueries({ queryKey: ['admin', 'users'] });
     },
   });
@@ -79,7 +82,7 @@ export default function UsersPage() {
           </Button>
         </HStack>
 
-        {update.isError && (
+        {update.isError && classOf === null && (
           <Text role="alert" color="danger" fontSize="sm">
             {getApiErrorMessage(update.error)}
           </Text>
@@ -143,13 +146,27 @@ export default function UsersPage() {
                               You
                             </Text>
                           ) : (
-                            <Button
-                              size="xs"
-                              variant="outline"
-                              onClick={() => (u.isActive ? setConfirm(u) : update.mutate({ id: u.id, isActive: true }))}
-                            >
-                              {u.isActive ? 'Disable' : 'Enable'}
-                            </Button>
+                            <HStack justify="end" gap={2}>
+                              {u.role === 'student' && (
+                                <Button
+                                  size="xs"
+                                  variant="outline"
+                                  onClick={() => {
+                                    update.reset();
+                                    setClassOf(u);
+                                  }}
+                                >
+                                  Class
+                                </Button>
+                              )}
+                              <Button
+                                size="xs"
+                                variant="outline"
+                                onClick={() => (u.isActive ? setConfirm(u) : update.mutate({ id: u.id, isActive: true }))}
+                              >
+                                {u.isActive ? 'Disable' : 'Enable'}
+                              </Button>
+                            </HStack>
                           )}
                         </Table.Cell>
                       </Table.Row>
@@ -174,6 +191,15 @@ export default function UsersPage() {
           </HStack>
         )}
       </Stack>
+
+      <StudentClassDialog
+        key={classOf?.id ?? 'none'}
+        student={classOf}
+        loading={update.isPending}
+        error={update.isError ? getApiErrorMessage(update.error) : null}
+        onSave={(input) => classOf && update.mutate({ id: classOf.id, ...input })}
+        onClose={() => setClassOf(null)}
+      />
 
       <ConfirmDialog
         open={confirm !== null}

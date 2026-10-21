@@ -7,7 +7,13 @@ from sqlalchemy import select
 
 from app.dependencies import CurrentUser, DbSession, StudentUser
 from app.models.curriculum import Board
-from app.schemas.curriculum import BoardOut, SubjectDetail, SubjectSummary, TopicDetail
+from app.schemas.curriculum import (
+    BoardOut,
+    SubjectChoice,
+    SubjectDetail,
+    SubjectSummary,
+    TopicDetail,
+)
 from app.services import curriculum_service
 
 router = APIRouter(prefix="/api/v1", tags=["curriculum"])
@@ -15,11 +21,17 @@ router = APIRouter(prefix="/api/v1", tags=["curriculum"])
 
 @router.get("/boards", response_model=list[BoardOut])
 def list_boards(db: DbSession, user: CurrentUser) -> list[BoardOut]:
-    """List active boards (onboarding board picker)."""
-    rows = db.execute(
-        select(Board.id, Board.code, Board.name).where(Board.is_active.is_(True)).order_by(Board.id)
+    """List the active classes of every board (onboarding board + class picker)."""
+    boards = db.scalars(
+        select(Board).where(Board.is_active.is_(True)).order_by(Board.family, Board.grade, Board.id)
     ).all()
-    return [BoardOut(id=r.id, code=r.code, name=r.name) for r in rows]
+    return [BoardOut.model_validate(b) for b in boards]
+
+
+@router.get("/boards/{board_id}/subjects", response_model=list[SubjectChoice])
+def list_board_subjects(board_id: int, db: DbSession, user: CurrentUser) -> list[SubjectChoice]:
+    """Every subject of a class, for choosing a higher-secondary group's subjects."""
+    return curriculum_service.board_subject_choices(db, user, board_id)
 
 
 @router.get("/subjects", response_model=list[SubjectSummary])

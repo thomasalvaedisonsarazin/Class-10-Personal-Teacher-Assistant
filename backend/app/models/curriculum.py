@@ -10,7 +10,10 @@ from app.models.enums import Medium
 
 
 class Board(TimestampMixin, Base):
-    """An examination board, e.g. ``TN_SSLC`` or ``CBSE``."""
+    """A course students enrol in: one board + one class, e.g. ``TN_SSLC`` (TN State, Class 10).
+
+    ``family`` groups the classes of one board (``TN_STATE``, ``CBSE``) for the class picker.
+    """
 
     __tablename__ = "boards"
 
@@ -19,6 +22,16 @@ class Board(TimestampMixin, Base):
     name: Mapped[str] = mapped_column(sa.String(255), nullable=False)
     is_active: Mapped[bool] = mapped_column(
         sa.Boolean, nullable=False, default=True, server_default=sa.true()
+    )
+    family: Mapped[str] = mapped_column(
+        sa.String(32), nullable=False, default="TN_STATE", server_default="TN_STATE"
+    )
+    grade: Mapped[int] = mapped_column(
+        sa.SmallInteger, nullable=False, default=10, server_default="10"
+    )
+    # Higher secondary: students pick their group's subjects instead of seeing every subject.
+    choose_subjects: Mapped[bool] = mapped_column(
+        sa.Boolean, nullable=False, default=False, server_default=sa.false()
     )
 
     subjects: Mapped[list[Subject]] = relationship(
@@ -47,6 +60,9 @@ class Subject(TimestampMixin, Base):
     tile_color: Mapped[str] = mapped_column(sa.String(7), nullable=False)
     icon: Mapped[str] = mapped_column(sa.String(64), nullable=False)
     display_order: Mapped[int] = mapped_column(sa.Integer, nullable=False)
+    # A language subject studied only in its own language (e.g. "ta" for Tamil): names,
+    # lessons and tests ignore the student's medium. None = follow the medium.
+    fixed_medium: Mapped[str | None] = mapped_column(sa.String(8), nullable=True)
 
     board: Mapped[Board] = relationship(back_populates="subjects")
     chapters: Mapped[list[Chapter]] = relationship(
@@ -176,3 +192,18 @@ class TopicTranslation(TimestampMixin, Base):
     )
 
     topic: Mapped[Topic] = relationship(back_populates="translations")
+
+
+class StudentSubject(TimestampMixin, Base):
+    """A subject a higher-secondary student chose (their group); none chosen = every subject."""
+
+    __tablename__ = "student_subjects"
+    __table_args__ = (sa.UniqueConstraint("user_id", "subject_id"),)
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(
+        sa.ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False
+    )
+    subject_id: Mapped[int] = mapped_column(
+        sa.ForeignKey("subjects.id", ondelete="CASCADE"), index=True, nullable=False
+    )

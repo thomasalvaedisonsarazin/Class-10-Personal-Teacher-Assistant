@@ -1,0 +1,20 @@
+{
+ "boardCode": "TN_9",
+ "boardName": "Tamil Nadu State Board – Class 9",
+ "family": "TN_STATE",
+ "grade": 9,
+ "chooseSubjects": false,
+ "isActive": false,
+ "subjects": [
+  {"key": "maths", "name": "Mathematics", "nameTa": "கணிதம்", "tileColor": "#3B6EA5", "icon": "calculator-variant",
+   "en": ["Book/9th/9th_Maths_EM_Text.pdf"], "ta": ["Book/9th/9th_Maths_TM_Text.pdf"]},
+  {"key": "science", "name": "Science", "nameTa": "அறிவியல்", "tileColor": "#4F8A6B", "icon": "flask-outline",
+   "en": ["Book/9th/9th_Science_EM_Text.pdf"], "ta": ["Book/9th/9th_Science_TM_Text.pdf"]},
+  {"key": "social", "name": "Social Science", "nameTa": "சமூக அறிவியல்", "tileColor": "#3E8C8C", "icon": "earth",
+   "en": ["Book/9th/9th_Social_Science_EM_Text.pdf"], "ta": ["Book/9th/9th_Social_Science_TM_Text.pdf"]},
+  {"key": "tamil", "kind": "tamil", "fixedMedium": "ta", "name": "Tamil", "nameTa": "தமிழ்", "tileColor": "#7A6A9E", "icon": "book-open-page-variant",
+   "en": [], "ta": ["Book/9th/9th_Tamil_Text.pdf"]},
+  {"key": "english", "kind": "english", "name": "English", "nameTa": "ஆங்கிலம்", "tileColor": "#B0745A", "icon": "alphabet-latin",
+   "en": ["Book/9th/9th_English_Text.pdf"], "ta": []}
+ ]
+}

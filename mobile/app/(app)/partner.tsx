@@ -117,7 +117,7 @@ export default function PartnerScreen() {
   const progress = d.payoutMinimum > 0 ? Math.min(1, d.available / d.payoutMinimum) : 0;
   const share = (): void => {
     void Share.share({
-      message: `Learn 10th standard topics with story lessons, tests and progress reports. Join with our code ${d.code}: ${d.shareLink}`,
+      message: `Learn school topics with story lessons, tests and progress reports. Join with our code ${d.code}: ${d.shareLink}`,
     });
   };
 

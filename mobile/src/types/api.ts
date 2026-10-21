@@ -33,6 +33,12 @@ export interface User {
   avatarUrl: string | null;
   role: UserRole;
   boardId: number | null;
+  /** 11th / 12th: the subjects of the student's group; only these are shown. */
+  subjectIds?: number[];
+  /** 11th / 12th student who has not picked their subject group yet. */
+  needsSubjects?: boolean;
+  /** Class and subjects are fixed after the first payment (only an admin can change them). */
+  classLocked?: boolean;
   medium: Medium | null;
   /** Preferred explanation language (null = same as medium). */
   lessonLanguage: LessonLanguage | null;
@@ -51,15 +57,30 @@ export interface AuthTokens {
   user?: User;
 }
 
+/** One class of a board, e.g. TN State Board Class 11. */
 export interface Board {
   id: number;
   code: string;
   name: string;
+  /** Groups the classes of one board: TN_STATE, CBSE. */
+  family: string;
+  grade: number;
+  /** Higher secondary: students pick their group's subjects. */
+  chooseSubjects: boolean;
+}
+
+export interface SubjectChoice {
+  id: number;
+  name: string;
+  tileColor: string;
+  icon: string;
 }
 
 export interface UpdateProfileInput {
   fullName?: string;
   boardId?: number;
+  /** Subjects of the class to show; [] = every subject. */
+  subjectIds?: number[];
   medium?: Medium;
   lessonLanguage?: LessonLanguage;
   /** Only during setup. */

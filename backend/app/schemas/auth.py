@@ -19,11 +19,16 @@ class UserOut(ORMModel):
     avatar_url: str | None
     role: UserRole
     board_id: int | None
+    # 11th / 12th: the subjects of the student's group; only these are shown.
+    subject_ids: list[int] = []
+    needs_subjects: bool = False  # their class needs a subject group, none picked yet
     medium: Medium | None
     lesson_language: LessonLanguage | None
     has_password: bool = False
     # Partner (school / teacher) whose code this student joined with, if any.
     referred_by_partner_id: int | None = None
+    # Class and subjects are fixed after the first payment (only an admin can change them).
+    class_locked: bool = False
 
 
 class AuthTokens(CamelModel):
@@ -108,6 +113,8 @@ class UpdateMeRequest(CamelModel):
 
     full_name: str | None = Field(default=None, min_length=1, max_length=100)
     board_id: int | None = Field(default=None, gt=0)
+    # Subjects of the student's class to show (11th / 12th groups); [] = every subject.
+    subject_ids: list[int] | None = Field(default=None, max_length=20)
     medium: Medium | None = None
     lesson_language: LessonLanguage | None = None
     # Chosen once during setup: "I'm a student" / "I'm a parent" (admins are never self-made).

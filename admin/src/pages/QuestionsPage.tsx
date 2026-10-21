@@ -8,6 +8,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { FormDialog } from '@/components/ui/FormDialog';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { BoardSwitcher } from '@/components/curriculum/BoardSwitcher';
 import { PageWrapper } from '@/components/ui/PageWrapper';
 import { topicOptions, useCurriculumTree } from '@/hooks/useCurriculumTree';
 import { adminService } from '@/services/adminService';
@@ -42,7 +43,7 @@ const DIFFICULTY = ['', 'Easy', 'Medium', 'Hard'];
 
 export default function QuestionsPage() {
   const queryClient = useQueryClient();
-  const { tree } = useCurriculumTree();
+  const { boards, board, tree, setBoardId } = useCurriculumTree();
   const topics = topicOptions(tree.data);
   const [filter, setFilter] = useState<Filter>('all');
   const [topicFilter, setTopicFilter] = useState<number | null>(null);
@@ -99,17 +100,20 @@ export default function QuestionsPage() {
       title="Questions"
       description="Check AI questions. Flagged questions are never served to students."
       actions={
-        <Button
-          bg="primary"
-          color="primary.contrast"
-          _hover={{ bg: 'primary.hover' }}
-          onClick={() => {
-            create.reset();
-            setCreateOpen(true);
-          }}
-        >
-          <FiPlus /> Write a question
-        </Button>
+        <HStack gap={2}>
+          <BoardSwitcher boards={boards.data} value={board?.id} onChange={setBoardId} />
+          <Button
+            bg="primary"
+            color="primary.contrast"
+            _hover={{ bg: 'primary.hover' }}
+            onClick={() => {
+              create.reset();
+              setCreateOpen(true);
+            }}
+          >
+            <FiPlus /> Write a question
+          </Button>
+        </HStack>
       }
     >
       <Stack gap={4}>

@@ -1,4 +1,4 @@
-import type { AuthTokens, Board, UpdateProfileInput, User } from '@/types/api';
+import type { AuthTokens, Board, SubjectChoice, UpdateProfileInput, User } from '@/types/api';
 
 import { api } from './api';
 import { tokenStorage } from './tokenStorage';
@@ -56,6 +56,22 @@ export const authService = {
   async getBoards(): Promise<Board[]> {
     const { data } = await api.get<Board[]>('/boards');
     return data;
+  },
+
+  /** Every subject of a class (11th / 12th subject picker). */
+  async getBoardSubjects(boardId: number): Promise<SubjectChoice[]> {
+    const { data } = await api.get<SubjectChoice[]>(`/boards/${boardId}/subjects`);
+    return data;
+  },
+
+  /** Keep this phone's session in use while the app is open (409 when another device has it). */
+  async pingSession(): Promise<void> {
+    await api.post('/auth/session/ping');
+  },
+
+  /** Free the account for another device (app closed / sent to the background). */
+  async releaseSession(): Promise<void> {
+    await api.post('/auth/session/release');
   },
 
   /** Best-effort server-side revoke; local tokens are cleared by the caller regardless. */

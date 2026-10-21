@@ -15,6 +15,7 @@ from app.schemas.admin import (
     AdminStats,
     AdminUserOut,
     AdminUserUpdate,
+    BoardUpdate,
     ChapterCreate,
     ChapterUpdate,
     CurriculumImport,
@@ -51,6 +52,12 @@ def get_stats(db: DbSession, _: AdminUser) -> AdminStats:
 def list_boards(db: DbSession, _: AdminUser) -> list[AdminBoard]:
     """All boards."""
     return curriculum.list_boards(db)
+
+
+@router.patch("/boards/{board_id}", response_model=AdminBoard)
+def update_board(board_id: int, body: BoardUpdate, db: DbSession, _: AdminUser) -> AdminBoard:
+    """Show / hide a class to students, or rename it."""
+    return curriculum.update_board(db, board_id, body)
 
 
 @router.get("/boards/{board_id}/curriculum", response_model=CurriculumTree)

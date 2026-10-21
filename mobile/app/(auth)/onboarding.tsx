@@ -4,9 +4,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { HelperText, TextInput } from 'react-native-paper';
 
+import { ClassPicker } from '@/components/classes/ClassPicker';
+import { SubjectPicker } from '@/components/classes/SubjectPicker';
 import { AppText, ChoiceList, ErrorState, LoadingView, PrimaryButton, Screen } from '@/components/ui';
 import type { ChoiceOption } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
+import { SUBJECTS_TO_CHOOSE } from '@/lib/classes';
 import { getApiErrorMessage } from '@/services/api';
 import { installReferralCode, normalizeReferralCode } from '@/lib/referral';
 import { authService } from '@/services/authService';
@@ -17,7 +20,7 @@ import type { Medium } from '@/types/api';
 type SetupRole = 'student' | 'parent';
 
 const ROLE_OPTIONS: readonly ChoiceOption<SetupRole>[] = [
-  { value: 'student', label: "I'm a student (10th standard)" },
+  { value: 'student', label: "I'm a student" },
   { value: 'parent', label: "I'm a parent — I want to follow my child's progress" },
 ];
 
@@ -36,6 +39,7 @@ export default function OnboardingScreen() {
   const [role, setRole] = useState<SetupRole>(user?.role === 'parent' ? 'parent' : 'student');
   const [boardId, setBoardId] = useState<number | null>(user?.boardId ?? null);
   const [medium, setMedium] = useState<Medium | null>(user?.medium ?? null);
+  const [subjectIds, setSubjectIds] = useState<number[]>(user?.subjectIds ?? []);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [schoolCode, setSchoolCode] = useState('');
@@ -64,10 +68,18 @@ export default function OnboardingScreen() {
     return <Redirect href="/login" />;
   }
 
-  // Only one board available (TN State Board for now): pre-select it.
+  // Only one class available: pre-select it.
   const boards = boardsQuery.data;
   const selectedBoardId = boardId ?? (boards?.length === 1 ? boards[0].id : null);
-  const canSave = medium !== null && (isParent || selectedBoardId !== null);
+  const selectedBoard = boards?.find((board) => board.id === selectedBoardId);
+  const needsSubjects = !isParent && selectedBoard?.chooseSubjects === true;
+  const canSave =
+    medium !== null && (isParent || (selectedBoardId !== null && (!needsSubjects || subjectIds.length === SUBJECTS_TO_CHOOSE)));
+
+  const handleClassChange = (id: number): void => {
+    setBoardId(id);
+    setSubjectIds([]);
+  };
 
   const handleSave = async (): Promise<void> => {
     if (!canSave || medium === null) {
@@ -86,6 +98,7 @@ export default function OnboardingScreen() {
           : {
               role: isAdmin ? undefined : 'student',
               boardId: selectedBoardId ?? undefined,
+              subjectIds: needsSubjects ? subjectIds : undefined,
               medium,
             },
       );
@@ -112,11 +125,6 @@ export default function OnboardingScreen() {
     );
   }
 
-  const boardOptions: ChoiceOption<number>[] = (boards ?? []).map((board) => ({
-    value: board.id,
-    label: board.name,
-  }));
-
   return (
     <Screen scroll testID="onboarding-screen">
       <View style={styles.content}>
@@ -141,10 +149,10 @@ export default function OnboardingScreen() {
           </View>
         ) : (
           <>
-            <View style={styles.section}>
-              <AppText variant="subtitle">Your board</AppText>
-              <ChoiceList options={boardOptions} value={selectedBoardId} onChange={setBoardId} testID="board-picker" />
-            </View>
+            <ClassPicker boards={boards ?? []} value={selectedBoardId} onChange={handleClassChange} />
+            {needsSubjects && selectedBoardId !== null ? (
+              <SubjectPicker boardId={selectedBoardId} value={subjectIds} onChange={setSubjectIds} />
+            ) : null}
             <View style={styles.section}>
               <AppText variant="subtitle">Your medium</AppText>
               <ChoiceList options={MEDIUM_OPTIONS} value={medium} onChange={setMedium} testID="medium-picker" />

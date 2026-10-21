@@ -35,6 +35,7 @@ from app.schemas.admin import (
     QuestionUpdate,
 )
 from app.schemas.common import Page
+from app.services import auth_service
 from app.services.ai.questions import GeneratedQuestion, validate_question
 from app.services.storage import get_storage
 
@@ -384,6 +385,8 @@ def update_user(db: Session, admin: User, user_id: int, data: AdminUserUpdate) -
         user.role = data.role
     if data.is_active is not None:
         user.is_active = data.is_active
+    if data.board_id is not None or data.subject_ids is not None:
+        auth_service.set_class(db, user, data.board_id, data.subject_ids, by_admin=True)
     db.commit()
     logger.info(
         "Admin %s updated user %s role=%s active=%s", admin.id, user.id, user.role, user.is_active

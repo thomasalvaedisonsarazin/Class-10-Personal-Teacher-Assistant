@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Literal
 
 from pydantic import Field, field_validator
 
@@ -90,6 +91,7 @@ class AdminSubject(CamelModel):
     tile_color: str
     icon: str
     display_order: int
+    fixed_medium: Medium | None = None
     chapters: list[AdminChapter]
 
 
@@ -98,6 +100,16 @@ class AdminBoard(ORMModel):
     code: str
     name: str
     is_active: bool
+    family: str
+    grade: int
+    choose_subjects: bool
+
+
+class BoardUpdate(CamelModel):
+    """Show / hide a class to students, or rename it."""
+
+    name: str | None = Field(default=None, min_length=1, max_length=255)
+    is_active: bool | None = None
 
 
 class CurriculumTree(CamelModel):
@@ -126,6 +138,8 @@ class SubjectUpdate(CamelModel):
     tile_color: str | None = None
     icon: str | None = Field(default=None, max_length=64)
     display_order: int | None = Field(default=None, ge=0)
+    # Language subject: "ta" = always in Tamil; "" = follow the student's medium.
+    fixed_medium: Medium | Literal[""] | None = None
 
     @field_validator("tile_color")
     @classmethod
@@ -206,6 +220,8 @@ class ImportSubject(CamelModel):
     tile_color: str
     icon: str = Field(default="book-open-variant", max_length=64)
     display_order: int = Field(ge=0)
+    # Language subject studied only in this language (Tamil = "ta"), whatever the medium.
+    fixed_medium: Medium | None = None
     chapters: list[ImportChapter] = Field(default_factory=list, max_length=100)
 
     @field_validator("tile_color")
@@ -221,7 +237,12 @@ class CurriculumImport(CamelModel):
     board_code: str = Field(min_length=1, max_length=32)
     # Creates the board when it does not exist yet (e.g. a fresh production database).
     board_name: str | None = Field(default=None, min_length=1, max_length=255)
-    subjects: list[ImportSubject] = Field(max_length=30)
+    family: str = Field(default="TN_STATE", min_length=1, max_length=32)
+    grade: int = Field(default=10, ge=1, le=12)
+    choose_subjects: bool = False
+    # Only for a new board: hidden from students until an admin switches it on.
+    is_active: bool = True
+    subjects: list[ImportSubject] = Field(max_length=60)
 
 
 class ImportResult(CamelModel):
@@ -304,8 +325,13 @@ class AdminUserOut(ORMModel):
     medium: Medium | None
     is_active: bool
     created_at: datetime
+    board_id: int | None = None
+    subject_ids: list[int] = []
 
 
 class AdminUserUpdate(CamelModel):
     role: UserRole | None = None
     is_active: bool | None = None
+    # Change a student's class / chosen subjects (also after they paid).
+    board_id: int | None = Field(default=None, gt=0)
+    subject_ids: list[int] | None = Field(default=None, max_length=20)

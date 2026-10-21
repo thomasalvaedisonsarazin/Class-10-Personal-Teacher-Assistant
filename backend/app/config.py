@@ -52,6 +52,9 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
+    # One device at a time per student: another device is refused while the session in use
+    # was seen within this many seconds (the app pings every minute while open).
+    SESSION_IDLE_SECONDS: int = 150
     GOOGLE_CLIENT_ID: str = ""
     GOOGLE_ANDROID_CLIENT_ID: str = ""
 
@@ -71,6 +74,7 @@ class Settings(BaseSettings):
     # Payments (Google Play Billing). Off = every topic is free (dev, tests, before launch).
     BILLING_ENABLED: bool = False
     FREE_TOPICS_PER_SUBJECT: int = 1  # the first N topics of every subject are free
+    SUBJECTS_TO_CHOOSE: int = 6  # 11th / 12th: language + English + 4 group subjects
     # Accounts with every topic unlocked for free (Google Play reviewers, staff).
     COMPLIMENTARY_EMAILS: Annotated[list[str], NoDecode] = []
     PLAY_PACKAGE_NAME: str = "com.edsolution.teacherassistant"

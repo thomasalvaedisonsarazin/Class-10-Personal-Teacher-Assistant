@@ -23,6 +23,7 @@ class TokenPayload(BaseModel):
     iat: int
     jti: str
     type: str = "access"
+    sid: str | None = None  # sign-in session (one device); absent on older tokens
 
 
 def sha256_hex(value: str) -> str:
@@ -30,7 +31,7 @@ def sha256_hex(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def create_access_token(user_id: int, role: str) -> str:
+def create_access_token(user_id: int, role: str, session_id: str | None = None) -> str:
     """Create a signed short-lived access token for ``user_id`` with ``role``."""
     now = datetime.now(UTC)
     claims = {
@@ -41,6 +42,8 @@ def create_access_token(user_id: int, role: str) -> str:
         "exp": int((now + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)).timestamp()),
         "jti": uuid.uuid4().hex,
     }
+    if session_id:
+        claims["sid"] = session_id
     return jwt.encode(claims, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
 
 

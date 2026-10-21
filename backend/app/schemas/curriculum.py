@@ -10,11 +10,23 @@ from app.services.progress_service import TopicState
 
 
 class BoardOut(ORMModel):
-    """An examination board a student can pick during onboarding."""
+    """A class of a board (e.g. TN State Board, Class 11) a student can pick during onboarding."""
 
     id: int
     code: str
     name: str
+    family: str
+    grade: int
+    choose_subjects: bool
+
+
+class SubjectChoice(CamelModel):
+    """A subject of a class, for the higher-secondary subject picker."""
+
+    id: int
+    name: str
+    tile_color: str
+    icon: str
 
 
 class TopicItem(CamelModel):
@@ -83,3 +95,5 @@ class TopicDetail(CamelModel):
     chapter_title: str
     subject: SubjectRef
     pass_pct: float
+    # Language subject (Tamil): lessons and tests always in that language — no language switch.
+    language_fixed: bool = False

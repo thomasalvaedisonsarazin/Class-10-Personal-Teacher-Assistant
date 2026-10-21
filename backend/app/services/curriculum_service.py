@@ -7,12 +7,13 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.exceptions import NotFoundError
-from app.models.curriculum import Chapter, Subject, Topic
+from app.models.curriculum import Board, Chapter, Subject, Topic
 from app.models.enums import Medium
 from app.models.user import User
 from app.schemas.curriculum import (
     ChapterOut,
     CurrentTopic,
+    SubjectChoice,
     SubjectDetail,
     SubjectRef,
     SubjectSummary,
@@ -23,13 +24,17 @@ from app.services.ai.explanation import TopicContext
 from app.services.progress_service import (
     TopicState,
     TopicStatusInfo,
+    allowed_subject_ids,
     board_topic_statuses,
     require_topic_access,
 )
 
 
-def student_medium(user: User) -> Medium:
-    """The medium to show content in (English until onboarding sets one)."""
+def student_medium(user: User, subject: Subject | None = None) -> Medium:
+    """The medium to show content in: a language subject's own language (Tamil is always
+    in Tamil), else the student's medium (English until onboarding sets one)."""
+    if subject is not None and subject.fixed_medium:
+        return Medium(subject.fixed_medium)
     return Medium(user.medium) if user.medium else Medium.en
 
 
@@ -91,23 +96,49 @@ def _summary_fields(
     }
 
 
+def board_subject_choices(db: Session, user: User, board_id: int) -> list[SubjectChoice]:
+    """Every subject of an active class, named in the user's medium."""
+    board = db.get(Board, board_id)
+    if board is None or not board.is_active:
+        raise NotFoundError("Class not found")
+    return [
+        SubjectChoice(
+            id=s.id,
+            name=subject_name(s, student_medium(user, s)),
+            tile_color=s.tile_color,
+            icon=s.icon,
+        )
+        for s in board.subjects
+    ]
+
+
 def list_subjects(db: Session, user: User) -> list[SubjectSummary]:
-    """All subjects on the student's board with progress (Home tiles)."""
+    """The student's subjects with progress (Home tiles): their chosen group, or every subject."""
     statuses = board_topic_statuses(db, user)
     subjects = db.scalars(
         select(Subject).where(Subject.board_id == user.board_id).order_by(Subject.display_order)
     ).all()
-    medium = student_medium(user)
-    return [SubjectSummary.model_validate(_summary_fields(s, statuses, medium)) for s in subjects]
+    allowed = allowed_subject_ids(user)
+    if allowed is not None:
+        subjects = [s for s in subjects if s.id in allowed]
+    return [
+        SubjectSummary.model_validate(_summary_fields(s, statuses, student_medium(user, s)))
+        for s in subjects
+    ]
 
 
 def get_subject(db: Session, user: User, subject_id: int) -> SubjectDetail:
     """One subject with chapters and every topic's state."""
     subject = db.get(Subject, subject_id)
-    if subject is None or subject.board_id != user.board_id:
+    allowed = allowed_subject_ids(user)
+    if (
+        subject is None
+        or subject.board_id != user.board_id
+        or (allowed is not None and subject.id not in allowed)
+    ):
         raise NotFoundError("Subject not found")
     statuses = board_topic_statuses(db, user, subject_id=subject.id)
-    medium = student_medium(user)
+    medium = student_medium(user, subject)
     chapters = [
         ChapterOut(
             id=chapter.id,
@@ -137,8 +168,8 @@ def get_subject(db: Session, user: User, subject_id: int) -> SubjectDetail:
 def get_topic_detail(db: Session, user: User, topic_id: int) -> TopicDetail:
     """Topic screen data (also for paid topics, to offer unlocking); 403 when locked."""
     topic, status = require_topic_access(db, user, topic_id, paid=False)
-    medium = student_medium(user)
     subject = topic.chapter.subject
+    medium = student_medium(user, subject)
     return TopicDetail(
         id=topic.id,
         title=topic_title(topic, medium),
@@ -151,6 +182,7 @@ def get_topic_detail(db: Session, user: User, topic_id: int) -> TopicDetail:
             id=subject.id, name=subject_name(subject, medium), tile_color=subject.tile_color
         ),
         pass_pct=settings.QUIZ_PASS_PCT,
+        language_fixed=bool(subject.fixed_medium),
     )
 
 
@@ -160,6 +192,7 @@ def topic_context(topic: Topic, medium: Medium) -> TopicContext:
     subject = chapter.subject
     return TopicContext(
         board=subject.board.name,
+        grade=subject.board.grade,
         subject=subject_name(subject, medium),
         chapter=chapter_title(chapter, medium),
         topic=topic_title(topic, medium),

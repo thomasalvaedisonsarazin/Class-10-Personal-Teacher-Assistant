@@ -146,6 +146,13 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 
 ### Curriculum Module
 - Hierarchy is Board → Subject → Chapter → Topic; ordering via `display_order`
+- A `boards` row is one **class of a board** (course): `family` (`TN_STATE`, `CBSE`) + `grade` (1–12), e.g. `TN_SSLC` = TN State Class 10, `TN_9`, `TN_11`, `TN_12`; `users.board_id` is the student's class. Onboarding / Profile: board → class (`ClassPicker`); changing class keeps old progress
+- `choose_subjects` classes (11th / 12th): the student ticks **exactly `SUBJECTS_TO_CHOOSE` (6)** subjects (`student_subjects`, `PUT /auth/me {subjectIds}`, cleared on class change); only those exist for them — other subjects are hidden and refused (404), even their free first topic (`progress_service.allowed_subject_ids`); none chosen = `needsSubjects` → onboarding
+- Class and subjects are **fixed after the first payment** (`auth_service.set_class`, 403 `class_locked`, `classLocked` on `/auth/me`); admin Users page → "Class" can still change them
+- Language subjects (`subjects.fixed_medium`, `fixedMedium: "ta"` in syllabus files — Tamil, Advanced Tamil) are always shown, explained and tested in that language whatever the medium; no language switch (`TopicDetail.languageFixed`); use `student_medium(user, subject)` / `student_language(user, subject)`
+- New classes are imported **hidden** (`isActive: false`); admin Curriculum page → class switcher → "Show to students"
+- Syllabus files per class are built from the textbook PDFs (`Book/`, gitignored) with `backend/tools/build_syllabus.py <manifest> <out> --work ../.syllabus-work/<class>` (LLM reads only contents pages, learning-objective boxes and unit section lists / numbered headings; then re-pairs any Tamil row that drifted from its English row; cached per subject, `--only <key>` rebuilds; needs `pip install pymupdf`); manifests in `backend/data/curriculum/manifests/`; check the output before importing
+- AI prompts take the class from `TopicContext.grade` (age = grade + 5; 11–12 get derivations / numericals)
 - The full TN SSLC syllabus (302 topics, en + ta, from the 2024/25 textbooks' contents and learning objectives — no textbook text) lives in `backend/data/curriculum/tn_sslc_full.json`; load it with `python -m app.cli import-curriculum` or the admin "Import syllabus" (upsert by display order, nothing deleted). `app.seed` is only a small sample — don't run it after the full import
 - Subject `tile_color` must come from the approved focus palette in `mobile/src/theme/`
 - All student-facing text has a per-medium variant (en, ta, …)
@@ -164,7 +171,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Each slide has a storybook **illustration** (gpt-image-2, `IMAGE_MODEL`; fixed style guide + Kavya/Arun character sheet, no text in images) generated in parallel with TTS; players show it with a slow pan/zoom; bullets appear in time with the narration (bullet k of n at `slideDuration * k / (n + 1)`, same rule in the video renderer and the mobile player); a failed picture only drops that scene's picture
 - Generation pipeline: LLM script → TTS audio (deliver first) → slide video render (async)
 - Every new lesson passes an AI fact-check (`fact_check_script`, CHECK_REASONING_EFFORT) that may correct slides; every AI question is answered independently (`verify_questions`) and dropped if it disagrees with its key; question batches are ~40/40/20 easy/medium/hard (at least one hard)
-- Prompts must be grounded in the topic's learning objectives and the board syllabus, age-appropriate for ~15-year-olds, in the student's medium
+- Prompts must be grounded in the topic's learning objectives and the board syllabus, age-appropriate for the topic's class, in the student's medium
 
 ### Quiz Module
 - Default 10 questions per attempt; serve only questions not previously served to this student for that topic
@@ -243,6 +250,11 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Refresh token expires: 30 days (mobile), rotated on use
 - Algorithm: HS256
 - Mobile stores tokens in `expo-secure-store`
+
+### One device at a time (students)
+- Each sign-in is a session (`refresh_tokens.session_id`, kept across rotations; `sid` claim in access tokens); `users.active_session_id` / `active_session_seen_at` hold the device in use
+- `get_current_user` → `claim_session`: another device seen within `SESSION_IDLE_SECONDS` (150) → **409 `session_active`** ("An active session is open…"); the app shows `SessionBusyOverlay` with "I closed it — open here"
+- The app pings `POST /auth/session/ping` every minute while open and calls `POST /auth/session/release` when sent to the background; sign-out frees it too. Parents, partners and admins are not limited
 
 ### Roles
 - `student`, `parent`, `admin`, `partner` — enforce with dependencies on routers

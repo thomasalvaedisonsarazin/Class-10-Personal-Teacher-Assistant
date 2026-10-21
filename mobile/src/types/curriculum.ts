@@ -52,6 +52,8 @@ export interface TopicDetail {
   chapterTitle: string;
   subject: { id: number; name: string; tileColor: string };
   passPct: number;
+  /** Language subject (Tamil): always explained and tested in that language. */
+  languageFixed?: boolean;
 }
 
 /** Consecutive study days (India time). */

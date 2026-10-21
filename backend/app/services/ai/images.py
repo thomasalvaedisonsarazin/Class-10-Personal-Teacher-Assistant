@@ -18,7 +18,7 @@ IMAGE_SIZE = "1536x1024"  # landscape 3:2; the players crop/pan it
 
 # Fixed art direction + character sheet so every picture in every lesson looks alike.
 STYLE_GUIDE = (
-    "Flat 2D storybook illustration for a 10th-standard lesson in Tamil Nadu, India. "
+    "Flat 2D storybook illustration for a school lesson in Tamil Nadu, India. "
     "Calm, flat, solid colours (muted blue, sage green, soft teal, warm off-white, dark slate "
     "outlines), no gradients, clean simple shapes, friendly expressive faces, uncluttered "
     "background, gentle daylight. Characters when present: Kavya — Indian girl, 15, two black "

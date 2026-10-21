@@ -47,7 +47,7 @@ STYLE_GUIDES: dict[LessonStyle, str] = {
         "previous one. No step may skip reasoning."
     ),
     LessonStyle.story: (
-        "Teach it as a short story in scenes. Two 10th-standard friends from Tamil Nadu, Kavya "
+        "Teach it as a short story in scenes. Two classmates from Tamil Nadu, Kavya "
         "and Arun, meet a real problem (at a market, a cricket match, a bus stand, a farm, a "
         "festival...) and discover the idea step by step. Each slide is one scene: say where "
         "they are, what happens, and include one or two short lines of dialogue in the "
@@ -118,6 +118,22 @@ class TopicContext:
     chapter: str
     topic: str
     learning_objectives: str
+    grade: int = 10
+
+
+def audience(grade: int) -> str:
+    """Who the lesson is for, e.g. 'Class 11 students (about 16 years old)'."""
+    return f"Class {grade} students (about {grade + 5} years old)"
+
+
+def level_note(grade: int) -> str:
+    """Depth expected at this class (higher secondary goes deeper)."""
+    if grade >= 11:
+        return (
+            "This is higher secondary: go to the depth of the textbook, include the key "
+            "derivations, definitions and worked numericals the objectives call for. "
+        )
+    return ""
 
 
 def build_prompts(
@@ -128,8 +144,8 @@ def build_prompts(
 ) -> tuple[str, str]:
     """Return ``(system, user)`` prompts for a lesson in ``style`` and ``medium``."""
     system = (
-        "You are a patient, expert teacher for 10th-standard students (about 15 years old) "
-        f"preparing for the {ctx.board} public exam. "
+        f"You are a patient, expert teacher for {audience(ctx.grade)} "
+        f"following the {ctx.board} syllabus. {level_note(ctx.grade)}"
         "Stay strictly within the syllabus and the learning objectives given. "
         "Be accurate: never invent facts, formulas or dates. "
         "Use local, everyday Indian examples. Short sentences, friendly tone, no slang. "
@@ -249,7 +265,7 @@ def fact_check_script(
         original script is returned unchanged (the check must never block a lesson).
     """
     system = (
-        "You are a strict subject-matter reviewer for 10th-standard "
+        f"You are a strict subject-matter reviewer for Class {ctx.grade} "
         f"{ctx.board} {ctx.subject} lessons. Check every slide (heading, bullets, narration "
         "and image_prompt) for factual, scientific or mathematical errors, wrong formulas or "
         "units, wrong worked-example arithmetic, contradictions with the learning objectives, "

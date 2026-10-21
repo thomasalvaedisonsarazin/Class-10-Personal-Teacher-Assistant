@@ -2397,6 +2397,7 @@
   },
   {
    "name": "Tamil",
+   "fixedMedium": "ta",
    "nameTa": "தமிழ்",
    "tileColor": "#7A6A9E",
    "icon": "book-open-page-variant",

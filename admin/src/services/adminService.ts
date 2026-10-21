@@ -9,6 +9,7 @@ import type {
   AdminQuestion,
   AdminStats,
   AdminUser,
+  AdminUserUpdate,
   CurriculumTree,
   ImportResult,
   LessonLanguage,
@@ -54,6 +55,11 @@ export const adminService = {
 
   async boards(): Promise<AdminBoard[]> {
     return (await api.get<AdminBoard[]>('/admin/boards')).data;
+  },
+
+  /** Show / hide a class to students, or rename it. */
+  async updateBoard(boardId: number, input: { isActive?: boolean; name?: string }): Promise<AdminBoard> {
+    return (await api.patch<AdminBoard>(`/admin/boards/${boardId}`, input)).data;
   },
 
   async curriculum(boardId: number): Promise<CurriculumTree> {
@@ -130,7 +136,7 @@ export const adminService = {
     return (await api.get<AdminPage<AdminUser>>('/admin/users', { params: query })).data;
   },
 
-  async updateUser(userId: number, input: { role?: UserRole; isActive?: boolean }): Promise<AdminUser> {
+  async updateUser(userId: number, input: AdminUserUpdate): Promise<AdminUser> {
     return (await api.patch<AdminUser>(`/admin/users/${userId}`, input)).data;
   },
 };

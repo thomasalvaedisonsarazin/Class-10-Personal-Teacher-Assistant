@@ -12,7 +12,7 @@ from app.models.base import LESSON_LANGUAGE, MEDIUM, USER_ROLE, Base, TimestampM
 from app.models.enums import LessonLanguage, Medium, UserRole
 
 if TYPE_CHECKING:
-    from app.models.curriculum import Board
+    from app.models.curriculum import Board, StudentSubject
 
 
 class User(TimestampMixin, Base):
@@ -52,8 +52,27 @@ class User(TimestampMixin, Base):
         nullable=True,
     )
     referred_at: Mapped[datetime | None] = mapped_column(sa.DateTime(timezone=True), nullable=True)
+    # One device at a time: the sign-in session now in use and when it was last seen.
+    active_session_id: Mapped[str | None] = mapped_column(sa.String(36), nullable=True)
+    active_session_seen_at: Mapped[datetime | None] = mapped_column(
+        sa.DateTime(timezone=True), nullable=True
+    )
 
     board: Mapped[Board | None] = relationship()
+    chosen_subjects: Mapped[list[StudentSubject]] = relationship(
+        lazy="selectin", cascade="all, delete-orphan", passive_deletes=True
+    )
+
+    @property
+    def subject_ids(self) -> list[int]:
+        """Subjects of the student's 11th / 12th group (unused for other classes)."""
+        return sorted(s.subject_id for s in self.chosen_subjects)
+
+    @property
+    def needs_subjects(self) -> bool:
+        """An 11th / 12th student who has not picked their subject group yet."""
+        board = self.board
+        return board is not None and board.choose_subjects and not self.chosen_subjects
 
     @property
     def has_password(self) -> bool:
@@ -81,6 +100,8 @@ class RefreshToken(TimestampMixin, Base):
     replaced_by_id: Mapped[int | None] = mapped_column(
         sa.ForeignKey("refresh_tokens.id", ondelete="SET NULL"), nullable=True, index=True
     )
+    # Sign-in session (one per device sign-in), kept across rotations.
+    session_id: Mapped[str | None] = mapped_column(sa.String(36), nullable=True)
 
     user: Mapped[User] = relationship()
 

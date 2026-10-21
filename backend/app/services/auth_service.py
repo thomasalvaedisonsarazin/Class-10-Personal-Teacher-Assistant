@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import uuid
 from datetime import UTC, datetime
 
 from sqlalchemy import func, select
@@ -17,7 +18,8 @@ from app.auth.jwt import (
 )
 from app.config import settings
 from app.exceptions import BadRequestError, ConflictError, ForbiddenError, UnauthorizedError
-from app.models.curriculum import Board
+from app.models.billing import Purchase
+from app.models.curriculum import Board, StudentSubject, Subject
 from app.models.enums import UserRole
 from app.models.progress import TopicProgress
 from app.models.quiz import QuizAttempt
@@ -39,17 +41,25 @@ def _ensure_active(user: User) -> None:
         raise ForbiddenError("This account has been disabled", code="account_disabled")
 
 
-def _new_refresh_token(db: Session, user: User) -> tuple[str, RefreshToken]:
+def _new_refresh_token(
+    db: Session, user: User, session_id: str | None = None
+) -> tuple[str, RefreshToken]:
+    """New refresh token; a sign-in starts a new session, a rotation keeps its session."""
     raw, token_hash = create_refresh_token()
-    row = RefreshToken(user_id=user.id, token_hash=token_hash, expires_at=refresh_token_expiry())
+    row = RefreshToken(
+        user_id=user.id,
+        token_hash=token_hash,
+        expires_at=refresh_token_expiry(),
+        session_id=session_id or str(uuid.uuid4()),
+    )
     db.add(row)
     db.flush()
     return raw, row
 
 
-def _tokens(user: User, raw_refresh: str) -> AuthTokens:
+def _tokens(user: User, raw_refresh: str, session_id: str | None) -> AuthTokens:
     return AuthTokens(
-        access_token=create_access_token(user.id, UserRole(user.role).value),
+        access_token=create_access_token(user.id, UserRole(user.role).value, session_id),
         refresh_token=raw_refresh,
         expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
         user=UserOut.model_validate(user),
@@ -67,10 +77,10 @@ def issue_tokens(db: Session, user: User) -> AuthTokens:
         Tokens plus the user's profile
     """
     _ensure_active(user)
-    raw, _ = _new_refresh_token(db, user)
+    raw, row = _new_refresh_token(db, user)
     db.commit()
     db.refresh(user)
-    return _tokens(user, raw)
+    return _tokens(user, raw, row.session_id)
 
 
 def _find_google_user(db: Session, identity: GoogleIdentity) -> User | None:
@@ -183,12 +193,12 @@ def rotate_refresh_token(db: Session, raw_token: str) -> AuthTokens:
     if user is None or not user.is_active:
         raise UnauthorizedError("User not found or inactive", code="invalid_user")
 
-    raw, new_row = _new_refresh_token(db, user)
+    raw, new_row = _new_refresh_token(db, user, row.session_id)
     row.revoked = True
     row.replaced_by_id = new_row.id
     db.commit()
     db.refresh(user)
-    return _tokens(user, raw)
+    return _tokens(user, raw, new_row.session_id)
 
 
 def revoke_refresh_token(db: Session, raw_token: str) -> None:
@@ -196,6 +206,17 @@ def revoke_refresh_token(db: Session, raw_token: str) -> None:
     row = db.scalar(select(RefreshToken).where(RefreshToken.token_hash == sha256_hex(raw_token)))
     if row is not None and not row.revoked:
         row.revoked = True
+        user = db.get(User, row.user_id)
+        if user is not None and row.session_id and user.active_session_id == row.session_id:
+            user.active_session_id = None  # signing out frees the account for another device
+        db.commit()
+
+
+def release_session(db: Session, user: User, session_id: str | None) -> None:
+    """Free the one-device lock if ``session_id`` holds it (app closed); otherwise no-op."""
+    if session_id is not None and user.active_session_id == session_id:
+        user.active_session_id = None
+        user.active_session_seen_at = None
         db.commit()
 
 
@@ -217,21 +238,93 @@ def _change_setup_role(db: Session, user: User, role: UserRole) -> None:
         user.board_id = None  # parents follow their children's boards
 
 
-def update_profile(db: Session, user: User, data: UpdateMeRequest) -> User:
-    """Apply profile changes (name, board, medium, lesson language, setup role) for ``user``.
+def profile_out(db: Session, user: User) -> UserOut:
+    """The profile with ``class_locked`` filled in."""
+    return UserOut.model_validate(user).model_copy(update={"class_locked": has_paid(db, user)})
+
+
+def has_paid(db: Session, user: User) -> bool:
+    """True once any purchase gave this student access (their class is then fixed)."""
+    return (
+        db.scalar(select(Purchase.id).where(Purchase.beneficiary_user_id == user.id).limit(1))
+        is not None
+    )
+
+
+def _check_subjects(db: Session, board: Board, subject_ids: list[int]) -> set[int]:
+    """Validate a subject choice for ``board``: exactly ``SUBJECTS_TO_CHOOSE`` of its own."""
+    wanted = set(subject_ids)
+    if not board.choose_subjects:
+        if wanted:
+            raise BadRequestError("This class has fixed subjects", code="invalid_subjects")
+        return wanted
+    valid = set(
+        db.scalars(
+            select(Subject.id).where(Subject.id.in_(wanted), Subject.board_id == board.id)
+        ).all()
+    )
+    if valid != wanted:
+        raise BadRequestError("Pick subjects of your own class", code="invalid_subjects")
+    available = db.scalar(select(func.count(Subject.id)).where(Subject.board_id == board.id)) or 0
+    needed = min(settings.SUBJECTS_TO_CHOOSE, available)
+    if len(wanted) != needed:
+        raise BadRequestError(f"Pick exactly {needed} subjects", code="invalid_subjects")
+    return wanted
+
+
+def set_class(
+    db: Session,
+    user: User,
+    board_id: int | None,
+    subject_ids: list[int] | None,
+    *,
+    by_admin: bool = False,
+) -> None:
+    """Change the student's class and/or chosen subjects (does not commit).
+
+    Students may change them freely until their first payment; after that only an admin can.
+    Moving to another class clears the old subject choice.
 
     Raises:
-        BadRequestError: the board does not exist or is not active.
+        BadRequestError: unknown / hidden class, or an invalid subject choice.
+        ForbiddenError: the class is fixed after payment (``class_locked``).
+    """
+    board = user.board
+    if board_id is not None and board_id != user.board_id:
+        board = db.get(Board, board_id)
+        if board is None or (not board.is_active and not by_admin):
+            raise BadRequestError("This board is not available", code="invalid_board")
+    class_changes = board is not None and board.id != user.board_id
+    subjects_change = subject_ids is not None and set(subject_ids) != set(user.subject_ids)
+    if not (class_changes or subjects_change):
+        return
+    if not by_admin and has_paid(db, user):
+        raise ForbiddenError(
+            "Your class and subjects are fixed after payment. Please contact us to change them.",
+            code="class_locked",
+        )
+    if board is None:
+        raise BadRequestError("Choose your class first", code="invalid_subjects")
+    wanted = _check_subjects(db, board, subject_ids) if subject_ids is not None else set()
+    user.board_id = board.id
+    user.board = board
+    user.chosen_subjects.clear()
+    db.flush()
+    user.chosen_subjects.extend(StudentSubject(subject_id=i) for i in sorted(wanted))
+
+
+def update_profile(db: Session, user: User, data: UpdateMeRequest) -> User:
+    """Apply profile changes (name, class, subjects, medium, lesson language, setup role).
+
+    Raises:
+        BadRequestError: the class does not exist / is hidden, or a wrong subject choice.
+        ForbiddenError: admins cannot change their own role here; class fixed after payment.
         ConflictError: role change after the account has started studying.
-        ForbiddenError: admins cannot change their own role here.
     """
     if data.role is not None and data.role != user.role:
         _change_setup_role(db, user, UserRole(data.role))
-    if data.board_id is not None:
-        board = db.get(Board, data.board_id)
-        if board is None or not board.is_active:
-            raise BadRequestError("This board is not available", code="invalid_board")
-        user.board_id = board.id
+    if data.board_id is not None or data.subject_ids is not None:
+        set_class(db, user, data.board_id, data.subject_ids)
     if data.medium is not None:
         user.medium = data.medium
     if data.lesson_language is not None:

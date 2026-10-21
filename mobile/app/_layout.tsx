@@ -9,6 +9,7 @@ import type { ReactNode } from 'react';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { SessionBusyOverlay } from '@/components/auth/SessionBusyOverlay';
 import { AuthProvider } from '@/context/AuthContext';
 import { useAuth } from '@/hooks/useAuth';
 import { queryClient } from '@/lib/queryClient';
@@ -77,6 +78,7 @@ export default function RootLayout() {
             <StatusBar style="dark" />
             <Stack screenOptions={screenOptions} />
             <NotificationRouter />
+            <SessionBusyOverlay />
           </ThemedApp>
         </AuthProvider>
       </QueryClientProvider>

@@ -9,6 +9,8 @@ import { tokenStorage } from './tokenStorage';
 
 const REQUEST_TIMEOUT_MS = 20_000;
 const REFRESH_PATH = '/auth/refresh';
+/** Another device is using this student's account right now. */
+export const SESSION_ACTIVE = 'session_active';
 /** Endpoints where a 401 means "bad credentials", never "refresh and retry". */
 const NO_REFRESH_PATHS = [
   REFRESH_PATH,
@@ -89,6 +91,10 @@ api.interceptors.response.use(
       return Promise.reject(error);
     }
     const original = error.config as RetriableRequestConfig;
+    if (error.response?.status === 409 && getApiErrorCode(error) === SESSION_ACTIVE) {
+      authEvents.emitSessionBusy();
+      return Promise.reject(error);
+    }
     const isRefreshCall = NO_REFRESH_PATHS.some((path) => original.url?.includes(path) ?? false);
 
     if (error.response?.status !== 401 || original._retry || isRefreshCall) {

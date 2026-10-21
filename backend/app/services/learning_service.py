@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.exceptions import NotFoundError, RateLimitedError
-from app.models.curriculum import Topic
+from app.models.curriculum import Subject, Topic
 from app.models.enums import (
     JobKind,
     JobStatus,
@@ -47,8 +47,11 @@ PLAYABLE = (LessonStatus.audio_ready, LessonStatus.ready)
 IN_FLIGHT = (LessonStatus.pending, LessonStatus.generating)
 
 
-def student_language(user: User) -> LessonLanguage:
-    """Preferred explanation language; defaults to the textbook medium."""
+def student_language(user: User, subject: Subject | None = None) -> LessonLanguage:
+    """Explanation language: a language subject's own language (Tamil is always explained in
+    Tamil), else the student's preference, defaulting to the textbook medium."""
+    if subject is not None and subject.fixed_medium:
+        return LessonLanguage(subject.fixed_medium)
     if user.lesson_language:
         return LessonLanguage(user.lesson_language)
     return LessonLanguage(student_medium(user).value)
@@ -199,7 +202,7 @@ def _queue_generation(
     """Create (pending lesson + queued job) and dispatch it."""
     lesson = Lesson(
         topic_id=topic.id,
-        medium=student_medium(user),
+        medium=student_medium(user, topic.chapter.subject),
         language=language,
         style=style,
         source=LessonSource.ai_generated,
@@ -210,7 +213,7 @@ def _queue_generation(
     job = GenerationJob(
         user_id=user.id,
         topic_id=topic.id,
-        medium=student_medium(user),
+        medium=student_medium(user, topic.chapter.subject),
         requested_style=style,
         kind=JobKind.explanation,
         status=JobStatus.queued,
@@ -263,7 +266,7 @@ def open_lesson(db: Session, user: User, topic_id: int) -> LessonResponse:
     lesson, else the story lesson.
     """
     topic, _ = require_topic_access(db, user, topic_id)
-    language = student_language(user)
+    language = student_language(user, topic.chapter.subject)
     last_seen = db.scalar(
         select(Lesson)
         .join(LessonView, LessonView.lesson_id == Lesson.id)
@@ -299,7 +302,7 @@ def open_lesson(db: Session, user: User, topic_id: int) -> LessonResponse:
 def choose_style(db: Session, user: User, topic_id: int, style: LessonStyle) -> LessonResponse:
     """The student picked an explanation style: cached lesson, or start generating it."""
     topic, _ = require_topic_access(db, user, topic_id)
-    return _lesson_or_job(db, user, topic, student_language(user), style)
+    return _lesson_or_job(db, user, topic, student_language(user, topic.chapter.subject), style)
 
 
 def choose_language(
@@ -307,8 +310,12 @@ def choose_language(
 ) -> LessonResponse:
     """Switch the explanation language (remembered for next lessons) and return that lesson."""
     topic, _ = require_topic_access(db, user, topic_id)
-    user.lesson_language = language
-    db.commit()
+    subject = topic.chapter.subject
+    if subject.fixed_medium:  # language subjects stay in their own language
+        language = student_language(user, subject)
+    else:
+        user.lesson_language = language
+        db.commit()
     return _lesson_or_job(db, user, topic, language, style or DEFAULT_STYLE)
 
 
@@ -317,7 +324,7 @@ def not_clear(
 ) -> LessonResponse:
     """Record "Not clear" and return (or start generating) an explanation in a new style."""
     topic, _ = require_topic_access(db, user, topic_id)
-    language = student_language(user)
+    language = student_language(user, topic.chapter.subject)
     current = db.get(Lesson, lesson_id) if lesson_id else None
     if current is not None and current.topic_id != topic.id:
         current = None

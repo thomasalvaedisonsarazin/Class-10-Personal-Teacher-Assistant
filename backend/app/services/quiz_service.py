@@ -189,7 +189,7 @@ def start_attempt(db: Session, user: User, topic_id: int) -> QuizAttemptOut:
     if open_attempt is not None and _aware(open_attempt.expires_at) > now:
         return _attempt_out(open_attempt)
 
-    medium = student_medium(user)
+    medium = student_medium(user, topic.chapter.subject)
     wanted = settings.QUIZ_QUESTIONS_PER_ATTEMPT
     served = served_question_ids(db, user, topic.id)
     candidates = _unseen_questions(db, topic.id, medium, served)
@@ -235,7 +235,9 @@ def _next_topic(db: Session, user: User, topic: Topic) -> NextTopicOut | None:
         return None
     next_topic = db.get(Topic, next_id)
     return (
-        NextTopicOut(id=next_id, title=topic_title(next_topic, student_medium(user)))
+        NextTopicOut(
+            id=next_id, title=topic_title(next_topic, student_medium(user, topic.chapter.subject))
+        )
         if next_topic
         else None
     )

@@ -27,6 +27,7 @@ from app.schemas.admin import (
     AdminChapter,
     AdminSubject,
     AdminTopic,
+    BoardUpdate,
     ChapterCreate,
     ChapterUpdate,
     CurriculumImport,
@@ -56,7 +57,21 @@ def _commit(db: Session) -> None:
 
 def list_boards(db: Session) -> list[AdminBoard]:
     """All boards (active or not)."""
-    return [AdminBoard.model_validate(b) for b in db.scalars(select(Board).order_by(Board.id))]
+    boards = db.scalars(select(Board).order_by(Board.family, Board.grade, Board.id))
+    return [AdminBoard.model_validate(b) for b in boards]
+
+
+def update_board(db: Session, board_id: int, data: BoardUpdate) -> AdminBoard:
+    """Rename a class or show / hide it to students (existing students keep it)."""
+    board = db.get(Board, board_id)
+    if board is None:
+        raise NotFoundError("Board not found")
+    if data.name is not None:
+        board.name = data.name.strip()
+    if data.is_active is not None:
+        board.is_active = data.is_active
+    _commit(db)
+    return AdminBoard.model_validate(board)
 
 
 def curriculum_tree(db: Session, board_id: int) -> CurriculumTree:
@@ -118,6 +133,7 @@ def curriculum_tree(db: Session, board_id: int) -> CurriculumTree:
                 tile_color=s.tile_color,
                 icon=s.icon,
                 display_order=s.display_order,
+                fixed_medium=Medium(s.fixed_medium) if s.fixed_medium else None,
                 chapters=[chapter_out(c) for c in s.chapters],
             )
             for s in subjects
@@ -200,6 +216,8 @@ def update_subject(db: Session, subject_id: int, data: SubjectUpdate) -> Subject
         subject.icon = data.icon
     if data.display_order is not None:
         subject.display_order = data.display_order
+    if data.fixed_medium is not None:
+        subject.fixed_medium = data.fixed_medium or None
     if data.name is not None:
         en = next((t for t in subject.translations if t.medium == Medium.en), None)
         if en is not None:
@@ -307,10 +325,13 @@ def import_curriculum(db: Session, data: CurriculumImport) -> ImportResult:
     if board is None:
         if not data.board_name:
             raise NotFoundError(f"Board {data.board_code!r} not found")
-        board = Board(code=code, name=data.board_name.strip(), is_active=True)
+        board = Board(code=code, name=data.board_name.strip(), is_active=data.is_active)
         db.add(board)
-        db.flush()
         created["boards"] += 1
+    board.family = data.family.strip().upper()
+    board.grade = data.grade
+    board.choose_subjects = data.choose_subjects
+    db.flush()
 
     for s in data.subjects:
         subject = db.scalar(
@@ -331,6 +352,7 @@ def import_curriculum(db: Session, data: CurriculumImport) -> ImportResult:
         else:
             updated["subjects"] += 1
         subject.name, subject.tile_color, subject.icon = s.name, s.tile_color, s.icon
+        subject.fixed_medium = s.fixed_medium.value if s.fixed_medium else None
         en_s = next((x for x in subject.translations if x.medium == Medium.en), None)
         if en_s is None:
             subject.translations.append(SubjectTranslation(medium=Medium.en, name=s.name))

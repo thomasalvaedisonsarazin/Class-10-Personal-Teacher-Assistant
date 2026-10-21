@@ -1,0 +1,528 @@
+{
+ "boardCode": "TN_11",
+ "boardName": "Tamil Nadu State Board – Class 11",
+ "family": "TN_STATE",
+ "grade": 11,
+ "chooseSubjects": true,
+ "isActive": false,
+ "subjects": [
+  {
+   "key": "tamil",
+   "name": "Tamil",
+   "nameTa": "தமிழ்",
+   "tileColor": "#3B6EA5",
+   "icon": "book-open-page-variant",
+   "kind": "tamil",
+   "fixedMedium": "ta",
+   "en": [],
+   "ta": [
+    "Book/11th/11th_Genreal Tamil.pdf"
+   ]
+  },
+  {
+   "key": "advanced_tamil",
+   "name": "Advanced Tamil",
+   "nameTa": "சிறப்புத் தமிழ்",
+   "tileColor": "#4F8A6B",
+   "icon": "book-open-page-variant",
+   "kind": "tamil",
+   "fixedMedium": "ta",
+   "en": [],
+   "ta": [
+    "Book/11th/11th_Advance Tamil_Text.pdf"
+   ]
+  },
+  {
+   "key": "english",
+   "name": "English",
+   "nameTa": "ஆங்கிலம்",
+   "tileColor": "#3E8C8C",
+   "icon": "alphabet-latin",
+   "kind": "english",
+   "en": [
+    "Book/11th/11th_General English_Text.pdf"
+   ],
+   "ta": []
+  },
+  {
+   "key": "communicative_english",
+   "name": "Communicative English",
+   "nameTa": "தொடர்பு ஆங்கிலம்",
+   "tileColor": "#7A6A9E",
+   "icon": "message-text-outline",
+   "kind": "english",
+   "en": [
+    "Book/11th/11th_Communicative English_Text.pdf"
+   ],
+   "ta": []
+  },
+  {
+   "key": "mathematics",
+   "name": "Mathematics",
+   "nameTa": "கணிதம்",
+   "tileColor": "#B0745A",
+   "icon": "calculator-variant",
+   "en": [
+    "Book/11th/11th_Maths_Vol-1_English Medium_Text.pdf",
+    "Book/11th/11th_Mathematics-Vol-2_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Maths_Vol-1_Tamil Medium_Text.pdf",
+    "Book/11th/XIth_Maths_Vol-2_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "physics",
+   "name": "Physics",
+   "nameTa": "இயற்பியல்",
+   "tileColor": "#5C7A99",
+   "icon": "atom",
+   "en": [
+    "Book/11th/11th_Physics Vol 1_English Medium_Text.pdf",
+    "Book/11th/11th_Physics_Vol-2_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Physics_Vol-1_Tamil Medium_Text.pdf",
+    "Book/11th/11th_Physics_Vol-2_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "chemistry",
+   "name": "Chemistry",
+   "nameTa": "வேதியியல்",
+   "tileColor": "#3B6EA5",
+   "icon": "flask-outline",
+   "en": [
+    "Book/11th/11th_Chemistry_Vol-1_English Medium_Text.pdf",
+    "Book/11th/11th_Chemistry_Vol-2_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Chemistry_Vol-1_Tamil Medium_Text.pdf",
+    "Book/11th/11th Chemistry_Vol-2 TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "botany",
+   "name": "Botany",
+   "nameTa": "தாவரவியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "leaf",
+   "en": [
+    "Book/11th/11th_Botany_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Botany_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "zoology",
+   "name": "Zoology",
+   "nameTa": "விலங்கியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "paw",
+   "en": [
+    "Book/11th/11th_Zoology_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Zoology_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "bio_botany",
+   "name": "Bio-Botany",
+   "nameTa": "உயிரி-தாவரவியல்",
+   "tileColor": "#7A6A9E",
+   "icon": "sprout",
+   "en": [
+    "Book/11th/11th Bio-Botany_EM.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th Bio-Botany_TM.pdf"
+   ]
+  },
+  {
+   "key": "bio_zoology",
+   "name": "Bio-Zoology",
+   "nameTa": "உயிரி-விலங்கியல்",
+   "tileColor": "#B0745A",
+   "icon": "fish",
+   "en": [
+    "Book/11th/11th_Bio-Zoology_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Bio-Zoology_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "bio_chemistry",
+   "name": "Bio-Chemistry",
+   "nameTa": "உயிர் வேதியியல்",
+   "tileColor": "#5C7A99",
+   "icon": "test-tube",
+   "en": [
+    "Book/11th/11th_Bio-Chemistry_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Bio-Chemistry_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "microbiology",
+   "name": "Microbiology",
+   "nameTa": "நுண்ணுயிரியல்",
+   "tileColor": "#3B6EA5",
+   "icon": "bacteria-outline",
+   "en": [
+    "Book/11th/11th_Micro_Biology_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Micro_Biology_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "computer_science",
+   "name": "Computer Science",
+   "nameTa": "கணினி அறிவியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "laptop",
+   "en": [
+    "Book/11th/11th_Computer Science_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Computer Science_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "computer_applications",
+   "name": "Computer Applications",
+   "nameTa": "கணினிப் பயன்பாடுகள்",
+   "tileColor": "#3E8C8C",
+   "icon": "monitor",
+   "en": [
+    "Book/11th/11th_Computer Application_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Computer Application_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "commerce",
+   "name": "Commerce",
+   "nameTa": "வணிகவியல்",
+   "tileColor": "#7A6A9E",
+   "icon": "storefront-outline",
+   "en": [
+    "Book/11th/11th_Commerce_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Commerce_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "economics",
+   "name": "Economics",
+   "nameTa": "பொருளியல்",
+   "tileColor": "#B0745A",
+   "icon": "chart-line",
+   "en": [
+    "Book/11th/11th_Economics_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Economics_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "statistics",
+   "name": "Statistics",
+   "nameTa": "புள்ளியியல்",
+   "tileColor": "#5C7A99",
+   "icon": "chart-bell-curve",
+   "en": [
+    "Book/11th/11th_Statistic_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Statistic_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "geography",
+   "name": "Geography",
+   "nameTa": "புவியியல்",
+   "tileColor": "#3B6EA5",
+   "icon": "earth",
+   "en": [
+    "Book/11th/11th_Geography_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Geography_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "accountancy",
+   "name": "Accountancy",
+   "nameTa": "கணக்குப்பதிவியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "cash-register",
+   "en": [
+    "Book/11th/11th_Accountancy_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Accountancy_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "business_mathematics_and_statistics",
+   "name": "Business Mathematics and Statistics",
+   "nameTa": "வணிகக் கணிதம் மற்றும் புள்ளியியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "chart-bar",
+   "en": [
+    "Book/11th/11th_Bussiness Maths_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Bussiness Maths_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "history",
+   "name": "History",
+   "nameTa": "வரலாறு",
+   "tileColor": "#7A6A9E",
+   "icon": "castle",
+   "en": [
+    "Book/11th/11th_History_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_History_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "political_science",
+   "name": "Political Science",
+   "nameTa": "அரசியல் அறிவியல்",
+   "tileColor": "#B0745A",
+   "icon": "bank-outline",
+   "en": [
+    "Book/11th/11th_Political Science EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Political Science TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "ethics_and_indian_culture",
+   "name": "Ethics and Indian Culture",
+   "nameTa": "அறவியலும் இந்தியப் பண்பாடும்",
+   "tileColor": "#5C7A99",
+   "icon": "hand-heart-outline",
+   "en": [],
+   "ta": [
+    "Book/11th/11thth_Ethics and Indian Culture_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "nursing_general",
+   "name": "Nursing (General)",
+   "nameTa": "செவிலியம் (பொது)",
+   "tileColor": "#3B6EA5",
+   "icon": "medical-bag",
+   "en": [
+    "Book/11th/11th_General Nursing_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_General Nursing_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "nutrition_and_dietetics",
+   "name": "Nutrition and Dietetics",
+   "nameTa": "ஊட்டச்சத்து மற்றும் உணவுமுறையியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "food-apple-outline",
+   "en": [
+    "Book/11th/11th_Nutrition and Dietetics_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Nutrition and Dietetics_TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "home_science",
+   "name": "Home Science",
+   "nameTa": "மனையியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "home-heart",
+   "en": [
+    "Book/11th/11th_Home Science_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Home Science _TM_Text.pdf"
+   ]
+  },
+  {
+   "key": "basic_electronics_engineering",
+   "name": "Basic Electronics Engineering",
+   "nameTa": "அடிப்படை மின்னணுப் பொறியியல்",
+   "tileColor": "#7A6A9E",
+   "icon": "chip",
+   "en": [
+    "Book/11th/11th Std Basic Electronics Engineering Theory_Practicle_ EM _Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Basic Electronics Engineering_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "basic_mechanical_engineering",
+   "name": "Basic Mechanical Engineering",
+   "nameTa": "அடிப்படை இயந்திரப் பொறியியல்",
+   "tileColor": "#B0745A",
+   "icon": "cog-outline",
+   "en": [
+    "Book/11th/11th_Basic Mechanical Engg_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Basic Mechanical Engineering_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "basic_electrical_engineering",
+   "name": "Basic Electrical Engineering",
+   "nameTa": "அடிப்படை மின் பொறியியல்",
+   "tileColor": "#5C7A99",
+   "icon": "flash-outline",
+   "en": [
+    "Book/11th/11th_Std_Basic_Electrical_Engineering_Theory_Practicle_ EM_Text_2024.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Basic Electrical Engineering_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "basic_automobile_engineering",
+   "name": "Basic Automobile Engineering",
+   "nameTa": "அடிப்படை தானியங்கிப் பொறியியல்",
+   "tileColor": "#3B6EA5",
+   "icon": "car-cog",
+   "en": [
+    "Book/11th/11th_Basic Automobile Engineering_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Basic Automobile Engineering_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "basic_civil_engineering",
+   "name": "Basic Civil Engineering",
+   "nameTa": "அடிப்படை கட்டடப் பொறியியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "office-building-outline",
+   "en": [
+    "Book/11th/11th_Basic Civil Engineering_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Basic Civil Engineering_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "auditing",
+   "name": "Auditing",
+   "nameTa": "தணிக்கையியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "clipboard-check-outline",
+   "en": [
+    "Book/11th/11_Auditing_Theory_Practicle_ EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Auditing_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "nursing_vocational",
+   "name": "Nursing (Vocational)",
+   "nameTa": "செவிலியம் (தொழிற்கல்வி)",
+   "tileColor": "#7A6A9E",
+   "icon": "hospital-box-outline",
+   "en": [
+    "Book/11th/11th_Nursing_Vocational_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Nursing_Vocational_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "textile_technology",
+   "name": "Textile Technology",
+   "nameTa": "ஜவுளித் தொழில்நுட்பம்",
+   "tileColor": "#B0745A",
+   "icon": "texture-box",
+   "en": [],
+   "ta": [
+    "Book/11th/11th_Textile Technology_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "office_management_and_secretaryship",
+   "name": "Office Management and Secretaryship",
+   "nameTa": "அலுவலக மேலாண்மை மற்றும் செயலாண்மை",
+   "tileColor": "#5C7A99",
+   "icon": "briefcase-outline",
+   "en": [
+    "Book/11th/11th_Std_Office_Management_&_Secretaryship_Theory_Practicle_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Offic Management and Secretaryship_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "food_service_management",
+   "name": "Food Service Management",
+   "nameTa": "உணவு சேவை மேலாண்மை",
+   "tileColor": "#3B6EA5",
+   "icon": "silverware-fork-knife",
+   "en": [
+    "Book/11th/11th_Food Service Management_English Medium_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Food Service Management_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "textiles_and_dress_designing",
+   "name": "Textiles and Dress Designing",
+   "nameTa": "ஜவுளி மற்றும் ஆடை வடிவமைப்பு",
+   "tileColor": "#4F8A6B",
+   "icon": "tshirt-crew-outline",
+   "en": [
+    "Book/11th/11th Textiles and Dress Designing EM Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_Textiles & Dress Designing_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "agricultural_science",
+   "name": "Agricultural Science",
+   "nameTa": "வேளாண் அறிவியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "tractor",
+   "en": [],
+   "ta": [
+    "Book/11th/11th_Agriculture_Tamil Medium_Text.pdf"
+   ]
+  },
+  {
+   "key": "employability_skills",
+   "name": "Employability Skills",
+   "nameTa": "வேலைவாய்ப்புத் திறன்கள்",
+   "tileColor": "#7A6A9E",
+   "icon": "account-tie-outline",
+   "en": [
+    "Book/11th/11th_ Employability Skill_EM_Text.pdf"
+   ],
+   "ta": [
+    "Book/11th/11th_ Employability Skill_Tamil Medium_Text.pdf"
+   ]
+  }
+ ]
+}

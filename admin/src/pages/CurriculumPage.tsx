@@ -8,6 +8,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { ErrorState } from '@/components/ui/ErrorState';
 import { FormDialog } from '@/components/ui/FormDialog';
 import { LoadingState } from '@/components/ui/LoadingState';
+import { BoardSwitcher } from '@/components/curriculum/BoardSwitcher';
 import { PageWrapper } from '@/components/ui/PageWrapper';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { useCurriculumTree } from '@/hooks/useCurriculumTree';
@@ -16,7 +17,7 @@ import { getApiErrorMessage } from '@/services/api';
 import type { AdminTopic, TopicInput } from '@/types/admin';
 
 const IMPORT_EXAMPLE = `{
-  "boardCode": "TN_SSLC",
+  "boardCode": "TN_SSLC", "boardName": "Tamil Nadu State Board – Class 10", "grade": 10,
   "subjects": [
     {
       "name": "Mathematics", "nameTa": "கணிதம்", "tileColor": "#3B6EA5",
@@ -45,7 +46,7 @@ const EMPTY_FORM: TopicForm = { title: '', titleTa: '', learningObjectives: '', 
 
 export default function CurriculumPage() {
   const queryClient = useQueryClient();
-  const { board, boards, tree } = useCurriculumTree();
+  const { board, boards, tree, setBoardId } = useCurriculumTree();
   const [dialog, setDialog] = useState<TopicDialog | null>(null);
   const [form, setForm] = useState<TopicForm>(EMPTY_FORM);
   const [importOpen, setImportOpen] = useState(false);
@@ -121,16 +122,36 @@ export default function CurriculumPage() {
     }
   };
 
-  const error = boards.error ?? tree.error;
+  const toggleVisible = useMutation({
+    mutationFn: () => adminService.updateBoard(board?.id ?? 0, { isActive: !board?.isActive }),
+    onSuccess: async (updated) => {
+      setNotice(updated.isActive ? `${updated.name} is now visible to students.` : `${updated.name} is now hidden from new students.`);
+      await refresh();
+    },
+  });
+
+  const error = boards.error ?? tree.error ?? toggleVisible.error;
 
   return (
     <PageWrapper
       title="Curriculum"
-      description={board ? `${board.name} — subjects, chapters and topics in English and Tamil.` : undefined}
+      description={
+        board
+          ? `${board.name} — ${board.isActive ? 'visible to students' : 'hidden from students'}. Subjects, chapters and topics in English and Tamil.`
+          : undefined
+      }
       actions={
-        <Button variant="outline" onClick={() => setImportOpen(true)} disabled={!board}>
-          <FiUpload /> Import syllabus (JSON)
-        </Button>
+        <HStack gap={2} wrap="wrap">
+          <BoardSwitcher boards={boards.data} value={board?.id} onChange={setBoardId} />
+          {board && (
+            <Button variant="outline" onClick={() => toggleVisible.mutate()} loading={toggleVisible.isPending}>
+              {board.isActive ? 'Hide from students' : 'Show to students'}
+            </Button>
+          )}
+          <Button variant="outline" onClick={() => setImportOpen(true)} disabled={!board}>
+            <FiUpload /> Import syllabus (JSON)
+          </Button>
+        </HStack>
       }
     >
       <Stack gap={4}>

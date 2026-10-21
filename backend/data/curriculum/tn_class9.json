@@ -1,0 +1,3624 @@
+{
+ "boardCode": "TN_9",
+ "boardName": "Tamil Nadu State Board – Class 9",
+ "family": "TN_STATE",
+ "grade": 9,
+ "chooseSubjects": false,
+ "isActive": false,
+ "subjects": [
+  {
+   "name": "Mathematics",
+   "nameTa": "கணிதம்",
+   "tileColor": "#3B6EA5",
+   "icon": "calculator-variant",
+   "chapters": [
+    {
+     "title": "Set Language",
+     "titleTa": "கணமொழி",
+     "displayOrder": 1,
+     "topics": [
+      {
+       "title": "Set; Representation of a Set",
+       "titleTa": "கணம்; கணத்தைக் குறிப்பிடும் முறைகள்",
+       "learningObjectives": "Define a set and identify well-defined collections. Represent sets in descriptive, set-builder, and roster forms.",
+       "learningObjectivesTa": "கணத்தின் கருத்தையும் நன்கு வரையறுக்கப்பட்ட தொகுப்புகளையும் விளக்குதல். கணங்களை விவரித்தல், கணக்கட்டமைப்பு மற்றும் பட்டியல் முறைகளில் குறிப்பிடுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Types of Sets",
+       "titleTa": "கணங்களின் வகைகள்",
+       "learningObjectives": "Classify sets as empty, singleton, finite, infinite, equivalent, equal, universal, subsets, proper subsets, and disjoint sets. Use cardinality to compare sets.",
+       "learningObjectivesTa": "வெற்றுக்கணம், ஓருறுப்புக் கணம், முடிவுறு கணம், முடிவுறாக் கணம், சமான கணம், சம கணம், அனைத்துக் கணம், உட்கணம், தகு உட்கணம் மற்றும் தனிமக் கணம் ஆகியவற்றை வகைப்படுத்துதல். ஆதி எண்ணின் அடிப்படையில் கணங்களை ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Set Operations",
+       "titleTa": "கணச் செயல்பாடுகள்",
+       "learningObjectives": "Perform union, intersection, and complement operations on sets. Interpret results using Venn diagrams.",
+       "learningObjectivesTa": "கணங்களின் சேர்ப்பு, வெட்டு மற்றும் நிரப்புக்கணம் ஆகிய செயல்பாடுகளைச் செய்தல். வென் படத்தைப் பயன்படுத்தி விளைவுகளைப் புரிந்துகொள்ளுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Properties of Set Operations",
+       "titleTa": "கணச் செயல்களின் பண்புகள்",
+       "learningObjectives": "Verify the commutative, associative, and distributive properties of sets. Use these properties to simplify set expressions.",
+       "learningObjectivesTa": "கணச் செயல்களில் பரிமாற்று, சேர்ப்பு மற்றும் பகிர்வு பண்புகளைச் சரிபார்த்தல். இப்பண்புகளைப் பயன்படுத்தி கண வெளிப்பாடுகளை எளிமைப்படுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "De Morgan’s Laws",
+       "titleTa": "டி மார்கன் விதிகள்",
+       "learningObjectives": "State and verify De Morgan’s laws for sets. Use them to find complements of unions and intersections.",
+       "learningObjectivesTa": "கணங்களுக்கான டி மார்கன் விதிகளை எழுதுதல் மற்றும் சரிபார்த்தல். சேர்ப்பு மற்றும் வெட்டு கணங்களின் நிரப்புக் கணங்களை கண்டறிதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Application on Cardinality of Sets",
+       "titleTa": "கணங்களின் ஆதி எண்ணின் பயன்பாட்டுக் கணக்குகள்",
+       "learningObjectives": "Apply set language and cardinality to solve simple word problems. Count elements in unions, intersections, and related set situations.",
+       "learningObjectivesTa": "கணமொழி மற்றும் ஆதி எண்ணைப் பயன்படுத்தி எளிய வார்த்தைப் பிரச்சினைகளைத் தீர்த்தல். சேர்ப்பு, வெட்டு மற்றும் தொடர்புடைய கணச் சூழல்களில் உறுப்புகளைக் கணக்கிடுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Real Numbers",
+     "titleTa": "மெய்யெண்கள்",
+     "displayOrder": 2,
+     "topics": [
+      {
+       "title": "Rational Numbers",
+       "titleTa": "விகிதமுறு எண்கள்",
+       "learningObjectives": "Distinguish rational numbers and represent them on the number line. Write rational numbers in decimal form.",
+       "learningObjectivesTa": "விகிதமுறு எண்களை வேறுபடுத்தி அவற்றை எண் கோட்டில் குறித்தல். விகிதமுறு எண்களை தசம வடிவில் எழுதுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Irrational Numbers",
+       "titleTa": "விகிதமுறா எண்கள்",
+       "learningObjectives": "Identify irrational numbers and locate them on the number line. Express irrational numbers in decimal form and compare them with rational numbers.",
+       "learningObjectivesTa": "விகிதமுறா எண்களை அடையாளம் கண்டு எண் கோட்டில் அமைத்தல். அவற்றை தசம வடிவில் வெளிப்படுத்தி விகிதமுறு எண்களுடன் ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Real Numbers",
+       "titleTa": "மெய்யெண்கள்",
+       "learningObjectives": "Classify numbers as rational or irrational and understand the real number system. Visualize real numbers on the number line.",
+       "learningObjectivesTa": "விகிதமுறு மற்றும் விகிதமுறா எண்களை வகைப்படுத்தி மெய்யெண் முறைமையைப் புரிந்துகொள்ளுதல். மெய்யெண்களை எண் கோட்டில் காணுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Radical Notation; Surds",
+       "titleTa": "மூலக்குறியீடு; முறுடுகள்",
+       "learningObjectives": "Use radical notation correctly and identify surds. Perform basic operations with surds.",
+       "learningObjectivesTa": "மூலக்குறியீட்டைச் சரியாகப் பயன்படுத்தி முறுடுகளை அடையாளம் காணுதல். முறுடுகளுடன் அடிப்படைச் செயல்கள் செய்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Rationalisation of Surds",
+       "titleTa": "முறுடுகளை விகிதப்படுத்துதல்",
+       "learningObjectives": "Rationalise denominators containing surds. Simplify expressions by removing irrational factors from the denominator.",
+       "learningObjectivesTa": "முறுடுகளைக் கொண்ட பகவுகளை விகிதப்படுத்துதல். பகவிலிருந்து விகிதமுறா காரகங்களை நீக்கி எளிமைப்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Scientific Notation",
+       "titleTa": "அறிவியல் குறியீடு",
+       "learningObjectives": "Write very large and very small numbers in scientific notation. Convert between standard form and scientific notation.",
+       "learningObjectivesTa": "மிகப் பெரிய மற்றும் மிகச் சிறிய எண்களை அறிவியல் குறியீட்டில் எழுதுதல். வழக்கமான வடிவம் மற்றும் அறிவியல் குறியீடு இடையே மாற்றுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Algebra",
+     "titleTa": "இயற்கணிதம்",
+     "displayOrder": 3,
+     "topics": [
+      {
+       "title": "Polynomials",
+       "titleTa": "பல்லுறுப்புக் கோவைகள்",
+       "learningObjectives": "Recognize polynomial expressions and classify polynomials by degree and terms. Evaluate polynomials and identify their zeros.",
+       "learningObjectivesTa": "பல்லுறுப்புக் கோவை வெளிப்பாடுகளை அறிந்து அவற்றை அடுக்கு மற்றும் உறுப்புகளின் எண்ணிக்கையின் அடிப்படையில் வகைப்படுத்துதல். பல்லுறுப்புக் கோவைகளின் மதிப்புகளைக் கணக்கிட்டு அவற்றின் பூச்சியங்களை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Remainder Theorem; Algebraic Identities",
+       "titleTa": "மீதித் தேற்றம்; இயற்கணித முற்றொருமைகள்",
+       "learningObjectives": "Use the remainder theorem to find remainders quickly. Apply algebraic identities in algebraic simplification and factorisation.",
+       "learningObjectivesTa": "மீதித் தேற்றத்தைப் பயன்படுத்தி மீதியைக் விரைவாகக் கண்டறிதல். இயற்கணித எளிமைப்படுத்தல் மற்றும் காரணிப்படுத்தலில் முற்றொருமைகளைப் பயன்படுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Factorisation",
+       "titleTa": "காரணிப்படுத்துதல்",
+       "learningObjectives": "Factorise quadratic and cubic polynomials using suitable methods. Rewrite expressions as products of factors.",
+       "learningObjectivesTa": "இருபடி மற்றும் முப்படி பல்லுறுப்புக் கோவைகளைக் பொருத்தமான முறைகளால் காரணிப்படுத்துதல். வெளிப்பாடுகளை காரணிகளின் பெருக்கலாக மீள எழுதுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Division of Polynomials",
+       "titleTa": "பல்லுறுப்புக் கோவைகளின் வகுத்தல்",
+       "learningObjectives": "Divide one polynomial by another using long division or synthetic division. Interpret the quotient and remainder.",
+       "learningObjectivesTa": "ஒரு பல்லுறுப்புக் கோவையை மற்றொன்றால் நீண்ட வகுத்தல் அல்லது செயற்கை வகுத்தல் மூலம் வகுத்தல். வீதம் மற்றும் மீதியைப் பொருள் புரிந்துகொள்ளுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Greatest Common Divisor (GCD)",
+       "titleTa": "மீப்பெரு பொது வகுத்தி",
+       "learningObjectives": "Find the greatest common divisor of algebraic expressions. Use GCD to simplify and factorise polynomials further.",
+       "learningObjectivesTa": "இயற்கணித வெளிப்பாடுகளின் மீப்பெரு பொது வகுத்தியைக் கண்டறிதல். அதனைப் பயன்படுத்தி பல்லுறுப்புக் கோவைகளை மேலும் எளிமைப்படுத்தி காரணிப்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Linear Equation in Two Variables",
+       "titleTa": "இரு மாறிகளில் அமைந்த நேரியச் சமன்பாடு",
+       "learningObjectives": "Understand linear equations in two variables and represent their solutions. Solve and interpret simple problems involving such equations.",
+       "learningObjectivesTa": "இரு மாறிகளில் அமைந்த நேரியச் சமன்பாடுகளையும் அவற்றின் தீர்வுகளையும் புரிந்துகொள்ளுதல். அத்தகைய சமன்பாடுகள் தொடர்பான எளிய பிரச்சினைகளைத் தீர்த்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Geometry",
+     "titleTa": "வடிவியல்",
+     "displayOrder": 4,
+     "topics": [
+      {
+       "title": "Types of Angles",
+       "titleTa": "கோணங்களின் வகைகள்",
+       "learningObjectives": "Identify and name different types of angles. Use angle relationships in geometric figures.",
+       "learningObjectivesTa": "பல்வேறு வகை கோணங்களை அடையாளம் கண்டு பெயரிடுதல். வடிவியல் உருவங்களில் கோண உறவுகளைப் பயன்படுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Quadrilaterals",
+       "titleTa": "நாற்கரங்கள்",
+       "learningObjectives": "State and use the properties of quadrilaterals. Solve problems involving sides, angles, and diagonals.",
+       "learningObjectivesTa": "நாற்கரங்களின் பண்புகளை எழுதிப் பயன்படுத்துதல். பக்கங்கள், கோணங்கள், குறுக்கு கோடுகள் தொடர்பான பிரச்சினைகளைத் தீர்த்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Parts of a Circle; Properties of Chords of a Circle",
+       "titleTa": "வட்டத்தின் பகுதிகள்; ஒரு வட்டத்தின் நாண்களின் பண்புகள்",
+       "learningObjectives": "Identify parts of a circle and related terms. Apply theorems on chords of a circle and angles subtended by arcs.",
+       "learningObjectivesTa": "வட்டத்தின் பகுதிகளையும் தொடர்புடைய சொற்களையும் அடையாளம் காணுதல். வட்ட நாண்கள் மற்றும் வில்களால் தாங்கப்படும் கோணங்கள் குறித்த தேற்றங்களைப் பயன்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Cyclic Quadrilaterals",
+       "titleTa": "வட்ட நாற்கரங்கள்",
+       "learningObjectives": "Recognize cyclic quadrilaterals and their properties. Use angle relationships in cyclic quadrilaterals to solve problems.",
+       "learningObjectivesTa": "வட்ட நாற்கரங்களை அடையாளம் கண்டு அவற்றின் பண்புகளைப் புரிந்துகொள்ளுதல். வட்ட நாற்கரங்களில் உள்ள கோண உறவுகளைப் பயன்படுத்திப் பிரச்சினைகளைத் தீர்த்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Practical Geometry",
+       "titleTa": "செய்முறை வடிவியல்",
+       "learningObjectives": "Construct geometrical figures using ruler and compass. Locate important triangle centres through construction.",
+       "learningObjectivesTa": "ஆள்கோல் மற்றும் கோணளவியைப் பயன்படுத்தி வடிவியல் உருவங்களை அமைத்தல். கட்டமைப்பின் மூலம் முக்கோணத்தின் முக்கிய மையங்களை அமைத்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Coordinate Geometry",
+     "titleTa": "ஆயத்தொலை வடிவியல்",
+     "displayOrder": 5,
+     "topics": [
+      {
+       "title": "Mapping the Plane; Devising a Coordinate System",
+       "titleTa": "தளத்தினை வரைபடமாகக் குறித்தல்; ஆயத்தொகுதி அமைத்தல்",
+       "learningObjectives": "Understand how points are located on a plane using coordinates. Identify the abscissa, ordinate, and coordinate axes.",
+       "learningObjectivesTa": "ஆயத்தொலைகளைப் பயன்படுத்தி தளத்தில் புள்ளிகள் எவ்வாறு குறிக்கப்படுகின்றன என்பதைப் புரிந்துகொள்ளுதல். அப்சிசா, ஆர்டினேட் மற்றும் அச்சுகளை அடையாளம் காணுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Distance between any Two Points",
+       "titleTa": "இரு புள்ளிகளுக்கு இடைப்பட்ட தொலைவு",
+       "learningObjectives": "Find the distance between two points in the Cartesian plane. Apply the distance formula in problem solving.",
+       "learningObjectivesTa": "கார்டீசியன் தளத்தில் இரு புள்ளிகளுக்கிடையேயான தூரத்தைக் காணுதல். தூரச் சூத்திரத்தைப் பிரச்சினைத் தீர்வில் பயன்படுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "The Mid-point of a Line Segment",
+       "titleTa": "ஒரு கோட்டுத்துண்டின் நடுப்புள்ளி",
+       "learningObjectives": "Find the midpoint of a line segment using coordinates. Use the midpoint formula in geometric problems.",
+       "learningObjectivesTa": "ஆயத்தொலைகளைப் பயன்படுத்தி கோட்டுத்துண்டின் நடுப்புள்ளியைக் கண்டறிதல். நடுப்புள்ளிச் சூத்திரத்தை வடிவியல் பிரச்சினைகளில் பயன்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Points of Trisection of a Line Segment; Section Formula",
+       "titleTa": "ஒரு கோட்டுத்துண்டை மூன்று சமக்கூறிடும் புள்ளிகள்; பிரிவுச் சூத்திரம்",
+       "learningObjectives": "Find points that divide a segment in a given ratio. Derive and apply the section formula.",
+       "learningObjectivesTa": "ஒரு பகுதியை கொடுக்கப்பட்ட விகிதத்தில் பிரிக்கும் புள்ளிகளை காணுதல். பிரிவுச் சூத்திரத்தை உருவாக்கி பயன்படுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "The Coordinates of the Centroid",
+       "titleTa": "நடுக்கோட்டு மையத்தின் ஆயத்தொலைவுகள்",
+       "learningObjectives": "Determine the centroid of a triangle from its vertices. Use the centroid formula in coordinate geometry problems.",
+       "learningObjectivesTa": "ஒரு முக்கோணத்தின் உச்சிப் புள்ளிகளிலிருந்து நடுக்கோட்டு மையத்தைக் கண்டறிதல். ஆயத்தொலை வடிவியல் பிரச்சினைகளில் நடுக்கோட்டு மையச் சூத்திரத்தைப் பயன்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Trigonometry",
+     "titleTa": "முக்கோணவியல்",
+     "displayOrder": 6,
+     "topics": [
+      {
+       "title": "Introduction",
+       "titleTa": "அறிமுகம்",
+       "learningObjectives": "Understand trigonometry as the study of relationships between triangle sides and angles. Recognize opposite and adjacent sides in right triangles.",
+       "learningObjectivesTa": "முக்கோணத்தின் பக்கங்களும் கோணங்களும் இடையிலான உறவுகளை ஆயும் துறையாக முக்கோணவியலைப் புரிந்துகொள்ளுதல். நேர்முக்கோணத்தில் எதிர்ப்பக்கம், அடுத்த பக்கம் ஆகியவற்றை அடையாளம் காணுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Trigonometric Ratios of Some Special Angles",
+       "titleTa": "சில சிறப்புக் கோணங்களின் முக்கோணவியல் விகிதங்கள்",
+       "learningObjectives": "Find the values of trigonometric ratios for special angles. Use standard ratios in right-triangle problems.",
+       "learningObjectivesTa": "சிறப்புக் கோணங்களுக்கான முக்கோணவியல் விகிதங்களின் மதிப்புகளை கண்டறிதல். நேர்முக்கோணப் பிரச்சினைகளில் நிலையான விகிதங்களைப் பயன்படுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Trigonometric Ratios for Complementary Angles",
+       "titleTa": "நிரப்புக் கோணங்களுக்கான முக்கோணவியல் விகிதங்கள்",
+       "learningObjectives": "Relate trigonometric ratios of complementary angles. Use complementary-angle identities to simplify calculations.",
+       "learningObjectivesTa": "நிரப்புக் கோணங்களின் முக்கோணவியல் விகிதங்களுக்கிடையிலான தொடர்பைப் புரிந்துகொள்ளுதல். கணக்குகளை எளிமைப்படுத்த நிரப்புக் கோணச் சார்புகளைப் பயன்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Method of using Trigonometric Table",
+       "titleTa": "முக்கோணவியல் அட்டவணையைப் பயன்படுத்தும் முறை",
+       "learningObjectives": "Use trigonometric tables to find approximate values of ratios. Read and apply table values correctly.",
+       "learningObjectivesTa": "முக்கோணவியல் அட்டவணைகளைப் பயன்படுத்தி விகிதங்களின் அண்மித்த மதிப்புகளை கண்டறிதல். அட்டவணை மதிப்புகளைச் சரியாக வாசித்து பயன்படுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Mensuration",
+     "titleTa": "அளவியல்",
+     "displayOrder": 7,
+     "topics": [
+      {
+       "title": "Introduction",
+       "titleTa": "அறிமுகம்",
+       "learningObjectives": "Recall the idea of area, surface area, and volume in measurement. Connect mensuration to real-life applications.",
+       "learningObjectivesTa": "அளவு, மேற்பரப்பு மற்றும் கன அளவு என்ற கருத்துகளை நினைவுகூர்தல். அளவியலின் நாளாந்த பயன்பாடுகளுடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Heron’s Formula",
+       "titleTa": "ஹெரான் சூத்திரம்",
+       "learningObjectives": "Find the area of a triangle when all three sides are known. Apply Heron’s formula in numerical problems.",
+       "learningObjectivesTa": "மூன்று பக்கங்களும் தெரிந்திருக்கும்போது முக்கோணத்தின் பரப்பளவை கண்டறிதல். ஹெரான் சூத்திரத்தை எண்கணிதப் பிரச்சினைகளில் பயன்படுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Application of Heron’s Formula in Finding Areas of Quadrilaterals",
+       "titleTa": "நாற்கரங்களின் பரப்புகளைக் காண்பதில் ஹெரான் சூத்திரத்தின் பயன்பாடு",
+       "learningObjectives": "Divide quadrilaterals into triangles and find their areas. Use Heron’s formula to calculate composite areas.",
+       "learningObjectivesTa": "நாற்கரங்களை முக்கோணங்களாகப் பிரித்து அவற்றின் பரப்பளவைக் காணுதல். சேர்க்கை உருவங்களின் பரப்பளவைக் கணக்கிட ஹெரான் சூத்திரத்தைப் பயன்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Surface Area of Cuboid and Cube",
+       "titleTa": "கனச்செவ்வகம் மற்றும் கனச்சதுரத்தின் புறப்பரப்பு",
+       "learningObjectives": "Calculate the total surface area and lateral surface area of cuboids and cubes. Solve practical problems involving surfaces.",
+       "learningObjectivesTa": "கனச்செவ்வகம் மற்றும் கனச்சதுரத்தின் மொத்தப் புறப்பரப்பையும் பக்கப் பரப்பையும் கணக்கிடுதல். மேற்பரப்புகளை உள்ளடக்கிய நடைமுறைப் பிரச்சினைகளைத் தீர்த்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Volume of Cuboid and Cube",
+       "titleTa": "கனச்செவ்வகம் மற்றும் கனச்சதுரத்தின் கனஅளவு",
+       "learningObjectives": "Find the volume of cuboids and cubes using formulae. Apply volume calculations in day-to-day contexts.",
+       "learningObjectivesTa": "கனச்செவ்வகம் மற்றும் கனச்சதுரத்தின் கனஅளவை சூத்திரங்களின் மூலம் காணுதல். நாளாந்த சூழல்களில் கனஅளவு கணக்குகளைப் பயன்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Statistics",
+     "titleTa": "புள்ளியியல்",
+     "displayOrder": 8,
+     "topics": [
+      {
+       "title": "Collection of Data",
+       "titleTa": "தரவு சேகரித்தல்",
+       "learningObjectives": "Understand statistics as the study of data collection and analysis. Distinguish between data and statistics and organize data appropriately.",
+       "learningObjectivesTa": "புள்ளியியலில் தரவைச் சேகரிப்பதன் முக்கியத்துவத்தைப் புரிந்துகொள்ளுதல். தரவுகளைச் சரியாகத் திரட்டி, ஒழுங்குபடுத்தி, பதிவு செய்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Measures of Central Tendency",
+       "titleTa": "மையப்போக்கு அளவைகள்",
+       "learningObjectives": "Recall the idea of an average and choose suitable measures of central tendency. Understand mean, median, and mode.",
+       "learningObjectivesTa": "சராசரி என்ற கருத்தை நினைவுகூர்ந்து, மையப்போக்கு அளவுகளுக்கான பொருத்தமான அளவுகளைத் தேர்ந்தெடுத்தல். கூட்டுச் சராசரி, இடைநிலை அளவு, முகடு ஆகியவற்றைப் புரிந்துகொள்ளுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Arithmetic Mean",
+       "titleTa": "கூட்டுச் சராசரி",
+       "learningObjectives": "Calculate the arithmetic mean for ungrouped and grouped data. Use frequency tables to compute averages.",
+       "learningObjectivesTa": "குழுபடுத்தாத மற்றும் குழுபடுத்தப்பட்ட தரவுகளுக்கான கூட்டுச் சராசரியைக் கணக்கிடுதல். அதிர்வு அட்டவணைகளைப் பயன்படுத்தி சராசரியைக் காணுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Median",
+       "titleTa": "இடைநிலை அளவு",
+       "learningObjectives": "Find the median of ungrouped and grouped data. Interpret median as a measure of central tendency.",
+       "learningObjectivesTa": "குழுபடுத்தாத மற்றும் குழுபடுத்தப்பட்ட தரவுகளின் இடைநிலை அளவைக் காணுதல். இடைநிலை அளவை மையப்போக்கு அளவாக விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Mode",
+       "titleTa": "முகடு",
+       "learningObjectives": "Determine the mode of data sets. Use mode to identify the most frequent value in a distribution.",
+       "learningObjectivesTa": "தரவுத் தொகுப்பின் முகட்டைக் கண்டறிதல். ஒரு விநியோகத்தில் அதிகமுறை தோன்றும் மதிப்பை முகடு மூலம் அடையாளம் காணுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Probability",
+     "titleTa": "நிகழ்தகவு",
+     "displayOrder": 9,
+     "topics": [
+      {
+       "title": "Basic Ideas",
+       "titleTa": "அடிப்படைக் கருத்துகள்",
+       "learningObjectives": "Understand probability as a way to measure uncertainty. Learn key terms such as experiment, outcome, and event.",
+       "learningObjectivesTa": "நிகழ்தகவை நிச்சயமற்ற நிலையை அளவிடும் முறையாகப் புரிந்துகொள்ளுதல். சோதனை, விளைவு, நிகழ்ச்சி போன்ற அடிப்படைக் கருத்துகளை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Classical Approach",
+       "titleTa": "தொன்மை அணுகுமுறை",
+       "learningObjectives": "Compute probability using equally likely outcomes. Relate probability to the ratio of favourable outcomes to total outcomes.",
+       "learningObjectivesTa": "சம வாய்ப்புள்ள விளைவுகளைப் பயன்படுத்தி நிகழ்தகவைக் கணக்கிடுதல். சாதகமான விளைவுகளின் விகிதம் மற்றும் மொத்த விளைவுகளின் விகிதமாக நிகழ்தகவைக் தொடர்புபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Empirical Approach",
+       "titleTa": "பட்டறி அணுகுமுறை",
+       "learningObjectives": "Estimate probability from observed frequency data. Compare experimental results with theoretical expectations.",
+       "learningObjectivesTa": "பார்வைக்கேற்ப பெறப்படும் அதிர்வு தரவுகளிலிருந்து நிகழ்தகவைக் கணித்தல். சோதனை முடிவுகளை கோட்பாட்டுச் சாத்தியங்களுடன் ஒப்பிடுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Types of Events",
+       "titleTa": "நிகழ்ச்சிகளின் வகைகள்",
+       "learningObjectives": "Identify different types of events in probability. Classify events in simple experiments and interpret them correctly.",
+       "learningObjectivesTa": "நிகழ்தகவில் உள்ள பல்வேறு வகை நிகழ்ச்சிகளை அடையாளம் காணுதல். எளிய சோதனைகளில் நிகழ்ச்சிகளை வகைப்படுத்தி சரியாக விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    }
+   ],
+   "displayOrder": 1
+  },
+  {
+   "name": "Science",
+   "nameTa": "அறிவியல்",
+   "tileColor": "#4F8A6B",
+   "icon": "flask-outline",
+   "chapters": [
+    {
+     "title": "Measurement",
+     "titleTa": "அளவீடு",
+     "displayOrder": 1,
+     "topics": [
+      {
+       "title": "Physical Quantities and Units; SI System of Units",
+       "titleTa": "இயற்பியல் அளவுகள் மற்றும் அலகுகள்; SI அலகு முறை",
+       "learningObjectives": "Define physical quantities and units; distinguish fundamental and derived quantities; describe the SI system and base units.",
+       "learningObjectivesTa": "இயற்பியல் அளவுகள் மற்றும் அலகுகள் பற்றி புரிந்துகொள்ளுதல்; அடிப்படை மற்றும் வழி அளவுகளை வேறுபடுத்துதல்; SI அலகு முறையையும் அடிப்படை அலகுகளையும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Fundamental Quantities and Units",
+       "titleTa": "அடிப்படை அளவுகள் மற்றும் அலகுகள்",
+       "learningObjectives": "State the SI units of length, mass, time and temperature; convert between common large and small units.",
+       "learningObjectivesTa": "நீளம், நிறை, காலம், வெப்பநிலை ஆகியவற்றின் SI அலகுகளை கூறுதல்; பொதுவான பெரிய, சிறிய அலகுகளுக்கு இடையே மாற்றுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Unit Prefixes; Rules and Conventions for Writing SI Units and Their Symbols",
+       "titleTa": "அலகுகளுக்கான முன்னீடுகள்; SI அலகுகளை எழுத பின்பற்ற வேண்டிய விதிகளும், மரபுகளும்",
+       "learningObjectives": "Use SI prefixes correctly and write unit symbols, quantities and scientific notation according to standard conventions.",
+       "learningObjectivesTa": "SI முன்னீடுகளைச் சரியாகப் பயன்படுத்துதல்; அலகுக் குறியீடுகள், அளவுகள் மற்றும் அறிவியல் குறியீட்டை நிலையான மரபுகளின்படி எழுதுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Vernier Caliper and Screw Gauge",
+       "titleTa": "வெர்னியர் அளவி; திருகு அளவி",
+       "learningObjectives": "Find least count, zero error and corrected readings of Vernier calipers and screw gauges; measure small lengths accurately.",
+       "learningObjectivesTa": "வெர்னியர் அளவியின் மீச்சிற்றளவு, சுழிப்பிழை மற்றும் திருத்தப்பட்ட வாசிப்பை கண்டறிதல்; திருகு அளவியைப் பயன்படுத்தி சிறிய நீளங்களைத் துல்லியமாக அளவிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Screw Gauge; Measuring Mass",
+       "titleTa": "திருகு அளவி; நிறையை அளவிடுதல்",
+       "learningObjectives": "Measure thickness or diameter with a screw gauge and compare common balance, physical balance, digital balance and spring balance.",
+       "learningObjectivesTa": "திருகு அளவியைக் கொண்டு தடிமன் அல்லது விட்டத்தை அளவிடுதல்; பொதுத் தராசு, இயற்பியல் தராசு, எண்ணியல் தராசு, சுருள்வில் தராசு ஆகியவற்றை ஒப்பிடுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Accuracy in Measurements",
+       "titleTa": "அளவீடுகளில் துல்லியம்",
+       "learningObjectives": "Explain why accuracy matters in science; identify sources of error and improve results by repeated measurement and averaging.",
+       "learningObjectivesTa": "அறிவியலில் துல்லியத்தின் முக்கியத்துவத்தை விளக்குதல்; பிழைகளின் மூலங்களை அடையாளம் காண்தல்; மீள்மீள் அளவீடு மற்றும் சராசரியால் முடிவுகளை மேம்படுத்துதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Motion",
+     "titleTa": "இயக்கம்",
+     "displayOrder": 2,
+     "topics": [
+      {
+       "title": "Rest and Motion",
+       "titleTa": "ஓய்வும் இயக்கமும்",
+       "learningObjectives": "Identify objects at rest and in motion and describe motion with respect to a reference point.",
+       "learningObjectivesTa": "ஓய்வில் உள்ள பொருட்களையும் இயக்கத்தில் உள்ள பொருட்களையும் அடையாளம் காண்தல்; குறிப்பு புள்ளியைப் பொறுத்து இயக்கத்தை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Distance and Displacement",
+       "titleTa": "தூரம் மற்றும் இடப்பெயர்ச்சி",
+       "learningObjectives": "Distinguish distance from displacement and calculate them for straight and circular paths.",
+       "learningObjectivesTa": "தூரம் மற்றும் இடப்பெயர்ச்சியை வேறுபடுத்துதல்; நேர்கோடு மற்றும் வளைவு பாதைகளுக்கான மதிப்புகளை கணக்கிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Uniform Motion and Non-uniform Motion",
+       "titleTa": "சீரான இயக்கமும் சீரற்ற இயக்கமும்",
+       "learningObjectives": "Classify motion as uniform or non-uniform using distance-time data and simple examples.",
+       "learningObjectivesTa": "தூரம்-காலத் தரவுகளையும் எளிய எடுத்துக்காட்டுகளையும் கொண்டு இயக்கத்தை சீரானது அல்லது சீரற்றது என வகைப்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Speed and Velocity",
+       "titleTa": "வேகம் மற்றும் திசைவேகம்",
+       "learningObjectives": "Define speed and velocity, compare them, and solve basic problems using their formulas.",
+       "learningObjectivesTa": "வேகம் மற்றும் திசைவேகத்தை வரையறுத்தல்; அவற்றை ஒப்பிடுதல்; அடிப்படை வாய்ப்பாடுகளைக் கொண்டு கணக்குகளைத் தீர்த்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Acceleration; Equations of Motion",
+       "titleTa": "முடுக்கம்; இயக்கச் சமன்பாடுகள்",
+       "learningObjectives": "Relate acceleration to change in velocity and use the equations of motion to solve numerical problems.",
+       "learningObjectivesTa": "முடுக்கம் என்பது திசைவேக மாற்றத்துடன் எப்படி தொடர்புடையது என்பதை விளக்குதல்; இயக்கச் சமன்பாடுகளைப் பயன்படுத்தி கணக்குகளைத் தீர்த்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Motion under Gravity; Circular Motion",
+       "titleTa": "ஈர்ப்பு விசையின் கீழ் இயக்கம்; வட்ட இயக்கம்",
+       "learningObjectives": "Write equations for freely falling bodies and describe circular motion with centripetal force and centrifugal force.",
+       "learningObjectivesTa": "சுதந்திரமாக விழும் பொருட்களுக்கான சமன்பாடுகளை எழுதுதல்; மையநோக்கு விசை மற்றும் மையவிலக்கு விசையுடன் வட்ட இயக்கத்தை விவரித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Fluids",
+     "titleTa": "பாய்மங்கள்",
+     "displayOrder": 3,
+     "topics": [
+      {
+       "title": "Thrust and Pressure",
+       "titleTa": "தள்ளுவிசை மற்றும் அழுத்தம்",
+       "learningObjectives": "Define thrust and pressure and explain how pressure depends on force and area.",
+       "learningObjectivesTa": "தள்ளுவிசை மற்றும் அழுத்தத்தை வரையறுத்தல்; விசை மற்றும் பரப்பளவின் அடிப்படையில் அழுத்தம் எவ்வாறு மாறுகிறது என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Pressure in Fluids",
+       "titleTa": "திரவங்களில் அழுத்தம்",
+       "learningObjectives": "Describe how fluid pressure varies with depth and explain pressure transmission in liquids and gases.",
+       "learningObjectivesTa": "ஆழத்தின்படி திரவ அழுத்தம் எவ்வாறு மாறுகிறது என்பதை விவரித்தல்; திரவங்கள் மற்றும் வாயுக்களில் அழுத்தப் பரவலை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Applications of Pressure in Fluids",
+       "titleTa": "திரவங்களில் அழுத்தத்தின் பயன்பாடுகள்",
+       "learningObjectives": "Explain everyday applications of fluid pressure such as hydraulic devices, tyres and sharp tools.",
+       "learningObjectivesTa": "ஹைட்ராலிக் கருவிகள், டயர்கள், கூர்மையான கருவிகள் போன்ற திரவ அழுத்தத்தின் அன்றாடப் பயன்பாடுகளை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Density of Fluids",
+       "titleTa": "திரவங்களின் அடர்த்தி",
+       "learningObjectives": "Relate density to pressure and altitude and use density to compare different fluids.",
+       "learningObjectivesTa": "அடர்த்தி, அழுத்தம் மற்றும் உயரத்திற்கிடையேயான தொடர்பை விளக்குதல்; வெவ்வேறு திரவங்களை அடர்த்தியின் அடிப்படையில் ஒப்பிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Relative Density",
+       "titleTa": "ஒப்பீட்டு அடர்த்தி",
+       "learningObjectives": "Calculate relative density and use it to compare substances without using units.",
+       "learningObjectivesTa": "ஒப்பீட்டு அடர்த்தியைக் கணக்கிடுதல்; அலகுகள் இன்றியே பொருட்களை ஒப்பிட அதைப் பயன்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Floatation and Buoyancy",
+       "titleTa": "மிதத்தன்மை மற்றும் மிதவை விசை",
+       "learningObjectives": "Explain buoyant force and state the conditions for floating and sinking of bodies in fluids.",
+       "learningObjectivesTa": "மிதவை விசையை விளக்குதல்; திரவங்களில் பொருட்கள் மிதப்பதற்கும் மூழ்குவதற்கும் உள்ள நிபந்தனைகளை கூறுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Electric Charge and Electric Current",
+     "titleTa": "மின்னூட்டமும் மின்னோட்டமும்",
+     "displayOrder": 4,
+     "topics": [
+      {
+       "title": "Electric Charges",
+       "titleTa": "மின்னூட்டங்கள்",
+       "learningObjectives": "Explain electric charge, charging by friction and the formation of positive and negative ions.",
+       "learningObjectivesTa": "மின்னூட்டம், உராய்வின் மூலம் மின்னூட்டம் ஏற்படுதல், நேர்ம மற்றும் எதிர்ம அயன்களின் உருவாக்கம் ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Electric Current",
+       "titleTa": "மின்னோட்டம்",
+       "learningObjectives": "Define electric current and relate it to the flow of charge in a circuit.",
+       "learningObjectivesTa": "மின்னோட்டத்தை வரையறுத்தல்; சுற்றில் மின்னூட்ட ஓட்டத்துடன் அதனைத் தொடர்புபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Electric Potential Difference, Resistance and Ohm’s Law",
+       "titleTa": "மின்னழுத்த வேறுபாடு, மின்தடை மற்றும் ஓம் விதி",
+       "learningObjectives": "State Ohm’s law and use it to connect voltage, current and resistance in simple circuits.",
+       "learningObjectivesTa": "ஓம் விதியை கூறுதல்; மின்னழுத்தம், மின்னோட்டம், மின்தடை ஆகியவற்றை எளிய சுற்றுகளில் தொடர்புபடுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Series and Parallel Circuits",
+       "titleTa": "தொடர் மற்றும் இணைச் சுற்றுகள்",
+       "learningObjectives": "Draw circuit diagrams and compare series and parallel connections of cells and resistors.",
+       "learningObjectivesTa": "சுற்றுப் படங்களை வரைவது; செல்கள் மற்றும் மின்தடைகளின் தொடர், இணை அமைப்புகளை ஒப்பிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Heating, Chemical and Magnetic Effects of Electric Current",
+       "titleTa": "மின்னோட்டத்தின் வெப்ப, வேதியியல் மற்றும் காந்த விளைவுகள்",
+       "learningObjectives": "Describe the main effects of electric current and identify common devices based on these effects.",
+       "learningObjectivesTa": "மின்னோட்டத்தின் முக்கிய விளைவுகளை விவரித்தல்; இவ்விளைவுகளை அடிப்படையாகக் கொண்ட சாதனங்களை அடையாளம் காண்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Direct Current, Alternating Current and Safety",
+       "titleTa": "நேர்மின்னோட்டம், மாறுமின்னோட்டம் மற்றும் பாதுகாப்பு",
+       "learningObjectives": "Distinguish direct current from alternating current and follow basic safety rules for electrical use.",
+       "learningObjectivesTa": "நேர்மின்னோட்டம் மற்றும் மாறுமின்னோட்டத்தை வேறுபடுத்துதல்; மின்சாதன பயன்பாட்டிற்கான அடிப்படை பாதுகாப்பு விதிகளைப் பின்பற்றுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Magnetism and Electromagnetism",
+     "titleTa": "காந்தவியல் மற்றும் மின்காந்தவியல்",
+     "displayOrder": 5,
+     "topics": [
+      {
+       "title": "Magnetic Field",
+       "titleTa": "காந்தப் புலம்",
+       "learningObjectives": "Define magnetic field and identify the region around a magnet where magnetic force acts.",
+       "learningObjectivesTa": "காந்தப் புலத்தை வரையறுத்தல்; காந்த விசை செயல்படும் காந்தத்தின் சுற்றியுள்ள பகுதியை அடையாளம் காண்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Magnetic Field Lines; Magnetic Properties",
+       "titleTa": "காந்தப் புலக் கோடுகள்; காந்தப் பண்புகள்",
+       "learningObjectives": "Describe magnetic field lines and explain the basic properties of magnets.",
+       "learningObjectivesTa": "காந்தப் புலக் கோடுகளை விவரித்தல்; காந்தங்களின் அடிப்படை பண்புகளை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Force on a Current-Carrying Conductor",
+       "titleTa": "மின்னோட்டம் பாயும் கடத்தியில் ஏற்படும் விசை",
+       "learningObjectives": "Explain the force on a current-carrying conductor placed in a magnetic field.",
+       "learningObjectivesTa": "காந்தப் புலத்தில் வைக்கப்பட்ட மின்னோட்டம் பாயும் கடத்தியில் ஏற்படும் விசையை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Force between Parallel Conductors",
+       "titleTa": "இணை கடத்திகளுக்கிடையிலான விசை",
+       "learningObjectives": "State the interaction between parallel current-carrying conductors and relate it to practical devices.",
+       "learningObjectivesTa": "இணை மின்னோட்டம் பாயும் கடத்திகளுக்கிடையேயான தொடர்பை கூறுதல்; அதன் நடைமுறைப் பயன்பாடுகளைத் தொடர்புபடுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Electromagnetic Induction",
+       "titleTa": "மின்காந்தத் தூண்டல்",
+       "learningObjectives": "Explain electromagnetic induction and describe how induced current is produced.",
+       "learningObjectivesTa": "மின்காந்தத் தூண்டலை விளக்குதல்; தூண்டப்பட்ட மின்னோட்டம் எவ்வாறு உருவாகிறது என்பதை விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Generators, Transformers and Electromagnets",
+       "titleTa": "மின்னியக்கிகள், மாற்றிகள் மற்றும் மின்காந்தங்கள்",
+       "learningObjectives": "Explain the working principle of generators and transformers and list applications of electromagnets.",
+       "learningObjectivesTa": "மின்னியக்கி மற்றும் மாற்றியின் செயல்முறையை விளக்குதல்; மின்காந்தங்களின் பயன்பாடுகளை பட்டியலிடுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Light",
+     "titleTa": "ஒளி",
+     "displayOrder": 6,
+     "topics": [
+      {
+       "title": "Reflection of Light",
+       "titleTa": "ஒளியின் பிரதிபலிப்பு",
+       "learningObjectives": "State the laws of reflection and identify incident, reflected and normal rays.",
+       "learningObjectivesTa": "பிரதிபலிப்பு விதிகளை கூறுதல்; படுகதிர், பிரதிபலித்த கதிர் மற்றும் செங்குத்துக் கோட்டை அடையாளம் காண்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Reflection by Plane Mirrors and Spherical Mirrors",
+       "titleTa": "தளக் கண்ணாடிகள் மற்றும் கோளக் கண்ணாடிகளால் பிரதிபலிப்பு",
+       "learningObjectives": "Use ray diagrams for plane, concave and convex mirrors and identify image characteristics.",
+       "learningObjectivesTa": "தள, குழி, குவி கண்ணாடிகளுக்கான கதிர்ப்படங்களைப் பயன்படுத்துதல்; படத்தின் பண்புகளை அடையாளம் காண்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Mirror Formula and Magnification",
+       "titleTa": "கண்ணாடிச் சமன்பாடு மற்றும் பெரிதாக்கம்",
+       "learningObjectives": "Apply the mirror equation and magnification formula to find image position, size and nature.",
+       "learningObjectivesTa": "கண்ணாடிச் சமன்பாடு மற்றும் பெரிதாக்கச் சமன்பாட்டைப் பயன்படுத்தி படத்தின் இடம், அளவு, தன்மை ஆகியவற்றைக் காண்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Refraction of Light",
+       "titleTa": "ஒளியின் விலகல்",
+       "learningObjectives": "Describe refraction and predict the bending of light when it passes from one medium to another.",
+       "learningObjectivesTa": "விலகலை விவரித்தல்; ஒரு ஊடகத்திலிருந்து மற்றொரு ஊடகத்திற்கு செல்லும் போது ஒளி வளைவதை முன்கூட்டியே கணித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Snell’s Law and Refractive Index",
+       "titleTa": "ஸ்னெல் விதி மற்றும் விலகல் குறியீடு",
+       "learningObjectives": "Use Snell’s law to solve refraction problems and relate refractive index to light speed.",
+       "learningObjectivesTa": "ஸ்னெல் விதியைப் பயன்படுத்தி விலகல் பிரச்சினைகளைத் தீர்த்தல்; விலகல் குறியீட்டை ஒளியின் வேகத்துடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Total Internal Reflection and Applications",
+       "titleTa": "முழுமையான அக எதிர்விலகல் மற்றும் பயன்பாடுகள்",
+       "learningObjectives": "Explain total internal reflection and recognize its use in optical devices and daily life.",
+       "learningObjectivesTa": "முழுமையான அக எதிர்விலகலை விளக்குதல்; ஒளி கருவிகளிலும் அன்றாட வாழ்க்கையிலும் அதன் பயன்பாட்டை அடையாளம் காண்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Heat",
+     "titleTa": "வெப்பம்",
+     "displayOrder": 7,
+     "topics": [
+      {
+       "title": "Effects of Heat",
+       "titleTa": "வெப்பத்தின் விளைவுகள்",
+       "learningObjectives": "Describe the effects of heating on matter, including expansion and change of state.",
+       "learningObjectivesTa": "பொருளில் வெப்பமூட்டத்தின் விளைவுகளை, விரிவடைதல் மற்றும் நிலைமாற்றம் உட்பட, விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Transfer of Heat by Conduction",
+       "titleTa": "கடத்தலின் மூலம் வெப்ப பரிமாற்றம்",
+       "learningObjectives": "Explain conduction and compare good and bad conductors of heat.",
+       "learningObjectivesTa": "கடத்தலை விளக்குதல்; வெப்பத்தின் நல்ல கடத்திகள் மற்றும் கெட்ட கடத்திகளை ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Convection",
+       "titleTa": "கன்வேக்‌ஷன்",
+       "learningObjectives": "Describe convection in fluids and relate it to heating and circulation in daily life.",
+       "learningObjectivesTa": "திரவங்களில் ஏற்படும் கன்வேக்‌ஷனை விவரித்தல்; அன்றாட வெப்பமூட்டம் மற்றும் சுழற்சியுடன் அதைத் தொடர்புபடுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Radiation",
+       "titleTa": "வெப்பக் கதிர்வீச்சு",
+       "learningObjectives": "Explain radiation as a mode of heat transfer and identify its practical uses.",
+       "learningObjectivesTa": "வெப்பப் பரிமாற்றத்தின் ஒரு முறையாகக் கதிர்வீச்சை விளக்குதல்; அதன் நடைமுறைப் பயன்பாடுகளை அடையாளம் காண்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Heat Capacity and Specific Heat Capacity",
+       "titleTa": "வெப்பத் திறன் மற்றும் குறிப்பிட்ட வெப்பத் திறன்",
+       "learningObjectives": "Define heat capacity and specific heat capacity and use them to compare substances.",
+       "learningObjectivesTa": "வெப்பத் திறன் மற்றும் குறிப்பிட்ட வெப்பத் திறனை வரையறுத்தல்; பொருட்களை ஒப்பிட அவற்றைப் பயன்படுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Latent Heat and Change of State",
+       "titleTa": "மறை வெப்பம் மற்றும் நிலைமாற்றம்",
+       "learningObjectives": "Explain latent heat of fusion and vaporisation and describe the changes of state of matter.",
+       "learningObjectivesTa": "உருகுதல் மற்றும் ஆவியாக்கத்தின் மறை வெப்பத்தை விளக்குதல்; பொருளின் நிலைமாற்றங்களை விவரித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Sound",
+     "titleTa": "ஒலி",
+     "displayOrder": 8,
+     "topics": [
+      {
+       "title": "Production of Sound",
+       "titleTa": "ஒலியின் உற்பத்தி",
+       "learningObjectives": "Explain how sound is produced by vibrating bodies and how vibrations create sound waves.",
+       "learningObjectivesTa": "அதிரும் பொருட்களால் ஒலி எவ்வாறு உருவாகிறது; அதிர்வுகள் ஒலி அலைகளை எவ்வாறு உருவாக்குகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Propagation of Sound",
+       "titleTa": "ஒலியின் பரவல்",
+       "learningObjectives": "State why sound needs a medium and describe its travel through solids, liquids and gases.",
+       "learningObjectivesTa": "ஒலிக்கு ஊடகம் தேவை என்பதைக் கூறுதல்; அது திட, திரவ, வாயு ஊடகங்களில் எவ்வாறு பயணிக்கிறது என்பதை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Nature of Sound Waves",
+       "titleTa": "ஒலி அலைகளின் இயல்பு",
+       "learningObjectives": "Identify sound waves as longitudinal waves and describe compression and rarefaction.",
+       "learningObjectivesTa": "ஒலி அலைகளை நீள அலைகளாக அடையாளம் காண்தல்; சுருக்கம் மற்றும் விரிதல் பகுதிகளை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Characteristics of Sound",
+       "titleTa": "ஒலியின் பண்புகள்",
+       "learningObjectives": "Explain pitch, loudness and quality and relate them to frequency and amplitude.",
+       "learningObjectivesTa": "இசைத் திடம், ஒலி வலிமை, தரம் ஆகியவற்றை விளக்குதல்; அவற்றை அதிர்வெண் மற்றும் வீச்சுடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Reflection of Sound",
+       "titleTa": "ஒலியின் பிரதிபலிப்பு",
+       "learningObjectives": "Describe reflection of sound and explain echo, reverberation and related effects.",
+       "learningObjectivesTa": "ஒலியின் பிரதிபலிப்பை விவரித்தல்; எதிரொலி, ஒலிபரப்பு மறு ஒலி மற்றும் தொடர்புடைய விளைவுகளை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Ultrasonic Sound and Applications",
+       "titleTa": "மீயொலி மற்றும் பயன்பாடுகள்",
+       "learningObjectives": "Define ultrasonic sound and list its uses in medicine, industry and technology.",
+       "learningObjectivesTa": "மீயொலியை வரையறுத்தல்; மருத்துவம், தொழில், தொழில்நுட்பம் ஆகியவற்றில் அதன் பயன்பாடுகளை பட்டியலிடுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Universe",
+     "titleTa": "அண்டம்",
+     "displayOrder": 9,
+     "topics": [
+      {
+       "title": "Building Block of the Universe",
+       "titleTa": "அண்டத்தின் அடிப்படைத் தொகுதிகள்",
+       "learningObjectives": "Describe the observable universe and identify galaxies, stars, planets and other building blocks.",
+       "learningObjectivesTa": "காணக்கூடிய அண்டத்தை விவரித்தல்; விண்மீன் திரள்கள், விண்மீன்கள், கோள்கள் மற்றும் பிற அடிப்படைத் தொகுதிகளை அடையாளம் காண்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Solar System",
+       "titleTa": "சூரியக் குடும்பம்",
+       "learningObjectives": "Name the members of the solar system and describe their basic features.",
+       "learningObjectivesTa": "சூரியக் குடும்ப உறுப்பினர்களின் பெயர்களைக் கூறுதல்; அவற்றின் அடிப்படை பண்புகளை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Kepler’s Laws of Planetary Motion",
+       "titleTa": "கோள்களின் இயக்கத்திற்கான கெப்ளரின் விதிகள்",
+       "learningObjectives": "State Kepler’s laws and use them to explain planetary motion.",
+       "learningObjectivesTa": "கெப்ளரின் விதிகளைக் கூறுதல்; கோள்களின் இயக்கத்தை அவை எவ்வாறு விளக்குகின்றன என்பதைப் பயன்படுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Satellites and Orbital Motion",
+       "titleTa": "செயற்கைக் கோள்கள் மற்றும் சுற்றுப்பாதை இயக்கம்",
+       "learningObjectives": "Calculate orbital velocity and time period of satellites using simple relations.",
+       "learningObjectivesTa": "செயற்கைக் கோள்களின் சுற்றுப்பாதை வேகம் மற்றும் காலத்தை எளிய தொடர்புகளைக் கொண்டு கணக்கிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "International Space Station",
+       "titleTa": "சர்வதேச விண்வெளி நிலையம்",
+       "learningObjectives": "Describe the purpose and basic features of the International Space Station.",
+       "learningObjectivesTa": "சர்வதேச விண்வெளி நிலையத்தின் நோக்கம் மற்றும் அடிப்படை அம்சங்களை விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Matter Around Us",
+     "titleTa": "நம்மைச் சுற்றியுள்ள பொருட்கள்",
+     "displayOrder": 10,
+     "topics": [
+      {
+       "title": "Classification of Matter",
+       "titleTa": "பொருளின் வகைப்பாடு",
+       "learningObjectives": "Classify matter as pure substances or mixtures and distinguish elements, compounds and mixtures.",
+       "learningObjectivesTa": "பொருளை தூயப் பொருட்கள் மற்றும் கலவைகள் என வகைப்படுத்துதல்; தனிமங்கள், சேர்மங்கள், கலவைகளை வேறுபடுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Elements, Compounds and Mixtures",
+       "titleTa": "தனிமங்கள், சேர்மங்கள் மற்றும் கலவைகள்",
+       "learningObjectives": "Compare elements, compounds and mixtures using composition and properties.",
+       "learningObjectivesTa": "அமைப்பு மற்றும் பண்புகளின் அடிப்படையில் தனிமங்கள், சேர்மங்கள், கலவைகளை ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Homogeneous and Heterogeneous Mixtures",
+       "titleTa": "ஒரேமாதிரியான மற்றும் வேறுமாதிரியான கலவைகள்",
+       "learningObjectives": "Identify homogeneous and heterogeneous mixtures with suitable examples.",
+       "learningObjectivesTa": "உகந்த எடுத்துக்காட்டுகளுடன் ஒரேமாதிரியான மற்றும் வேறுமாதிரியான கலவைகளை அடையாளம் காண்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Separation of Mixtures",
+       "titleTa": "கலவைகளைப் பிரித்தல்",
+       "learningObjectives": "Choose suitable methods to separate components of mixtures based on their properties.",
+       "learningObjectivesTa": "கலவைகளின் கூறுகளை அவற்றின் பண்புகளின் அடிப்படையில் பிரிக்க ஏற்ற முறைகளைத் தேர்ந்தெடுத்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Solutions, Colloids and Suspensions",
+       "titleTa": "கரைசல்கள், கொலாய்டுகள் மற்றும் தொங்கல்கள்",
+       "learningObjectives": "Compare true solutions, colloids and suspensions using particle size and behaviour.",
+       "learningObjectivesTa": "துகள்களின் அளவு மற்றும் நடத்தையின் அடிப்படையில் உண்மைக் கரைசல், கொலாய்டு, தொங்கல் ஆகியவற்றை ஒப்பிடுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Emulsions and Uses of Colloids",
+       "titleTa": "எமல்சன்கள் மற்றும் கொலாய்டுகளின் பயன்பாடுகள்",
+       "learningObjectives": "Differentiate emulsions and describe common examples and uses of colloids.",
+       "learningObjectivesTa": "எமல்சன்களை வேறுபடுத்துதல்; கொலாய்டுகளின் பொதுவான எடுத்துக்காட்டுகளையும் பயன்பாடுகளையும் விவரித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Atomic Structure",
+     "titleTa": "அணு அமைப்பு",
+     "displayOrder": 11,
+     "topics": [
+      {
+       "title": "Rutherford’s Gold Foil Experiment",
+       "titleTa": "ரதர்ஃபோர்டின் தங்கத் தாள் பரிசோதனை",
+       "learningObjectives": "Describe Rutherford’s experiment and infer the nuclear model of the atom.",
+       "learningObjectivesTa": "ரதர்ஃபோர்டின் பரிசோதனையை விவரித்தல்; அணுவின் அணுக்கரு மாதிரியை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Bohr’s Atomic Model",
+       "titleTa": "போர் அணு மாதிரி",
+       "learningObjectives": "Explain the main postulates of Bohr’s model and the arrangement of electrons in shells.",
+       "learningObjectivesTa": "போரின் மாதிரியின் முக்கியக் கருதுகோள்களை விளக்குதல்; மின்னணுக்களின் அடுக்கு அமைப்பை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Sub-atomic Particles",
+       "titleTa": "உபஅணுத் துகள்கள்",
+       "learningObjectives": "Compare the charge and mass of protons, neutrons and electrons.",
+       "learningObjectivesTa": "புரோட்டான், நியூட்ரான், எலக்ட்ரான் ஆகியவற்றின் மின்னூட்டம் மற்றும் நிறையை ஒப்பிடுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Atomic Number and Mass Number",
+       "titleTa": "அணு எண் மற்றும் நிறை எண்",
+       "learningObjectives": "Calculate protons, neutrons and electrons from atomic number and mass number.",
+       "learningObjectivesTa": "அணு எண், நிறை எண் ஆகியவற்றிலிருந்து புரோட்டான், நியூட்ரான், எலக்ட்ரான் எண்ணிக்கையை கணக்கிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Isotopes, Isobars and Isotones",
+       "titleTa": "ஐசோடோப்புகள், ஐசோபார்கள் மற்றும் ஐசோடோன்கள்",
+       "learningObjectives": "Differentiate isotopes, isobars and isotones and identify examples.",
+       "learningObjectivesTa": "ஐசோடோப்புகள், ஐசோபார்கள், ஐசோடோன்கள் ஆகியவற்றை வேறுபடுத்துதல்; எடுத்துக்காட்டுகளை அடையாளம் காண்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Valency and Quantum Numbers",
+       "titleTa": "வேலன்சி மற்றும் குவாண்டம் எண்கள்",
+       "learningObjectives": "Assign valency from valence electrons and recognize the significance of quantum numbers.",
+       "learningObjectivesTa": "வேலன்ஸ் எலக்ட்ரான்களின் அடிப்படையில் வேலன்சியைக் கூறுதல்; குவாண்டம் எண்களின் முக்கியத்துவத்தை அறிதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Periodic Classification of Elements",
+     "titleTa": "தனிமங்களின் வகைப்பாட்டு அட்டவணை",
+     "displayOrder": 12,
+     "topics": [
+      {
+       "title": "Early Concepts of Classification of Elements",
+       "titleTa": "தனிம வகைப்பாட்டின் ஆரம்பக் கருத்துக்கள்",
+       "learningObjectives": "Trace the early attempts to classify elements, including Dobereiner’s triads and other early schemes.",
+       "learningObjectivesTa": "Dobereiner triads உட்பட தனிமங்களை வகைப்படுத்தும் ஆரம்ப முயற்சிகளைத் தடம் பிடித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Newlands’ Law of Octaves; Mendeleev’s Periodic Table",
+       "titleTa": "நியூலாண்ட்ஸ் ஆக்ட் விதி; மென்டலீவின் கால அட்டவணை",
+       "learningObjectives": "Explain the strengths and limitations of early periodic tables and the basis of periodicity.",
+       "learningObjectivesTa": "ஆரம்ப கால அட்டவணைகளின் பலம், குறைபாடுகளை விளக்குதல்; கால ஒழுங்கின் அடிப்படையை அறிதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Modern Periodic Law and Modern Periodic Table",
+       "titleTa": "நவீன கால விதி மற்றும் நவீன கால அட்டவணை",
+       "learningObjectives": "Describe the modern periodic law and the structure of the modern periodic table.",
+       "learningObjectivesTa": "நவீன கால விதியையும் நவீன கால அட்டவணையின் அமைப்பையும் விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Classification Based on Electronic Configuration",
+       "titleTa": "மின்னணு அமைப்பின் அடிப்படையிலான வகைப்பாடு",
+       "learningObjectives": "Classify elements according to electronic configuration and identify periodic trends in groups and periods.",
+       "learningObjectivesTa": "மின்னணு அமைப்பின் அடிப்படையில் தனிமங்களை வகைப்படுத்துதல்; குழுக்கள் மற்றும் காலங்களில் காணப்படும் காலவரிசை போக்குகளை அடையாளம் காண்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Position of Hydrogen and Noble Gases",
+       "titleTa": "ஹைட்ரஜன் மற்றும் மந்த வாயுக்களின் நிலை",
+       "learningObjectives": "Explain the special positions of hydrogen and noble gases in the periodic table.",
+       "learningObjectivesTa": "கால அட்டவணையில் ஹைட்ரஜன் மற்றும் மந்த வாயுக்களின் சிறப்பு நிலையை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Metals, Non-metals, Metalloids and Alloys",
+       "titleTa": "உலோகங்கள், அலோகங்கள், உலோகமாதல்கள் மற்றும் கலிமங்கள்",
+       "learningObjectives": "Distinguish metals, non-metals and metalloids and identify common alloys.",
+       "learningObjectivesTa": "உலோகங்கள், அலோகங்கள், உலோகமாதல்கள் ஆகியவற்றை வேறுபடுத்துதல்; பொதுவான கலிமங்களை அடையாளம் காண்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Chemical Bonding",
+     "titleTa": "வேதிப்பிணைப்பு",
+     "displayOrder": 13,
+     "topics": [
+      {
+       "title": "Kossel-Lewis Approach to Chemical Bonds",
+       "titleTa": "வேதிப்பிணைப்புகளுக்கான Kossel-Lewis அணுகுமுறை",
+       "learningObjectives": "Explain why atoms bond and describe the Kossel-Lewis approach to chemical bonding.",
+       "learningObjectivesTa": "அணுக்கள் ஏன் பிணைப்பு ஏற்படுத்துகின்றன என்பதை விளக்குதல்; வேதிப்பிணைப்புக்கான Kossel-Lewis அணுகுமுறையை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Octet Rule; Lewis Dot Structure",
+       "titleTa": "ஆக்டெட் விதி; Lewis dot structure",
+       "learningObjectives": "State the octet rule and draw Lewis dot structures of atoms and simple molecules.",
+       "learningObjectivesTa": "ஆக்டெட் விதியைக் கூறுதல்; அணுக்கள் மற்றும் எளிய மூலக்கூறுகளின் லூயிஸ் புள்ளி அமைப்புகளை வரைவது.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Ionic Bond",
+       "titleTa": "அயனிப் பிணைப்பு",
+       "learningObjectives": "Describe ionic bond formation and relate it to electron transfer and stable ions.",
+       "learningObjectivesTa": "அயனிப் பிணைப்பு உருவாகும் முறையை விவரித்தல்; எலக்ட்ரான் பரிமாற்றம் மற்றும் நிலையான அயன்களுடன் அதைத் தொடர்புபடுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Covalent Bond",
+       "titleTa": "சகப் பிணைப்பு",
+       "learningObjectives": "Explain covalent bond formation by sharing of electrons and compare single, double and triple bonds.",
+       "learningObjectivesTa": "எலக்ட்ரான் பகிர்வின் மூலம் சகப் பிணைப்பு உருவாகும் விதத்தை விளக்குதல்; ஒற்றை, இரட்டை, மும்மை பிணைப்புகளை ஒப்பிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Coordinate Bond; Properties of Compounds",
+       "titleTa": "ஒருங்கிணைப் பிணைப்பு; சேர்மங்களின் பண்புகள்",
+       "learningObjectives": "Describe coordinate bonding and compare the properties of ionic and covalent compounds.",
+       "learningObjectivesTa": "ஒருங்கிணைப் பிணைப்பை விவரித்தல்; அயனி மற்றும் சகப் சேர்மங்களின் பண்புகளை ஒப்பிடுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Redox Reactions and Oxidation Number",
+       "titleTa": "ஆக்சிகரிப்பு-குறைப்பு வினைகள் மற்றும் ஆக்சிகரிப்பு எண்",
+       "learningObjectives": "Identify oxidation and reduction in reactions and calculate oxidation numbers of elements.",
+       "learningObjectivesTa": "வினைகளில் ஆக்சிகரிப்பு மற்றும் குறைப்பு ஆகியவற்றை அடையாளம் காண்தல்; தனிமங்களின் ஆக்சிகரிப்பு எண்களைக் கணக்கிடுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Acids, Bases and Salts",
+     "titleTa": "அமிலங்கள், காரங்கள் மற்றும் உப்புகள்",
+     "displayOrder": 14,
+     "topics": [
+      {
+       "title": "Acids",
+       "titleTa": "அமிலங்கள்",
+       "learningObjectives": "Define acids and identify their common properties, sources and uses in daily life.",
+       "learningObjectivesTa": "அமிலங்களை வரையறுத்தல்; அவற்றின் பொதுவான பண்புகள், மூலங்கள், அன்றாடப் பயன்பாடுகளை அடையாளம் காண்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Bases",
+       "titleTa": "காரங்கள்",
+       "learningObjectives": "Define bases and distinguish them from acids using characteristic properties.",
+       "learningObjectivesTa": "காரங்களை வரையறுத்தல்; அவற்றின் சிறப்புப் பண்புகளின் அடிப்படையில் அமிலங்களிலிருந்து வேறுபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Salts and Neutralisation",
+       "titleTa": "உப்புகள் மற்றும் நடுநிலைப்படுத்தல்",
+       "learningObjectives": "Explain salt formation by neutralisation and relate it to common examples.",
+       "learningObjectivesTa": "நடுநிலைப்படுத்தலின் மூலம் உப்பு உருவாகும் விதத்தை விளக்குதல்; அதனை பொதுவான எடுத்துக்காட்டுகளுடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Indicators and pH",
+       "titleTa": "குறியீடுகள் மற்றும் pH",
+       "learningObjectives": "Use indicators and pH paper to identify acidic, basic and neutral solutions.",
+       "learningObjectivesTa": "குறியீடுகள் மற்றும் pH காகிதத்தைப் பயன்படுத்தி அமில, கார, நடுநிலை கரைசல்களை அடையாளம் காண்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Strength of Acids and Bases",
+       "titleTa": "அமிலங்கள் மற்றும் காரங்களின் வலிமை",
+       "learningObjectives": "Compare strong and weak acids and bases and relate strength to ion concentration.",
+       "learningObjectivesTa": "வலுவான, மந்தமான அமிலங்கள் மற்றும் காரங்களை ஒப்பிடுதல்; வலிமையைக் அயன் செறிவுடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Uses of Acids, Bases and Salts; Aquaregia",
+       "titleTa": "அமிலங்கள், காரங்கள் மற்றும் உப்புகளின் பயன்பாடுகள்; ஆக்வா ரீஜியா",
+       "learningObjectives": "Explain the importance of acids, bases and salts in everyday life and describe aquaregia and its properties.",
+       "learningObjectivesTa": "அன்றாட வாழ்க்கையில் அமிலங்கள், காரங்கள், உப்புகளின் முக்கியத்துவத்தை விளக்குதல்; ஆக்வா ரீஜியா மற்றும் அதன் பண்புகளை விவரித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Carbon and its Compounds",
+     "titleTa": "கார்பனும் அவற்றின் சேர்மங்களும்",
+     "displayOrder": 15,
+     "topics": [
+      {
+       "title": "Discovery of Carbon; Special Features of Carbon",
+       "titleTa": "கார்பனின் கண்டுபிடிப்பு; கார்பனின் சிறப்புப் பண்புகள்",
+       "learningObjectives": "Describe the discovery of carbon and explain why carbon forms many compounds.",
+       "learningObjectivesTa": "கார்பனின் கண்டுபிடிப்பை விவரித்தல்; கார்பன் ஏன் எண்ணற்ற சேர்மங்களை உருவாக்குகிறது என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Allotropy of Carbon",
+       "titleTa": "கார்பனின் பலவடிவத் தன்மை",
+       "learningObjectives": "Compare the allotropes of carbon, especially graphite and diamond.",
+       "learningObjectivesTa": "கார்பனின் பலவடிவங்களை, குறிப்பாக கிராஃபைட் மற்றும் வைரத்தை, ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Carbon Compounds and Isomerism",
+       "titleTa": "கார்பன் சேர்மங்கள் மற்றும் சமவடிவம்",
+       "learningObjectives": "Identify common carbon compounds and explain the idea of isomerism.",
+       "learningObjectivesTa": "பொதுவான கார்பன் சேர்மங்களை அடையாளம் காண்தல்; சமவடிவம் பற்றிய கருத்தை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Hydrocarbons and Functional Groups",
+       "titleTa": "ஹைட்ரோகார்பன்கள் மற்றும் செயல்பாட்டு குழுக்கள்",
+       "learningObjectives": "Classify carbon compounds using functional groups and simple hydrocarbon types.",
+       "learningObjectivesTa": "செயல்பாட்டு குழுக்களையும் எளிய ஹைட்ரோகார்பன் வகைகளையும் கொண்டு கார்பன் சேர்மங்களை வகைப்படுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Common Properties and Uses of Carbon Compounds",
+       "titleTa": "கார்பன் சேர்மங்களின் பொதுப் பண்புகள் மற்றும் பயன்பாடுகள்",
+       "learningObjectives": "Describe the common properties of carbon compounds and their everyday applications.",
+       "learningObjectivesTa": "கார்பன் சேர்மங்களின் பொதுப் பண்புகளை விவரித்தல்; அவற்றின் அன்றாடப் பயன்பாடுகளை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Plastics and Environmental Impact",
+       "titleTa": "பிளாஸ்டிக்குகள் மற்றும் சுற்றுச்சூழல் தாக்கம்",
+       "learningObjectives": "Recognize plastic codes and discuss the effects of plastics and measures to reduce pollution.",
+       "learningObjectivesTa": "பிளாஸ்டிக் குறியீடுகளை அடையாளம் காண்தல்; பிளாஸ்டிக்குகளின் தாக்கங்கள் மற்றும் மாசைக் குறைக்கும் வழிகளை விவாதித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Applied Chemistry",
+     "titleTa": "பயன்பாட்டு வேதியியல்",
+     "displayOrder": 16,
+     "topics": [
+      {
+       "title": "Nanochemistry",
+       "titleTa": "நானோவேதியியல்",
+       "learningObjectives": "Define applied chemistry and explain the special features and uses of nanochemistry.",
+       "learningObjectivesTa": "பயன்பாட்டு வேதியியலை வரையறுத்தல்; நானோவேதியியலின் சிறப்புப் பண்புகள் மற்றும் பயன்பாடுகளை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Drugs and Medicines",
+       "titleTa": "மருந்துகள் மற்றும் வைத்தியங்கள்",
+       "learningObjectives": "Identify major types of drugs and relate chemistry to treatment and healthcare.",
+       "learningObjectivesTa": "மருந்துகளின் முக்கிய வகைகளை அடையாளம் காண்தல்; வேதியியலை சிகிச்சை மற்றும் சுகாதாரத்துடன் தொடர்புபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Electrochemistry and Radiochemistry",
+       "titleTa": "மின்னரசாயனம் மற்றும் கதிரியக்க வேதியியல்",
+       "learningObjectives": "Describe basic uses of electrochemistry and radiochemistry in science and technology.",
+       "learningObjectivesTa": "அறிவியல் மற்றும் தொழில்நுட்பத்தில் மின்னரசாயனம், கதிரியக்க வேதியியல் ஆகியவற்றின் அடிப்படைப் பயன்பாடுகளை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Dyes and Food Chemistry",
+       "titleTa": "நிறச்சாயங்கள் மற்றும் உணவு வேதியியல்",
+       "learningObjectives": "Explain how dyes and food chemistry are used in industry and daily life.",
+       "learningObjectivesTa": "தொழில்துறை மற்றும் அன்றாட வாழ்வில் நிறச்சாயங்கள் மற்றும் உணவு வேதியியல் எவ்வாறு பயன்படுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Agricultural Chemistry",
+       "titleTa": "வேளாண் வேதியியல்",
+       "learningObjectives": "Describe the role of chemistry in fertilizers, pesticides and crop improvement.",
+       "learningObjectivesTa": "உரம், பூச்சிக்கொல்லிகள் மற்றும் பயிர் மேம்பாட்டில் வேதியியலின் பங்களிப்பை விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Forensic Chemistry",
+       "titleTa": "தடயவியல் வேதியியல்",
+       "learningObjectives": "State how forensic chemistry helps in investigating and solving crimes.",
+       "learningObjectivesTa": "குற்றங்களை விசாரித்து தீர்க்க தடயவியல் வேதியியல் எவ்வாறு உதவுகிறது என்பதை கூறுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Animal Kingdom",
+     "titleTa": "விலங்குலகம்",
+     "displayOrder": 17,
+     "topics": [
+      {
+       "title": "Basis of Classification",
+       "titleTa": "வகைப்பாட்டின் அடிப்படை",
+       "learningObjectives": "Explain the need for classification and use major criteria for grouping animals.",
+       "learningObjectivesTa": "வகைப்பாட்டின் தேவையை விளக்குதல்; விலங்குகளை குழுவாக்கும் முக்கிய அளவுகோள்களைப் பயன்படுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Non-chordates",
+       "titleTa": "முதுகெலும்பற்றவை",
+       "learningObjectives": "Identify the major non-chordate groups and recall their salient features.",
+       "learningObjectivesTa": "முதுகெலும்பற்ற முக்கியக் குழுக்களை அடையாளம் காண்தல்; அவற்றின் முக்கியப் பண்புகளை நினைவுகூர்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Chordates",
+       "titleTa": "முதுகெலும்புடையவை",
+       "learningObjectives": "Recognize the main features of chordates and distinguish them from non-chordates.",
+       "learningObjectivesTa": "முதுகெலும்புடையவற்றின் முக்கிய பண்புகளை அடையாளம் காண்தல்; அவற்றை முதுகெலும்பற்றவற்றிலிருந்து வேறுபடுத்துதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Major Phyla",
+       "titleTa": "முக்கிய பிரிவுகள்",
+       "learningObjectives": "Describe the characteristic features of the major animal phyla in order.",
+       "learningObjectivesTa": "முக்கிய விலங்கு பிரிவுகளின் தனிச்சிறப்புகளை வரிசைப்படி விவரித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Binomial Nomenclature",
+       "titleTa": "இருபெயரிடல் முறையியல்",
+       "learningObjectives": "Use binomial names correctly and identify genus and species in scientific naming.",
+       "learningObjectivesTa": "இருபெயர்களைப் சரியாகப் பயன்படுத்துதல்; அறிவியல் பெயரிடலில் பேரினம் மற்றும் இனத்தை அடையாளம் காண்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "General Characteristics of Animals",
+       "titleTa": "விலங்குகளின் பொதுப் பண்புகள்",
+       "learningObjectives": "Compare animals based on symmetry, coelom, organization and body plan.",
+       "learningObjectivesTa": "சமச்சீர், உடற்குழி, அமைப்பு, உடல் திட்டம் ஆகியவற்றின் அடிப்படையில் விலங்குகளை ஒப்பிடுதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Organisation of Tissues",
+     "titleTa": "திசுக்களின் அமைப்பு",
+     "displayOrder": 18,
+     "topics": [
+      {
+       "title": "Plant Tissues",
+       "titleTa": "தாவரத் திசுக்கள்",
+       "learningObjectives": "Define tissue and explain how tissues are organized in plants.",
+       "learningObjectivesTa": "திசுவை வரையறுத்தல்; தாவரங்களில் திசுக்கள் எவ்வாறு அமைக்கப்படுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Meristematic Tissues",
+       "titleTa": "மெறிஸ்டெமாடிக் திசுக்கள்",
+       "learningObjectives": "Describe meristematic tissues and relate them to plant growth.",
+       "learningObjectivesTa": "மெறிஸ்டெமாடிக் திசுக்களை விவரித்தல்; தாவர வளர்ச்சியுடன் அவற்றைத் தொடர்புபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Permanent Tissues",
+       "titleTa": "நிரந்தரத் திசுக்கள்",
+       "learningObjectives": "Classify permanent tissues and state their functions.",
+       "learningObjectivesTa": "நிரந்தரத் திசுக்களை வகைப்படுத்துதல்; அவற்றின் பணிகளை கூறுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Animal Tissues",
+       "titleTa": "விலங்கு திசுக்கள்",
+       "learningObjectives": "Identify the major animal tissues and compare their structure and function.",
+       "learningObjectivesTa": "முக்கிய விலங்கு திசுக்களை அடையாளம் காண்தல்; அவற்றின் அமைப்பு மற்றும் பணிகளை ஒப்பிடுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Structural Organisation of Tissues",
+       "titleTa": "திசுக்களின் கட்டமைப்பு அமைப்பு",
+       "learningObjectives": "Explain how tissues form organs and organ systems in multicellular organisms.",
+       "learningObjectivesTa": "பல்வகை உயிரினங்களில் திசுக்கள் எப்படி உறுப்புகளாகவும் உறுப்பு மண்டலங்களாகவும் அமைக்கப்படுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Cell Division",
+       "titleTa": "செல் பிரிவு",
+       "learningObjectives": "Describe the process, types and significance of cell division in growth and repair.",
+       "learningObjectivesTa": "செல் பிரிவின் செயல்முறை, வகைகள், வளர்ச்சி மற்றும் பழுதுபார்ப்பில் அதன் முக்கியத்துவத்தை விவரித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Plant Physiology",
+     "titleTa": "தாவர உலகம் - தாவர செயலியல்",
+     "displayOrder": 19,
+     "topics": [
+      {
+       "title": "Plant Movements",
+       "titleTa": "தாவர இயக்கங்கள்",
+       "learningObjectives": "Identify autonomic movements in plants and distinguish different types of movement.",
+       "learningObjectivesTa": "தாவரங்களில் தானியங்கி இயக்கங்களை அடையாளம் காண்தல்; பல்வேறு இயக்க வகைகளை வேறுபடுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Tropic Movements",
+       "titleTa": "திசை இயக்கங்கள்",
+       "learningObjectives": "Differentiate tropic movements from other movements and give examples of phototropism, geotropism and hydrotropism.",
+       "learningObjectivesTa": "திசை இயக்கங்களை மற்ற இயக்கங்களிலிருந்து வேறுபடுத்துதல்; ஒளி, ஈர்ப்பு, நீர் திசை இயக்கங்களுக்கு எடுத்துக்காட்டுகளை அளித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Nastic Movements",
+       "titleTa": "திசையற்ற இயக்கங்கள்",
+       "learningObjectives": "Explain nastic movements with suitable examples.",
+       "learningObjectivesTa": "திசையற்ற இயக்கங்களை பொருத்தமான எடுத்துக்காட்டுகளுடன் விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Photosynthesis",
+       "titleTa": "ஒளிச்சேர்க்கை",
+       "learningObjectives": "Explain how plants make food by photosynthesis and identify the factors involved.",
+       "learningObjectivesTa": "தாவரங்கள் ஒளிச்சேர்க்கை மூலம் உணவு தயாரிப்பதை விளக்குதல்; இதில் ஈடுபடும் காரணிகளை அடையாளம் காண்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Transpiration",
+       "titleTa": "இழப்பு சுவாசம்",
+       "learningObjectives": "Describe transpiration and explain its importance in plant life.",
+       "learningObjectivesTa": "இழப்பு சுவாசத்தை விவரித்தல்; தாவர வாழ்க்கையில் அதன் முக்கியத்துவத்தை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Organ Systems in Animals",
+     "titleTa": "விலங்குகளின் உறுப்பு மண்டலங்கள்",
+     "displayOrder": 20,
+     "topics": [
+      {
+       "title": "Digestive System",
+       "titleTa": "செரிமான மண்டலம்",
+       "learningObjectives": "Define digestion and describe the parts and functions of the human digestive system.",
+       "learningObjectivesTa": "செரிமானத்தை வரையறுத்தல்; மனித செரிமான மண்டலத்தின் உறுப்புகளையும் பணிகளையும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Role of Enzymes in Digestion",
+       "titleTa": "செரிமானத்தில் நொதிகளின் பங்கு",
+       "learningObjectives": "Explain how enzymes help in the chemical digestion of food.",
+       "learningObjectivesTa": "உணவின் வேதியியல் செரிமானத்தில் நொதிகள் எப்படி உதவுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Excretory System",
+       "titleTa": "வெளியேற்ற மண்டலம்",
+       "learningObjectives": "Identify the organs involved in excretion and describe their functions.",
+       "learningObjectivesTa": "வெளியேற்றத்தில் ஈடுபடும் உறுப்புகளை அடையாளம் காண்தல்; அவற்றின் பணிகளை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Skin as an Excretory Organ",
+       "titleTa": "வெளியேற்ற உறுப்பாகத் தோல்",
+       "learningObjectives": "Explain the role of skin in excretion and body regulation.",
+       "learningObjectivesTa": "வெளியேற்றத்திலும் உடல் ஒழுங்குபாட்டிலும் தோலின் பங்கை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Human Reproductive System",
+       "titleTa": "மனித இனப்பெருக்க மண்டலம்",
+       "learningObjectives": "Describe the male and female reproductive systems and their functions.",
+       "learningObjectivesTa": "ஆண் மற்றும் பெண் இனப்பெருக்க மண்டலங்களையும் அவற்றின் பணிகளையும் விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Coordination among Organ Systems",
+       "titleTa": "உறுப்பு மண்டலங்களுக்கிடையேயான ஒருங்கிணைப்பு",
+       "learningObjectives": "Explain how organ systems work together to perform life processes.",
+       "learningObjectivesTa": "வாழ்நிலை செயல்களை நிறைவேற்ற உறுப்பு மண்டலங்கள் எவ்வாறு ஒன்றிணைந்து செயல்படுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Nutrition and Health",
+     "titleTa": "ஊட்டச்சத்து மற்றும் ஆரோக்கியம்",
+     "displayOrder": 21,
+     "topics": [
+      {
+       "title": "Classes of Nutrients",
+       "titleTa": "ஊட்டச்சத்துக்களின் வகைகள்",
+       "learningObjectives": "Classify nutrients and state the main functions of carbohydrates, proteins, fats, vitamins and minerals.",
+       "learningObjectivesTa": "ஊட்டச்சத்துக்களை வகைப்படுத்துதல்; கார்போஹைட்ரேட்டுகள், புரதங்கள், கொழுப்புகள், வைட்டமின்கள், தாதுக்கள் ஆகியவற்றின் முக்கியப் பணிகளை கூறுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Vitamins and Minerals",
+       "titleTa": "வைட்டமின்கள் மற்றும் தாதுக்கள்",
+       "learningObjectives": "Identify sources, functions and deficiency disorders of vitamins and minerals.",
+       "learningObjectivesTa": "வைட்டமின்கள் மற்றும் தாதுக்களின் மூலங்கள், பணிகள், குறைபாடு நோய்களை அடையாளம் காண்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Food Preservation",
+       "titleTa": "உணவு பாதுகாத்தல்",
+       "learningObjectives": "Describe common methods of food preservation and explain why they are needed.",
+       "learningObjectivesTa": "உணவு பாதுகாப்பின் பொதுவான முறைகளை விவரித்தல்; அவை ஏன் தேவை என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Food Adulteration",
+       "titleTa": "உணவு கலப்படம்",
+       "learningObjectives": "Recognize food adulterants and explain their harmful effects.",
+       "learningObjectivesTa": "உணவு கலப்படிகளை அடையாளம் காண்தல்; அவற்றின் தீங்கான விளைவுகளை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Food Quality and Certification",
+       "titleTa": "உணவு தரம் மற்றும் சான்றிதழ்",
+       "learningObjectives": "Identify the role of food quality certifying agencies and basic food safety standards.",
+       "learningObjectivesTa": "உணவுத் தரச் சான்றளிப்பு அமைப்புகளின் பங்கையும் அடிப்படை உணவுப் பாதுகாப்புத் தரங்களையும் அடையாளம் காண்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "World of Microbes",
+     "titleTa": "நுண்ணுயிரிகளின் உலகம்",
+     "displayOrder": 22,
+     "topics": [
+      {
+       "title": "Bacteria",
+       "titleTa": "பாக்டீரியா",
+       "learningObjectives": "Identify bacterial shape and structure and classify bacteria using basic features.",
+       "learningObjectivesTa": "பாக்டீரியாவின் வடிவம், அமைப்பை அடையாளம் காண்தல்; அடிப்படை பண்புகளின் அடிப்படையில் அவற்றை வகைப்படுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Viruses",
+       "titleTa": "வைரஸ்கள்",
+       "learningObjectives": "Describe the main types of viruses and their distinctive characteristics.",
+       "learningObjectivesTa": "வைரஸ்களின் முக்கிய வகைகளையும் அவற்றின் தனிச்சிறப்புகளையும் விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Microbes in Agriculture",
+       "titleTa": "வேளாண்மையில் நுண்ணுயிரிகள்",
+       "learningObjectives": "Explain the beneficial role of microbes in agriculture and soil fertility.",
+       "learningObjectivesTa": "வேளாண்மை மற்றும் மண் வளத்திற்கான நுண்ணுயிரிகளின் பயனுள்ள பங்கை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Microbes in Food Industries and Medicine",
+       "titleTa": "உணவுத் தொழில்துறையிலும் மருத்துவத்திலும் நுண்ணுயிரிகள்",
+       "learningObjectives": "Describe how microbes are used in food production and in making medicines.",
+       "learningObjectivesTa": "உணவு தயாரிப்பு மற்றும் மருந்து தயாரிப்பில் நுண்ணுயிரிகள் எவ்வாறு பயன்படுகின்றன என்பதை விவரித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Diseases, Infection and Prevention",
+       "titleTa": "நோய்கள், தொற்று மற்றும் தடுப்பு",
+       "learningObjectives": "Explain disease transmission, infection and preventive measures against microbial diseases.",
+       "learningObjectivesTa": "நோய் பரவல், தொற்று, நுண்ணுயிர் நோய்களுக்கு எதிரான தடுப்பு முறைகள் ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Economic Biology",
+     "titleTa": "பொருளாதார உயிரியல்",
+     "displayOrder": 23,
+     "topics": [
+      {
+       "title": "Horticulture",
+       "titleTa": "தோட்டக்கலை",
+       "learningObjectives": "Define horticulture and describe its main branches and importance.",
+       "learningObjectivesTa": "தோட்டக்கலையை வரையறுத்தல்; அதன் முக்கிய கிளைகளையும் முக்கியத்துவத்தையும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Floriculture and Pomology",
+       "titleTa": "மலர்க்கலை மற்றும் பழக்கலை",
+       "learningObjectives": "Explain floriculture and pomology as important areas of plant-based production.",
+       "learningObjectivesTa": "தாவர அடிப்படையிலான உற்பத்தியின் முக்கிய துறைகளாக மலர்க்கலை மற்றும் பழக்கலையை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Biomanures and Vermicomposting",
+       "titleTa": "உயிர் உரங்கள் மற்றும் மண்புழு உரம் தயாரித்தல்",
+       "learningObjectives": "Classify biomanures and describe vermicomposting and its benefits.",
+       "learningObjectivesTa": "உயிர் உரங்களை வகைப்படுத்துதல்; மண்புழு உரம் தயாரித்தல் மற்றும் அதன் நன்மைகளை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Hydroponics, Aquaponics and Aeroponics",
+       "titleTa": "ஹைட்ரோபோனிக்ஸ், அக்வாபோனிக்ஸ் மற்றும் ஏரோபோனிக்ஸ்",
+       "learningObjectives": "Differentiate hydroponics, aquaponics and aeroponics as modern cultivation methods.",
+       "learningObjectivesTa": "நவீன சாகுபடி முறைகளாக ஹைட்ரோபோனிக்ஸ், அக்வாபோனிக்ஸ், ஏரோபோனிக்ஸ் ஆகியவற்றை வேறுபடுத்துதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Dairy Farming, Aquaculture and Pisciculture",
+       "titleTa": "பால் பண்ணை, மீன்வளர்ப்பு மற்றும் மீன்கலாசாரம்",
+       "learningObjectives": "Describe the importance of dairy farming and fish culture in economic biology.",
+       "learningObjectivesTa": "பொருளாதார உயிரியல் துறையில் பால் பண்ணை மற்றும் மீன்வளர்ப்பின் முக்கியத்துவத்தை விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Apiculture",
+       "titleTa": "தேனீ வளர்ப்பு",
+       "learningObjectives": "Identify products obtained from apiculture and explain their economic value.",
+       "learningObjectivesTa": "தேனீ வளர்ப்பில் இருந்து பெறப்படும் பொருட்களை அடையாளம் காண்தல்; அவற்றின் பொருளாதார மதிப்பை விளக்குதல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Environmental Science",
+     "titleTa": "சூழ்நிலை அறிவியல்",
+     "displayOrder": 24,
+     "topics": [
+      {
+       "title": "Biogeochemical Cycles",
+       "titleTa": "உயிர்வேதியச் சுழற்சிகள்",
+       "learningObjectives": "Relate environmental science to natural cycles and describe the movement of matter in ecosystems.",
+       "learningObjectivesTa": "சூழ்நிலை அறிவியலை இயற்கைச் சுழற்சிகளுடன் தொடர்புபடுத்துதல்; சூழியக்கங்களில் பொருளின் இயக்கத்தை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Water Cycle",
+       "titleTa": "நீர்ச் சுழற்சி",
+       "learningObjectives": "Explain the water cycle and analyse human impacts on it.",
+       "learningObjectivesTa": "நீர்ச் சுழற்சியை விளக்குதல்; அதில் மனித தாக்கங்களைப் பகுத்தாய்வு செய்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Nitrogen Cycle; Carbon Cycle",
+       "titleTa": "நைட்ரஜன் சுழற்சி; கார்பன் சுழற்சி",
+       "learningObjectives": "Describe the nitrogen and carbon cycles and discuss their importance in nature.",
+       "learningObjectivesTa": "நைட்ரஜன் மற்றும் கார்பன் சுழற்சிகளை விவரித்தல்; இயற்கையில் அவற்றின் முக்கியத்துவத்தை விவாதித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Adaptations of Plants and Animals",
+       "titleTa": "தாவரங்கள் மற்றும் விலங்குகளின் ஏற்புநிலைகள்",
+       "learningObjectives": "Explain how plants and animals adapt to different habitats and environmental conditions.",
+       "learningObjectivesTa": "வெவ்வேறு வாழிடங்களுக்கும் சூழல் நிலைகளுக்கும் தாவரங்கள் மற்றும் விலங்குகள் எவ்வாறு ஏற்பொத்துக் கொள்கின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Water Conservation and Recycling",
+       "titleTa": "நீர் பாதுகாப்பு மற்றும் மறுசுழற்சி",
+       "learningObjectives": "Discuss the importance of conserving water and describe methods of recycling water.",
+       "learningObjectivesTa": "நீர் பாதுகாப்பின் முக்கியத்துவத்தை விவாதித்தல்; நீரை மறுசுழற்சி செய்யும் முறைகளை விவரித்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Environmental Problems",
+       "titleTa": "சூழல் சிக்கல்கள்",
+       "learningObjectives": "Identify major environmental problems such as pollution, global warming, deforestation and desertification.",
+       "learningObjectivesTa": "மாசு, உலக வெப்பமயமாதல், காடழிப்பு, பாலைவனமயமாதல் போன்ற முக்கிய சூழல் சிக்கல்களை அடையாளம் காண்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "LibreOffice Impress",
+     "titleTa": "லிப்ரேஆபீஸ் இம்ப்ரஸ்",
+     "displayOrder": 25,
+     "topics": [
+      {
+       "title": "Presentation",
+       "titleTa": "விளக்கக்காட்சி",
+       "learningObjectives": "Define a presentation and explain its use for structured communication.",
+       "learningObjectivesTa": "ஒரு விளக்கக்காட்சியை வரையறுத்தல்; கட்டமைக்கப்பட்ட தொடர்புக்கான அதன் பயன்பாட்டை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Create a Blank Presentation",
+       "titleTa": "வெற்று விளக்கக்காட்சியை உருவாக்குதல்",
+       "learningObjectives": "Create a new blank presentation in LibreOffice Impress.",
+       "learningObjectivesTa": "LibreOffice Impress-இல் புதிய வெற்று விளக்கக்காட்சியை உருவாக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Insert Text, Images, Audio and Video",
+       "titleTa": "உரை, படங்கள், ஒலி மற்றும் காணொளியைச் செருகுதல்",
+       "learningObjectives": "Add text boxes, images, audio and video to a slide.",
+       "learningObjectivesTa": "ஒரு ஸ்லைடில் உரை பெட்டிகள், படங்கள், ஒலி, காணொளி ஆகியவற்றைச் சேர்த்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Insert and Delete a Slide",
+       "titleTa": "ஒரு ஸ்லைடைச் செருகுதல் மற்றும் நீக்குதல்",
+       "learningObjectives": "Manage slides by inserting, duplicating and deleting them as needed.",
+       "learningObjectivesTa": "தேவைக்கேற்ப ஸ்லைடுகளைச் செருகி, நகலெடுத்து, நீக்கி நிர்வகித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Slide Show",
+       "titleTa": "ஸ்லைடு நிகழ்ச்சி",
+       "learningObjectives": "Run and view a slide show presentation effectively.",
+       "learningObjectivesTa": "ஸ்லைடு நிகழ்ச்சியைச் சிறப்பாக இயக்கி பார்வையிடுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    }
+   ],
+   "displayOrder": 2
+  },
+  {
+   "name": "Social Science",
+   "nameTa": "சமூக அறிவியல்",
+   "tileColor": "#3E8C8C",
+   "icon": "earth",
+   "chapters": [
+    {
+     "title": "Evolution of Humans and Society - Prehistoric Period",
+     "titleTa": "மனிதப் பரிணாம வளர்ச்சியும் சமூகமும்: வரலாற்றுக்கு முந்தைய காலம்",
+     "displayOrder": 1,
+     "topics": [
+      {
+       "title": "Origin of the Earth and Geological Ages; Human Enquiries into the Past and Origin of the World",
+       "titleTa": "புவியின் தோற்றமும் நிலவியல் காலகட்டங்களும்; மனிதரின் கடந்த கால ஆய்வும் உலகின் தோற்றமும்",
+       "learningObjectives": "Trace the origin of the Earth and the geological time scale. Explain how archaeology, palaeoanthropology, geology and evolution helped humans study prehistory.",
+       "learningObjectivesTa": "புவியின் தோற்றம் மற்றும் நிலவியல் காலக்கோட்டை அடையாளம் காணுதல். தொல்லியல், தொல்மானுடவியல், நிலவியல், பரிணாமக் கோட்பாடு ஆகியவை வரலாற்றுக்கு முந்தைய காலத்தைப் புரிந்துகொள்ள எவ்வாறு உதவின என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Prehistory: From Australopithecus through Homo erectus to Homo sapiens",
+       "titleTa": "வரலாற்றுக்கு முந்தைய காலம்: ஆஸ்ட்ரோலோபித்திகஸ் முதல் ஹோமோ எரக்டஸ் வழியாக ஹோமோ சேப்பியன்ஸ் வரை",
+       "learningObjectives": "Identify major human ancestors and their migration from Africa. Describe the development of stone tool cultures from the Lower to Upper Paleolithic phases.",
+       "learningObjectivesTa": "மனித மூதாதையர்களின் முக்கிய நிலைகளை அடையாளம் காணுதல்; அவர்கள் ஆப்பிரிக்காவில் தோன்றி பிற பகுதிகளுக்குப் பரவியதை அறிதல். கீழ்ப், இடை, மேல் பழங்கற்காலங்களில் கற்கருவிகள் எவ்வாறு வளர்ந்தன என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Mesolithic Culture and Neolithic Culture",
+       "titleTa": "இடைக்கற்காலப் பண்பாடும் புதிய கற்காலப் பண்பாடும்",
+       "learningObjectives": "Distinguish Mesolithic and Neolithic life ways, tools and subsistence. Explain the Neolithic Revolution, agriculture, domestication and settled village life.",
+       "learningObjectivesTa": "இடைக்கற்காலம் மற்றும் புதிய கற்காலத்தின் வாழ்க்கைமுறை, கருவிகள், உணவுத் தேடல் ஆகியவற்றை வேறுபடுத்துதல். புதிய கற்காலப் புரட்சி, வேளாண்மை, விலங்குகளைப் பழக்குதல், நிலையான கிராம வாழ்க்கை ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Prehistoric Tamilagam",
+       "titleTa": "தொல்பழங்காலத் தமிழகம்",
+       "learningObjectives": "Locate major prehistoric sites in Tamil Nadu and explain their evidence. Describe Lower, Middle and Mesolithic cultures in Tamil Nadu and the beginnings of Neolithic life.",
+       "learningObjectivesTa": "தமிழ்நாட்டிலுள்ள முக்கிய தொல்பழங்காலத் தளங்களை அடையாளம் காணுதல்; அவற்றின் சான்றுகளை விளக்குதல். தமிழ்நாட்டில் கீழ், இடை, இடைக்கற்காலப் பண்பாடுகள் மற்றும் புதிய கற்கால வாழ்வின் தொடக்கத்தை விவரித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Ancient Civilisations",
+     "titleTa": "பண்டைய நாகரிகங்கள்",
+     "displayOrder": 2,
+     "topics": [
+      {
+       "title": "Introduction to Ancient Civilisations; Egyptian Civilisation",
+       "titleTa": "பண்டைய நாகரிகங்களுக்கு அறிமுகம்; எகிப்திய நாகரிகம்",
+       "learningObjectives": "Identify the features of early civilizations and state formation. Describe the geography, society and achievements of ancient Egypt.",
+       "learningObjectivesTa": "ஆரம்ப நாகரிகங்களின் பண்புகளையும் அரசமைப்பின் தோற்றத்தையும் அடையாளம் காணுதல். பண்டைய எகிப்தின் நிலஅமைப்பு, சமூகம், சாதனைகளை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Mesopotamian Civilisation",
+       "titleTa": "மெசபடோமிய நாகரிகம்",
+       "learningObjectives": "Explain the rise of Sumerian, Babylonian and Assyrian societies in Mesopotamia. Describe their cities, writing, laws, trade and culture.",
+       "learningObjectivesTa": "மெசபடோமியாவில் சுமேரிய, பாபிலோனிய, அசீரிய சமூகங்களின் எழுச்சியை விளக்குதல். அவர்களின் நகரங்கள், எழுத்துமுறை, சட்டங்கள், வர்த்தகம், பண்பாடு ஆகியவற்றை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Chinese Civilisation",
+       "titleTa": "சீன நாகரிகம்",
+       "learningObjectives": "Describe the geographical setting and early development of Chinese civilization. Explain the main achievements of ancient China in politics, thought, art and technology.",
+       "learningObjectivesTa": "சீன நாகரிகத்தின் புவியியல் அமைப்பையும் ஆரம்ப வளர்ச்சியையும் விவரித்தல். பண்டைய சீனாவின் அரசியல், சிந்தனை, கலை, தொழில்நுட்பச் சாதனைகளை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Indus Civilisation",
+       "titleTa": "சிந்துவெளி நாகரிகம்",
+       "learningObjectives": "Locate and describe the Indus cities and their urban features. Explain town planning, economy, social life and decline of the Indus civilization.",
+       "learningObjectivesTa": "சிந்துவெளி நகரங்களை அடையாளம் கண்டு அவற்றின் நகரமைப்பு அம்சங்களை விவரித்தல். நகரத் திட்டமிடல், பொருளாதாரம், சமூக வாழ்க்கை, வீழ்ச்சி ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Early Tamil Society and Culture",
+     "titleTa": "தொடக்ககாலத் தமிழ்ச் சமூகமும் பண்பாடும்",
+     "displayOrder": 3,
+     "topics": [
+      {
+       "title": "Sources for the Study of Early Tamil Society",
+       "titleTa": "தொடக்ககாலத் தமிழ்ச் சமூக ஆய்வுக்கான ஆதாரங்கள்",
+       "learningObjectives": "Identify literary, archaeological, epigraphic and foreign sources for early Tamil history. Use these sources to reconstruct early Tamil society and culture.",
+       "learningObjectivesTa": "தொடக்ககாலத் தமிழ்ச் சரித்திரத்திற்கான இலக்கிய, தொல்லியல், கல்வெட்டு, அயல்நாட்டு ஆதாரங்களை அடையாளம் காணுதல். இவற்றைப் பயன்படுத்தித் தொடக்ககாலத் தமிழ்ச் சமூகமும் பண்பாடும் மீட்டுருவாக்கம் செய்வதை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Thinai-based Life and Sangam Literature",
+       "titleTa": "திணை அடிப்படையிலான வாழ்வும் சங்க இலக்கியமும்",
+       "learningObjectives": "Explain the thinai-based organisation of Tamil society and its link with landscapes. Describe the major Sangam texts and their literary themes.",
+       "learningObjectivesTa": "தமிழ்ச் சமூகத்தின் திணை அமைப்பும் அது நிலஅமைப்புகளோடு கொண்ட தொடர்பும் என்பதை விளக்குதல். முக்கிய சங்க இலக்கியங்களையும் அவற்றின் இலக்கியக் கருப்பொருள்களையும் விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Polity, Society and Economy",
+       "titleTa": "அரசியல், சமூகம், பொருளாதாரம்",
+       "learningObjectives": "Describe the political organisation, social life and economic activities of early Tamil communities. Explain chiefs, trade, agriculture, pastoral life and occupations.",
+       "learningObjectivesTa": "தொடக்ககாலத் தமிழ்ச் சமூகங்களின் அரசமைப்பு, சமூக வாழ்க்கை, பொருளாதார நடவடிக்கைகளை விவரித்தல். தலைவர்கள், வர்த்தகம், வேளாண்மை, ஆயர் வாழ்க்கை, தொழில்கள் ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Urbanization and Culture",
+       "titleTa": "நகர்மயம் மற்றும் பண்பாடு",
+       "learningObjectives": "Describe the growth of towns, ports and trade in early Tamilakam. Explain cultural practices, beliefs and the rise of urban life.",
+       "learningObjectivesTa": "தொடக்ககாலத் தமிழகம் நகரங்கள், துறைமுகங்கள், வர்த்தக வளர்ச்சி ஆகியவற்றை விவரித்தல். பண்பாட்டு நடைமுறைகள், நம்பிக்கைகள், நகர வாழ்வின் எழுச்சி ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Intellectual Awakening and Socio-Political Changes",
+     "titleTa": "அறிவு மலர்ச்சியும், சமூக-அரசியல் மாற்றங்களும்",
+     "displayOrder": 4,
+     "topics": [
+      {
+       "title": "Religious and Philosophical Changes in India",
+       "titleTa": "இந்தியாவில் சமய மற்றும் தத்துவ மாற்றங்கள்",
+       "learningObjectives": "Explain the rise of new religious and philosophical ideas in India. Compare Buddhism, Jainism and Ajivika with prevailing beliefs.",
+       "learningObjectivesTa": "இந்தியாவில் புதிய சமய, தத்துவக் கருத்துகள் தோன்றியதை விளக்குதல். பவுத்தம், சமணம், ஆசீவகம் ஆகியவற்றை நிலவிய நம்பிக்கைகளுடன் ஒப்பிடுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Persia, China and New Thought Traditions",
+       "titleTa": "பாரசீகம், சீனா மற்றும் புதிய சிந்தனை மரபுகள்",
+       "learningObjectives": "Describe Zoroastrianism in Persia and Confucianism and Taoism in China. Explain how these ideas influenced society and state formation.",
+       "learningObjectivesTa": "பாரசீகத்தில் ஜொராஸ்திரியம், சீனாவில் காங்பூசியமும் தாவோயிசமும் ஆகியவற்றை விவரித்தல். இக்கருத்துகள் சமூகத்துக்கும் அரசமைப்பிற்கும் ஏற்படுத்திய தாக்கத்தை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Magadha and the Rise of States",
+       "titleTa": "மகதமும் அரசுகளின் எழுச்சியும்",
+       "learningObjectives": "Analyze the causes behind the rise of Magadha and other powerful states. Describe the political changes that led to larger kingdoms and empires.",
+       "learningObjectivesTa": "மகதம் மற்றும் பிற வலிமையான அரசுகளின் எழுச்சிக்கான காரணங்களை பகுப்பாய்வு செய்தல். பெரிய அரசுகள், பேரரசுகள் உருவான அரசியல் மாற்றங்களை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Pre-Mauryan and Mauryan Socio-Political Changes",
+       "titleTa": "மௌரியருக்கு முந்தைய மற்றும் மௌரிய சமூக-அரசியல் மாற்றங்கள்",
+       "learningObjectives": "Describe the social and political changes from the 6th to 2nd century BCE. Explain the Mauryan state and its administrative and cultural features.",
+       "learningObjectivesTa": "கி.மு. 6ஆம் நூற்றாண்டு முதல் 2ஆம் நூற்றாண்டு வரை ஏற்பட்ட சமூக, அரசியல் மாற்றங்களை விவரித்தல். மௌரிய அரசும் அதன் நிர்வாக, பண்பாட்டு அம்சங்களையும் விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "The Classical World",
+     "titleTa": "செவ்வியல் உலகம்",
+     "displayOrder": 5,
+     "topics": [
+      {
+       "title": "Greece: The Hellenic World",
+       "titleTa": "கிரேக்கம்: ஹெலெனிக் உலகம்",
+       "learningObjectives": "Describe the geography and early development of ancient Greece. Explain Greek city-states, colonization and the growth of Hellenic culture.",
+       "learningObjectivesTa": "பண்டைய கிரேக்கத்தின் புவியியல் அமைப்பும் ஆரம்ப வளர்ச்சியும் விவரித்தல். கிரேக்க நகர-மாநிலங்கள், குடியேற்றம், ஹெலெனிக் பண்பாட்டின் வளர்ச்சி ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Athenian Democracy and the Age of Pericles",
+       "titleTa": "அதென்ஸ் மக்களாட்சி மற்றும் பெரிக்கிளீசின் காலம்",
+       "learningObjectives": "Explain the rise of democracy in Athens and its functioning. Describe the achievements of Pericles and classical Greek culture.",
+       "learningObjectivesTa": "அதென்ஸில் மக்களாட்சியின் எழுச்சியும் அதன் செயல்பாடும் விளக்குதல். பெரிக்கிளீசின் சாதனைகள் மற்றும் செவ்வியல் கிரேக்கப் பண்பாட்டை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Rome: From Republic to Empire",
+       "titleTa": "ரோம்: குடியரசிலிருந்து பேரரசாக",
+       "learningObjectives": "Trace the growth of Rome from a small town to a republic and empire. Explain Roman political institutions, expansion and imperial rule.",
+       "learningObjectivesTa": "ரோமின் ஒரு சிற்றூரிலிருந்து குடியரசாகவும் பேரரசாகவும் வளர்ந்ததைப் பின்தொடர்தல். ரோமானிய அரசியல் நிறுவனங்கள், விரிவாக்கம், பேரரசு ஆட்சி ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "China and Christianity in the Roman World",
+       "titleTa": "ரோமிய உலகில் சீனாவும் கிறித்தவமும்",
+       "learningObjectives": "Describe classical China and its major achievements under early dynasties. Explain the origin of Christianity and its spread in the Eastern Roman Empire.",
+       "learningObjectivesTa": "ஆரம்ப வம்சங்களின் கீழ் செவ்வியல் சீனாவின் முக்கிய சாதனைகளை விவரித்தல். கிறித்தவத்தின் தோற்றமும் கிழக்கு ரோமப் பேரரசில் அதன் பரவலும் விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "The Middle Ages",
+     "titleTa": "இடைக்காலம்",
+     "displayOrder": 6,
+     "topics": [
+      {
+       "title": "China under Tang, Sung and Yuan; Japan under the Fujiwara and Kamakura",
+       "titleTa": "தாங், சாங், யுவான் கால சீனா; ஃபுஜிவாரா, கமகுரா கால ஜப்பான்",
+       "learningObjectives": "Describe the political and cultural development of medieval China. Explain the rise of Japanese society under the Fujiwara family and Kamakura shogunate.",
+       "learningObjectivesTa": "இடைக்கால சீனாவின் அரசியல், பண்பாட்டு வளர்ச்சியை விவரித்தல். ஃபுஜிவாரா குடும்பம் மற்றும் கமகுரா ஆட்சிக்குழுவின் கீழ் ஜப்பானிய சமூகத்தின் எழுச்சியை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Birth of Islam and the Arab World",
+       "titleTa": "இஸ்லாத்தின் பிறப்பும் அரபு உலகமும்",
+       "learningObjectives": "Trace the background and early growth of Islam. Describe the Arab world and the spread of Islamic culture.",
+       "learningObjectivesTa": "இஸ்லாத்தின் பின்னணி மற்றும் ஆரம்ப வளர்ச்சியைத் தொடர்ந்து அறிதல். அரபு உலகம் மற்றும் இஸ்லாமிய பண்பாட்டின் பரவலை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Ottoman and Seljuq Empires",
+       "titleTa": "ஒட்டோமன் மற்றும் செல்ஜுக் பேரரசுகள்",
+       "learningObjectives": "Explain the rise of the Seljuq Turks and the Ottoman Empire. Describe their political power and contribution to medieval history.",
+       "learningObjectivesTa": "செல்ஜுக் துருக்கியர்களின் எழுச்சியும் ஒட்டோமன் பேரரசின் உருவாக்கமும் விளக்குதல். அவர்களின் அரசியல் சக்தி மற்றும் இடைக்கால வரலாற்றில் ஆற்றிய பங்களிப்பை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Feudalism and the Church-State Relationship",
+       "titleTa": "நிலப்பிரபுத்துவமும் திருச்சபை-அரசு உறவும்",
+       "learningObjectives": "Analyze the features of feudalism in Europe. Explain the relationship between the medieval state and the Church.",
+       "learningObjectivesTa": "ஐரோப்பிய நிலப்பிரபுத்துவத்தின் அம்சங்களை பகுப்பாய்வு செய்தல். இடைக்கால அரசுக்கும் திருச்சபைக்கும் இடையேயான உறவை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "State and Society in Medieval India",
+     "titleTa": "இடைக்கால இந்தியாவில் அரசும் சமூகமும்",
+     "displayOrder": 7,
+     "topics": [
+      {
+       "title": "The Cholas and Their Administration",
+       "titleTa": "சோழர்களும் அவர்களின் நிர்வாகமும்",
+       "learningObjectives": "Describe the rise and expansion of the Chola empire. Explain Chola administration, local institutions and social organization.",
+       "learningObjectivesTa": "சோழப் பேரரசின் எழுச்சியும் விரிவாக்கமும் விவரித்தல். சோழ நிர்வாகம், உள்ளாட்சி அமைப்புகள், சமூக அமைப்பு ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Pandya and Vijayanagara Periods",
+       "titleTa": "பாண்டியர் மற்றும் விஜயநகரக் காலங்கள்",
+       "learningObjectives": "Identify the political and administrative changes under the Pandyas and Vijayanagara rulers. Explain their role in south Indian society.",
+       "learningObjectivesTa": "பாண்டியர், விஜயநகர ஆட்சியாளர்களின் கீழ் ஏற்பட்ட அரசியல் மற்றும் நிர்வாக மாற்றங்களை அடையாளம் காணுதல். தென்னிந்திய சமூகத்தில் அவர்களின் பங்கை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "The Delhi Sultanate and Islamic Influence",
+       "titleTa": "தில்லி சுல்தானியம் மற்றும் இஸ்லாமிய தாக்கம்",
+       "learningObjectives": "Describe the establishment of Muslim rule in Delhi and its expansion in north India. Explain the social and cultural impact of Islam and Islamic rule.",
+       "learningObjectivesTa": "தில்லியில் முஸ்லிம் ஆட்சியின் நிறுவலும் வட இந்தியாவில் அதன் விரிவாக்கமும் விவரித்தல். இஸ்லாமும் இஸ்லாமிய ஆட்சியும் ஏற்படுத்திய சமூக, பண்பாட்டு தாக்கத்தை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Economy, Trade, Art and Urbanization",
+       "titleTa": "பொருளாதாரம், வர்த்தகம், கலை, நகர்மயம்",
+       "learningObjectives": "Explain changes in agriculture, manufacturing, maritime trade and urban life. Describe developments in literature, art and architecture during medieval India.",
+       "learningObjectivesTa": "வேளாண்மை, உற்பத்தி, கடல்வழி வர்த்தகம், நகர வாழ்க்கை ஆகியவற்றில் ஏற்பட்ட மாற்றங்களை விளக்குதல். இடைக்கால இந்தியாவில் இலக்கியம், கலை, கட்டிடக்கலை வளர்ச்சியை விவரித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "The Beginning of the Modern Age",
+     "titleTa": "நவீன யுகத்தின் தொடக்கம்",
+     "displayOrder": 8,
+     "topics": [
+      {
+       "title": "Renaissance and Humanism",
+       "titleTa": "மறுமலர்ச்சியும் மனிதநேயமும்",
+       "learningObjectives": "Explain the major cultural and intellectual changes of the Renaissance. Describe humanism and its effect on medieval Europe.",
+       "learningObjectivesTa": "மறுமலர்ச்சியின் முக்கிய பண்பாட்டு, அறிவுத்துறை மாற்றங்களை விளக்குதல். மனிதநேயத்தின் கருத்தும் அது இடைக்கால ஐரோப்பாவில் ஏற்படுத்திய தாக்கமும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "The Protestant Reformation",
+       "titleTa": "புராட்டஸ்டன் சீர்திருத்தம்",
+       "learningObjectives": "Describe the causes and ideas of the Protestant Reformation. Explain its challenge to Church authority and ritual practice.",
+       "learningObjectivesTa": "புராட்டஸ்டன் சீர்திருத்தத்தின் காரணங்களையும் கருத்துகளையும் விவரித்தல். திருச்சபை அதிகாரத்துக்கும் சடங்கு நடைமுறைக்கும் அது அளித்த சவால்களை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Geographical Discoveries",
+       "titleTa": "புவியியல் கண்டுபிடிப்புகள்",
+       "learningObjectives": "Trace the discovery of new sea routes and America by European powers. Explain how exploration led to commercial expansion and colonies.",
+       "learningObjectivesTa": "ஐரோப்பிய சக்திகளால் புதிய கடல்வழிகள் மற்றும் அமெரிக்கா கண்டறியப்பட்டதைத் தொடர்ந்து அறிதல். ஆய்வுப்பயணங்கள் வாணிப விரிவாக்கத்துக்கும் காலனிகளுக்கும் எவ்வாறு வழிவகுத்தன என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Growth of Trade and Rise of Towns",
+       "titleTa": "வர்த்தக வளர்ச்சியும் நகரங்களின் எழுச்சியும்",
+       "learningObjectives": "Explain how trade, urban growth and declining feudalism transformed Europe. Describe the shift toward a modern economic and social order.",
+       "learningObjectivesTa": "வர்த்தகம், நகர வளர்ச்சி, நிலப்பிரபுத்துவத்தின் சிதைவு ஆகியவை ஐரோப்பாவை எவ்வாறு மாற்றின என்பதை விளக்குதல். நவீன பொருளாதார மற்றும் சமூக ஒழுங்குக்கான மாற்றத்தை விவரித்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "The Age of Revolutions",
+     "titleTa": "புரட்சிகளின் காலம்",
+     "displayOrder": 9,
+     "topics": [
+      {
+       "title": "The American War of Independence",
+       "titleTa": "அமெரிக்க சுதந்திரப் போர்",
+       "learningObjectives": "Explain the causes, course and outcome of the American War of Independence. Describe its role in spreading the idea of democracy.",
+       "learningObjectivesTa": "அமெரிக்க சுதந்திரப் போரின் காரணங்கள், போக்கு, விளைவு ஆகியவற்றை விளக்குதல். மக்களாட்சிக் கருத்து பரவுவதில் அதன் பங்கை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "The French Revolution",
+       "titleTa": "பிரெஞ்சுப் புரட்சி",
+       "learningObjectives": "Describe the political, social, economic and intellectual causes of the French Revolution. Explain the main events and outcomes of the revolution.",
+       "learningObjectivesTa": "பிரெஞ்சுப் புரட்சியின் அரசியல், சமூக, பொருளாதார, அறிவுத்துறை காரணங்களை விவரித்தல். புரட்சியின் முக்கிய நிகழ்வுகளும் விளைவுகளும் விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Industrial Revolution",
+     "titleTa": "தொழிற்புரட்சி",
+     "displayOrder": 10,
+     "topics": [
+      {
+       "title": "Features and Causes of the Industrial Revolution",
+       "titleTa": "தொழிற்புரட்சியின் பண்புகளும் காரணங்களும்",
+       "learningObjectives": "Describe the essential features of the Industrial Revolution in England. Explain the conditions that encouraged industrial growth.",
+       "learningObjectivesTa": "இங்கிலாந்தில் தொழிற்புரட்சியின் அடிப்படை பண்புகளை விவரித்தல். தொழில்துறை வளர்ச்சியை ஊக்குவித்த சூழ்நிலைகளை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Inventions in Textile Production and the Steel Industry",
+       "titleTa": "நூல்தொழிலும் எஃகு தொழில்துறையும் மாற்றிய கண்டுபிடிப்புகள்",
+       "learningObjectives": "Identify the key inventions that transformed textile production. Explain how the steel industry accelerated industrialization.",
+       "learningObjectivesTa": "நூல்தொழிலைக் மாற்றிய முக்கிய கண்டுபிடிப்புகளை அடையாளம் காணுதல். எஃகு தொழில்துறை தொழில்மயமாதலை எவ்வாறு வேகப்படுத்தியது என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Working Class Movement and the Second Industrial Revolution",
+       "titleTa": "தொழிலாளர் இயக்கமும் இரண்டாம் தொழிற்புரட்சியும்",
+       "learningObjectives": "Describe the rise of the working class movement and its consequences. Explain the second Industrial Revolution in Europe and America.",
+       "learningObjectivesTa": "தொழிலாளர் இயக்கத்தின் எழுச்சியும் அதன் விளைவுகளும் விவரித்தல். ஐரோப்பா மற்றும் அமெரிக்காவில் நடைபெற்ற இரண்டாம் தொழிற்புரட்சியை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Impact of Industrial Revolution in India",
+       "titleTa": "இந்தியாவில் தொழிற்புரட்சியின் தாக்கம்",
+       "learningObjectives": "Analyze the effects of industrialization on India. Explain changes in economy, production and colonial dependence.",
+       "learningObjectivesTa": "தொழில்மயமாதலின் இந்தியா மீதான விளைவுகளை பகுப்பாய்வு செய்தல். பொருளாதாரம், உற்பத்தி, காலனிய சார்பு ஆகிய மாற்றங்களை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Colonialism in Asia and Africa",
+     "titleTa": "ஆசிய ஆப்பிரிக்க நாடுகளில் காலனியாதிக்கம்",
+     "displayOrder": 11,
+     "topics": [
+      {
+       "title": "Colonization in Southeast Asia",
+       "titleTa": "தென்கிழக்கு ஆசியாவில் காலனியாதிக்கம்",
+       "learningObjectives": "Locate the main regions of Southeast Asia and identify colonial powers there. Explain the impact of colonization on Malaya, Indonesia, Burma, Indo-China and the Philippines.",
+       "learningObjectivesTa": "தென்கிழக்கு ஆசியாவின் முக்கிய பகுதிகளை அடையாளம் கண்டு அங்குள்ள காலனிய சக்திகளைப் பற்றித் தெரிதல். மலாயா, இந்தோனேசியா, பர்மா, இந்தோசீனா, பிலிப்பைன்ஸ் ஆகியவற்றில் காலனியாதிக்கத்தின் தாக்கத்தை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Conquest of Africa",
+       "titleTa": "ஆப்பிரிக்காவின் கைப்பற்றல்",
+       "learningObjectives": "Describe the European conquest of Africa and the division of territories. Explain the rule of the Dutch, British, Portuguese, Germans and Belgians.",
+       "learningObjectivesTa": "ஆப்பிரிக்காவின் மீது ஐரோப்பியக் கைப்பற்றலும் நிலப்பிரிவும் விவரித்தல். டச்சு, பிரிட்டிஷ், போர்ச்சுகீஸ், ஜெர்மன், பெல்ஜிய ஆட்சிகளை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "British Colonisation of India",
+       "titleTa": "இந்தியாவின் பிரிட்டிஷ் காலனியாக்கம்",
+       "learningObjectives": "Explain how the British established political control in India. Describe the colonial control of the Indian economy and its effects.",
+       "learningObjectivesTa": "இந்தியாவில் பிரிட்டிஷ் அரசியல் கட்டுப்பாடு எவ்வாறு நிறுவப்பட்டது என்பதை விளக்குதல். இந்திய பொருளாதாரத்தின் காலனியக் கட்டுப்பாடும் அதன் விளைவுகளும் விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Lithosphere – I Endogenetic Processes",
+     "titleTa": "நிலக்கோளம் – I  புவி அகச் செயல்பாடுகள்",
+     "displayOrder": 12,
+     "topics": [
+      {
+       "title": "Spheres of the Earth; Structure of the Earth",
+       "titleTa": "புவியின் கோளங்கள்; புவியின் அமைப்பு",
+       "learningObjectives": "Identify the four spheres of the Earth and the three interior layers. Explain the crust, mantle and core and their characteristics.",
+       "learningObjectivesTa": "புவியின் நான்கு கோளங்களையும் மூன்று உள்அடுக்குகளையும் அடையாளம் காணுதல். மேலோடு, மாந்தில், மையம் ஆகியவற்றையும் அவற்றின் பண்புகளையும் விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Rocks and the Rock Cycle",
+       "titleTa": "பாறைகள் மற்றும் பாறைச் சுழற்சி",
+       "learningObjectives": "Classify rocks and describe the rock cycle. Explain how igneous, sedimentary and metamorphic rocks are formed.",
+       "learningObjectivesTa": "பாறைகளை வகைப்படுத்தி பாறைச் சுழற்சியை விவரித்தல். தீப்பாறை, படிவப் பாறை, மாற்றுப் பாறை எவ்வாறு உருவாகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Endogenetic Processes",
+       "titleTa": "புவி அகச் செயல்பாடுகள்",
+       "learningObjectives": "Explain internal Earth processes such as folding, faulting and volcanism. Describe how these processes shape landforms.",
+       "learningObjectivesTa": "மடிப்பு, பிளவு, எரிமலைச் செயல்பாடு போன்ற புவி உள் செயல்முறைகளை விளக்குதல். இச்செயல்முறைகள் நிலவடிவங்களை எவ்வாறு உருவாக்குகின்றன என்பதை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Earthquakes and Volcanoes",
+       "titleTa": "நிலநடுக்கங்களும் எரிமலைகளும்",
+       "learningObjectives": "Describe the causes, effects and distribution of earthquakes and volcanoes. Explain basic safety and response concepts.",
+       "learningObjectivesTa": "நிலநடுக்கங்களும் எரிமலைகளும் ஏற்படும் காரணங்கள், விளைவுகள், பரவல் ஆகியவற்றை விவரித்தல். அடிப்படை பாதுகாப்பு மற்றும் பதிலடி கருத்துகளை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Lithosphere – II Exogenetic Processes",
+     "titleTa": "நிலக்கோளம் – II   புவி புறச் செயல்பாடுகள்",
+     "displayOrder": 13,
+     "topics": [
+      {
+       "title": "Introduction to Exogenetic Processes",
+       "titleTa": "புவி புறச் செயல்பாடுகளுக்கான அறிமுகம்",
+       "learningObjectives": "Explain how external forces shape the Earth’s surface. Distinguish between weathering, mass movement, erosion, transportation and deposition.",
+       "learningObjectivesTa": "புறச் சக்திகள் புவியின் மேற்பரப்பை எவ்வாறு வடிவமைக்கின்றன என்பதை விளக்குதல். வானிலைச் சிதைவு, நிறை இயக்கம், அரிப்பு, கடத்தல், படிவு ஆகியவற்றை வேறுபடுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Weathering",
+       "titleTa": "வானிலைச் சிதைவு",
+       "learningObjectives": "Define weathering and classify it into physical, chemical and biological types. Describe the landforms and materials produced by weathering.",
+       "learningObjectivesTa": "வானிலைச் சிதைவை வரையறுத்து, இயற்பியல், இரசாயன, உயிரியல் வகைகளாக வகைப்படுத்துதல். வானிலைச் சிதைவால் உருவாகும் நிலவடிவங்கள் மற்றும் பொருட்களை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Mass Movement and Weathering Forms",
+       "titleTa": "நிறை இயக்கமும் வானிலைச் சிதைவு வடிவங்களும்",
+       "learningObjectives": "Explain how weathered materials move downslope under gravity. Describe major physical weathering forms such as exfoliation and block disintegration.",
+       "learningObjectivesTa": "ஈர்ப்பின் காரணமாக சிதைந்த பொருட்கள் சரிவில் கீழே நகர்வதை விளக்குதல். உரிதல், கல் உடைதல் போன்ற முக்கிய இயற்பியல் வானிலைச் சிதைவு வடிவங்களை விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Erosion, Transportation and Deposition",
+       "titleTa": "அரிப்பு, கடத்தல் மற்றும் படிவு",
+       "learningObjectives": "Describe how running water, wind, glaciers and sea waves transport and deposit materials. Identify the landforms created by these agents.",
+       "learningObjectivesTa": "ஓடும் நீர், காற்று, பனிப்பாறைகள், கடல் அலைகள் பொருட்களை எவ்வாறு கடத்தி படிவாக்குகின்றன என்பதை விவரித்தல். இச்செயலிகளால் உருவாகும் நிலவடிவங்களை அடையாளம் காணுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Atmosphere",
+     "titleTa": "வளிமண்டலம்",
+     "displayOrder": 14,
+     "topics": [
+      {
+       "title": "Composition and Structure of the Atmosphere",
+       "titleTa": "வளிமண்டலத்தின் அமைப்பும் கட்டமைப்பும்",
+       "learningObjectives": "Describe the composition of air and the layered structure of the atmosphere. Identify the troposphere, stratosphere, mesosphere, thermosphere and exosphere.",
+       "learningObjectivesTa": "காற்றின் கூறுகளையும் வளிமண்டலத்தின் அடுக்கமைப்பையும் விவரித்தல். troposphere, stratosphere, mesosphere, thermosphere, exosphere ஆகியவற்றை அடையாளம் காணுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Weather and Climate",
+       "titleTa": "வானிலை மற்றும் காலநிலை",
+       "learningObjectives": "Differentiate weather from climate. Explain the factors that influence weather and climate.",
+       "learningObjectivesTa": "வானிலை மற்றும் காலநிலையை வேறுபடுத்துதல். வானிலை மற்றும் காலநிலையைப் பாதிக்கும் காரணிகளை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Clouds, Wind and Rainfall",
+       "titleTa": "மேகங்கள், காற்று, மழை",
+       "learningObjectives": "Recognize common types of clouds, winds and rainfall. Explain how atmospheric conditions produce different weather patterns.",
+       "learningObjectivesTa": "பொதுவான மேக வகைகள், காற்றுகள், மழைவீழ்ச்சி வகைகளை அடையாளம் காணுதல். வளிமண்டல நிலைமைகள் வெவ்வேறு வானிலைப் பண்புகளை எவ்வாறு உருவாக்குகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Hydrosphere",
+     "titleTa": "நீர்க்கோளம்",
+     "displayOrder": 15,
+     "topics": [
+      {
+       "title": "The Water Cycle",
+       "titleTa": "நீர்சுழற்சி",
+       "learningObjectives": "Explain the hydrological cycle and its main processes. Describe evaporation, condensation and precipitation.",
+       "learningObjectivesTa": "நீர்சுழற்சியின் முக்கிய செயல்முறைகளை விளக்குதல். ஆவியாக்கம், திரவாக்கம், மழைப்பொழிவு ஆகியவற்றை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Distribution of Water on Earth",
+       "titleTa": "புவியில் நீரின் பகிர்வு",
+       "learningObjectives": "Differentiate fresh water and salt water on Earth. Describe major water resources and their significance.",
+       "learningObjectivesTa": "புவியில் இனிநீர், உவர்நீர் ஆகியவற்றை வேறுபடுத்துதல். முக்கிய நீர்வளங்களையும் அவற்றின் முக்கியத்துவத்தையும் விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Oceans, Seas and Water Resources",
+       "titleTa": "கடல்கள், சமுத்திரங்கள் மற்றும் நீர்வளங்கள்",
+       "learningObjectives": "Identify major oceanic and marine features. Explain the importance of water resources for life and human activity.",
+       "learningObjectivesTa": "முக்கிய சமுத்திர மற்றும் கடல் அம்சங்களை அடையாளம் காணுதல். உயிருக்கும் மனிதச் செயல்பாடுகளுக்கும் நீர்வளங்களின் முக்கியத்துவத்தை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Biosphere",
+     "titleTa": "உயிர்க்கோளம்",
+     "displayOrder": 16,
+     "topics": [
+      {
+       "title": "Introduction to the Biosphere",
+       "titleTa": "உயிர்க்கோளத்துக்கான அறிமுகம்",
+       "learningObjectives": "Define the biosphere and explain its vertical range. Describe how it interacts with the lithosphere, hydrosphere and atmosphere.",
+       "learningObjectivesTa": "உயிர்க்கோளத்தை வரையறுத்து அதன் செங்குத்து வரம்பைப் விளக்குதல். அது நிலக்கோளம், நீர்க்கோளம், வளிமண்டலம் ஆகியவற்றோடு எவ்வாறு தொடர்புகொள்கிறது என்பதை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Ecosystem and its Components",
+       "titleTa": "சூழலமைப்பும் அதன் கூறுகளும்",
+       "learningObjectives": "Explain the meaning of ecosystem and identify its living and non-living components. Describe how ecosystems function and sustain life.",
+       "learningObjectivesTa": "சூழலமைப்பு என்ற கருத்தை விளக்கி, அதன் உயிருள்ள மற்றும் உயிரற்ற கூறுகளை அடையாளம் காணுதல். சூழலமைப்புகள் எவ்வாறு செயல்பட்டு உயிர்வாழ்வைத் தாங்குகின்றன என்பதை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Biodiversity and Biomes",
+       "titleTa": "பல்வேறு உயிரினங்கள் மற்றும் உயிர்மண்டலங்கள்",
+       "learningObjectives": "Define biodiversity and recognize major biomes of the world. Explain why biome conservation is necessary.",
+       "learningObjectivesTa": "உயிரினப் பன்மை என்பதைக் குறிப்பிடி, உலகின் முக்கிய உயிர்மண்டலங்களை அடையாளம் காணுதல். உயிர்மண்டலப் பாதுகாப்பு ஏன் அவசியம் என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Man and Environment",
+     "titleTa": "மனிதனும் சுற்றுச் சூழலும்",
+     "displayOrder": 17,
+     "topics": [
+      {
+       "title": "Human-Environment Relationship",
+       "titleTa": "மனித-சூழல் உறவு",
+       "learningObjectives": "Explain how human activities interact with natural surroundings. Describe the dependence of humans on land, water, air and biological resources.",
+       "learningObjectivesTa": "மனிதச் செயல்பாடுகள் இயற்கைச் சூழலுடன் எவ்வாறு தொடர்புகொள்கின்றன என்பதை விளக்குதல். நிலம், நீர், காற்று, உயிர்ச் சேமிப்புகளின் மீது மனிதர்கள் சார்ந்திருப்பதை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Environmental Problems",
+       "titleTa": "சுற்றுச் சூழல் பிரச்சினைகள்",
+       "learningObjectives": "Identify major environmental issues caused by population growth, urbanization and industrialization. Explain their effects on natural systems.",
+       "learningObjectivesTa": "மக்கள்தொகை வளர்ச்சி, நகர்மயம், தொழில்மயமாக்கல் ஆகியவற்றால் ஏற்படும் முக்கிய சுற்றுச்சூழல் சிக்கல்களை அடையாளம் காணுதல். அவை இயற்கை அமைப்புகளுக்கு ஏற்படுத்தும் விளைவுகளை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Conservation and Sustainable Use",
+       "titleTa": "பாதுகாப்பும் நிலைத்த பயன்பாடும்",
+       "learningObjectives": "Describe ways to conserve resources and protect the environment. Explain sustainable practices for balancing development and nature.",
+       "learningObjectivesTa": "வளங்களைப் பாதுகாத்து சுற்றுச்சூழலைக் காக்கும் வழிகளை விவரித்தல். வளர்ச்சியும் இயற்கையும் சமநிலையாக இருப்பதற்கான நிலைத்த நடைமுறைகளை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Mapping Skills",
+     "titleTa": "நிலவரைபடத் திறன்கள்",
+     "displayOrder": 18,
+     "topics": [
+      {
+       "title": "Basic Concepts of Maps",
+       "titleTa": "வரைபடத்தின் அடிப்படைக் கருத்துகள்",
+       "learningObjectives": "Identify the parts and uses of a map. Explain scale, direction and symbols for reading maps correctly.",
+       "learningObjectivesTa": "வரைபடத்தின் பகுதிகளையும் பயன்பாடுகளையும் அடையாளம் காணுதல். அளவு, திசை, குறியீடுகள் ஆகியவற்றை பயன்படுத்தி வரைபடங்களைச் சரியாகப் படித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Latitude, Longitude and Grid Reference",
+       "titleTa": "அகலம், தீர்க்கரேகை மற்றும் கட்டக் குறிப்பு",
+       "learningObjectives": "Use latitude and longitude to locate places on maps. Apply grid reference methods for accurate location.",
+       "learningObjectivesTa": "அகலம் மற்றும் தீர்க்கரேகை மூலம் வரைபடங்களில் இடங்களை கண்டறிதல். துல்லியமான இடநிர்ணயத்திற்கு கட்டக் குறிப்பு முறையைப் பயன்படுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Types of Maps and Map Reading",
+       "titleTa": "வரைபடங்களின் வகைகளும் வரைபட வாசிப்பும்",
+       "learningObjectives": "Differentiate between physical, political and thematic maps. Read simple maps and interpret spatial information.",
+       "learningObjectivesTa": "இயற்பியல், அரசியல், கருப்பொருள் வரைபடங்களை வேறுபடுத்துதல். எளிய வரைபடங்களை வாசித்து இடவியல் தகவல்களைப் புரிந்துகொள்ளுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Disaster Management: Responding to Disasters",
+     "titleTa": "பேரிடர் மேலாண்மை - பேரிடரை எதிர்கொள்ளுதல்",
+     "displayOrder": 19,
+     "topics": [
+      {
+       "title": "Types of Disasters",
+       "titleTa": "பேரிடர் வகைகள்",
+       "learningObjectives": "Classify natural and man-made disasters. Describe common hazards and their causes.",
+       "learningObjectivesTa": "இயற்கை மற்றும் மனிதனால் ஏற்படும் பேரிடர்களை வகைப்படுத்துதல். பொதுவான அபாயங்களையும் அவற்றின் காரணங்களையும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Preparedness and Response",
+       "titleTa": "தயார்நிலை மற்றும் எதிர்வினை",
+       "learningObjectives": "Explain measures for disaster preparedness, rescue and relief. Describe how communities can respond safely during emergencies.",
+       "learningObjectivesTa": "பேரிடருக்கான தயார்நிலை, மீட்பு, நிவாரண நடவடிக்கைகளை விளக்குதல். அவசரநிலைகளில் சமூகங்கள் பாதுகாப்பாக எதிர்வினையாற்றும் முறைகளை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Disaster Risk Reduction",
+       "titleTa": "பேரிடர் அபாயக் குறைப்பு",
+       "learningObjectives": "Identify methods to reduce disaster risk and loss of life. Explain the role of awareness, planning and early warning systems.",
+       "learningObjectivesTa": "பேரிடர் அபாயத்தையும் உயிரிழப்பையும் குறைக்கும் முறைகளை அடையாளம் காணுதல். விழிப்புணர்வு, திட்டமிடல், முன்எச்சரிக்கை அமைப்புகளின் பங்கை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Forms of Government and Democracy",
+     "titleTa": "அரசாங்க அமைப்புகள் மற்றும் மக்களாட்சி",
+     "displayOrder": 20,
+     "topics": [
+      {
+       "title": "Forms of Government",
+       "titleTa": "அரசாங்கத்தின் வடிவங்கள்",
+       "learningObjectives": "Identify major forms of government such as aristocracy, monarchy, autocracy, oligarchy, theocracy, democracy and republic. Compare how power is exercised in each system.",
+       "learningObjectivesTa": "அரிஸ்டாக்ரசி, மன்னராட்சி, தன்னாட்சி, ஒலிகார்சி, தியோக்ரசி, மக்களாட்சி, குடியரசு போன்ற அரசாங்க வடிவங்களை அடையாளம் காணுதல். ஒவ்வொரு முறையிலும் அதிகாரம் எவ்வாறு பயன்படுத்தப்படுகிறது என்பதை ஒப்பிடுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Democracy: Meaning and Features",
+       "titleTa": "மக்களாட்சி: பொருள் மற்றும் அம்சங்கள்",
+       "learningObjectives": "Define democracy and explain its main features. Describe why democracy is preferred in the modern world.",
+       "learningObjectivesTa": "மக்களாட்சியை வரையறுத்து அதன் முக்கிய அம்சங்களை விளக்குதல். நவீன உலகில் மக்களாட்சி ஏன் விரும்பப்படுகிறது என்பதை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Merits, Demerits and Challenges of Democracy",
+       "titleTa": "மக்களாட்சியின் நன்மைகள், குறைகள் மற்றும் சவால்கள்",
+       "learningObjectives": "Evaluate the advantages and limitations of democracy. Explain the challenges faced by Indian democracy.",
+       "learningObjectivesTa": "மக்களாட்சியின் நன்மைகளும் வரம்புகளும் மதிப்பிடுதல். இந்திய மக்களாட்சி எதிர்கொள்ளும் சவால்களை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Election, Political Parties and Pressure Groups",
+     "titleTa": "தேர்தல், அரசியல் கட்சிகள் மற்றும் அழுத்தக் குழுக்கள்",
+     "displayOrder": 21,
+     "topics": [
+      {
+       "title": "Electoral System in India",
+       "titleTa": "இந்தியாவின் தேர்தல் முறை",
+       "learningObjectives": "Explain the election system and types of elections in India. Describe the role of the Election Commission and key electoral processes.",
+       "learningObjectivesTa": "இந்தியாவின் தேர்தல் முறை மற்றும் தேர்தல் வகைகளை விளக்குதல். தேர்தல் ஆணையத்தின் பங்கும் முக்கிய தேர்தல் செயல்முறைகளும் விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Political Parties",
+       "titleTa": "அரசியல் கட்சிகள்",
+       "learningObjectives": "Define political parties and explain their functions. Distinguish between state parties and national parties.",
+       "learningObjectivesTa": "அரசியல் கட்சிகளை வரையறுத்து அவற்றின் பணிகளை விளக்குதல். மாநிலக் கட்சிகளையும் தேசியக் கட்சிகளையும் வேறுபடுத்துதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Pressure Groups",
+       "titleTa": "அழுத்தக் குழுக்கள்",
+       "learningObjectives": "Identify the role of pressure groups in democracy. Explain how they influence public policy and governance.",
+       "learningObjectivesTa": "மக்களாட்சியில் அழுத்தக் குழுக்களின் பங்கை அடையாளம் காணுதல். அவை பொதுக் கொள்கை மற்றும் நிர்வாகத்தை எவ்வாறு பாதிக்கின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Human Rights",
+     "titleTa": "மனித உரிமைகள்",
+     "displayOrder": 22,
+     "topics": [
+      {
+       "title": "Meaning and Importance of Human Rights",
+       "titleTa": "மனித உரிமைகளின் பொருளும் முக்கியத்துவமும்",
+       "learningObjectives": "Define human rights and explain why they are essential. Describe the relationship between rights, dignity and justice.",
+       "learningObjectivesTa": "மனித உரிமைகளை வரையறுத்து அவை ஏன் அவசியமானவை என்பதை விளக்குதல். உரிமைகள், மரியாதை, நீதியுடன் உள்ள தொடர்பை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Fundamental Rights and Duties",
+       "titleTa": "அடிப்படை உரிமைகளும் கடமைகளும்",
+       "learningObjectives": "Identify the Fundamental Rights and Fundamental Duties in the Indian Constitution. Explain how they protect citizens and guide responsible behaviour.",
+       "learningObjectivesTa": "இந்திய அரசியலமைப்பில் உள்ள அடிப்படை உரிமைகளையும் அடிப்படை கடமைகளையும் அடையாளம் காணுதல். அவை குடிமக்களை எவ்வாறு பாதுகாத்து பொறுப்புணர்வை வழிநடத்துகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "National and State Human Rights Commissions",
+       "titleTa": "தேசிய மற்றும் மாநில மனித உரிமைகள் ஆணையங்கள்",
+       "learningObjectives": "Describe the functions of the National and State Human Rights Commissions. Explain how they help protect human rights in India.",
+       "learningObjectivesTa": "தேசிய மற்றும் மாநில மனித உரிமைகள் ஆணையங்களின் பணிகளை விவரித்தல். இந்தியாவில் மனித உரிமைகளைப் பாதுகாக்க அவை எவ்வாறு உதவுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Child, Women, Labour and SC/ST Rights",
+       "titleTa": "குழந்தை, பெண்கள், தொழிலாளர் மற்றும் SC/ST உரிமைகள்",
+       "learningObjectives": "Recognize major extended rights such as child rights, women’s rights, labour rights and SC/ST rights. Explain how these rights support equality and social justice.",
+       "learningObjectivesTa": "குழந்தை உரிமைகள், பெண்கள் உரிமைகள், தொழிலாளர் உரிமைகள், SC/ST உரிமைகள் போன்ற முக்கிய விரிவாக்கப்பட்ட உரிமைகளை அடையாளம் காணுதல். இவ்வுரிமைகள் சமத்துவத்தையும் சமூக நீதியையும் எவ்வாறு ஆதரிக்கின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Forms of Government",
+     "titleTa": "அரசாங்கங்களின் வகைகள்",
+     "displayOrder": 23,
+     "topics": [
+      {
+       "title": "Introduction to Government",
+       "titleTa": "அரசாங்கத்திற்கு அறிமுகம்",
+       "learningObjectives": "Explain the role of government as the main agency of the state. Identify the legislature, executive and judiciary as the three organs of government.",
+       "learningObjectivesTa": "அரசின் முதன்மை முகமாக அரசாங்கத்தின் பங்கை விளக்குதல். சட்டமன்றம், நிர்வாகம், நீதித்துறை ஆகியவை அரசாங்கத்தின் மூன்று உறுப்புகள் என்பதை அடையாளம் காணுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Unitary and Federal Governments",
+       "titleTa": "ஒற்றை ஆட்சி மற்றும் கூட்டாட்சி அரசுகள்",
+       "learningObjectives": "Differentiate between unitary and federal systems of government. Describe how power is distributed in each system.",
+       "learningObjectivesTa": "ஒற்றை ஆட்சி மற்றும் கூட்டாட்சி அரசமைப்புகளை வேறுபடுத்துதல். ஒவ்வொரு அமைப்பிலும் அதிகாரம் எவ்வாறு பகிரப்படுகிறது என்பதை விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Parliamentary and Presidential Governments",
+       "titleTa": "நாடாளுமன்ற மற்றும் குடியரசுத் தலைவர் அரசுகள்",
+       "learningObjectives": "Compare parliamentary and presidential forms of government. Explain their major features, merits and demerits.",
+       "learningObjectivesTa": "நாடாளுமன்ற மற்றும் குடியரசுத் தலைவர் அரசமைப்புகளை ஒப்பிடுதல். அவற்றின் முக்கிய அம்சங்கள், நன்மைகள், குறைகள் ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Local Self Government",
+     "titleTa": "உள்ளாட்சி அமைப்புகள்",
+     "displayOrder": 24,
+     "topics": [
+      {
+       "title": "Meaning of Local Self Government",
+       "titleTa": "உள்ளாட்சி அமைப்பின் பொருள்",
+       "learningObjectives": "Define local self government and describe its role at the grassroots level. Explain how local bodies serve villages, towns and cities.",
+       "learningObjectivesTa": "உள்ளாட்சி அமைப்பை வரையறுத்து, அடித்தள மட்டத்தில் அதன் பங்கினை விவரித்தல். கிராமங்கள், நகரங்கள், மாநகரங்கள் ஆகியவற்றை உள்ளாட்சி அமைப்புகள் எவ்வாறு சேவையாற்றுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Historical Background",
+       "titleTa": "வரலாற்றுப் பின்னணி",
+       "learningObjectives": "Describe the historical development of local self government in India and Tamil Nadu. Explain its growth under the Cholas and in the modern period.",
+       "learningObjectivesTa": "இந்தியாவிலும் தமிழ்நாட்டிலும் உள்ளாட்சி அமைப்புகளின் வரலாற்று வளர்ச்சியை விவரித்தல். சோழர்கள் காலத்திலும் நவீன காலத்திலும் அதன் வளர்ச்சியை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Rural and Urban Local Governments",
+       "titleTa": "ஊரக மற்றும் நகர்ப்புற உள்ளாட்சி அரசுகள்",
+       "learningObjectives": "Distinguish between rural and urban local bodies. Explain their functions and importance in local administration.",
+       "learningObjectivesTa": "ஊரக மற்றும் நகர்ப்புற உள்ளாட்சி அமைப்புகளை வேறுபடுத்துதல். அவற்றின் பணிகளும் உள்ளாட்சி நிர்வாகத்தில் அவற்றின் முக்கியத்துவமும் விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Panchayat Raj and Constitutional Amendments",
+       "titleTa": "பஞ்சாயத்து ராஜ் மற்றும் அரசியலமைப்பு திருத்தங்கள்",
+       "learningObjectives": "Explain the Panchayat Raj system and its working in India. Describe the 73rd and 74th Constitutional Amendment Acts and their significance.",
+       "learningObjectivesTa": "பஞ்சாயத்து ராஜ் முறையும் இந்தியாவில் அதன் செயல்பாடும் விளக்குதல். 73வது மற்றும் 74வது அரசியலமைப்பு திருத்தச் சட்டங்களின் முக்கியத்துவத்தைக் கூறுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Road safety",
+     "titleTa": "சாலை பாதுகாப்பு",
+     "displayOrder": 25,
+     "topics": [
+      {
+       "title": "Introduction to Road Safety",
+       "titleTa": "சாலை பாதுகாப்புக்கு அறிமுகம்",
+       "learningObjectives": "Define a road accident and identify its impact on people and society. Explain why road safety is an important public issue.",
+       "learningObjectivesTa": "சாலை விபத்தை வரையறுத்து அது மக்கள் மற்றும் சமூகத்தில் ஏற்படுத்தும் தாக்கத்தை அடையாளம் காணுதல். சாலை பாதுகாப்பு ஏன் முக்கியமான பொது பிரச்சினை என்பதைக் விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Causes of Road Accidents",
+       "titleTa": "சாலை விபத்துகளின் காரணங்கள்",
+       "learningObjectives": "Identify major causes of road accidents such as negligence, drunken driving and speeding. Explain how unsafe behaviour increases risk.",
+       "learningObjectivesTa": "அலட்சியம், குடிபோதையில் வாகனம் ஓட்டுதல், அதிக வேகம் போன்ற சாலை விபத்துகளின் முக்கிய காரணங்களை அடையாளம் காணுதல். பாதுகாப்பற்ற நடத்தை அபாயத்தை எவ்வாறு அதிகரிக்கிறது என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Road Safety Rules and Prevention",
+       "titleTa": "சாலை பாதுகாப்பு விதிகளும் தடுப்பு நடவடிக்கைகளும்",
+       "learningObjectives": "Describe basic road safety rules for pedestrians and drivers. Explain how responsible conduct can prevent accidents and save lives.",
+       "learningObjectivesTa": "பாதசாரிகள் மற்றும் ஓட்டுநர்களுக்கான அடிப்படை சாலை பாதுகாப்பு விதிகளை விவரித்தல். பொறுப்பான நடத்தை விபத்துகளைத் தடுப்பதிலும் உயிரைக் காப்பதிலும் எவ்வாறு உதவுகிறது என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Understanding Development: Perspectives, Measurement and Sustainability",
+     "titleTa": "மேம்பாட்டை அறிவோம்: தொலைநோக்கு, அளவீடு மற்றும் நிலைத்தன்மை",
+     "displayOrder": 26,
+     "topics": [
+      {
+       "title": "Meaning of Development",
+       "titleTa": "மேம்பாட்டின் பொருள்",
+       "learningObjectives": "Explain development from different perspectives and personal needs. Distinguish between progress, improvement and sustainable growth.",
+       "learningObjectivesTa": "வேறுபட்ட பார்வைகளிலும் தனிப்பட்ட தேவைகளிலும் இருந்து மேம்பாட்டை விளக்குதல். முன்னேற்றம், மேம்பாடு, நிலைத்த வளர்ச்சி ஆகியவற்றை வேறுபடுத்துதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Indicators of Economic Development",
+       "titleTa": "பொருளாதார மேம்பாட்டின் குறியீடுகள்",
+       "learningObjectives": "Identify indicators used to measure development. Explain how income and related measures help compare economies.",
+       "learningObjectivesTa": "மேம்பாட்டை அளவிடப் பயன்படுத்தப்படும் குறியீடுகளை அடையாளம் காணுதல். வருமானமும் தொடர்புடைய அளவீடுகளும் பொருளாதாரங்களை ஒப்பிட எவ்வாறு உதவுகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Economic Development and Sustainability",
+       "titleTa": "பொருளாதார மேம்பாடும் நிலைத்தன்மையும்",
+       "learningObjectives": "Describe the meaning of economic development and its broader goals. Explain sustainable development and the need to protect resources for the future.",
+       "learningObjectivesTa": "பொருளாதார மேம்பாட்டின் பொருளும் அதன் விரிவான இலக்குகளும் விவரித்தல். நிலைத்த மேம்பாட்டின் கருத்தையும் எதிர்காலத்திற்காக வளங்களைப் பாதுகாக்க வேண்டிய அவசியத்தையும் விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Employment in India and Tamil Nadu",
+     "titleTa": "இந்தியா மற்றும் தமிழ்நாட்டில் வேலை வாய்ப்பு",
+     "displayOrder": 27,
+     "topics": [
+      {
+       "title": "Employment Structure",
+       "titleTa": "வேலைவாய்ப்பு அமைப்பு",
+       "learningObjectives": "Explain the structure of employment in different sectors of the economy. Describe how occupational patterns vary across regions.",
+       "learningObjectivesTa": "பொருளாதாரத்தின் பல துறைகளில் வேலைவாய்ப்பு அமைப்பை விளக்குதல். தொழில் முறைகள் பகுதிகளின்படி எவ்வாறு மாறுகின்றன என்பதை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Organised and Unorganised Sector",
+       "titleTa": "ஒழுங்குபடுத்தப்பட்ட மற்றும் ஒழுங்குபடுத்தப்படாத துறை",
+       "learningObjectives": "Distinguish between the organised and unorganised sectors. Explain their characteristics, benefits and limitations.",
+       "learningObjectivesTa": "ஒழுங்குபடுத்தப்பட்ட மற்றும் ஒழுங்குபடுத்தப்படாத துறைகளை வேறுபடுத்துதல். அவற்றின் பண்புகள், நன்மைகள், வரம்புகள் ஆகியவற்றை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Public and Private Sector",
+       "titleTa": "பொது மற்றும் தனியார் துறை",
+       "learningObjectives": "Compare public sector and private sector employment. Describe their roles in the economy and job opportunities.",
+       "learningObjectivesTa": "பொது துறை மற்றும் தனியார் துறை வேலைவாய்ப்புகளை ஒப்பிடுதல். பொருளாதாரத்தில் அவற்றின் பங்கும் வேலை வாய்ப்புகளும் விவரித்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Changing Employment Pattern",
+       "titleTa": "மாறிவரும் வேலைவாய்ப்பு முறை",
+       "learningObjectives": "Describe how employment patterns change over time in India and Tamil Nadu. Interpret trends in work, occupation and labour participation.",
+       "learningObjectivesTa": "இந்தியாவிலும் தமிழ்நாட்டிலும் வேலைவாய்ப்பு முறைகள் காலப்போக்கில் எவ்வாறு மாறுகின்றன என்பதை விவரித்தல். வேலை, தொழில், தொழிலாளர் பங்கேற்பு ஆகிய போக்குகளைப் புரிந்துகொள்ளுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Money and Credit",
+     "titleTa": "பணம் மற்றும் கடன்",
+     "displayOrder": 28,
+     "topics": [
+      {
+       "title": "Barter System and the Need for Money",
+       "titleTa": "பரிமாற்ற முறை மற்றும் பணத்தின் தேவை",
+       "learningObjectives": "Explain the barter system and its limitations. Describe why money developed as a medium of exchange.",
+       "learningObjectivesTa": "பரிமாற்ற முறையும் அதன் வரம்புகளும் விளக்குதல். பரிவர்த்தனைகளுக்கான நடுத்தரமாக பணம் ஏன் உருவானது என்பதை விவரித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Functions of Money",
+       "titleTa": "பணத்தின் பணிகள்",
+       "learningObjectives": "Identify the uses of money in transactions, saving and value measurement. Explain its importance in the modern economy.",
+       "learningObjectivesTa": "பரிவர்த்தனை, சேமிப்பு, மதிப்பு அளவிடுதல் ஆகியவற்றில் பணத்தின் பயன்பாடுகளை அடையாளம் காணுதல். நவீன பொருளாதாரத்தில் அதன் முக்கியத்துவத்தை விளக்குதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Role of the Reserve Bank of India",
+       "titleTa": "இந்திய ரிசர்வ் வங்கியின் பங்கு",
+       "learningObjectives": "Describe the role of the Reserve Bank of India in the financial system. Explain how it regulates currency and credit.",
+       "learningObjectivesTa": "நிதி அமைப்பில் இந்திய ரிசர்வ் வங்கியின் பங்கை விவரித்தல். அது நாணயமும் கடனும் எவ்வாறு ஒழுங்குபடுத்துகிறது என்பதை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Credit and its Types",
+       "titleTa": "கடனும் அதன் வகைகளும்",
+       "learningObjectives": "Differentiate between types of credit and their users. Explain how borrowing supports households, farmers and businesses.",
+       "learningObjectivesTa": "கடனின் வகைகளையும் அதன் பயனாளர்களையும் வேறுபடுத்துதல். கடன் பெறுதல் குடும்பங்கள், விவசாயிகள், தொழில்கள் ஆகியவற்றுக்கு எவ்வாறு உதவுகிறது என்பதை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Agriculture in Tamil Nadu",
+     "titleTa": "தமிழகத்தில் வேளாண்மை",
+     "displayOrder": 29,
+     "topics": [
+      {
+       "title": "Agricultural Activity in Tamil Nadu",
+       "titleTa": "தமிழ்நாட்டில் வேளாண் செயல்பாடு",
+       "learningObjectives": "Describe the importance of agriculture in Tamil Nadu. Explain the extent and distribution of agricultural activity in the state.",
+       "learningObjectivesTa": "தமிழ்நாட்டில் வேளாண்மையின் முக்கியத்துவத்தை விவரித்தல். மாநிலத்தில் வேளாண் செயல்பாட்டின் பரவலும் பகிர்வும் விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Land, Water and Irrigation",
+       "titleTa": "நிலம், நீர் மற்றும் பாசனம்",
+       "learningObjectives": "Explain how land use, water availability and irrigation affect agriculture. Describe major irrigation sources and their importance.",
+       "learningObjectivesTa": "நிலப் பயன்பாடு, நீரின் கிடைப்புத் தன்மை, பாசனம் ஆகியவை வேளாண்மையை எவ்வாறு பாதிக்கின்றன என்பதை விளக்குதல். முக்கிய பாசன மூலங்களையும் அவற்றின் முக்கியத்துவத்தையும் விவரித்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Crops Grown in Tamil Nadu",
+       "titleTa": "தமிழ்நாட்டில் விளையும் பயிர்கள்",
+       "learningObjectives": "Identify major crops grown in Tamil Nadu. Explain the regional conditions that support different crops.",
+       "learningObjectivesTa": "தமிழ்நாட்டில் விளையும் முக்கிய பயிர்களை அடையாளம் காணுதல். வெவ்வேறு பயிர்களை ஆதரிக்கும் பிராந்திய நிலைமைகளை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Crop Productivity",
+       "titleTa": "பயிர் உற்பத்தித்திறன்",
+       "learningObjectives": "Analyze crop productivity and its influencing factors. Explain how technology, inputs and water management improve output.",
+       "learningObjectivesTa": "பயிர் உற்பத்தித்திறனும் அதனைப் பாதிக்கும் காரணிகளும் பகுப்பாய்வு செய்தல். தொழில்நுட்பம், உள்ளீடுகள், நீர் மேலாண்மை ஆகியவை உற்பத்தியை எவ்வாறு மேம்படுத்துகின்றன என்பதை விளக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Migration",
+     "titleTa": "இடம்பெயர்தல்",
+     "displayOrder": 30,
+     "topics": [
+      {
+       "title": "Meaning and Types of Migration",
+       "titleTa": "இடம்பெயர்தலின் பொருளும் வகைகளும்",
+       "learningObjectives": "Define migration and distinguish between migration by place of birth and place of residence. Explain the basic concepts used in migration studies.",
+       "learningObjectivesTa": "இடம்பெயர்தலை வரையறுத்து பிறப்பிடம் மற்றும் வசிப்பிடம் அடிப்படையிலான இடம்பெயர்தலை வேறுபடுத்துதல். இடம்பெயர்வு ஆய்வில் பயன்படுத்தப்படும் அடிப்படைக் கருத்துகளை விளக்குதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Extent of Migration in India and Tamil Nadu",
+       "titleTa": "இந்தியா மற்றும் தமிழ்நாட்டில் இடம்பெயர்தலின் பரவல்",
+       "learningObjectives": "Describe the extent of migration in India and Tamil Nadu using census data. Compare rural and urban migration patterns.",
+       "learningObjectivesTa": "மக்கள்தொகைக் கணக்கெடுப்பு தரவைப் பயன்படுத்தி இந்தியா மற்றும் தமிழ்நாட்டில் இடம்பெயர்தலின் பரவலை விவரித்தல். கிராமம்-நகர் இடம்பெயர்வு முறைகளை ஒப்பிடுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Factors of Migration",
+       "titleTa": "இடம்பெயர்தலின் காரணிகள்",
+       "learningObjectives": "Identify the push and pull factors that cause migration. Explain social, economic and demographic reasons for movement of people.",
+       "learningObjectivesTa": "இடம்பெயர்தலை ஏற்படுத்தும் தள்ளும் காரணிகளையும் இழுக்கும் காரணிகளையும் அடையாளம் காணுதல். மக்களின் நகர்வுக்கான சமூக, பொருளாதார, மக்கள்தொகை காரணங்களை விளக்குதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    }
+   ],
+   "displayOrder": 3
+  },
+  {
+   "name": "Tamil",
+   "fixedMedium": "ta",
+   "nameTa": "தமிழ்",
+   "tileColor": "#7A6A9E",
+   "icon": "book-open-page-variant",
+   "chapters": [
+    {
+     "title": "Unit 1: Mozhi (Language)",
+     "titleTa": "இயல் 1: மொழி",
+     "displayOrder": 1,
+     "topics": [
+      {
+       "title": "Dravida Mozhikudumbam (Prose)",
+       "titleTa": "திராவிட மொழிக்குடும்பம்",
+       "learningObjectives": "Understand the need, origin, and growth of language and learn about the Indian language families. Also understand Tamil’s place in the Dravidian language family and the basics of comparative linguistics.",
+       "learningObjectivesTa": "மொழியின் தேவை, தோற்றம், வளர்ச்சி ஆகியவற்றை விளக்கி, இந்திய மொழிக் குடும்பங்களை அறிதல். திராவிட மொழிக் குடும்பத்தில் தமிழின் இடத்தையும் ஒப்பியல் மொழி ஆய்வின் அடிப்படைகளையும் புரிந்துகொள்ளல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Tamiloviyam (Poem)",
+       "titleTa": "தமிழோவியம்",
+       "learningObjectives": "Learn about the greatness, antiquity, and rich grammar and literature of Tamil. Explain the meaning and feeling of the poetic image that celebrates Tamil.",
+       "learningObjectivesTa": "தமிழின் பெருமை, பழமை, இலக்கண இலக்கிய வளம் ஆகியவற்றை அறிந்து கொள்ளல். தமிழைச் சிறப்பிக்கும் உருவகப் பொருளையும் அதன் உணர்வையும் விளக்கல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Amudendru Per (Poem)",
+       "titleTa": "அமுதென்று பேர்",
+       "learningObjectives": "Recognize the sweetness, richness, and tradition of the Tamil language. Appreciate Tamil’s greatness and language beauty through the poem.",
+       "learningObjectivesTa": "தமிழ் மொழியின் இனிமை, வளமை, மரபு ஆகியவற்றை உணர்தல். கவிதை வழி தமிழின் பெருமையையும் மொழிச்சுவையையும் பாராட்டுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Tamilvidu Thoothu (Poem)",
+       "titleTa": "தமிழ்விடு தூது",
+       "learningObjectives": "Read the poem that praises the Tamil language and understand its meaning and feeling. Briefly explain the old literary tradition, love for language, and cultural value it presents.",
+       "learningObjectivesTa": "தமிழ் மொழியைப் போற்றும் பாடலை வாசித்து, அதன் கருத்தையும் உணர்வையும் அறிதல். பழந்தமிழ் இலக்கிய மரபு, மொழிப்பற்று, பண்பாட்டு மதிப்பு ஆகியவற்றைச் சுருக்கமாக விளக்கல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Valarum Selvam (Prose)",
+       "titleTa": "வளரும் செல்வம்",
+       "learningObjectives": "Understand language growth, vocabulary richness, and the ability to accept change. Learn how a language becomes more prosperous over time with examples.",
+       "learningObjectivesTa": "மொழி வளர்ச்சி, சொல்வளம், புதுமை ஏற்கும் திறன் ஆகியவற்றை அறிதல். மொழி எவ்வாறு காலந்தோறும் செழித்து வளரும் என்பதை எடுத்துக்காட்டுகளுடன் புரிந்துகொள்ளல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 2: Iyarkai, Sutruchuzhal (Nature, Environment)",
+     "titleTa": "இயல் 2: இயற்கை, சுற்றுச்சூழல்",
+     "displayOrder": 2,
+     "topics": [
+      {
+       "title": "Neerindri Amayadhu Ulagu (Poem)",
+       "titleTa": "நீரின்றி அமையாது உலகு",
+       "learningObjectives": "Realize the importance of water and explain its role in life and nature. Identify the water-related images, feelings, and environmental ideas in the poem.",
+       "learningObjectivesTa": "நீரின் இன்றியமையாமையை உணர்ந்து, வாழ்க்கையிலும் இயற்கையிலும் அதன் பங்கை விளக்கல். கவிதையில் வரும் நீர் சார்ந்த உவமைகள், உணர்வுகள், சுற்றுச்சூழல் சிந்தனை ஆகியவற்றை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Pattamaram (Prose)",
+       "titleTa": "பட்டமரம்",
+       "learningObjectives": "Understand the connection between trees, plants, and the natural environment. Explain growth, change, and usefulness through the prose lesson.",
+       "learningObjectivesTa": "மரம், தாவரம், இயற்கைச் சூழல் ஆகியவற்றின் தொடர்பை அறிந்து கொள்ளல். உரைநடை வழியாக இயற்கையின் வளர்ச்சி, மாற்றம், பயன்பாடு ஆகியவற்றை விளக்கல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Uyirukku Ver (Poem)",
+       "titleTa": "உயிருக்கு வேர்",
+       "learningObjectives": "Understand the ideas of roots, growth, and the basis of life. Identify the main image in the poem and appreciate its values about nature.",
+       "learningObjectivesTa": "வேர், வளர்ச்சி, வாழ்வாதாரம் ஆகிய கருத்துகளைப் புரிந்துகொள்ளல். பாடலின் மையப் படிமத்தை அடையாளம் கண்டு இயற்கை மதிப்புகளை உணர்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Periyapuranam (Supplementary)",
+       "titleTa": "பெரியபுராணம்",
+       "learningObjectives": "Observe and read the meaning, language style, and emotions of bhakti literature. Summarize the lesson and understand its cultural importance.",
+       "learningObjectivesTa": "பக்தி இலக்கியத்தின் பொருள், மொழிநடை, உணர்வு ஆகியவற்றை அவதானித்து வாசித்தல். பாடலின் கருத்தைச் சுருக்கி அதன் பண்பாட்டு முக்கியத்துவத்தை உணர்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Purananuru (Poem)",
+       "titleTa": "புறநானூறு",
+       "learningObjectives": "Find out how nature, society, and ethics are expressed in Sangam literature. Understand ancient Tamil life through the poem.",
+       "learningObjectivesTa": "சங்க இலக்கியத்தில் இயற்கை, சமூகம், அறம் ஆகியவை எவ்வாறு வெளிப்படுகின்றன என்பதைக் கண்டறிதல். பழந்தமிழ் வாழ்வியலைக் கவிதை வழி புரிந்துகொள்ளல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Thanneer (Prose)",
+       "titleTa": "தண்ணீர்",
+       "learningObjectives": "Understand that water is a common resource and explain why saving it is necessary. State the main ideas of the prose passage and answer in simple sentences.",
+       "learningObjectivesTa": "நீர் ஒரு பொதுச் சொத்து என்பதை உணர்ந்து, நீர்ச் சேமிப்பின் அவசியத்தை விளக்கல். உரைநடைப் பகுதியின் முக்கியக் கருத்துகளை எடுத்துரைத்து எளிய வாக்கியங்களில் பதிலளித்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      },
+      {
+       "title": "Thunaivinaihal (Grammar)",
+       "titleTa": "துணைவினைகள்",
+       "learningObjectives": "Identify and use auxiliary verbs in sentences. Notice how they change meaning and form correct sentence structures.",
+       "learningObjectivesTa": "வாக்கியங்களில் துணைவினைகளை அடையாளம் காண்ந்து பயன்படுத்தல். அவை பொருளை எவ்வாறு மாற்றுகின்றன என்பதை கவனித்து சரியான வாக்கிய அமைப்பை உருவாக்கல்.",
+       "displayOrder": 7,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 3: Panpadu (Culture)",
+     "titleTa": "இயல் 3: பண்பாடு",
+     "displayOrder": 3,
+     "topics": [
+      {
+       "title": "Eru Thazhuthal (Prose)",
+       "titleTa": "ஏறு தழுவுதல்",
+       "learningObjectives": "Explain the cultural background and social meaning of the lesson. Read the prose for information, ideas, and values.",
+       "learningObjectivesTa": "பாடத்தின் பண்பாட்டு பின்னணி, சமூகப் பொருள் ஆகியவற்றை விளக்கல். உரைநடையை தகவல், கருத்து, விழுமியங்கள் ஆகியவற்றிற்காக வாசித்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Manimekalai (Supplementary)",
+       "titleTa": "மணிமேகலை",
+       "learningObjectives": "Understand the ethics, feelings, and scene setting in the Manimekalai excerpt. Identify the characters, setting, and central idea.",
+       "learningObjectivesTa": "மணிமேகலை இலக்கியத் துணுக்கில் உள்ள நெறி, உணர்வு, காட்சி அமைப்பு ஆகியவற்றை உணர்தல். கதாபாத்திரங்கள், சூழல், கருத்து மையம் ஆகியவற்றை அடையாளம் காணுதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Ullathin Seer (Poem)",
+       "titleTa": "உள்ளத்தின் சீர்",
+       "learningObjectives": "Explore how inner feeling, character, and the value of conduct are shown in the text. Distinguish main ideas from supporting information.",
+       "learningObjectivesTa": "உள்ளுணர்வு, பண்பு, நடத்தையின் மதிப்பு ஆகியவை எவ்வாறு உரையில் வெளிப்படுகின்றன என்பதை ஆராய்தல். முக்கியக் கருத்துகளையும் ஆதாரத் தகவல்களையும் வேறுபடுத்திப் புரிந்துகொள்ளல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Agalzhaivugal (Prose)",
+       "titleTa": "அகழாய்வுகள்",
+       "learningObjectives": "Learn the role of excavations in studying the past. Understand how history, culture, and daily life are revealed through archaeological work.",
+       "learningObjectivesTa": "பழமையைக் கற்க அகழாய்வின் பங்கு என்ன என்பதை அறிதல். அகழ்வின் மூலம் வரலாறு, பண்பாடு, அன்றாட வாழ்க்கை ஆகியவை எவ்வாறு வெளிப்படுகின்றன என்பதைப் புரிந்துகொள்ளல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Vallinam Migum Idangal (Grammar)",
+       "titleTa": "வல்லினம் மிகும் இடங்கள்",
+       "learningObjectives": "Identify where hard consonants are doubled or strengthened in Tamil words. Use the rule correctly in reading, writing, and avoiding spelling mistakes.",
+       "learningObjectivesTa": "தமிழ்ச் சொற்களில் வல்லினம் இரட்டிக்கும் அல்லது வலுப்படும் இடங்களை அடையாளம் காணுதல். வாசிப்பு, எழுதுதல், சொற்பிழை தவிர்ப்பு ஆகியவற்றில் விதியைச் சரியாகப் பயன்படுத்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Thirukkural (Supplementary)",
+       "titleTa": "திருக்குறள்",
+       "learningObjectives": "Explain the selected couplets and connect them to personal and social values. Express the meaning of the two-line verses clearly in Tamil or English.",
+       "learningObjectivesTa": "தேர்ந்தெடுக்கப்பட்ட குறட்பாக்களை விளக்கி, தனிப்பட்டதும் சமூகத்திற்குரியதும் ஆன மதிப்புகளுடன் தொடர்புபடுத்தல். இரண்டடிகளின் பொருளை தெளிவான தமிழில் அல்லது ஆங்கிலத்தில் விளக்கல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 4: Ariviyal, Thozhilnutpam (Science, Technology)",
+     "titleTa": "இயல் 4: அறிவியல், தொழில்நுட்பம்",
+     "displayOrder": 4,
+     "topics": [
+      {
+       "title": "Iyanthirangalum Internetvazhi Payanpadum (Prose)",
+       "titleTa": "இயந்திரங்களும் இணையவழிப் பயன்பாடும்",
+       "learningObjectives": "Explain how machines and internet-based tools help in daily life and learning. Identify the benefits of technology and the need for responsible use.",
+       "learningObjectivesTa": "இயந்திரங்களும் இணையவழிக் கருவிகளும் அன்றாட வாழ்க்கை மற்றும் கற்றலுக்கு எவ்வாறு உதவுகின்றன என்பதை விளக்கல். தொழில்நுட்பத்தின் பயன்களையும் பொறுப்பான பயன்பாட்டையும் அடையாளம் காணுதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Oh, En Samehakal Thozhargale! (Poem)",
+       "titleTa": "ஓ, என் சமகாலத் தோழர்களே!",
+       "learningObjectives": "Read the poem that speaks about modern life and social responsibility. Understand the poet’s message and the emotions expressed.",
+       "learningObjectivesTa": "நவீன வாழ்க்கை மற்றும் சமூகப் பொறுப்பை எடுத்துரைக்கும் கவிதையை வாசித்தல். கவிஞரின் செய்தியும் வெளிப்பட்ட உணர்வுகளும் என்ன என்பதை அறிதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Ettuthikkum Sendriduveer (Poem)",
+       "titleTa": "எட்டுத்திக்கும் சென்றிடுவீர்",
+       "learningObjectives": "Understand the ideas of broad learning, high ideals, and self-confidence. Connect the poem’s message with progress, exploration, and courage.",
+       "learningObjectivesTa": "விரிந்த கற்றல், உயர்ந்த இலட்சியம், தன்னம்பிக்கை ஆகிய கருத்துகளைப் புரிந்துகொள்ளல். முன்னேற்றம், தேடல், துணிவு ஆகியவற்றுடன் பாடலின் கருத்துகளை இணைத்துப் பார்க்கல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Uyirvagai (Grammar)",
+       "titleTa": "உயிர்வகை",
+       "learningObjectives": "Classify Tamil vowel letters and understand their use in words. Apply vowel knowledge in pronunciation and writing.",
+       "learningObjectivesTa": "தமிழ் உயிரெழுத்துகளை வகைப்படுத்தி, சொற்களில் அவற்றின் பயன்பாட்டை அறிதல். உச்சரிப்பு மற்றும் எழுத்தில் உயிரெழுத்து அறிவைப் பயன்படுத்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Vinnaiyum Saaduvom (Poem)",
+       "titleTa": "விண்ணையும் சாடுவோம்",
+       "learningObjectives": "Understand the poem about human effort that goes beyond limits. Explain images related to space, discovery, and achievement.",
+       "learningObjectivesTa": "எல்லைகளைத் தாண்டிச் செல்லும் மனித முயற்சி பற்றிய பாடலைப் புரிந்துகொள்ளல். விண்வெளி, கண்டுபிடிப்பு, சாதனை ஆகியவற்றைச் சார்ந்த படிமங்களை விளக்கல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Vallinam Miga Idangal (Grammar)",
+       "titleTa": "வல்லினம் மிகா இடங்கள்",
+       "learningObjectives": "Identify places where hard consonants do not double in Tamil. Use the rule to write without spelling mistakes.",
+       "learningObjectivesTa": "தமிழில் வல்லினம் இரட்டிக்காத இடங்களை அடையாளம் காணுதல். எழுத்துப்பிழையின்றி எழுதும் விதியைப் பயன்படுத்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 5: Kalvi (Education)",
+     "titleTa": "இயல் 5: கல்வி",
+     "displayOrder": 5,
+     "topics": [
+      {
+       "title": "Kalviyil Sirandha Pengal (Poem)",
+       "titleTa": "கல்வியில் சிறந்த பெண்கள்",
+       "learningObjectives": "Explain women’s education and their contribution to society. Identify the main ideas and examples in the text.",
+       "learningObjectivesTa": "பெண்களின் கல்வி மற்றும் சமூகப் பங்களிப்பை விளக்கல். உரையில் உள்ள முக்கியக் கருத்துகளையும் எடுத்துக்காட்டுகளையும் கண்டறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Kudumba Vilakku (Poem)",
+       "titleTa": "குடும்ப விளக்கு",
+       "learningObjectives": "Understand the poem’s ideas about education, home, and moral growth. Explain the central ideas in simple, clear language.",
+       "learningObjectivesTa": "கல்வி, இல்லம், ஒழுக்க வளர்ச்சி ஆகியவற்றைப் பற்றிய கவிதையின் கருத்தை அறிதல். மையக் கருத்துகளை எளிய, தெளிவான மொழியில் விளக்கல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Kasadara Mozhithal (Poem)",
+       "titleTa": "கசடற மொழிதல்",
+       "learningObjectives": "Read and explain the moral ideas in the selected poem. Connect its message with truthful speech and disciplined learning.",
+       "learningObjectivesTa": "தேர்ந்தெடுக்கப்பட்ட பாடலில் உள்ள அறக்கருத்துகளை வாசித்து விளக்கல். உண்மைச் சொல், ஒழுக்கமான கற்றல் ஆகியவற்றுடன் அதன் செய்தியை இணைத்துப் புரிந்துகொள்ளல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Veettirkor Puthagasaalai (Prose)",
+       "titleTa": "வீட்டிற்கோர் புத்தகசாலை",
+       "learningObjectives": "Explain how a home library develops reading habits and lifelong learning. Identify ways to set up a personal reading space.",
+       "learningObjectivesTa": "வீட்டுப் புத்தகசாலை வாசிப்பு பழக்கத்தையும் வாழ்நாள் கற்றலையும் எவ்வாறு வளர்க்கிறது என்பதை விளக்கல். தனிப்பட்ட வாசிப்பு இடத்தை அமைக்கும் முறைகளை அடையாளம் காணுதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Idaichol, Urichol (Grammar)",
+       "titleTa": "இடைச்சொல், உரிச்சொல்",
+       "learningObjectives": "Identify interjections and adjectives in sentences. Use them correctly to improve meaning and style.",
+       "learningObjectivesTa": "வாக்கியங்களில் இடைச்சொற்களையும் உரிச்சொற்களையும் கண்டறிதல். பொருளையும் நடையையும் மேம்படுத்த அவற்றைச் சரியாகப் பயன்படுத்தல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Poruladakkam (Grammar)",
+       "titleTa": "பொருளடக்கம்",
+       "learningObjectives": "Understand the implied meaning in Tamil sentences. Create sentences that express deeper ideas beyond the direct meaning.",
+       "learningObjectivesTa": "தமிழ் வாக்கியங்களில் உணர்த்தப்படும் மறைபொருளை அறிந்து கொள்ளல். நேரடிப் பொருளுக்கு அப்பால் உள்ள ஆழ்ந்த கருத்தை விளக்கும் வாக்கியங்களை உருவாக்கல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 6: Kalai, Azhagiyal, Puthumaigal (Arts, Aesthetics, Innovations)",
+     "titleTa": "இயல் 6: கலை, அழகியல், புதுமைகள்",
+     "displayOrder": 6,
+     "topics": [
+      {
+       "title": "Sirpakkalai (Prose)",
+       "titleTa": "சிற்பக்கலை",
+       "learningObjectives": "Learn the nature, beauty, and value of sculpture. Read and understand ideas about artistic tradition and skill.",
+       "learningObjectivesTa": "சிற்பக்கலையின் தன்மை, நயம், மதிப்பு ஆகியவற்றை அறிதல். கலை மரபும் தொழிற்திறனும் குறித்த கருத்துகளை வாசித்துப் புரிந்துகொள்ளல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Iravana Kaviyam (Supplementary)",
+       "titleTa": "இராவண காவியம்",
+       "learningObjectives": "Identify the theme, style, and scene setting of the literary excerpt. Explain the poem’s imagery, tone, and cultural references.",
+       "learningObjectivesTa": "இலக்கியத் துணுக்கின் நடை, கரு, காட்சி அமைப்பு ஆகியவற்றை அடையாளம் காணுதல். கவிதையின் படிமங்கள், தொனி, பண்பாட்டு குறிப்புகள் ஆகியவற்றை விளக்கல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Kalai Pala Valarthal (Prose)",
+       "titleTa": "கலை பல வளர்தல்",
+       "learningObjectives": "Explain how different arts develop creativity and personality. Learn the role of art in society and education.",
+       "learningObjectivesTa": "பல கலைகள் படைப்பாற்றலும் ஆளுமையும் வளர்க்கும் விதத்தை விளக்கல். சமூகத்திலும் கல்வியிலும் கலை வகிக்கும் பங்கை அறிதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Nachiyar Thirumozhi (Poem)",
+       "titleTa": "நாச்சியார் திருமொழி",
+       "learningObjectives": "Understand the devotional meaning and emotional tone of the poem. Identify literary features and summarize the idea.",
+       "learningObjectivesTa": "பாடலின் பக்திப் பொருளையும் உணர்ச்சிப் பாங்கையும் புரிந்துகொள்ளல். இலக்கிய அம்சங்களை அடையாளம் கண்டு கருத்தைச் சுருக்குதல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Seidhi (Prose)",
+       "titleTa": "செய்தி",
+       "learningObjectives": "Read the text about news and communication and distinguish fact from detail. Understand how communication works in public life.",
+       "learningObjectivesTa": "செய்தி, தகவல் தொடர்பு குறித்த உரையை வாசித்து, உண்மையும் விவரமும் வேறுபடுத்தல். பொது வாழ்க்கையில் தொடர்பாடல் எவ்வாறு நடைபெறுகிறது என்பதைப் புரிந்துகொள்ளல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Punarchi (Grammar)",
+       "titleTa": "புணர்ச்சி",
+       "learningObjectives": "Learn sound combination and sandhi rules in Tamil words. Apply these rules correctly in reading and writing.",
+       "learningObjectivesTa": "தமிழ்ச் சொற்களில் ஒலி இணைப்பு, புணர்ச்சி விதிகள் ஆகியவற்றை அறிதல். வாசிப்பு, எழுதுதல் ஆகியவற்றில் இவ்விதிகளைச் சரியாகப் பயன்படுத்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      },
+      {
+       "title": "Thirukkural (Supplementary)",
+       "titleTa": "திருக்குறள்",
+       "learningObjectives": "Explain the couplets related to art, beauty, and innovation. Connect them with moral values and creative thinking.",
+       "learningObjectivesTa": "கலை, அழகு, புதுமை ஆகியவற்றுடன் தொடர்புடைய குறட்பாக்களை விளக்கல். அவற்றை அறநெறி மற்றும் படைப்பாற்றல் மதிப்புகளுடன் இணைத்துப் புரிந்துகொள்ளல்.",
+       "displayOrder": 7,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 7: Nakarigam, Thozhil, Vanigam (Civilization, Industry, Commerce)",
+     "titleTa": "இயல் 7: நாகரிகம், தொழில், வணிகம்",
+     "displayOrder": 7,
+     "topics": [
+      {
+       "title": "Naadu, Samugam, Arasu, Nirvagam (Prose)",
+       "titleTa": "நாடு, சமூகம், அரசு, நிர்வாகம்",
+       "learningObjectives": "Explain the roles of a nation, society, government, and administration in social life. Relate the lesson to citizenship and public responsibility.",
+       "learningObjectivesTa": "நாடு, சமூகம், அரசு, நிர்வாகம் ஆகியவற்றின் சமூக வாழ்க்கையிலான பங்குகளை விளக்கல். குடியுரிமை, பொதுப்பொறுப்பு ஆகியவற்றுடன் உரையைத் தொடர்புபடுத்தல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Indiya National Irunaiyil Tamilar Pangu (Prose)",
+       "titleTa": "இந்திய தேசிய இராணுவத்தில் தமிழர் பங்கு",
+       "learningObjectives": "Describe the role of Tamils in the Indian National Army. Learn historical facts and the spirit of the freedom struggle.",
+       "learningObjectivesTa": "இந்திய தேசிய இராணுவத்தில் தமிழர்களின் பங்கை விவரித்தல். வரலாற்று உண்மைகளையும் விடுதலைப் போராட்ட உணர்வையும் அறிதல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Seevaga Sindhamani (Supplementary)",
+       "titleTa": "சீவக சிந்தாமணி",
+       "learningObjectives": "Read the literary excerpt with attention to theme, style, and artistic beauty. Summarize the text and identify its cultural value.",
+       "learningObjectivesTa": "இலக்கியத் துணுக்கை கரு, நடை, கலைநயம் ஆகியவற்றில் கவனம் செலுத்தி வாசித்தல். உரையைச் சுருக்கி அதன் பண்பாட்டு மதிப்பை அடையாளம் காணுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Vaazhiya Nilane (Poem)",
+       "titleTa": "வாழிய நிலனே",
+       "learningObjectives": "Understand the poem’s ideas about life, duty, patience, or steadfastness. Explain the main message of the text with relevant lines.",
+       "learningObjectivesTa": "வாழ்க்கை, கடமை, பொறுமை அல்லது நிலைத்தன்மை ஆகியவற்றை வெளிப்படுத்தும் பாடலின் கருத்தை உணர்தல். உரையின் முக்கியச் செய்தியைத் தொடர்புடைய வரிகளுடன் விளக்கல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Muthollayiram (Poem)",
+       "titleTa": "முத்தொள்ளாயிரம்",
+       "learningObjectives": "Explain the selected ancient poem and learn about its historical or social setting. Identify the poetic devices and central ideas.",
+       "learningObjectivesTa": "தேர்ந்தெடுக்கப்பட்ட தொன்மையான பாடலை விளக்கி, அதன் வரலாற்று அல்லது சமூகச் சூழலை அறிதல். கவிதை உத்திகளையும் மையக் கருத்துகளையும் அடையாளம் காணுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Maduraikanchi (Supplementary)",
+       "titleTa": "மதுரைக்காஞ்சி",
+       "learningObjectives": "Explain the city life, trade, and social setting described in the excerpt. Connect the poem with the cultural world of ancient Tamil society.",
+       "learningObjectivesTa": "துணுக்கில் இடம்பெறும் நகர வாழ்க்கை, வணிகம், சமூகப் பரப்பு ஆகியவற்றை விளக்கல். பாடலைப் பழந்தமிழ் உலகத்தின் பண்பாட்டுடன் இணைத்துப் புரிந்துகொள்ளல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      },
+      {
+       "title": "Sandhai (Prose)",
+       "titleTa": "சந்தை",
+       "learningObjectives": "Explain the functioning of a market and its role in social life. Identify words related to trade, exchange, and public interaction.",
+       "learningObjectivesTa": "சந்தையின் செயல்பாடு மற்றும் சமூக வாழ்க்கையிலான அதன் பங்கை விளக்கல். வணிகம், பரிமாற்றம், பொது தொடர்பு ஆகியவற்றைச் சார்ந்த சொற்களை அடையாளம் காணுதல்.",
+       "displayOrder": 7,
+       "isPublished": true
+      },
+      {
+       "title": "Agupெயar (Grammar)",
+       "titleTa": "ஆகுபெயர்",
+       "learningObjectives": "Identify substitute names used in place of the original noun. Use them correctly in sentences and short passages.",
+       "learningObjectivesTa": "உண்மைப் பெயருக்குப் பதிலாக வரும் மாற்றுப் பெயர்களை அடையாளம் காணுதல். அவற்றை வாக்கியங்களிலும் சிறு உரைகளிலும் சரியாகப் பயன்படுத்தல்.",
+       "displayOrder": 8,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 8: Aram, Thathuvam, Sindhanai (Ethics, Philosophy, Thought)",
+     "titleTa": "இயல் 8: அறம், தத்துவம், சிந்தனை",
+     "displayOrder": 8,
+     "topics": [
+      {
+       "title": "Periyarin Sindhanaigal (Prose)",
+       "titleTa": "பெரியாரின் சிந்தனைகள்",
+       "learningObjectives": "Summarize Periyar’s ideas on rational thinking, equality, and social reform. Explain how the text helps develop critical thinking and social awareness.",
+       "learningObjectivesTa": "பகுத்தறிவு, சமத்துவம், சமூக சீர்திருத்தம் குறித்த பெரியாரின் கருத்துகளைச் சுருக்குதல். விமர்சனச் சிந்தனையும் சமூக விழிப்புணர்வும் வளர உரை எவ்வாறு உதவுகிறது என்பதை விளக்கல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Olithin Azhaippu (Poem)",
+       "titleTa": "ஒளியின் அழைப்பு",
+       "learningObjectives": "Understand light as a symbol of knowledge or hope. Explain the poem’s message and literary images.",
+       "learningObjectivesTa": "ஒளி என்பது அறிவு அல்லது நம்பிக்கை என்பதைக் குறிக்கும் குறியீடாகப் புரிந்துகொள்ளல். பாடலின் செய்தியையும் இலக்கியப் படிமங்களையும் விளக்கல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "En Thalai Kadane (Poem)",
+       "titleTa": "என் தலைக் கடனே",
+       "learningObjectives": "Identify the duties mentioned in the text and relate them to self-discipline. Explain how duty and service are shown as moral values.",
+       "learningObjectivesTa": "உரையில் கூறப்படும் கடமைகளை அடையாளம் கண்டு, அவற்றைத் தன்னடக்கத்துடன் தொடர்புபடுத்தல். கடமை, சேவை ஆகியவை அற மதிப்புகளாக எவ்வாறு காட்டப்படுகின்றன என்பதைக் கூறுதல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Thao Te Jing (Supplementary)",
+       "titleTa": "தாவோ தே ஜிங்",
+       "learningObjectives": "Understand the philosophical ideas expressed in the selected poem. Compare its message with Tamil thought at a basic level.",
+       "learningObjectivesTa": "தேர்ந்தெடுக்கப்பட்ட பாடலில் வெளிப்படும் தத்துவக் கருத்துகளைப் புரிந்துகொள்ளல். அதன் செய்தியைத் தமிழ்ச் சிந்தனையுடன் அடிப்படையான அளவில் ஒப்பிட்டுப் பார்த்தல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Yasodha Kaaviyam (Supplementary)",
+       "titleTa": "யசோதர காவியம்",
+       "learningObjectives": "Read the literary excerpt and explain its moral or emotional core. Identify the speaker, situation, and key ideas.",
+       "learningObjectivesTa": "இலக்கியத் துணுக்கை வாசித்து, அதன் நெறி அல்லது உணர்ச்சி மையத்தை விளக்கல். பேசுபவர், சூழ்நிலை, முக்கியக் கருத்துகள் ஆகியவற்றை அடையாளம் காணுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Makanukku Ezhudhiya Kaditham (Writing)",
+       "titleTa": "மகனுக்கு எழுதிய கடிதம்",
+       "learningObjectives": "Learn the form and purpose of an open letter. Explain the advice, values, and concerns expressed in the letter.",
+       "learningObjectivesTa": "திறந்த கடிதத்தின் வடிவம், நோக்கம் ஆகியவற்றை அறிதல். கடிதத்தில் வெளிப்படும் ஆலோசனை, மதிப்புகள், கவலைகளை விளக்கல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      },
+      {
+       "title": "Yaappilakkanam (Grammar)",
+       "titleTa": "யாப்பிலக்கணம்",
+       "learningObjectives": "Identify the basic features of Tamil meter, rhythm, syllable units, and sound pattern. Understand how sound and structure create poetic form.",
+       "learningObjectivesTa": "தமிழின் யாப்பு, சந்தம், அசை, ஓசை ஆகிய அடிப்படை அம்சங்களை அடையாளம் காணுதல். ஒலி அமைப்பும் கட்டமைப்பும் கவிதை வடிவத்தை எவ்வாறு உருவாக்குகின்றன என்பதை அறிதல்.",
+       "displayOrder": 7,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 9: Manitham, Aalumai (Humanity, Personality)",
+     "titleTa": "இயல் 9: மனிதம், ஆளுமை",
+     "displayOrder": 9,
+     "topics": [
+      {
+       "title": "Virivaagum Aalumai (Prose)",
+       "titleTa": "விரிவாகும் ஆளுமை",
+       "learningObjectives": "Explain how personality grows through learning, experience, and values. Learn ideas that support self-improvement and leadership.",
+       "learningObjectivesTa": "கற்றல், அனுபவம், மதிப்புகள் ஆகியவற்றால் ஆளுமை எவ்வாறு வளரும் என்பதை விளக்கல். சுயமுன்னேற்றம், தலைமைத்துவம் ஆகியவற்றை ஆதரிக்கும் கருத்துகளை அறிதல்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Akkarai (Poem)",
+       "titleTa": "அக்கறை",
+       "learningObjectives": "Understand the poem’s message about care, concern, and responsibility. Explain the key images and relate them to human relationships.",
+       "learningObjectivesTa": "அக்கறை, கவலை, பொறுப்பு ஆகியவற்றைப் பற்றிய பாடலின் செய்தியைப் புரிந்துகொள்ளல். முக்கியப் படிமங்களை விளக்கி மனித உறவுகளுடன் தொடர்புபடுத்தல்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Anbennum Arane (Poem)",
+       "titleTa": "அன்பென்னும் அறனே",
+       "learningObjectives": "Explain the poem’s idea that love is a protective moral principle. Relate the poem’s message to daily life and ethics.",
+       "learningObjectivesTa": "அன்பு ஒரு காப்பு நெறி என்ற பாடலின் கருத்தை விளக்கல். கவிதைச் செய்தியை அன்றாட வாழ்க்கையிலும் அறத்திலும் பொருத்திப் பார்த்தல்.",
+       "displayOrder": 3,
+       "isPublished": true
+      },
+      {
+       "title": "Kurunthokai (Supplementary)",
+       "titleTa": "குறுந்தொகை",
+       "learningObjectives": "Read the selected akam poem and identify its mood, imagery, and theme. Explain the emotional state in simple words.",
+       "learningObjectivesTa": "தேர்ந்தெடுக்கப்பட்ட அகப்பாடலை வாசித்து, அதன் மனநிலை, படிமம், கரு ஆகியவற்றை அடையாளம் காணுதல். உணர்ச்சி நிலையை எளிய சொற்களில் விளக்கல்.",
+       "displayOrder": 4,
+       "isPublished": true
+      },
+      {
+       "title": "Thaimaikku Varatchi Illai! (Poem)",
+       "titleTa": "தாய்மைக்கு வறட்சி இல்லை!",
+       "learningObjectives": "Explain the poem’s praise of motherhood, compassion, and care. Identify the central feeling and literary expressions in the text.",
+       "learningObjectivesTa": "தாய்மை, பரிவு, பராமரிப்பு ஆகியவற்றைப் புகழும் பாடலின் கருத்தை விளக்கல். உரையில் வரும் மைய உணர்வையும் இலக்கிய வெளிப்பாடுகளையும் அடையாளம் காணுதல்.",
+       "displayOrder": 5,
+       "isPublished": true
+      },
+      {
+       "title": "Aniyilakkanam (Grammar)",
+       "titleTa": "அணியிலக்கணம்",
+       "learningObjectives": "Identify rules of order, structure, and arrangement in Tamil expression. Use them to improve sentence structure and style.",
+       "learningObjectivesTa": "தமிழ் மொழி வெளிப்பாட்டில் வரிசை, அமைப்பு, ஒழுங்கு ஆகிய விதிகளை அடையாளம் காணுதல். வாக்கிய அமைப்பையும் நடையையும் மேம்படுத்த அவற்றைப் பயன்படுத்தல்.",
+       "displayOrder": 6,
+       "isPublished": true
+      },
+      {
+       "title": "Thirukkural (Supplementary)",
+       "titleTa": "திருக்குறள்",
+       "learningObjectives": "Explain the couplets related to humanity and character. Understand ideas that guide personal conduct and social values.",
+       "learningObjectivesTa": "மனிதம் மற்றும் பண்பு தொடர்பான குறட்பாக்களை விளக்கல். தனிநடத்தை மற்றும் சமூக மதிப்புகளை வழிநடத்தும் கருத்துகளைப் புரிந்துகொள்ளல்.",
+       "displayOrder": 7,
+       "isPublished": true
+      }
+     ]
+    }
+   ],
+   "displayOrder": 4
+  },
+  {
+   "name": "English",
+   "nameTa": "ஆங்கிலம்",
+   "tileColor": "#B0745A",
+   "icon": "alphabet-latin",
+   "chapters": [
+    {
+     "title": "Unit 1: Learning the Game",
+     "titleTa": "அலகு 1: விளையாட்டைக் கற்றல்",
+     "displayOrder": 1,
+     "topics": [
+      {
+       "title": "Prose: Learning the Game",
+       "titleTa": "உரைநடை: விளையாட்டைக் கற்றல்",
+       "learningObjectives": "Describe Sachin Tendulkar’s early cricket training, his routine at Shivaji Park, and the role of coach Ramakant Achrekar. Explain how discipline, practice, and guidance shaped his progress.",
+       "learningObjectivesTa": "சச்சின் டெண்டுல்கரின் தொடக்க கால கிரிக்கெட் பயிற்சி, சிவாஜி பார்க்கில் அவருடைய நடைமுறை, மற்றும் ரமகாந்த் அச்ரேகர் பயிற்சியாளர் ஆற்றிய பங்கை விவரிக்கவும். கட்டுப்பாடு, பயிற்சி, வழிகாட்டுதல் ஆகியவை அவருடைய முன்னேற்றத்தை எவ்வாறு உருவாக்கின என்பதை விளக்கவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: Stopping by Woods on a Snowy Evening",
+       "titleTa": "கவிதை: பனிமயமான மாலைவேளையில் காடின் அருகே நின்று",
+       "learningObjectives": "Read the poem for its imagery, mood, and reflective tone. Identify rhyme scheme, repeated sounds, and the speaker’s conflict between rest and duty.",
+       "learningObjectivesTa": "படிமங்கள், மனநிலை, மற்றும் சிந்தனைமயமான தொனி ஆகியவற்றிற்காகக் கவிதையை வாசிக்கவும். யாப்பு அமைப்பு, மீளும் ஒலிகள், மற்றும் ஓய்வுக்கும் கடமைக்கும் இடையிலான பேசுபவரின் உள்மோதலை அடையாளம் காணவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: The Envious Neighbour",
+       "titleTa": "துணைப்பாடம்: பொறாமை கொண்ட அண்டைவர்",
+       "learningObjectives": "Summarise the story and identify the effects of envy and comparison. Infer the message about gratitude, contentment, and wise judgment.",
+       "learningObjectivesTa": "கதையைச் சுருக்கி, பொறாமை மற்றும் ஒப்பீட்டின் விளைவுகளை அடையாளம் காணவும். நன்றி உணர்வு, மனநிறைவு, மற்றும் அறிவார்ந்த தீர்ப்பு பற்றிய செய்தியை ஊகிக்கவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 2: I can’t Climb Trees Anymore",
+     "titleTa": "அலகு 2: இனி மரத்தில் ஏற முடியாது",
+     "displayOrder": 2,
+     "topics": [
+      {
+       "title": "Prose: I can’t Climb Trees Anymore",
+       "titleTa": "உரைநடை: இனி மரத்தில் ஏற முடியாது",
+       "learningObjectives": "Understand the narrator’s changing relationship with childhood and nature. Trace memories, feelings of loss, and the value of accepting growth and change.",
+       "learningObjectivesTa": "பருவமடைதலுடன் குழந்தைப் பருவமும் இயற்கையும் கொண்டிருந்த கதையாடியின் மாறும் உறவைப் புரிந்துகொள்ளவும். நினைவுகள், இழப்புணர்வு, மற்றும் வளர்ச்சியையும் மாற்றத்தையும் ஏற்றுக்கொள்வதின் மதிப்பைத் தடம் பிடிக்கவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: A Poison Tree",
+       "titleTa": "கவிதை: நஞ்சு மரம்",
+       "learningObjectives": "Interpret the poem’s central idea of anger, concealment, and its harmful consequences. Explain the extended metaphor and the poem’s moral lesson.",
+       "learningObjectivesTa": "கோபம், மறைத்தல், மற்றும் அதன் தீங்கு விளைவிக்கும் விளைவுகள் ஆகியவற்றைப் பற்றிய கவிதையின் மையக் கருத்தை விளக்கவும். விரிவான உருவகத்தைச் சுட்டிக்காட்டி, கவிதையின் நெறிப்பாடை விவரிக்கவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: The Fun They Had",
+       "titleTa": "துணைப்பாடம்: அவர்கள் பெற்ற மகிழ்ச்சி",
+       "learningObjectives": "Compare the future classroom in the story with real classrooms. Explain how technology changes learning while raising questions about human interaction and school life.",
+       "learningObjectivesTa": "கதையில் காட்டப்படும் எதிர்கால வகுப்பறையையும் நிஜ வகுப்பறையையும் ஒப்பிடவும். தொழில்நுட்பம் கற்றலை எவ்வாறு மாற்றுகிறது என்பதையும், மனித உறவுகள் மற்றும் பள்ளி வாழ்க்கை குறித்த கேள்விகளையும் விளக்கவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 3: Old Man River",
+     "titleTa": "அலகு 3: ஓ பழைய ஆறு",
+     "displayOrder": 3,
+     "topics": [
+      {
+       "title": "Drama: Old Man River",
+       "titleTa": "நாடகம்: ஓ பழைய ஆறு",
+       "learningObjectives": "Follow the dramatic action, characters, and conflict in the play. Recognise how dialogue, setting, and stage action create meaning and emotion.",
+       "learningObjectivesTa": "நாடகத்தின் நாடகத் தன்மை, பாத்திரங்கள், மற்றும் மோதலைத் தொடர்ந்து புரிந்துகொள்ளவும். உரையாடல், களம், மற்றும் மேடைச் செயல்பாடுகள் பொருள் மற்றும் உணர்வை எவ்வாறு உருவாக்குகின்றன என்பதை உணரவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: On Killing a Tree",
+       "titleTa": "கவிதை: மரத்தைக் கொல்வது",
+       "learningObjectives": "Analyse the poem’s message about nature, violence, and resilience. Identify figurative language and explain how the poem presents the destruction of a tree.",
+       "learningObjectivesTa": "இயற்கை, வன்முறை, மற்றும் மீண்டெழும் தன்மை பற்றிய கவிதையின் செய்தியை ஆராயவும். உருவக மொழியை அடையாளம் கண்டு, ஒரு மரம் எவ்வாறு அழிக்கப்படுகிறது என்பதை கவிதை எவ்வாறு வெளிப்படுத்துகிறது என்பதையும் விளக்கவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: Earthquake",
+       "titleTa": "துணைப்பாடம்: நிலநடுக்கம்",
+       "learningObjectives": "Describe the events of the disaster and the response of the people involved. Identify courage, compassion, and practical action in an emergency.",
+       "learningObjectivesTa": "பேரழிவின் நிகழ்வுகளையும் அதில் ஈடுபட்ட மக்களின் எதிர்வினையையும் விவரிக்கவும். அவசரநிலையில் துணிச்சல், கருணை, மற்றும் நடைமுறைச் செயல்பாடு ஆகியவற்றை அடையாளம் காணவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 4: Seventeen Oranges",
+     "titleTa": "அலகு 4: பதினேழு ஆரஞ்சுகள்",
+     "displayOrder": 4,
+     "topics": [
+      {
+       "title": "Prose: Seventeen Oranges",
+       "titleTa": "உரைநடை: பதினேழு ஆரஞ்சுகள்",
+       "learningObjectives": "Retell the events involving the oranges and the misunderstanding that follows. Infer how observation, honesty, and quick thinking help resolve the situation.",
+       "learningObjectivesTa": "ஆரஞ்சுகளைச் சுற்றிய நிகழ்வுகளையும் அதன் பின்னர் எழும் தவறான புரிதலையும் மீள்கூறவும். பார்வை, நேர்மை, மற்றும் விரைவான சிந்தனை ஆகியவை நிலைமையைத் தீர்க்க எவ்வாறு உதவுகின்றன என்பதை ஊகிக்கவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: The Spider and the Fly",
+       "titleTa": "கவிதை: சிலந்தியும் ஈயும்",
+       "learningObjectives": "Explain the poem as a cautionary dialogue about flattery and deception. Identify the moral lesson and the techniques used to persuade the reader.",
+       "learningObjectivesTa": "புகழ்ச்சி மற்றும் ஏமாற்றம் குறித்த எச்சரிக்கைக் கதையாடலாக இந்தக் கவிதையை விளக்கவும். நெறிப்பாடையும், வாசகரை நம்ப வைக்கப் பயன்படுத்தப்படும் உத்திகளையும் அடையாளம் காணவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: The Cat and the Painkiller",
+       "titleTa": "துணைப்பாடம்: பூனையும் வலி நிவாரண மாத்திரையும்",
+       "learningObjectives": "Read the humorous episode for character, tone, and comic misunderstanding. Summarise the situation and explain how the misunderstanding is revealed.",
+       "learningObjectivesTa": "நகைச்சுவையான நிகழ்வை பாத்திரம், தொனி, மற்றும் நகைச்சுவையான தவறான புரிதல் ஆகிய கோணங்களில் வாசிக்கவும். நிலைமையைச் சுருக்கி, அந்தத் தவறான புரிதல் எவ்வாறு வெளிப்படுகிறது என்பதையும் விளக்கவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 5: Water – The Elixir of Life",
+     "titleTa": "அலகு 5: நீர் – வாழ்வின் அமுதம்",
+     "displayOrder": 5,
+     "topics": [
+      {
+       "title": "Prose: Water – The Elixir of Life",
+       "titleTa": "உரைநடை: நீர் – வாழ்வின் அமுதம்",
+       "learningObjectives": "Explain why water is essential for life, agriculture, and industry. Identify the passage’s main ideas about conservation, responsible use, and the value of water.",
+       "learningObjectivesTa": "வாழ்க்கை, வேளாண்மை, மற்றும் தொழில்துறை ஆகியவற்றிற்கு நீர் ஏன் அத்தியாவசியம் என்பதை விளக்கவும். நீர் பாதுகாப்பு, பொறுப்பான பயன்பாடு, மற்றும் நீரின் மதிப்பு குறித்த பாடப்பகுதியின் முக்கியக் கருத்துகளை அடையாளம் காணவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: The River",
+       "titleTa": "கவிதை: ஆறு",
+       "learningObjectives": "Appreciate the river as a symbol of nature, movement, and life. Describe the poem’s imagery and mood, and explain its celebration of the river’s changing course.",
+       "learningObjectivesTa": "இயற்கை, இயக்கம், மற்றும் வாழ்க்கையின் குறியீடாக ஆற்றை மதிப்பிடவும். கவிதையின் படிமங்களையும் மனநிலையையும் விவரித்து, மாறிக்கொண்டே செல்லும் ஆற்றின் பயணத்தைப் போற்றும் அதன் தன்மையையும் விளக்கவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: Little Cyclone: The Story of a Grizzly Cub",
+       "titleTa": "துணைப்பாடம்: சிறு சுழல்: ஒரு கரடி குட்டியின் கதை",
+       "learningObjectives": "Trace the life of the grizzly cub and the challenges it faces. Identify the story’s themes of survival, courage, and the natural world.",
+       "learningObjectivesTa": "கிரிஸ்லி கரடிக் குட்டியின் வாழ்க்கைச் சவால்களையும் அது எதிர்கொள்ளும் தடைகளையும் தடம் பிடிக்கவும். உயிர்வாழ்தல், துணிவு, மற்றும் இயற்கை உலகம் ஆகிய கதையின் கருப்பொருள்களை அடையாளம் காணவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 6: From Zero to Infinity",
+     "titleTa": "அலகு 6: பூஜ்ஜியத்திலிருந்து அனந்தம் வரை",
+     "displayOrder": 6,
+     "topics": [
+      {
+       "title": "Prose: From Zero to Infinity",
+       "titleTa": "உரைநடை: பூஜ்ஜியத்திலிருந்து அனந்தம் வரை",
+       "learningObjectives": "Understand how the text presents mathematical ideas and the history or significance of zero. Explain key concepts clearly and connect them to logical thinking.",
+       "learningObjectivesTa": "கணிதக் கருத்துகளையும் பூஜ்ஜியத்தின் வரலாறு அல்லது முக்கியத்துவத்தையும் இந்தப் பாடம் எவ்வாறு அறிமுகப்படுத்துகிறது என்பதைப் புரிந்துகொள்ளவும். முக்கியக் கருத்துகளைத் தெளிவாக விளக்கி, அவற்றை தர்க்கரீதியான சிந்தனையுடன் இணைக்கவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: The Comet",
+       "titleTa": "கவிதை: வால் நட்சத்திரம்",
+       "learningObjectives": "Interpret the poem’s description of the comet and its effect on the speaker. Identify the mood, images, and sense of wonder created by the poet.",
+       "learningObjectivesTa": "வால் நட்சத்திரம் பற்றிய கவிதையின் விளக்கத்தையும் அது பேசுபவரின் மனதில் ஏற்படுத்தும் தாக்கத்தையும் புரிந்துகொள்ளவும். கவிஞர் உருவாக்கிய மனநிலை, படிமங்கள், மற்றும் வியப்புணர்ச்சியை அடையாளம் காணவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: Mother’s Voice",
+       "titleTa": "துணைப்பாடம்: தாயின் குரல்",
+       "learningObjectives": "Summarise the story and explain how a mother’s words or presence shape the main character. Identify themes of love, memory, guidance, and emotional strength.",
+       "learningObjectivesTa": "கதையைச் சுருக்கி, தாயின் வார்த்தைகள் அல்லது அவரது இருப்பு முதன்மை பாத்திரத்தை எவ்வாறு வடிவமைக்கிறது என்பதை விளக்கவும். அன்பு, நினைவு, வழிகாட்டுதல், மற்றும் உணர்ச்சி வலிமை ஆகிய கருப்பொருள்களை அடையாளம் காணவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    },
+    {
+     "title": "Unit 7: A Birthday Letter",
+     "titleTa": "அலகு 7: பிறந்தநாள் கடிதம்",
+     "displayOrder": 7,
+     "topics": [
+      {
+       "title": "Prose: A Birthday Letter",
+       "titleTa": "உரைநடை: பிறந்தநாள் கடிதம்",
+       "learningObjectives": "Read the letter to understand Jawaharlal Nehru’s thoughts, advice, and affection. Identify the qualities of a personal letter and the values it encourages in a young reader.",
+       "learningObjectivesTa": "ஜவாஹர்லால் நேருவின் எண்ணங்கள், ஆலோசனைகள், மற்றும் பாசத்தைப் புரிந்துகொள்ள இந்தக் கடிதத்தை வாசிக்கவும். தனிப்பட்ட கடிதத்தின் பண்புகளையும், இளைய வாசகரிடம் அது ஊக்குவிக்கும் மதிப்புகளையும் அடையாளம் காணவும்.",
+       "displayOrder": 1,
+       "isPublished": true
+      },
+      {
+       "title": "Poem: The Stick-together Families",
+       "titleTa": "கவிதை: ஒற்றுமையாக இருக்கும் குடும்பங்கள்",
+       "learningObjectives": "Explain the poem’s message about unity, support, and family bonds. Describe how the poet uses simple images to show the strength of togetherness.",
+       "learningObjectivesTa": "ஒற்றுமை, ஆதரவு, மற்றும் குடும்பப் பிணைப்புகளின் பற்றிய கவிதையின் செய்தியை விளக்கவும். எளிய படிமங்களைப் பயன்படுத்தி ஒன்றுபட்டிருப்பதின் வலிமையை கவிஞர் எவ்வாறு காட்டுகிறார் என்பதையும் விவரிக்கவும்.",
+       "displayOrder": 2,
+       "isPublished": true
+      },
+      {
+       "title": "Supplementary Reader: The Christmas Truce",
+       "titleTa": "துணைப்பாடம்: கிறிஸ்துமஸ் போர் நிறுத்தம்",
+       "learningObjectives": "Describe the wartime ceasefire and the human values it reveals. Explain how empathy, peace, and shared humanity can overcome conflict, even briefly.",
+       "learningObjectivesTa": "போர்கால போர் நிறுத்தத்தையும் அது வெளிப்படுத்தும் மனிதநேய மதிப்புகளையும் விவரிக்கவும். பரிவு, அமைதி, மற்றும் பகிரப்பட்ட மனிதத்தன்மை மோதலை—even briefly—எவ்வாறு வெல்ல முடியும் என்பதை விளக்கவும்.",
+       "displayOrder": 3,
+       "isPublished": true
+      }
+     ]
+    }
+   ],
+   "displayOrder": 5
+  }
+ ]
+}

@@ -7,7 +7,7 @@ from typing import Annotated
 from fastapi import APIRouter, BackgroundTasks, Depends, Request, Response, status
 
 from app.config import settings
-from app.dependencies import CurrentUser, DbSession
+from app.dependencies import CurrentUser, DbSession, TokenUser
 from app.exceptions import NotFoundError
 from app.rate_limit import limiter
 from app.schemas.auth import (
@@ -99,16 +99,30 @@ def logout(body: RefreshRequest, db: DbSession) -> Response:
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
+@router.post("/session/ping", status_code=status.HTTP_204_NO_CONTENT)
+def session_ping(user: CurrentUser) -> Response:
+    """Keep this device's session in use while the app is open (409 if another device has it)."""
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.post("/session/release", status_code=status.HTTP_204_NO_CONTENT)
+def session_release(token_user: TokenUser, db: DbSession) -> Response:
+    """Free the account for another device (the app was closed or sent to the background)."""
+    user, payload = token_user
+    auth_service.release_session(db, user, payload.sid)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
 @router.get("/me", response_model=UserOut)
-def get_me(user: CurrentUser) -> UserOut:
+def get_me(user: CurrentUser, db: DbSession) -> UserOut:
     """Return the current user's profile."""
-    return UserOut.model_validate(user)
+    return auth_service.profile_out(db, user)
 
 
 @router.put("/me", response_model=UserOut)
 def update_me(body: UpdateMeRequest, user: CurrentUser, db: DbSession) -> UserOut:
     """Update name, board and/or medium (used by onboarding and profile)."""
-    return UserOut.model_validate(auth_service.update_profile(db, user, body))
+    return auth_service.profile_out(db, auth_service.update_profile(db, user, body))
 
 
 @router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)

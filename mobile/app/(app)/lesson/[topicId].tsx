@@ -105,15 +105,18 @@ export default function LessonScreen() {
       {header}
       <Screen scroll edges={['bottom']}>
         <View style={styles.content}>
-          <LanguageToggle
-            value={lesson?.language ?? user?.lessonLanguage ?? user?.medium ?? null}
-            disabled={!lesson || flow.chooseStylePending || flow.notClearPending}
-            onChange={(language) => {
-              setAskedAgain(true);
-              setMode('slides');
-              flow.chooseLanguage(language);
-            }}
-          />
+          {topicQuery.data?.languageFixed ? null : (
+            // Language subjects (Tamil) are always taught in their own language.
+            <LanguageToggle
+              value={lesson?.language ?? user?.lessonLanguage ?? user?.medium ?? null}
+              disabled={!lesson || flow.chooseStylePending || flow.notClearPending}
+              onChange={(language) => {
+                setAskedAgain(true);
+                setMode('slides');
+                flow.chooseLanguage(language);
+              }}
+            />
+          )}
           <StyleChips
             current={lesson?.style ?? flow.job?.style ?? null}
             disabled={!lesson || flow.chooseStylePending || flow.notClearPending}

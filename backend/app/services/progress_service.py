@@ -9,6 +9,8 @@ Rules:
 - Completed topics stay open for review. Anything after the first unfinished
   topic of a subject is ``locked`` — except a topic the student bought on its own,
   which opens directly.
+- Classes where the student chooses a group (11th / 12th): only the chosen subjects
+  exist for them — the others are hidden and refused, even their free first topic.
 - Payments (``BILLING_ENABLED``): beyond the free first topic(s) of each subject a
   topic also needs a plan or a single-topic purchase (see ``billing_service``);
   lessons and tests then answer 402 ``payment_required``.
@@ -68,6 +70,14 @@ def _board_id(user: User) -> int:
     return user.board_id
 
 
+def allowed_subject_ids(user: User) -> set[int] | None:
+    """Subjects the student may study: their chosen group, or None for every subject."""
+    board = user.board
+    if board is not None and board.choose_subjects:
+        return set(user.subject_ids)
+    return None
+
+
 def compute_states(
     ordered_topic_ids: list[int],
     progress: dict[int, TopicProgress],
@@ -117,6 +127,9 @@ def board_topic_statuses(
     )
     if subject_id is not None:
         query = query.where(Subject.id == subject_id)
+    allowed = allowed_subject_ids(user)
+    if allowed is not None:
+        query = query.where(Subject.id.in_(allowed))
     rows = db.execute(query).all()
 
     per_subject: dict[int, list[int]] = {}
@@ -152,8 +165,8 @@ def board_topic_statuses(
 
 
 def get_topic_for_student(db: Session, user: User, topic_id: int) -> Topic:
-    """Load a published topic on the student's board, else 404."""
-    topic = db.scalar(
+    """Load a published topic of a subject the student studies, else 404."""
+    query = (
         select(Topic)
         .join(Chapter, Topic.chapter_id == Chapter.id)
         .join(Subject, Chapter.subject_id == Subject.id)
@@ -163,6 +176,10 @@ def get_topic_for_student(db: Session, user: User, topic_id: int) -> Topic:
             Subject.board_id == _board_id(user),
         )
     )
+    allowed = allowed_subject_ids(user)
+    if allowed is not None:
+        query = query.where(Subject.id.in_(allowed))
+    topic = db.scalar(query)
     if topic is None:
         raise NotFoundError("Topic not found")
     return topic

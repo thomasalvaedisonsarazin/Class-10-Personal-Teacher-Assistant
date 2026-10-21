@@ -25,7 +25,7 @@ def start_topic(topic_id: int, db: DbSession, user: StudentUser) -> TopicItem:
     topic = progress_service.get_topic_for_student(db, user, topic_id)
     return TopicItem(
         id=topic.id,
-        title=topic_title(topic, student_medium(user)),
+        title=topic_title(topic, student_medium(user, topic.chapter.subject)),
         status=status.state,
         best_score_pct=status.best_score_pct,
         access=status.access,

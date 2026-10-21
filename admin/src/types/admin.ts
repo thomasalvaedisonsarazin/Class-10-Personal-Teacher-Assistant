@@ -28,11 +28,15 @@ export interface AdminStats {
   failedJobsWeek: number;
 }
 
+/** One class of a board (e.g. TN State Board Class 11); hidden classes are not shown to students. */
 export interface AdminBoard {
   id: number;
   code: string;
   name: string;
   isActive: boolean;
+  family: string;
+  grade: number;
+  chooseSubjects: boolean;
 }
 
 export interface AdminTopic {
@@ -62,6 +66,8 @@ export interface AdminSubject {
   tileColor: string;
   icon: string;
   displayOrder: number;
+  /** Language subject always shown in this language ("ta" = Tamil). */
+  fixedMedium?: Medium | null;
   chapters: AdminChapter[];
 }
 
@@ -135,6 +141,17 @@ export interface AdminUser {
   medium: Medium | null;
   isActive: boolean;
   createdAt: string;
+  /** Student's class (board) and, for 11th / 12th, their six subjects. */
+  boardId?: number | null;
+  subjectIds?: number[];
+}
+
+/** Changes an admin may make to a user (class / subjects even after payment). */
+export interface AdminUserUpdate {
+  role?: UserRole;
+  isActive?: boolean;
+  boardId?: number;
+  subjectIds?: number[];
 }
 
 export type AdminPage<T> = Page<T>;

@@ -202,7 +202,7 @@ def notify_quiz_passed_in_background(
             if student is None or topic is None:
                 return
             title = curriculum_service.topic_title(
-                topic, curriculum_service.student_medium(student)
+                topic, curriculum_service.student_medium(student, topic.chapter.subject)
             )
             notify_quiz_passed(db, student, title, score, next_topic)
     except Exception:

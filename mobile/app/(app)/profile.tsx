@@ -3,12 +3,17 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { HelperText, TextInput } from 'react-native-paper';
 
+import { useQuery } from '@tanstack/react-query';
+
+import { ClassPicker } from '@/components/classes/ClassPicker';
+import { SubjectPicker } from '@/components/classes/SubjectPicker';
 import { AppHeader } from '@/components/layout/AppHeader';
 import { ParentAccess } from '@/components/parent/ParentAccess';
 import { SchoolCodeEntry } from '@/components/partner/SchoolCodeEntry';
 import { AppText, ChoiceList, PrimaryButton, Screen } from '@/components/ui';
 import type { ChoiceOption } from '@/components/ui';
 import { useAuth } from '@/hooks/useAuth';
+import { SUBJECTS_TO_CHOOSE } from '@/lib/classes';
 import { getApiErrorMessage } from '@/services/api';
 import { authService } from '@/services/authService';
 import { palette, spacing } from '@/theme';
@@ -34,6 +39,9 @@ export default function ProfileScreen() {
   const [medium, setMedium] = useState<Medium | null>(user?.medium ?? null);
   const initialLanguage: LessonLanguage | null = user?.lessonLanguage ?? user?.medium ?? null;
   const [lessonLanguage, setLessonLanguage] = useState<LessonLanguage | null>(initialLanguage);
+  const [boardId, setBoardId] = useState<number | null>(user?.boardId ?? null);
+  const initialSubjects = user?.subjectIds ?? [];
+  const [subjectIds, setSubjectIds] = useState<number[]>(initialSubjects);
   const [saving, setSaving] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -44,13 +52,32 @@ export default function ProfileScreen() {
   } | null>(null);
 
   const isParent = user?.role === 'parent';
+  const classLocked = user?.classLocked === true;
+  const boardsQuery = useQuery({ queryKey: ['boards'], queryFn: authService.getBoards, enabled: !isParent });
+  const selectedBoard = boardsQuery.data?.find((board) => board.id === boardId);
+  const needsSubjects = !isParent && selectedBoard?.chooseSubjects === true;
+  const classChanged = boardId !== (user?.boardId ?? null);
+  const subjectsChanged = [...subjectIds].sort().join(',') !== [...initialSubjects].sort().join(',');
   const trimmedName = fullName.trim();
   const changed =
-    trimmedName !== (user?.fullName ?? '') || medium !== (user?.medium ?? null) || lessonLanguage !== initialLanguage;
+    trimmedName !== (user?.fullName ?? '') ||
+    medium !== (user?.medium ?? null) ||
+    lessonLanguage !== initialLanguage ||
+    classChanged ||
+    subjectsChanged;
+
+  const handleClassChange = (id: number): void => {
+    setBoardId(id);
+    setSubjectIds(id === user?.boardId ? initialSubjects : []);
+  };
 
   const handleSave = async (): Promise<void> => {
     if (!trimmedName || medium === null) {
       setMessage({ type: 'error', text: 'Please enter your name.' });
+      return;
+    }
+    if (needsSubjects && subjectIds.length !== SUBJECTS_TO_CHOOSE) {
+      setMessage({ type: 'error', text: `Please tick exactly ${SUBJECTS_TO_CHOOSE} subjects.` });
       return;
     }
     setMessage(null);
@@ -60,6 +87,8 @@ export default function ProfileScreen() {
         fullName: trimmedName,
         medium,
         lessonLanguage: lessonLanguage ?? undefined,
+        boardId: classChanged && boardId !== null ? boardId : undefined,
+        subjectIds: needsSubjects && (classChanged || subjectsChanged) ? subjectIds : undefined,
       });
       await refreshUser();
       setMessage({ type: 'info', text: 'Saved.' });
@@ -123,6 +152,33 @@ export default function ProfileScreen() {
                 onChange={setLessonLanguage}
                 testID="profile-lesson-language"
               />
+            </View>
+          )}
+
+          {!isParent && classLocked ? (
+            <View style={styles.section} testID="profile-class-locked">
+              <AppText variant="subtitle">Your class</AppText>
+              <AppText>
+                {selectedBoard?.name ?? ''}
+              </AppText>
+              <AppText variant="caption" tone="secondary">
+                Your class and subjects are fixed after payment. To change them, please contact
+                us.
+              </AppText>
+            </View>
+          ) : null}
+
+          {isParent || classLocked || !boardsQuery.data ? null : (
+            <View style={styles.section}>
+              <ClassPicker boards={boardsQuery.data} value={boardId} onChange={handleClassChange} />
+              {classChanged ? (
+                <AppText variant="caption" tone="secondary">
+                  Your progress in your old class is kept. You can switch back any time.
+                </AppText>
+              ) : null}
+              {needsSubjects && boardId !== null ? (
+                <SubjectPicker boardId={boardId} value={subjectIds} onChange={setSubjectIds} />
+              ) : null}
             </View>
           )}
 
