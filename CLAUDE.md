@@ -184,6 +184,7 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 ### Payments Module
 - Google Play Billing only (digital content); our server verifies every purchase token with the Google Play Developer API (`play_billing.py`, service account `PLAY_SERVICE_ACCOUNT_JSON`), binds it to the payer (`obfuscatedAccountId = pta-<payerId>`) and student (`obfuscatedProfileId = pta-<studentId>[-t<topicId>]`), stores it once (`purchases.purchase_token` unique), then acknowledges (subscription) or consumes (one-time)
 - Products: auto-renewing subscriptions `premium`, `premium_2`, `premium_3` (each with base plans `monthly` ₹99 / `yearly` ₹999) — one per child, because Google allows one active subscription per product per account (`next_subscription_id` picks the next free one); one-time `topic_unlock` ₹75 (one topic forever, opens directly even out of order)
+- `COMPLIMENTARY_EMAILS` get every topic free (Google Play reviewer account `…+review@gmail.com`, staff)
 - `BILLING_ENABLED` (off = everything free); the first `FREE_TOPICS_PER_SUBJECT` (1) topics of every subject are free; access rules live in `billing_service.py` and are applied by `progress_service`; lessons/tests answer **402 `payment_required`**; the topic screen still opens (to offer unlocking)
 - Expired auto-renewing plans are re-checked with Google lazily (at most hourly); UPI "pending" purchases are finished later by `playStore.syncPurchases()` on the Premium screen
 - Mobile: `expo-iap` (pinned to Google Play) in `src/services/playStore.ts` (web stub `playStore.web.ts`); screen `app/(app)/premium.tsx`

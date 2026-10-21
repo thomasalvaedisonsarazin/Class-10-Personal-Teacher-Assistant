@@ -71,6 +71,8 @@ class Settings(BaseSettings):
     # Payments (Google Play Billing). Off = every topic is free (dev, tests, before launch).
     BILLING_ENABLED: bool = False
     FREE_TOPICS_PER_SUBJECT: int = 1  # the first N topics of every subject are free
+    # Accounts with every topic unlocked for free (Google Play reviewers, staff).
+    COMPLIMENTARY_EMAILS: Annotated[list[str], NoDecode] = []
     PLAY_PACKAGE_NAME: str = "com.edsolution.teacherassistant"
     # Service-account JSON (file path or the JSON text) with Play "View financial data" access.
     PLAY_SERVICE_ACCOUNT_JSON: str = ""
@@ -142,7 +144,13 @@ class Settings(BaseSettings):
                 return "postgresql+psycopg://" + value[len(prefix) :]
         return value
 
-    @field_validator("CORS_ORIGINS", "ADMIN_EMAILS", "PLAY_SUBSCRIPTION_IDS", mode="before")
+    @field_validator(
+        "CORS_ORIGINS",
+        "ADMIN_EMAILS",
+        "PLAY_SUBSCRIPTION_IDS",
+        "COMPLIMENTARY_EMAILS",
+        mode="before",
+    )
     @classmethod
     def _split_csv(cls, value: object) -> object:
         """Allow comma-separated strings in addition to JSON lists."""
@@ -152,7 +160,7 @@ class Settings(BaseSettings):
             return [item.strip() for item in value.split(",") if item.strip()]
         return value
 
-    @field_validator("ADMIN_EMAILS")
+    @field_validator("ADMIN_EMAILS", "COMPLIMENTARY_EMAILS")
     @classmethod
     def _lower_emails(cls, value: list[str]) -> list[str]:
         """Normalise admin emails to lowercase."""

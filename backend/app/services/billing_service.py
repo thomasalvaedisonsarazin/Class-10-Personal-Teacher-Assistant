@@ -33,6 +33,7 @@ from app.services.play_billing import PlayVerifier, get_play_verifier
 
 logger = logging.getLogger(__name__)
 
+COMPLIMENTARY_PERIOD = timedelta(days=365)  # shown as "active until"; renewed on every look-up
 RECHECK_AFTER = timedelta(hours=1)  # how often an expired auto-renewing plan is re-checked
 
 
@@ -112,6 +113,8 @@ def get_student_access(
     if not settings.BILLING_ENABLED:
         return StudentAccess()
     now = _now()
+    if student.email.lower() in settings.COMPLIMENTARY_EMAILS:
+        return StudentAccess(premium_until=now + COMPLIMENTARY_PERIOD)
     rows = db.scalars(select(Purchase).where(Purchase.beneficiary_user_id == student.id)).all()
     premium_until: datetime | None = None
     topic_ids: set[int] = set()

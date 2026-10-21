@@ -327,3 +327,15 @@ def test_production_billing_needs_service_account() -> None:
             SMTP_HOST="smtp.example.com",
             BILLING_ENABLED=True,
         )
+
+
+def test_complimentary_account_gets_every_topic(
+    client: TestClient,
+    play: FakePlay,
+    student: User,
+    topics: list[Topic],
+    auth_headers: Headers,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(settings, "COMPLIMENTARY_EMAILS", [student.email.lower()])
+    assert _subject_access(client, auth_headers(student), topics) == ["free"] + ["premium"] * 3

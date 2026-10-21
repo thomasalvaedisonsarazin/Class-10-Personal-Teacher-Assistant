@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 
@@ -10,6 +10,9 @@ import { palette, spacing } from '@/theme';
 import type { AuthTokens } from '@/types/api';
 
 type Step = 'email' | 'code' | 'password' | 'newPassword';
+
+/** Seconds before another code can be requested (the server also allows 5 per hour). */
+const RESEND_WAIT_SECONDS = 30;
 
 export interface EmailSignInProps {
   /** Called with our tokens after a successful sign-in. */
@@ -31,6 +34,13 @@ export function EmailSignIn({ onSignedIn, onError, onCancel }: EmailSignInProps)
   const [showPassword, setShowPassword] = useState(false);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
+  const [resendIn, setResendIn] = useState(0);
+
+  useEffect(() => {
+    if (resendIn <= 0) return undefined;
+    const timer = setTimeout(() => setResendIn((left) => left - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [resendIn]);
 
   const run = async (action: () => Promise<void>): Promise<void> => {
     onError(null);
@@ -52,7 +62,10 @@ export function EmailSignIn({ onSignedIn, onError, onCancel }: EmailSignInProps)
       }
       await authService.requestEmailCode(normalizeEmail(email));
       setCode('');
-      setNotice(`We sent a 6-digit code to ${normalizeEmail(email)}. Check your inbox and spam folder.`);
+      setNotice(
+        `We sent a 6-digit code to ${normalizeEmail(email)}. In Gmail it is often in the Updates tab — also check Spam. It can take a minute.`,
+      );
+      setResendIn(RESEND_WAIT_SECONDS);
       setStep(next);
     });
 
@@ -90,6 +103,16 @@ export function EmailSignIn({ onSignedIn, onError, onCancel }: EmailSignInProps)
     setPassword('');
     setStep(next);
   };
+
+  const resendButton = (next: Step) => (
+    <PrimaryButton
+      label={resendIn > 0 ? `Send a new code (${resendIn}s)` : 'Send a new code'}
+      mode="text"
+      onPress={() => void sendCode(next)}
+      disabled={busy || resendIn > 0}
+      testID={`resend-code-${next}`}
+    />
+  );
 
   const emailField = (
     <TextInput
@@ -179,7 +202,7 @@ export function EmailSignIn({ onSignedIn, onError, onCancel }: EmailSignInProps)
         <>
           {codeField}
           <PrimaryButton label="Sign in" onPress={() => void signInWithCode()} loading={busy} testID="code-sign-in" />
-          <PrimaryButton label="Send a new code" mode="text" onPress={() => void sendCode('code')} disabled={busy} />
+          {resendButton('code')}
         </>
       ) : null}
 
@@ -213,6 +236,7 @@ export function EmailSignIn({ onSignedIn, onError, onCancel }: EmailSignInProps)
             loading={busy}
             testID="save-password"
           />
+          {resendButton('newPassword')}
         </>
       ) : null}
 
