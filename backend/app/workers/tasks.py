@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import threading
+from typing import Literal
 
 from app.config import settings
 from app.services.ai.lesson_pipeline import run_explanation_job
@@ -50,6 +51,40 @@ def dispatch_explanation_job(job_id: int) -> None:
     else:
         run_explanation_job(job_id)
     logger.info("Dispatched explanation job %s via %s", job_id, runner)
+
+
+@celery_app.task(name="exams.generate_paper", acks_late=True)
+def generate_paper_task(paper_id: int) -> None:
+    """Celery entry point: write a model question paper."""
+    from app.services.model_paper_service import run_generation_job
+
+    run_generation_job(paper_id)
+
+
+@celery_app.task(name="exams.grade_paper", acks_late=True)
+def grade_paper_task(paper_id: int) -> None:
+    """Celery entry point: mark a model paper's answer photos."""
+    from app.services.model_paper_service import run_grading_job
+
+    run_grading_job(paper_id)
+
+
+def dispatch_paper_job(kind: Literal["generate", "grade"], paper_id: int) -> None:
+    """Run a model-paper job using ``settings.job_runner`` (celery / thread / sync)."""
+    from app.services.model_paper_service import run_generation_job, run_grading_job
+
+    task = generate_paper_task if kind == "generate" else grade_paper_task
+    target = run_generation_job if kind == "generate" else run_grading_job
+    runner = settings.job_runner
+    if runner == "celery":
+        task.delay(paper_id)
+    elif runner == "thread":
+        threading.Thread(
+            target=target, args=(paper_id,), name=f"paper-{kind}-{paper_id}", daemon=True
+        ).start()
+    else:
+        target(paper_id)
+    logger.info("Dispatched paper %s job %s via %s", kind, paper_id, runner)
 
 
 @celery_app.task(name="partners.daily")

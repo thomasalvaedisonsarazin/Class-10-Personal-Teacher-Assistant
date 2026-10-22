@@ -10,12 +10,14 @@ from sqlalchemy.orm import Session
 from app.exceptions import ForbiddenError
 from app.models.billing import Purchase
 from app.models.enums import UserRole
+from app.models.exam import ModelPaper, SubjectTest, SubjectTestQuestion
 from app.models.lesson import ClarityFeedback, GenerationJob, LessonView
 from app.models.notification import DeviceToken, NotificationLog
 from app.models.parent import ParentLink
 from app.models.progress import StudyStreak, TopicProgress
 from app.models.quiz import QuizAttempt, QuizAttemptQuestion
 from app.models.user import EmailCode, RefreshToken, User
+from app.services.model_paper_service import delete_user_papers
 
 logger = logging.getLogger(__name__)
 
@@ -38,9 +40,14 @@ def delete_account(db: Session, user: User) -> None:
     if user.role == UserRole.admin:
         raise ForbiddenError("Admin accounts cannot be deleted in the app.", code="admin_delete")
     user_id = user.id
+    delete_user_papers(db, user_id)
+    test_ids = select(SubjectTest.id).where(SubjectTest.user_id == user_id)
+    db.execute(delete(SubjectTestQuestion).where(SubjectTestQuestion.test_id.in_(test_ids)))
     attempt_ids = select(QuizAttempt.id).where(QuizAttempt.user_id == user_id)
     db.execute(delete(QuizAttemptQuestion).where(QuizAttemptQuestion.attempt_id.in_(attempt_ids)))
     for model in (
+        SubjectTest,
+        ModelPaper,
         QuizAttempt,
         LessonView,
         ClarityFeedback,

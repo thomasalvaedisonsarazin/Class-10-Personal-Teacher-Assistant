@@ -1,6 +1,7 @@
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { StyleSheet, View } from 'react-native';
 
+import { AnswerReview } from '@/components/quiz/AnswerReview';
 import { AppText, PrimaryButton } from '@/components/ui';
 import { palette, radius, spacing } from '@/theme';
 import type { QuizResult } from '@/types/quiz';
@@ -55,29 +56,7 @@ export function QuizResultView({ result, onNextTopic, onRetry, onReviewLesson, o
         <PrimaryButton label="Back to subject" mode="text" onPress={onBackToSubject} />
       </View>
 
-      <AppText variant="subtitle">Your answers</AppText>
-      {result.results.map((item) => (
-        <View
-          key={item.questionId}
-          style={[styles.answer, { borderLeftColor: item.isCorrect ? palette.success : palette.warning }]}
-        >
-          <AppText variant="bodySmall" tone="secondary">
-            Question {item.position} · {item.isCorrect ? 'Correct' : 'Not correct'}
-          </AppText>
-          <AppText>{item.stem}</AppText>
-          {!item.isCorrect ? (
-            <AppText variant="bodySmall" tone="secondary">
-              Your answer: {item.selectedAnswer ?? 'Not answered'}
-            </AppText>
-          ) : null}
-          <AppText variant="bodySmall" tone="success">
-            Correct answer: {item.correctAnswer}
-          </AppText>
-          <AppText variant="bodySmall" tone="secondary">
-            {item.explanation}
-          </AppText>
-        </View>
-      ))}
+      <AnswerReview results={result.results} />
     </View>
   );
 }
@@ -94,12 +73,5 @@ const styles = StyleSheet.create({
   },
   actions: {
     gap: spacing.md,
-  },
-  answer: {
-    gap: spacing.xs,
-    padding: spacing.md,
-    borderRadius: radius.md,
-    borderLeftWidth: 4,
-    backgroundColor: palette.surface,
   },
 });

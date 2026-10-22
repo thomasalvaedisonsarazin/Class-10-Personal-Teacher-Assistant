@@ -9,6 +9,7 @@ Usage::
 
 from __future__ import annotations
 
+import base64
 import logging
 import types
 import typing
@@ -46,6 +47,21 @@ class LLMClient(Protocol):
         """
         ...
 
+    def generate_json_with_images(
+        self,
+        system: str,
+        user: str,
+        images: list[tuple[bytes, str]],
+        schema: type[T],
+        effort: str | None = None,
+    ) -> T:
+        """Like :meth:`generate_json`, with ``(data, mime_type)`` images attached to ``user``.
+
+        Raises:
+            LLMError: on API failure, refusal, or invalid output.
+        """
+        ...
+
 
 class OpenAILLMClient:
     """OpenAI implementation using the Responses API with Structured Outputs."""
@@ -56,11 +72,15 @@ class OpenAILLMClient:
         model: str,
         timeout: float = 60.0,
         max_retries: int = 2,
+        vision_model: str | None = None,
+        vision_timeout: float | None = None,
     ) -> None:
         import openai
 
         self._openai = openai
         self.model = model
+        self.vision_model = vision_model or model
+        self._vision_timeout = vision_timeout or timeout
         self._extra: dict[str, Any] = (
             {"reasoning": {"effort": settings.LLM_REASONING_EFFORT}}
             if model.startswith(("gpt-5", "o1", "o3", "o4"))
@@ -72,14 +92,56 @@ class OpenAILLMClient:
         self, system: str, user: str, schema: type[T], effort: str | None = None
     ) -> T:
         """Call ``responses.parse`` with ``text_format=schema`` and return the parsed model."""
+        return self._parse(system, user, schema, effort, self.model, None)
+
+    def generate_json_with_images(
+        self,
+        system: str,
+        user: str,
+        images: list[tuple[bytes, str]],
+        schema: type[T],
+        effort: str | None = None,
+    ) -> T:
+        """Send the images as data URLs to the vision model (``GRADING_MODEL``)."""
+        content: list[dict[str, str]] = [{"type": "input_text", "text": user}]
+        for data, mime in images:
+            encoded = base64.b64encode(data).decode("ascii")
+            content.append(
+                {
+                    "type": "input_image",
+                    "image_url": f"data:{mime};base64,{encoded}",
+                    "detail": "high",
+                }
+            )
+        return self._parse(
+            system,
+            [{"role": "user", "content": content}],
+            schema,
+            effort,
+            self.vision_model,
+            self._vision_timeout,
+        )
+
+    def _parse(
+        self,
+        system: str,
+        user_input: str | list[dict[str, Any]],
+        schema: type[T],
+        effort: str | None,
+        model: str,
+        timeout: float | None,
+    ) -> T:
         extra = dict(self._extra)
-        if effort and "reasoning" in extra:
+        if not model.startswith(("gpt-5", "o1", "o3", "o4")):
+            extra.pop("reasoning", None)
+        elif effort:
             extra["reasoning"] = {"effort": effort}
+        client = self._client.with_options(timeout=timeout) if timeout else self._client
         try:
-            response = self._client.responses.parse(
-                model=self.model,
+            response = client.responses.parse(
+                model=model,
                 instructions=system,
-                input=user,
+                input=user_input,
                 text_format=schema,
                 **extra,
             )
@@ -125,6 +187,7 @@ class FakeLLMClient:
         self._factories: dict[type[BaseModel], FakeFactory] = {}
         self._defaults: dict[type[BaseModel], FakeFactory] = {}
         self.calls: list[tuple[str, str, type[BaseModel]]] = []
+        self.image_counts: list[int] = []
 
     def register(self, schema: type[BaseModel], factory: FakeFactory) -> None:
         """Register a canned factory used for ``schema``."""
@@ -134,6 +197,18 @@ class FakeLLMClient:
         """Register a built-in factory that survives :meth:`clear` (used by services)."""
         self._defaults[schema] = factory
 
+    def generate_json_with_images(
+        self,
+        system: str,
+        user: str,
+        images: list[tuple[bytes, str]],
+        schema: type[T],
+        effort: str | None = None,
+    ) -> T:
+        """Same as :meth:`generate_json`; ``image_counts`` records how many images were sent."""
+        self.image_counts.append(len(images))
+        return self.generate_json(system, user, schema, effort)
+
     def unregister(self, schema: type[BaseModel]) -> None:
         """Remove a registered factory (no-op if absent)."""
         self._factories.pop(schema, None)
@@ -142,6 +217,7 @@ class FakeLLMClient:
         """Remove all factories and recorded calls."""
         self._factories.clear()
         self.calls.clear()
+        self.image_counts.clear()
 
     def generate_json(
         self, system: str, user: str, schema: type[T], effort: str | None = None
@@ -220,6 +296,8 @@ def _openai_client() -> OpenAILLMClient:
         model=settings.LLM_MODEL,
         timeout=settings.LLM_TIMEOUT_SECONDS,
         max_retries=settings.LLM_MAX_RETRIES,
+        vision_model=settings.GRADING_MODEL or None,
+        vision_timeout=settings.GRADING_TIMEOUT_SECONDS,
     )
 
 

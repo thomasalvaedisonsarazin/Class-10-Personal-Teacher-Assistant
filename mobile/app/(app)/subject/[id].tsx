@@ -3,7 +3,7 @@ import { RefreshControl, SectionList, StyleSheet, View } from 'react-native';
 
 import { TopicRow } from '@/components/curriculum/TopicRow';
 import { AppHeader } from '@/components/layout/AppHeader';
-import { AppText, ErrorState, LoadingView, Screen } from '@/components/ui';
+import { AppText, ErrorState, LoadingView, PrimaryButton, Screen } from '@/components/ui';
 import { parseIdParam, useSubject } from '@/hooks/useCurriculum';
 import { getApiErrorMessage } from '@/services/api';
 import { palette, radius, safeTileColor, spacing } from '@/theme';
@@ -69,13 +69,22 @@ export default function SubjectScreen() {
           />
         }
         ListHeaderComponent={
-          <View style={[styles.banner, { backgroundColor: color }]}>
-            <AppText variant="title" tone="inverse">
-              {subject.completedTopics} of {subject.totalTopics} topics passed
-            </AppText>
-            <AppText variant="bodySmall" tone="inverse">
-              Topics open one by one. Pass a topic&apos;s test with 60% or more to unlock the next.
-            </AppText>
+          <View style={styles.header}>
+            <View style={[styles.banner, { backgroundColor: color }]}>
+              <AppText variant="title" tone="inverse">
+                {subject.completedTopics} of {subject.totalTopics} topics passed
+              </AppText>
+              <AppText variant="bodySmall" tone="inverse">
+                Topics open one by one. Pass a topic&apos;s test with 60% or more to unlock the next.
+              </AppText>
+            </View>
+            <PrimaryButton
+              label="Exam practice: subject test & model papers"
+              icon="file-document-edit-outline"
+              mode="outlined"
+              onPress={() => router.push({ pathname: '/exam/[subjectId]', params: { subjectId: String(subject.id) } })}
+              testID="open-exam-practice"
+            />
           </View>
         }
         renderSectionHeader={({ section }) => (
@@ -107,6 +116,9 @@ const styles = StyleSheet.create({
   list: {
     padding: spacing.lg,
     paddingBottom: spacing.xxl,
+  },
+  header: {
+    gap: spacing.md,
   },
   banner: {
     borderRadius: radius.lg,

@@ -185,6 +185,19 @@ def get_topic_for_student(db: Session, user: User, topic_id: int) -> Topic:
     return topic
 
 
+def get_subject_for_student(db: Session, user: User, subject_id: int) -> Subject:
+    """A subject of the student's class that they study (their chosen group), else 404."""
+    subject = db.get(Subject, subject_id)
+    allowed = allowed_subject_ids(user)
+    if (
+        subject is None
+        or subject.board_id != _board_id(user)
+        or (allowed is not None and subject.id not in allowed)
+    ):
+        raise NotFoundError("Subject not found")
+    return subject
+
+
 def get_topic_status(db: Session, user: User, topic: Topic) -> TopicStatusInfo:
     """Derived status of ``topic`` for ``user``."""
     statuses = board_topic_statuses(db, user, subject_id=topic.chapter.subject_id)

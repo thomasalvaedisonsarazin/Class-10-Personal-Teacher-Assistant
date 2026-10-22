@@ -179,6 +179,15 @@ const fetchTopic = async (id: number): Promise<Topic> => {
 - Grading happens server-side only
 - Pass mark constant: `QUIZ_PASS_PCT = 60` in config
 
+### Exam Practice Module (plan holders only)
+- Subject screen → "Exam practice" (`app/(app)/exam/[subjectId].tsx`); `GET /subjects/{id}/exam-practice`; access via `billing_service.require_exam_practice` (402 **`plan_required`**; free when `BILLING_ENABLED` is off, complimentary emails count as a plan)
+- **Full-subject test** (`subject_test_service`, tables `subject_tests` / `subject_test_questions`, never `quiz_attempts`): `SUBJECT_TEST_QUESTIONS` (20) approved questions spread round-robin over the topics already passed (needs `SUBJECT_TEST_MIN_TOPICS` = 3), preferring ones not used in earlier subject tests; server grading; lists weak topics; never completes or unlocks a topic
+- **Model question papers** (`model_paper_service`, table `model_papers`): full syllabus or chosen chapters; pattern from `exam_patterns.pattern_for(grade, subject name, scope)` — TN blueprints (10th: 100 marks, Science 75, Tamil 100; 9th uses 10th; 11th/12th: 90, or 70 for subjects with practicals; unit papers 50 / 40) — verify each year; each paper stores its pattern id
+- Flow: `generating` (Celery `exams.generate_paper`, one LLM call per part, syllabus titles/objectives only) → `ready` (student downloads the PDF — server sends HTML, the app prints it with `expo-print` — and writes on paper) → photos uploaded (`POST /model-papers/{id}/answers`, ≤ `MODEL_PAPER_MAX_PHOTOS`, re-encoded JPEG, EXIF dropped) → `grading` (Celery `exams.grade_paper`, vision model `GRADING_MODEL`) → `graded`; `generation_failed` / `grading_failed` (re-upload allowed)
+- The **answer key and suggested answers are hidden until the photos are submitted** (`paper_out`, `GET /model-papers/{id}/document?kind=key` → 403 `key_locked`)
+- The AI only reads the script and gives marks per question; the server clamps marks and applies the choice rules (best `answer` of each part count; either/or = one question); photos are deleted right after marking; `MODEL_PAPERS_PER_DAY` (3) new papers per student per day (429 `paper_limit`)
+- English / Communicative English papers are always in English; Tamil papers in Tamil (`paper_language`)
+
 ### Notifications Module
 - Study streak = consecutive India-time days with a lesson watched or a test submitted (`streak_service.record_study`)
 - Pushes go through `notification_service.notify` only: per-user language (en/ta), de-duplicated via `NotificationLog` (daily reminder once per day, parent weekly once per week per child), dead Expo tokens removed

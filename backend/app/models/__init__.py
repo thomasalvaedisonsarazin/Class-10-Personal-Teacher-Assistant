@@ -25,6 +25,7 @@ from app.models.enums import (
     TopicStatus,
     UserRole,
 )
+from app.models.exam import ModelPaper, SubjectTest, SubjectTestQuestion
 from app.models.lesson import ClarityFeedback, GenerationJob, Lesson, LessonView
 from app.models.notification import DeviceToken, NotificationLog
 from app.models.parent import ParentLink
@@ -49,6 +50,7 @@ __all__ = [
     "LessonStyle",
     "LessonView",
     "Medium",
+    "ModelPaper",
     "NotificationLog",
     "ParentLink",
     "ParentLinkStatus",
@@ -65,6 +67,8 @@ __all__ = [
     "RefreshToken",
     "StudyStreak",
     "Subject",
+    "SubjectTest",
+    "SubjectTestQuestion",
     "SubjectTranslation",
     "TimestampMixin",
     "Topic",

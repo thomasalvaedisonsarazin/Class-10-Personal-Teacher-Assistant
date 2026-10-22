@@ -54,6 +54,14 @@ class PaymentRequiredError(AppError):
     message = "Unlock this topic with a plan, or buy just this topic"
 
 
+class PlanRequiredError(AppError):
+    """402: exam practice (subject tests, model papers) comes with a plan only."""
+
+    status_code = 402
+    code = "plan_required"
+    message = "Full-subject tests and model papers come with a plan"
+
+
 @dataclass(frozen=True)
 class StudentAccess:
     """A student's paid access at one moment."""
@@ -136,6 +144,17 @@ def get_student_access(
         if expires > now and (premium_until is None or expires > premium_until):
             premium_until = expires
     return StudentAccess(premium_until=premium_until, topic_ids=frozenset(topic_ids))
+
+
+def has_exam_practice(db: Session, student: User) -> bool:
+    """Whether ``student`` may use full-subject tests and model papers (plan holders only)."""
+    return not settings.BILLING_ENABLED or get_student_access(db, student).premium_until is not None
+
+
+def require_exam_practice(db: Session, student: User) -> None:
+    """Raise :class:`PlanRequiredError` unless ``student`` has a plan (or billing is off)."""
+    if not has_exam_practice(db, student):
+        raise PlanRequiredError()
 
 
 def _beneficiary(db: Session, payer: User, student_id: int | None) -> User:
@@ -248,9 +267,7 @@ def record_purchase(
     from app.services import partner_service
 
     base_plan = sub.base_plan_id if row.kind == "subscription" else None
-    if partner_service.record_commission(
-        db, row, row.order_id or f"purchase-{row.id}", base_plan
-    ):
+    if partner_service.record_commission(db, row, row.order_id or f"purchase-{row.id}", base_plan):
         db.commit()
     if acknowledge:
         _finish_with_google(verifier, row)

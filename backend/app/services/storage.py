@@ -31,6 +31,10 @@ class Storage(Protocol):
         """Delete ``key`` (no error if missing)."""
         ...
 
+    def get_object(self, key: str) -> bytes:
+        """Read the bytes stored under ``key``."""
+        ...
+
 
 def _safe_key(key: str) -> str:
     """Validate an object key (no absolute paths or traversal)."""
@@ -105,6 +109,16 @@ class S3Storage:
         except (BotoCoreError, ClientError) as exc:
             raise StorageError(f"Failed to delete {key}") from exc
 
+    def get_object(self, key: str) -> bytes:
+        """Download an object from the bucket."""
+        from botocore.exceptions import BotoCoreError, ClientError
+
+        try:
+            response = self._client.get_object(Bucket=self.bucket, Key=_safe_key(key))
+            return bytes(response["Body"].read())
+        except (BotoCoreError, ClientError) as exc:
+            raise StorageError(f"Failed to read {key}") from exc
+
 
 class LocalStorage:
     """Filesystem storage under ``MEDIA_ROOT`` served by the API at ``/media``."""
@@ -130,6 +144,13 @@ class LocalStorage:
     def delete_object(self, key: str) -> None:
         """Remove the file if it exists."""
         self.path_for(key).unlink(missing_ok=True)
+
+    def get_object(self, key: str) -> bytes:
+        """Read the file."""
+        try:
+            return self.path_for(key).read_bytes()
+        except OSError as exc:
+            raise StorageError(f"Failed to read {key}") from exc
 
 
 @lru_cache(maxsize=1)

@@ -142,6 +142,17 @@ class Settings(BaseSettings):
     QUIZ_QUESTIONS_PER_ATTEMPT: int = 10
     QUIZ_ATTEMPT_EXPIRE_MINUTES: int = 60
 
+    # Exam practice (plan holders): full-subject tests and board-pattern model papers
+    SUBJECT_TEST_QUESTIONS: int = 20
+    SUBJECT_TEST_MIN_TOPICS: int = 3  # completed topics needed before a subject test
+    SUBJECT_TEST_EXPIRE_MINUTES: int = 60
+    MODEL_PAPERS_PER_DAY: int = 3  # new papers per student per 24 hours (AI cost)
+    MODEL_PAPER_MAX_PHOTOS: int = 24
+    MODEL_PAPER_MAX_PHOTO_BYTES: int = 12 * 1024 * 1024
+    GRADING_MODEL: str = ""  # vision model that marks answer-sheet photos; "" = LLM_MODEL
+    GRADING_REASONING_EFFORT: Literal["minimal", "low", "medium", "high"] = "medium"
+    GRADING_TIMEOUT_SECONDS: float = 240.0
+
     # Push
     EXPO_PUSH_URL: str = "https://exp.host/--/api/v2/push/send"
     PUSH_ENABLED: bool = False

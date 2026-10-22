@@ -75,6 +75,15 @@
             "store": "play"
           }
         }
+      ],
+      "expo-sharing",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Teacher Assistant to choose photos of your written answer sheets for marking.",
+          "cameraPermission": "Allow Teacher Assistant to use the camera to photograph your written answer sheets for marking.",
+          "microphonePermission": false
+        }
       ]
     ],
     "experiments": {
