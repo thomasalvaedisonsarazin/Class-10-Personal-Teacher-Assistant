@@ -278,10 +278,10 @@ def _normalise_photo(data: bytes) -> bytes:
     try:
         with Image.open(io.BytesIO(data)) as img:
             img.load()
-            img = img.convert("RGB")
-            img.thumbnail((PHOTO_MAX_SIDE, PHOTO_MAX_SIDE))
+            rgb = img.convert("RGB")
+            rgb.thumbnail((PHOTO_MAX_SIDE, PHOTO_MAX_SIDE))
             out = io.BytesIO()
-            img.save(out, format="JPEG", quality=82, optimize=True)
+            rgb.save(out, format="JPEG", quality=82, optimize=True)
             return out.getvalue()
     except (UnidentifiedImageError, OSError, ValueError) as exc:
         raise BadRequestError(

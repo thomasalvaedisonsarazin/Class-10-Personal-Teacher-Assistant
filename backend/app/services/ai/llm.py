@@ -17,7 +17,7 @@ from collections.abc import Callable
 from datetime import date, datetime
 from enum import Enum
 from functools import lru_cache
-from typing import Any, Literal, Protocol, TypeVar, get_args, get_origin
+from typing import Any, Literal, Protocol, TypeVar, cast, get_args, get_origin
 
 from pydantic import BaseModel, ValidationError
 
@@ -141,7 +141,7 @@ class OpenAILLMClient:
             response = client.responses.parse(
                 model=model,
                 instructions=system,
-                input=user_input,
+                input=cast(Any, user_input),  # SDK wants its own TypedDicts
                 text_format=schema,
                 **extra,
             )
