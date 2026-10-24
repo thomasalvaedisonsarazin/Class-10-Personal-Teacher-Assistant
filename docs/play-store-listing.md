@@ -25,7 +25,13 @@ Package: `com.edsolution.teacherassistant` · Category: **Education** · Contain
 ```
 Your personal teacher for Tamil Nadu State Board (Samacheer Kalvi) classes 9, 10, 11 and 12 — in Tamil, English or Tanglish.
 
-This app is not affiliated with or endorsed by the Government of Tamil Nadu or the Tamil Nadu Textbook and Educational Services Corporation.
+⚠ DISCLAIMER: This is NOT a government app and it does not represent any government entity. It is made by an independent developer and is not affiliated with, authorised or endorsed by the Government of Tamil Nadu, its School Education Department, SCERT Tamil Nadu, the Directorate of Government Examinations or the Tamil Nadu Textbook and Educational Services Corporation.
+
+OFFICIAL SOURCES
+The syllabus, textbook and exam information in this app is based on these official Government of Tamil Nadu websites. Always check them for the latest official information:
+• School Education Department: https://tnschools.gov.in
+• SCERT Tamil Nadu (syllabus and textbooks): https://scert.tnschools.gov.in
+• Directorate of Government Examinations (board exams): https://dge.tn.gov.in
 
 Learn every topic of the Tamil Nadu State Board syllabus step by step.
 • 9th and 10th: Maths, Science, Social Science, Tamil and English
@@ -78,7 +84,13 @@ Lessons, questions and model papers are made with the help of AI and checked aut
 ```
 தமிழ்நாடு மாநிலப் பாடத்திட்ட (சமச்சீர் கல்வி) 9, 10, 11, 12ஆம் வகுப்பு மாணவர்களுக்கான உங்கள் சொந்த ஆசிரியர் — தமிழ், ஆங்கிலம் அல்லது தங்லிஷில்.
 
-இந்தச் செயலி தமிழ்நாடு அரசுடனோ தமிழ்நாடு பாடநூல் மற்றும் கல்வியியல் பணிகள் கழகத்துடனோ தொடர்புடையது அல்ல; அவற்றின் அங்கீகாரம் பெற்றதும் அல்ல.
+⚠ அறிவிப்பு: இது அரசுச் செயலி அல்ல; எந்த அரசு அமைப்பையும் இது பிரதிநிதித்துவப்படுத்தவில்லை. இது ஒரு தனிப்பட்ட டெவலப்பரால் உருவாக்கப்பட்டது. தமிழ்நாடு அரசு, பள்ளிக் கல்வித் துறை, SCERT தமிழ்நாடு, அரசுத் தேர்வுகள் இயக்ககம், தமிழ்நாடு பாடநூல் மற்றும் கல்வியியல் பணிகள் கழகம் ஆகியவற்றுடன் தொடர்புடையதோ, அவற்றின் அனுமதி அல்லது அங்கீகாரம் பெற்றதோ அல்ல.
+
+அதிகாரப்பூர்வ ஆதாரங்கள்
+இந்தச் செயலியில் உள்ள பாடத்திட்டம், பாடநூல், தேர்வுத் தகவல்கள் கீழே உள்ள தமிழ்நாடு அரசின் அதிகாரப்பூர்வ இணையதளங்களை அடிப்படையாகக் கொண்டவை. சமீபத்திய அதிகாரப்பூர்வ தகவல்களுக்கு எப்போதும் இவற்றைப் பாருங்கள்:
+• பள்ளிக் கல்வித் துறை: https://tnschools.gov.in
+• SCERT தமிழ்நாடு (பாடத்திட்டம், பாடநூல்கள்): https://scert.tnschools.gov.in
+• அரசுத் தேர்வுகள் இயக்ககம் (பொதுத் தேர்வுகள்): https://dge.tn.gov.in
 
 தமிழ்நாடு மாநிலப் பாடத்திட்டத்தின் ஒவ்வொரு தலைப்பையும் படிப்படியாகக் கற்றுக்கொள்ளுங்கள்.
 • 9, 10ஆம் வகுப்பு: கணிதம், அறிவியல், சமூக அறிவியல், தமிழ், ஆங்கிலம்
